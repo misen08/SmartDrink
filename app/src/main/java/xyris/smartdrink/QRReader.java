@@ -23,6 +23,7 @@ public class QRReader extends AppCompatActivity {
     ImageView imageView;
     Button btnScan;
     String EditTextValue ;
+    static String direccionIP = "";
     Thread thread ;
     public final static int QRcodeWidth = 350 ;
     Bitmap bitmap ;
@@ -100,7 +101,15 @@ public class QRReader extends AppCompatActivity {
                 Log.e("Scan", "Scanned");
 
                 tv_qr_readTxt.setText(result.getContents());
-                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+                // Guardo la dirección IP obtenida del código QR en una variable
+                direccionIP = result.getContents();
+                Toast.makeText(this, "Código QR escaneado", Toast.LENGTH_LONG).show();
+                //Chequear que la IP sea valida y que el servidor este corriendo.
+                if(!direccionIP.isEmpty()){
+                    Intent ingresoTragos = new Intent(QRReader.this, listaDeTragos.class);
+                    startActivity(ingresoTragos);
+                }
+
             }
         } else {
             // This is important, otherwise the result will not be passed to the fragment
