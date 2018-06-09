@@ -15,17 +15,17 @@ public class listaDeTragos extends AppCompatActivity {
 
     final FloatingActionButton botonCrearTrago =  findViewById(R.id.botonCrearTrago);
 
-    botonCrearTrago.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //String ip = ((EditText) findViewById(R.id.direccionIP)).getText().toString();
-//                if(!ip.isEmpty()){
-//                    Intent ingresoCorrecto = new Intent(listaDeTragos.this, crearTragos.class);
-//                    startActivity(ingresoCorrecto);
-//                }
-
-            }
-        });
+//    botonCrearTrago.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //String ip = ((EditText) findViewById(R.id.direccionIP)).getText().toString();
+////                if(!ip.isEmpty()){
+////                    Intent ingresoCorrecto = new Intent(listaDeTragos.this, crearTragos.class);
+////                    startActivity(ingresoCorrecto);
+////                }
+//
+//            }
+//        });
 
 
     @Override
