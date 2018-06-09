@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class listaDeTragos extends AppCompatActivity {
 
-
+    //Clase de mierda
 
     final FloatingActionButton botonCrearTrago =  findViewById(R.id.botonCrearTrago);
 
