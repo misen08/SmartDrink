@@ -11,28 +11,31 @@ import android.widget.Toast;
 
 public class listaDeTragos extends AppCompatActivity {
 
-    //Clase de mierda
-
-    final FloatingActionButton botonCrearTrago =  findViewById(R.id.botonCrearTrago);
-
-    botonCrearTrago.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //String ip = ((EditText) findViewById(R.id.direccionIP)).getText().toString();
-//                if(!ip.isEmpty()){
-//                    Intent ingresoCorrecto = new Intent(listaDeTragos.this, crearTragos.class);
-//                    startActivity(ingresoCorrecto);
-//                }
-
-            }
-        });
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lista_de_tragos);
-        }
+
+
+        FloatingActionButton botonCrearTrago = (FloatingActionButton) findViewById(R.id.botonCrearTrago);
+
+        botonCrearTrago.setOnClickListener( new View.OnClickListener()
+        {
+            public void onClick (View v){
+                abrirCrearTragos(v);
+            }
+        });
+    }
+
+    public void abrirCrearTragos(View v) {
+        Intent intent = new Intent(this, crearTragos.class);
+        startActivity(intent);
+    }
+
+
+
 
 
 

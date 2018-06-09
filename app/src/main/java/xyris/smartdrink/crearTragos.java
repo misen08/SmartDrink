@@ -21,6 +21,7 @@ public class crearTragos extends AppCompatActivity {
         final Button botonCrear = (Button) findViewById(R.id.botonAgregar);
         final Button botonVolver = (Button) findViewById(R.id.botonVolver);
 
+
         Spinner listaGusto1 = (Spinner) findViewById(R.id.listaPorcentajes1);
         listaGusto1.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, porcentajes));
         Spinner listaGusto2 = (Spinner) findViewById(R.id.listaPorcentajes2);
@@ -42,6 +43,7 @@ public class crearTragos extends AppCompatActivity {
         Spinner listaGusto10 = (Spinner) findViewById(R.id.listaPorcentajes10);
         listaGusto10.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, porcentajes));
 
+
         botonCrear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,6 +56,9 @@ public class crearTragos extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent volverPantallaPrincipal = new Intent(crearTragos.this, listaDeTragos.class);
+                startActivity(
+                        volverPantallaPrincipal
+                );
             }
         });
     }

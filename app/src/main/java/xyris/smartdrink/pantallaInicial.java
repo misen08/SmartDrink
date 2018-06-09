@@ -1,10 +1,12 @@
 package xyris.smartdrink;
 
 import android.content.Intent;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import static xyris.smartdrink.QRReader.direccionIP;
 
 public class pantallaInicial extends AppCompatActivity {
 
@@ -13,17 +15,17 @@ public class pantallaInicial extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_inicial);
 
-        String ip;
-        ip = "";
-
-        if(ip.isEmpty()){
-            Intent leerCodigo = new Intent(pantallaInicial.this, QRReader.class);
-            startActivity(leerCodigo);
-        }
-        else{
-            Intent ingresoTragos = new Intent(pantallaInicial.this, listaDeTragos.class);
-            startActivity(ingresoTragos);
-        }
+//        String ip;
+//        ip = "";
+//
+//        if(ip.isEmpty()){
+//            Intent leerCodigo = new Intent(pantallaInicial.this, QRReader.class);
+//            startActivity(leerCodigo);
+//        }
+//        else{
+//            Intent ingresoTragos = new Intent(pantallaInicial.this, listaDeTragos.class);
+//            startActivity(ingresoTragos);
+//        }
 
         //final Button botonLogin = (Button) findViewById(R.id.botonIngresar);
         //botonLogin.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +49,24 @@ public class pantallaInicial extends AppCompatActivity {
                 finish();
             }
         });
+
+        SystemClock.sleep(3000);
+        String ip = "";
+        if(!direccionIP.isEmpty())
+            ip = direccionIP;
+
+        if(ip.isEmpty()){
+            Intent leerCodigo = new Intent(pantallaInicial.this, QRReader.class);
+            startActivity(leerCodigo);
+        }
+        else{
+            Intent ingresoTragos = new Intent(pantallaInicial.this, listaDeTragos.class);
+            startActivity(ingresoTragos);
+        }
+
+
+        //ComentarioTest2
+
 
     }
 }

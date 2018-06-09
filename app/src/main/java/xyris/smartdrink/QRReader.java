@@ -27,7 +27,7 @@ public class QRReader extends AppCompatActivity {
     Thread thread ;
     public final static int QRcodeWidth = 350 ;
     Bitmap bitmap ;
-
+//commentTest
     TextView tv_qr_readTxt;
 
     @Override
