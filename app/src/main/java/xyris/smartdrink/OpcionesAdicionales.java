@@ -42,8 +42,10 @@ public class OpcionesAdicionales  extends AppCompatActivity {
         botonPrepararAhora.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //if suma de porcentajes distinto de 0 -> Mal armado!!!
-                Toast.makeText(botonPrepararAhora.getContext(),"Comienza el preparado de su bebida",Toast.LENGTH_SHORT).show();
+                Intent abrirPreparandoTrago = new Intent(OpcionesAdicionales.this, PreparandoTrago.class);
+                startActivity(
+                        abrirPreparandoTrago
+                );
             }
         });
 
@@ -55,5 +57,13 @@ public class OpcionesAdicionales  extends AppCompatActivity {
         Intent intent = new Intent(this, OpcionesAdicionales.class);
         startActivity(intent);
     }
+
+    public void abrirPreparandoTrago(View v) {
+        Intent intent = new Intent(this, PreparandoTrago.class);
+        startActivity(intent);
+    }
+
+
+
 
 }

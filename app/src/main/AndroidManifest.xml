@@ -19,6 +19,7 @@
         <activity android:name=".listaDeTragos" />
         <activity android:name=".crearTragos" />
         <activity android:name=".OpcionesAdicionales" />
+        <activity android:name=".PreparandoTrago" />
         <activity android:name=".ProgramarBebida" />
         <activity android:name=".QRReader">
         </activity>
