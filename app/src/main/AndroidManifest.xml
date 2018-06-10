@@ -18,7 +18,10 @@
         </activity>
         <activity android:name=".listaDeTragos" />
         <activity android:name=".crearTragos" />
-        <activity android:name=".QRReader"></activity>
+        <activity android:name=".OpcionesAdicionales" />
+        <activity android:name=".ProgramarBebida" />
+        <activity android:name=".QRReader">
+        </activity>
     </application>
 
 </manifest>

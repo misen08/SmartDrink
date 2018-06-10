@@ -16,7 +16,7 @@ public class crearTragos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_tragos);
 
-        String[] porcentajes = {"","10%","20%","30%","40%","50%","60%","70%","80%","90%"};
+        String[] porcentajes = {"","10%","20%","30%","40%","50%","60%","70%","80%","90%", "100%"};
 
         final Button botonCrear = (Button) findViewById(R.id.botonAgregar);
         final Button botonVolver = (Button) findViewById(R.id.botonVolver);
@@ -52,6 +52,18 @@ public class crearTragos extends AppCompatActivity {
             }
         });
 
+//        botonVolver.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent abrirOpcionesAdicionales = new Intent(crearTragos.this, OpcionesAdicionales.class);
+//                startActivity(
+//                        abrirOpcionesAdicionales
+//                );
+//            }
+//        });
+
+
+
         botonVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,5 +73,10 @@ public class crearTragos extends AppCompatActivity {
                 );
             }
         });
+
+
+
+
+
     }
 }
