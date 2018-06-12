@@ -1,8 +1,6 @@
 package xyris.smartdrink;
 import android.graphics.drawable.Drawable;
 
-
-
 public class CategoryList {
 
     private String title;
@@ -22,12 +20,11 @@ public class CategoryList {
         this.categoryId = categoryId;
     }
 
-
     public String getTitle() {
         return title;
     }
 
-    public void setTittle(String title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 

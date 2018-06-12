@@ -10,7 +10,6 @@ import android.app.Activity;
         import android.widget.TextView;
         import java.util.ArrayList;
 
-
 public class AdapterItem extends BaseAdapter {
 
     protected Activity activity;
