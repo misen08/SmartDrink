@@ -6,26 +6,69 @@
     android:layout_height="match_parent"
     tools:context=".crearTragos">
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="160dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="108dp"
-        android:layout_marginStart="16dp"
-        android:text="Frutilla"
-        android:textAlignment="textStart"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+
+    <!--<TextView-->
+        <!--android:id="@+id/textView7"-->
+        <!--android:layout_width="160dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_marginBottom="188dp"-->
+        <!--android:layout_marginStart="16dp"-->
+        <!--android:text="Ananá"-->
+        <!--android:textAlignment="textStart"-->
+        <!--android:textColor="@android:color/black"-->
+        <!--android:textSize="20sp"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent" />-->
+    <!---->
+    <!---->
+    <!--<TextView-->
+        <!--android:id="@+id/textView8"-->
+        <!--android:layout_width="160dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_marginBottom="148dp"-->
+        <!--android:layout_marginStart="16dp"-->
+        <!--android:text="Frutilla"-->
+        <!--android:textAlignment="textStart"-->
+        <!--android:textColor="@android:color/black"-->
+        <!--android:textSize="20sp"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent" />-->
+
+
+    <!--<TextView-->
+        <!--android:id="@+id/textView9"-->
+        <!--android:layout_width="160dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_marginBottom="108dp"-->
+        <!--android:layout_marginStart="16dp"-->
+        <!--android:text="Frutilla"-->
+        <!--android:textAlignment="textStart"-->
+        <!--android:textColor="@android:color/black"-->
+        <!--android:textSize="20sp"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent" />-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/textView10"-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_marginBottom="72dp"-->
+        <!--android:layout_marginStart="16dp"-->
+        <!--android:text="Frutilla"-->
+        <!--android:textAlignment="textStart"-->
+        <!--android:textColor="@android:color/black"-->
+        <!--android:textSize="20sp"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent" />-->
+
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/textView1"
         android:layout_width="150dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="432dp"
         android:layout_marginStart="16dp"
-        android:text="Frutilla"
+        android:text="Naranja"
         android:textAlignment="textStart"
         android:textColor="@android:color/black"
         android:textSize="20sp"
@@ -33,17 +76,32 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView8"
-        android:layout_width="160dp"
+        android:id="@+id/textView2"
+        android:layout_width="150dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="148dp"
+        android:layout_marginBottom="388dp"
         android:layout_marginStart="16dp"
-        android:text="Frutilla"
+        android:text="Manzana"
         android:textAlignment="textStart"
         android:textColor="@android:color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="160dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="348dp"
+        android:layout_marginStart="16dp"
+        android:text="Durazno"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
     <TextView
         android:id="@+id/textView4"
@@ -84,6 +142,23 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+
+
+
+    <CheckBox
+        android:id="@+id/checkBox1"
+        android:layout_width="105dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="432dp"
+        android:layout_marginEnd="92dp"
+        android:text="Agregar"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+
     <CheckBox
         android:id="@+id/checkBox2"
         android:layout_width="105dp"
@@ -94,6 +169,19 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <CheckBox
+        android:id="@+id/checkBox3"
+        android:layout_width="105dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="348dp"
+        android:layout_marginEnd="92dp"
+        android:text="Agregar"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
 
     <CheckBox
         android:id="@+id/checkBox4"
@@ -117,16 +205,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <CheckBox
-        android:id="@+id/checkBox7"
-        android:layout_width="105dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="188dp"
-        android:layout_marginEnd="92dp"
-        android:text="Agregar"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <CheckBox
         android:id="@+id/checkBox6"
@@ -139,112 +217,57 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <CheckBox
-        android:id="@+id/checkBox10"
-        android:layout_width="105dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="72dp"
-        android:layout_marginEnd="92dp"
-        android:text="Agregar"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <!--<CheckBox-->
+        <!--android:id="@+id/checkBox10"-->
+        <!--android:layout_width="105dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_marginBottom="72dp"-->
+        <!--android:layout_marginEnd="92dp"-->
+        <!--android:text="Agregar"-->
+        <!--android:textSize="18sp"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent" />-->
 
-    <CheckBox
-        android:id="@+id/checkBox9"
-        android:layout_width="105dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="108dp"
-        android:layout_marginEnd="92dp"
-        android:text="Agregar"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <!--<CheckBox-->
+        <!--android:id="@+id/checkBox9"-->
+        <!--android:layout_width="105dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_marginBottom="108dp"-->
+        <!--android:layout_marginEnd="92dp"-->
+        <!--android:text="Agregar"-->
+        <!--android:textSize="18sp"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent" />-->
 
-    <CheckBox
-        android:id="@+id/checkBox8"
-        android:layout_width="105dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="148dp"
-        android:layout_marginEnd="92dp"
-        android:text="Agregar"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <!--<CheckBox-->
+        <!--android:id="@+id/checkBox8"-->
+        <!--android:layout_width="105dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_marginBottom="148dp"-->
+        <!--android:layout_marginEnd="92dp"-->
+        <!--android:text="Agregar"-->
+        <!--android:textSize="18sp"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent" />-->
 
-    <CheckBox
-        android:id="@+id/checkBox1"
-        android:layout_width="105dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="432dp"
-        android:layout_marginEnd="92dp"
-        android:text="Agregar"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <!--<CheckBox-->
+        <!--android:id="@+id/checkBox7"-->
+        <!--android:layout_width="105dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_marginBottom="188dp"-->
+        <!--android:layout_marginEnd="92dp"-->
+        <!--android:text="Agregar"-->
+        <!--android:textSize="18sp"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent" />-->
 
-    <CheckBox
-        android:id="@+id/checkBox3"
-        android:layout_width="105dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="348dp"
-        android:layout_marginEnd="92dp"
-        android:text="Agregar"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="432dp"
-        android:layout_marginStart="16dp"
-        android:text="Naranja"
-        android:textAlignment="textStart"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="160dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="348dp"
-        android:layout_marginStart="16dp"
-        android:text="Durazno"
-        android:textAlignment="textStart"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="388dp"
-        android:layout_marginStart="16dp"
-        android:text="Manzana"
-        android:textAlignment="textStart"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="160dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="188dp"
-        android:layout_marginStart="16dp"
-        android:text="Ananá"
-        android:textAlignment="textStart"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+
+
+
 
     <Button
         android:id="@+id/botonAgregar"
@@ -256,14 +279,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <Spinner
-        android:id="@+id/listaPorcentajes3"
-        android:layout_width="68dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="348dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
         android:id="@+id/listaPorcentajes1"
@@ -282,6 +297,16 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <Spinner
+        android:id="@+id/listaPorcentajes3"
+        android:layout_width="68dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="348dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
     <Spinner
         android:id="@+id/listaPorcentajes4"
@@ -310,41 +335,41 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <Spinner
-        android:id="@+id/listaPorcentajes7"
-        android:layout_width="68dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="188dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <!--<Spinner-->
+        <!--android:id="@+id/listaPorcentajes7"-->
+        <!--android:layout_width="68dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_marginBottom="188dp"-->
+        <!--android:layout_marginEnd="16dp"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent" />-->
 
-    <Spinner
-        android:id="@+id/listaPorcentajes8"
-        android:layout_width="68dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="148dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <!--<Spinner-->
+        <!--android:id="@+id/listaPorcentajes8"-->
+        <!--android:layout_width="68dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_marginBottom="148dp"-->
+        <!--android:layout_marginEnd="16dp"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent" />-->
 
-    <Spinner
-        android:id="@+id/listaPorcentajes9"
-        android:layout_width="68dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="108dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <!--<Spinner-->
+        <!--android:id="@+id/listaPorcentajes9"-->
+        <!--android:layout_width="68dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_marginBottom="108dp"-->
+        <!--android:layout_marginEnd="16dp"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent" />-->
 
-    <Spinner
-        android:id="@+id/listaPorcentajes10"
-        android:layout_width="68dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="72dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <!--<Spinner-->
+        <!--android:id="@+id/listaPorcentajes10"-->
+        <!--android:layout_width="68dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_marginBottom="72dp"-->
+        <!--android:layout_marginEnd="16dp"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent" />-->
 
     <Button
         android:id="@+id/botonVolver"

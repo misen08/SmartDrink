@@ -24,7 +24,7 @@ public class pantallaInicial extends AppCompatActivity {
         });
 
         SystemClock.sleep(3000);
-        String ip = "192.168.2.1";
+        String ip = "-";
         if(!direccionIP.isEmpty())
             ip = direccionIP;
 

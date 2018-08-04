@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-24:12
-INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-24:12
-INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-24:12
-INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-24:12
+ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-32:12
 MERGED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:17:1-55:12
 MERGED from [com.android.support:design:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\design-27.1.1.aar\f0d9cf05075c5be3e823b8dd7a00b82c\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\5d6f98806162a573eef3d90c0310c78f\AndroidManifest.xml:17:1-22:12
@@ -22,67 +22,91 @@ MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\Micaela\.gradl
 MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\f22e32e4f03ad81039e67d0f008ba44e\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\e1cf142ffc7ffbd7a76f1dd27d6cad4b\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\f3e4b9b1839d6df080deeec1681e0e80\AndroidManifest.xml:17:1-22:12
-INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-24:12
-INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-24:12
-INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-24:12
+INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-32:12
 	package
 		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:3:5-31
 		INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml
 		INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-24:12
+		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-32:12
 		INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-24:12
+		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-32:12
 		INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.READ_CONTACTS
+ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:5:5-71
+	android:name
+		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:5:22-69
+uses-permission#android.permission.WRITE_CONTACTS
+ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:6:5-72
+	android:name
+		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:6:22-70
+uses-permission#android.permission.CALL_PHONE
+ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:7:5-68
+	android:name
+		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:7:22-66
 application
-ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:5:5-22:19
+ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:9:5-30:19
 MERGED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:45:5-53:19
 MERGED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:45:5-53:19
 MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\f07402fa062ac5bf736fed73c69c488b\AndroidManifest.xml:9:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\f07402fa062ac5bf736fed73c69c488b\AndroidManifest.xml:9:5-20
 	android:supportsRtl
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:10:9-35
+		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:14:9-35
 	android:label
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:8:9-41
+		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:12:9-41
 	android:roundIcon
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:9:9-54
+		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:13:9-54
 	android:icon
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:7:9-43
+		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:11:9-43
 	android:allowBackup
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:6:9-35
+		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:10:9-35
 	android:theme
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:11:9-40
+		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:15:9-40
 activity#xyris.smartdrink.pantallaInicial
-ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:12:9-18:20
+ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:16:9-22:20
 	android:name
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:12:19-50
+		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:16:19-50
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:13:13-17:29
+ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:17:13-21:29
 action#android.intent.action.MAIN
-ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:14:17-69
+ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:18:17-69
 	android:name
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:14:25-66
+		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:18:25-66
 category#android.intent.category.LAUNCHER
-ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:16:17-77
+ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:20:17-77
 	android:name
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:16:27-74
+		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:20:27-74
 activity#xyris.smartdrink.listaDeTragos
-ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:19:9-51
+ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:23:9-51
 	android:name
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:19:19-48
+		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:23:19-48
 activity#xyris.smartdrink.crearTragos
-ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:20:9-49
+ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:24:9-49
 	android:name
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:20:19-46
+		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:24:19-46
+activity#xyris.smartdrink.OpcionesAdicionales
+ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:25:9-57
+	android:name
+		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:25:19-54
+activity#xyris.smartdrink.PreparandoTrago
+ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:26:9-53
+	android:name
+		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:26:19-50
+activity#xyris.smartdrink.ProgramarBebida
+ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:27:9-53
+	android:name
+		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:27:19-50
 activity#xyris.smartdrink.QRReader
-ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:21:9-55
+ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:28:9-29:20
 	android:name
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:21:19-43
+		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:28:19-43
 uses-sdk
 INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml
