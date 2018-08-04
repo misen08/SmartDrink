@@ -32,7 +32,7 @@ public class pantallaInicial extends AppCompatActivity {
         });
 
         SystemClock.sleep(3000);
-        String ip = "";
+        String ip = "-";
         if(!direccionIP.isEmpty())
             ip = direccionIP;
 

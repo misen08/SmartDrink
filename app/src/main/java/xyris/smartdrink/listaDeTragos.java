@@ -54,6 +54,7 @@ public class listaDeTragos extends AppCompatActivity {
         listViewTragos.setAdapter(adapter);
 
         // Se agregan valores en la lista
+        //Estos valores deben recibirse de la DB
         listaTragos.add("Banaranja");
         listaTragos.add("Naranfru");
         listaTragos.add("Manzana");
@@ -62,13 +63,6 @@ public class listaDeTragos extends AppCompatActivity {
         listaTragos.add("Tropical");
         // Verifica si el adapter cambiò
         adapter.notifyDataSetChanged();
-
-//        botonReconocimientoDeVoz.setOnClickListener( new View.OnClickListener()
-//        {
-//            public void onClick (View v){
-//                abrirReconocimientoDeVoz(v);
-//            }
-//        });
 
         botonCrearTrago.setOnClickListener( new View.OnClickListener()
         {
@@ -89,14 +83,6 @@ public class listaDeTragos extends AppCompatActivity {
         Intent intent = new Intent(this, OpcionesAdicionales.class);
         startActivity(intent);
     }
-
-
-//    public void abrirReconocimientoDeVoz(View v) {
-//        Intent intent = new Intent(this, ReconocimientoDeVoz.class);
-//        startActivity(intent);
-//    }
-
-
 
     public void abrirCrearTragos(View v) {
         Intent intent = new Intent(this, crearTragos.class);

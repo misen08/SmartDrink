@@ -1,5 +1,6 @@
 package xyris.smartdrink;
 import android.graphics.drawable.Drawable;
+import android.widget.Button;
 
 public class CategoryList {
 
@@ -7,17 +8,35 @@ public class CategoryList {
     private String categoryId;
     private String description;
     private Drawable imagen;
+    private Button buttonInfo;
+    private Button buttonDelete;
+
 
     public CategoryList() {
         super();
     }
 
-    public CategoryList(String categoryId, String title, String description, Drawable imagen) {
+    public CategoryList(String categoryId, String title,
+                        Button buttonInfo, Button buttonDelete) {
+        super();
+        this.title = title;
+        this.description = description;
+        //this.imagen = imagen;
+        //this.categoryId = categoryId;
+        this.buttonInfo = buttonInfo;
+        this.buttonDelete = buttonDelete;
+    }
+
+
+    public CategoryList(String categoryId, String title, String description, Drawable imagen,
+                        Button buttonInfo, Button buttonDelete) {
         super();
         this.title = title;
         this.description = description;
         this.imagen = imagen;
         this.categoryId = categoryId;
+        this.buttonInfo = buttonInfo;
+        this.buttonDelete = buttonDelete;
     }
 
     public String getTitle() {
@@ -46,6 +65,27 @@ public class CategoryList {
 
     public String getCategoryId(){return categoryId;}
 
-    public void setCategoryId(String categoryId){this.categoryId = categoryId;}
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
 
+    public Drawable getImagen() {
+        return imagen;
+    }
+
+    public Button getButtonInfo() {
+        return buttonInfo;
+    }
+
+    public void setButtonInfo(Button buttonInfo) {
+        this.buttonInfo = buttonInfo;
+    }
+
+    public Button getButtonDelete() {
+        return buttonDelete;
+    }
+
+    public void setButtonDelete(Button buttonDelete) {
+        this.buttonDelete = buttonDelete;
+    }
 }

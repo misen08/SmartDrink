@@ -12,11 +12,24 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+
 import java.util.HashMap;
-import java.util.Map;
+import com.android.volley.*;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import xyris.smartdrink.entities.Bebida;
+import xyris.smartdrink.entities.PedidoBebida;
+import xyris.smartdrink.messages.consultar.sabor.ConsultaSaborRequest;
 
 public class crearTragos extends AppCompatActivity {
 
+
+    Bebida bebida;
     Integer porcentajeTotal = 100;
     HashMap<String, Integer> configTrago = new HashMap<String, Integer>() {
         //Deberian ser valores que se obtengan de la DB. Hardcodeados de momento para ir probando..
@@ -171,7 +184,8 @@ public class crearTragos extends AppCompatActivity {
                 Log.d("nombre2", nombreBebida);
                 Log.d("test", "test");
                 if(porcentajeTotal == 100){
-                    if(!nombreBebida.isEmpty()){
+
+                    if(1==1){ //!nombreBebida.isEmpty()
                         configTrago.put("Naranja",porcentajeGusto1);
                         configTrago.put("Manzana",porcentajeGusto2);
                         configTrago.put("Durazno",porcentajeGusto3);
@@ -181,6 +195,9 @@ public class crearTragos extends AppCompatActivity {
 
                         Log.d("tag", configTrago.toString());
                         Log.d("nombre", nombreBebida);
+
+                        mandarMensaje();
+
                         Toast.makeText(botonCrear.getContext(),"Agregado a la lista",Toast.LENGTH_SHORT).show();
 
                     } else {
@@ -213,5 +230,35 @@ public class crearTragos extends AppCompatActivity {
                 );
             }
         });
+    }
+
+    private void mandarMensaje(){
+// Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="http://192.168.0.35:8080/consultarBebidas";
+        HashMap<String,String> params = new HashMap<String,String>();
+        params.put("idDispositivo","8173924678916234");
+        params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
+
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+            @Override public void onResponse(JSONObject response)
+            {
+                try {
+                    VolleyLog.v("Response:%n %s", response.toString(4));
+                    Toast.makeText(getApplicationContext(),"Response:%n %s" + response.toString(4),
+                            Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) { e.printStackTrace(); } }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("Error: ", error.getMessage());
+                Toast.makeText(getApplicationContext(),"Response:%n %s" + error.getMessage() + error.getStackTrace(),
+                        Toast.LENGTH_SHORT).show();
+            } });
+// Add the request to the RequestQueue.
+        queue.add(req);
+
+
     }
 }
