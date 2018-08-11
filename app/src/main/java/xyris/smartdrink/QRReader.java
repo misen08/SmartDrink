@@ -106,7 +106,7 @@ public class QRReader extends AppCompatActivity {
                 Toast.makeText(this, "Código QR escaneado", Toast.LENGTH_LONG).show();
                 //Chequear que la IP sea valida y que el servidor este corriendo.
                 if(!direccionIP.isEmpty()){
-                    Intent ingresoTragos = new Intent(QRReader.this, listaDeTragos.class);
+                    Intent ingresoTragos = new Intent(QRReader.this, ListaDeTragos.class);
                     startActivity(ingresoTragos);
                 }
 

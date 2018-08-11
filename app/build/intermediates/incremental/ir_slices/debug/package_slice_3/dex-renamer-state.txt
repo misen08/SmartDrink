@@ -1,4 +1,4 @@
-#Sat Aug 04 19:31:33 ART 2018
+#Sat Aug 11 18:15:29 ART 2018
 base.0=E\:\\_UNLaM2018\\_PROYECTO2018\\SmartDrink-master\\SmartDrink-master\\SmartDrinks\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\3
 path.0=classes.dex
 renamed.0=classes.dex

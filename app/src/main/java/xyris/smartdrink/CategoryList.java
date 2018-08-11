@@ -1,6 +1,8 @@
 package xyris.smartdrink;
 import android.graphics.drawable.Drawable;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 public class CategoryList {
 
@@ -8,16 +10,15 @@ public class CategoryList {
     private String categoryId;
     private String description;
     private Drawable imagen;
-    private Button buttonInfo;
-    private Button buttonDelete;
-
+    private Drawable buttonInfo;
+    private Drawable buttonDelete;
 
     public CategoryList() {
         super();
     }
 
     public CategoryList(String categoryId, String title,
-                        Button buttonInfo, Button buttonDelete) {
+                        Drawable buttonInfo, Drawable buttonDelete) {
         super();
         this.title = title;
         this.description = description;
@@ -29,7 +30,7 @@ public class CategoryList {
 
 
     public CategoryList(String categoryId, String title, String description, Drawable imagen,
-                        Button buttonInfo, Button buttonDelete) {
+                        Drawable buttonInfo, Drawable buttonDelete) {
         super();
         this.title = title;
         this.description = description;
@@ -47,6 +48,14 @@ public class CategoryList {
         this.title = title;
     }
 
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -55,7 +64,7 @@ public class CategoryList {
         this.description = description;
     }
 
-    public Drawable getImage() {
+    public Drawable getImagen() {
         return imagen;
     }
 
@@ -63,29 +72,69 @@ public class CategoryList {
         this.imagen = imagen;
     }
 
-    public String getCategoryId(){return categoryId;}
-
-    public void setCategoryId(String categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public Drawable getImagen() {
-        return imagen;
-    }
-
-    public Button getButtonInfo() {
+    public Drawable getButtonInfo() {
         return buttonInfo;
     }
 
-    public void setButtonInfo(Button buttonInfo) {
+    public void setButtonInfo(Drawable buttonInfo) {
         this.buttonInfo = buttonInfo;
     }
 
-    public Button getButtonDelete() {
+    public Drawable getButtonDelete() {
         return buttonDelete;
     }
 
-    public void setButtonDelete(Button buttonDelete) {
+    public void setButtonDelete(Drawable buttonDelete) {
         this.buttonDelete = buttonDelete;
     }
+
+    //    public String getTitle() {
+//        return title;
+//    }
+//
+//    public void setTitle(String title) {
+//        this.title = title;
+//    }
+//
+//    public String getDescription() {
+//        return description;
+//    }
+//
+//    public void setDescription(String description) {
+//        this.description = description;
+//    }
+//
+//    public Drawable getImage() {
+//        return imagen;
+//    }
+//
+//    public void setImagen(Drawable imagen) {
+//        this.imagen = imagen;
+//    }
+//
+//    public String getCategoryId(){return categoryId;}
+//
+//    public void setCategoryId(String categoryId) {
+//        this.categoryId = categoryId;
+//    }
+//
+//    public Drawable getImagen() {
+//        return imagen;
+//    }
+//
+//    public Drawable getButtonInfo() {
+//        return buttonInfo;
+//    }
+//
+//    public void setButtonInfo(Drawable buttonInfo) {
+//        this.buttonInfo = buttonInfo;
+//    }
+//
+//    public ImageButton getButtonDelete() {
+//        return buttonDelete;
+//    }
+//
+//    public void setButtonDelete(ImageButton buttonDelete) {
+//        this.buttonDelete = buttonDelete;
+//    }
 }

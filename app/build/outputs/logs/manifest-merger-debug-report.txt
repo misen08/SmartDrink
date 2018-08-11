@@ -76,7 +76,7 @@ MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Mi
 		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:12:9-35
 	android:theme
 		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:17:9-40
-activity#xyris.smartdrink.pantallaInicial
+activity#xyris.smartdrink.PantallaInicial
 ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:18:9-24:20
 	android:name
 		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:18:19-50
@@ -90,11 +90,11 @@ category#android.intent.category.LAUNCHER
 ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:22:17-77
 	android:name
 		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:22:27-74
-activity#xyris.smartdrink.listaDeTragos
+activity#xyris.smartdrink.ListaDeTragos
 ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:25:9-51
 	android:name
 		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:25:19-48
-activity#xyris.smartdrink.crearTragos
+activity#xyris.smartdrink.CrearTragos
 ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:26:9-49
 	android:name
 		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:26:19-46

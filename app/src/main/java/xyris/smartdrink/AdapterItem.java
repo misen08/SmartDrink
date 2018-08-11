@@ -2,11 +2,14 @@ package xyris.smartdrink;
 
 import android.app.Activity;
         import android.content.Context;
-        import android.view.LayoutInflater;
+import android.graphics.drawable.Drawable;
+import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
         import android.widget.BaseAdapter;
-        import android.widget.ImageView;
+        import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
         import android.widget.TextView;
         import java.util.ArrayList;
 
@@ -52,7 +55,7 @@ public class AdapterItem extends BaseAdapter {
 
         if (convertView == null) {
             LayoutInflater inf = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-           // v = inf.inflate(R.layout.lista_tragos, null);
+            v = inf.inflate(R.layout.item_category, null);
         }
 
         CategoryList dir = items.get(position);
@@ -60,11 +63,16 @@ public class AdapterItem extends BaseAdapter {
         TextView title = (TextView) v.findViewById(R.id.category);
         title.setText(dir.getTitle());
 
-        TextView description = (TextView) v.findViewById(R.id.texto);
-        description.setText(dir.getDescription());
+//        TextView description = (TextView) v.findViewById(R.id.texto);
+//        description.setText(dir.getDescription());
 
-        ImageView imagen = (ImageView) v.findViewById(R.id.imageView);
-        imagen.setImageDrawable(dir.getImage());
+
+        ImageView infoImage = (ImageView) v.findViewById(R.id.buttonInfo);
+        infoImage.setImageDrawable(dir.getButtonInfo());
+
+        ImageView deleteImage = (ImageView) v.findViewById(R.id.buttonDelete);
+        deleteImage.setImageDrawable(dir.getButtonDelete());
+
 
         return v;
     }

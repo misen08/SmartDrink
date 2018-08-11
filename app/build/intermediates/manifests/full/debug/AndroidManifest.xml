@@ -42,15 +42,15 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
-        <activity android:name="xyris.smartdrink.pantallaInicial" >
+        <activity android:name="xyris.smartdrink.PantallaInicial" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="xyris.smartdrink.listaDeTragos" />
-        <activity android:name="xyris.smartdrink.crearTragos" />
+        <activity android:name="xyris.smartdrink.ListaDeTragos" />
+        <activity android:name="xyris.smartdrink.CrearTragos" />
         <activity android:name="xyris.smartdrink.OpcionesAdicionales" />
         <activity android:name="xyris.smartdrink.PreparandoTrago" />
         <activity android:name="xyris.smartdrink.ProgramarBebida" />

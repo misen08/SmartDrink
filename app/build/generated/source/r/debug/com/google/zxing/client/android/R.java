@@ -34,17 +34,17 @@ public final class R {
         public static final int centerCrop = 0x7f090035;
         public static final int fitCenter = 0x7f090062;
         public static final int fitXY = 0x7f090063;
-        public static final int zxing_back_button = 0x7f0900f1;
-        public static final int zxing_barcode_scanner = 0x7f0900f2;
-        public static final int zxing_barcode_surface = 0x7f0900f3;
-        public static final int zxing_camera_error = 0x7f0900f4;
-        public static final int zxing_decode = 0x7f0900f5;
-        public static final int zxing_decode_failed = 0x7f0900f6;
-        public static final int zxing_decode_succeeded = 0x7f0900f7;
-        public static final int zxing_possible_result_points = 0x7f0900f8;
-        public static final int zxing_prewiew_size_ready = 0x7f0900f9;
-        public static final int zxing_status_view = 0x7f0900fa;
-        public static final int zxing_viewfinder_view = 0x7f0900fb;
+        public static final int zxing_back_button = 0x7f0900ef;
+        public static final int zxing_barcode_scanner = 0x7f0900f0;
+        public static final int zxing_barcode_surface = 0x7f0900f1;
+        public static final int zxing_camera_error = 0x7f0900f2;
+        public static final int zxing_decode = 0x7f0900f3;
+        public static final int zxing_decode_failed = 0x7f0900f4;
+        public static final int zxing_decode_succeeded = 0x7f0900f5;
+        public static final int zxing_possible_result_points = 0x7f0900f6;
+        public static final int zxing_prewiew_size_ready = 0x7f0900f7;
+        public static final int zxing_status_view = 0x7f0900f8;
+        public static final int zxing_viewfinder_view = 0x7f0900f9;
     }
     public static final class layout {
         public static final int zxing_barcode_scanner = 0x7f0b0046;
