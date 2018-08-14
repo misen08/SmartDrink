@@ -1,19 +1,13 @@
-#Sat Aug 11 19:22:23 ART 2018
+#Mon Aug 13 22:06:03 ART 2018
+path.3=classes.dex
+path.2=classes.dex
 path.1=classes.dex
 path.0=classes.dex
-renamed.5=classes6.dex
-renamed.4=classes5.dex
 renamed.3=classes4.dex
 renamed.2=classes3.dex
 renamed.1=classes2.dex
 renamed.0=classes.dex
-base.5=E\:\\_UNLaM2018\\_PROYECTO2018\\SmartDrink-master\\SmartDrink-master\\SmartDrinks\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\15
-base.4=E\:\\_UNLaM2018\\_PROYECTO2018\\SmartDrink-master\\SmartDrink-master\\SmartDrinks\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\12
-base.3=E\:\\_UNLaM2018\\_PROYECTO2018\\SmartDrink-master\\SmartDrink-master\\SmartDrinks\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\14
-base.2=E\:\\_UNLaM2018\\_PROYECTO2018\\SmartDrink-master\\SmartDrink-master\\SmartDrinks\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\11
-base.1=E\:\\_UNLaM2018\\_PROYECTO2018\\SmartDrink-master\\SmartDrink-master\\SmartDrinks\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\16
-base.0=E\:\\_UNLaM2018\\_PROYECTO2018\\SmartDrink-master\\SmartDrink-master\\SmartDrinks\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\13
-path.5=classes.dex
-path.4=classes.dex
-path.3=classes.dex
-path.2=classes.dex
+base.3=/home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/build/intermediates/transforms/dexMerger/debug/30
+base.2=/home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/build/intermediates/transforms/dexMerger/debug/29
+base.1=/home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/build/intermediates/transforms/dexMerger/debug/31
+base.0=/home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/build/intermediates/transforms/dexMerger/debug/32

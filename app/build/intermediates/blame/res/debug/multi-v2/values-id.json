@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\_UNLaM2018\\_PROYECTO2018\\SmartDrink-master\\SmartDrink-master\\SmartDrinks\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-id\\values-id.xml",
+            "outputFile": "/home/federico/prueba/SmartDrinks/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-id/values-id.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Micaela\\.gradle\\caches\\transforms-1\\files-1.1\\zxing-android-embedded-3.2.0.aar\\cb40f7a1f9e551f91209255360ab6af7\\res\\values-id\\values-id.xml",
+                    "source": "/home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/res/values-id/values-id.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

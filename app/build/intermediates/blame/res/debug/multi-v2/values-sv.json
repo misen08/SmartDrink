@@ -1,10 +1,27 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\_UNLaM2018\\_PROYECTO2018\\SmartDrink-master\\SmartDrink-master\\SmartDrinks\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sv\\values-sv.xml",
+            "outputFile": "/home/federico/prueba/SmartDrinks/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sv/values-sv.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Micaela\\.gradle\\caches\\transforms-1\\files-1.1\\zxing-android-embedded-3.2.0.aar\\cb40f7a1f9e551f91209255360ab6af7\\res\\values-sv\\values-sv.xml",
+                    "source": "/home/federico/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/40555690c7ef1b23fe84330325aa7863/res/values-sv/values-sv.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "20",
+                        "startColumns": "4",
+                        "startOffsets": "1903",
+                        "endColumns": "100",
+                        "endOffsets": "1999"
+                    }
+                },
+                {
+                    "source": "/home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/res/values-sv/values-sv.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -21,30 +38,13 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Micaela\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\5d6f98806162a573eef3d90c0310c78f\\res\\values-sv\\values-sv.xml",
+                    "source": "/home/federico/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/bd872d24bf1a8232a167f7acf8098738/res/values-sv/values-sv.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
                         "startOffsets": "105,211,314,425,510,612,725,801,877,957,1063,1163,1259,1364,1466,1568,1722,1824",
                         "endColumns": "105,102,110,84,101,112,75,75,79,105,99,95,104,101,101,153,101,78",
                         "endOffsets": "206,309,420,505,607,720,796,872,952,1058,1158,1254,1359,1461,1563,1717,1819,1898"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Micaela\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\f0bb292d5c76add8a5f15ceb17d800d6\\res\\values-sv\\values-sv.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "20",
-                        "startColumns": "4",
-                        "startOffsets": "1903",
-                        "endColumns": "100",
-                        "endOffsets": "1999"
                     }
                 }
             ]

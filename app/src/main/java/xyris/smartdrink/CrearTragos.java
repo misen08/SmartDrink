@@ -21,12 +21,12 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import xyris.smartdrink.entities.Bebida;
-import xyris.smartdrink.entities.SaborEnBebida;
+//import xyris.smartdrink.entities.Bebida;
+//import xyris.smartdrink.entities.SaborEnBebida;
 
 public class CrearTragos extends AppCompatActivity {
 
-    ArrayList<SaborEnBebida> listSaborEnBebida;
+    //ArrayList<SaborEnBebida> listSaborEnBebida;
 
     Integer porcentajeTotal = 100;
     HashMap<String, Integer> configTrago = new HashMap<String, Integer>() {
@@ -49,9 +49,9 @@ public class CrearTragos extends AppCompatActivity {
             porcentajeGusto6 = 0;
     Integer[] porcentajes = {0,10,20,30,40,50,60,70,80,90,100};
 
-    public ArrayList<SaborEnBebida> getListSaborEnBebida() {
-        return listSaborEnBebida;
-    }
+    //public ArrayList<SaborEnBebida> getListSaborEnBebida() {
+    //    return listSaborEnBebida;
+    //}
 
     String nombreBebida;
 
@@ -68,7 +68,7 @@ public class CrearTragos extends AppCompatActivity {
 
         nombreBebida = editTextNombreBebida.getText().toString();
 
-        Spinner listaGusto1 = (Spinner) findViewById(R.id.listaPorcentajes1);
+        Spinner listaGusto1 = (Spinner) findViewById(R.id.spinnerPorcentajesGusto1);
         listaGusto1.setAdapter(new ArrayAdapter<Integer>(this,android.R.layout.simple_spinner_item, porcentajes));
         listaGusto1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -85,7 +85,7 @@ public class CrearTragos extends AppCompatActivity {
         });
 
 
-        Spinner listaGusto2 = (Spinner) findViewById(R.id.listaPorcentajes2);
+        Spinner listaGusto2 = (Spinner) findViewById(R.id.spinnerPorcentajesGusto2);
         listaGusto2.setAdapter(new ArrayAdapter<Integer>(this,android.R.layout.simple_spinner_item, porcentajes));
         listaGusto2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -101,7 +101,7 @@ public class CrearTragos extends AppCompatActivity {
             }
         });
 
-        Spinner listaGusto3 = (Spinner) findViewById(R.id.listaPorcentajes3);
+        Spinner listaGusto3 = (Spinner) findViewById(R.id.spinnerPorcentajesGusto3);
         listaGusto3.setAdapter(new ArrayAdapter<Integer>(this,android.R.layout.simple_spinner_item, porcentajes));
         listaGusto3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -117,7 +117,7 @@ public class CrearTragos extends AppCompatActivity {
             }
         });
 
-        Spinner listaGusto4 = (Spinner) findViewById(R.id.listaPorcentajes4);
+        Spinner listaGusto4 = (Spinner) findViewById(R.id.spinnerPorcentajesGusto4);
         listaGusto4.setAdapter(new ArrayAdapter<Integer>(this,android.R.layout.simple_spinner_item, porcentajes));
 
         listaGusto4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -133,7 +133,7 @@ public class CrearTragos extends AppCompatActivity {
         });
 
 
-        Spinner listaGusto5 = (Spinner) findViewById(R.id.listaPorcentajes5);
+        Spinner listaGusto5 = (Spinner) findViewById(R.id.spinnerPorcentajesGusto5);
         listaGusto5.setAdapter(new ArrayAdapter<Integer>(this,android.R.layout.simple_spinner_item, porcentajes));
 
         listaGusto5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -151,7 +151,7 @@ public class CrearTragos extends AppCompatActivity {
         });
 
 
-        Spinner listaGusto6 = (Spinner) findViewById(R.id.listaPorcentajes6);
+        Spinner listaGusto6 = (Spinner) findViewById(R.id.spinnerPorcentajesGusto6);
         listaGusto6.setAdapter(new ArrayAdapter<Integer>(this,android.R.layout.simple_spinner_item, porcentajes));
 
         listaGusto6.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -212,16 +212,25 @@ public class CrearTragos extends AppCompatActivity {
 //        });
 
 
-        botonVolver.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent volverPantallaPrincipal = new Intent(CrearTragos.this, ListaDeTragos.class);
-                startActivity(
-                        volverPantallaPrincipal
-                );
-            }
-        });
-    }
+    //    botonVolver.setOnClickListener(new View.OnClickListener() {
+    //        @Override
+    //        public void onClick(View v) {
+    //            Intent volverPantallaPrincipal = new Intent(CrearTragos.this, ListaDeTragos.class);
+    //            startActivity(
+    //                    volverPantallaPrincipal
+    //            );
+    //        }
+    //    });
+    //}
+
+    botonVolver.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            finish();
+        }
+
+    });
+}
 
     private void mandarMensaje(){
 // Instantiate the RequestQueue.
@@ -249,7 +258,6 @@ public class CrearTragos extends AppCompatActivity {
             } });
 // Add the request to the RequestQueue.
         queue.add(req);
-
 
     }
 }

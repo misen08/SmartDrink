@@ -6,378 +6,157 @@
     android:layout_height="match_parent"
     tools:context=".CrearTragos">
 
-
-    <!--<TextView-->
-        <!--android:id="@+id/textView7"-->
-        <!--android:layout_width="160dp"-->
-        <!--android:layout_height="30dp"-->
-        <!--android:layout_marginBottom="188dp"-->
-        <!--android:layout_marginStart="16dp"-->
-        <!--android:text="Ananá"-->
-        <!--android:textAlignment="textStart"-->
-        <!--android:textColor="@android:color/black"-->
-        <!--android:textSize="20sp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent" />-->
-    <!---->
-    <!---->
-    <!--<TextView-->
-        <!--android:id="@+id/textView8"-->
-        <!--android:layout_width="160dp"-->
-        <!--android:layout_height="30dp"-->
-        <!--android:layout_marginBottom="148dp"-->
-        <!--android:layout_marginStart="16dp"-->
-        <!--android:text="Frutilla"-->
-        <!--android:textAlignment="textStart"-->
-        <!--android:textColor="@android:color/black"-->
-        <!--android:textSize="20sp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent" />-->
-
-
-    <!--<TextView-->
-        <!--android:id="@+id/textView9"-->
-        <!--android:layout_width="160dp"-->
-        <!--android:layout_height="30dp"-->
-        <!--android:layout_marginBottom="108dp"-->
-        <!--android:layout_marginStart="16dp"-->
-        <!--android:text="Frutilla"-->
-        <!--android:textAlignment="textStart"-->
-        <!--android:textColor="@android:color/black"-->
-        <!--android:textSize="20sp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent" />-->
-
-    <!--<TextView-->
-        <!--android:id="@+id/textView10"-->
-        <!--android:layout_width="150dp"-->
-        <!--android:layout_height="30dp"-->
-        <!--android:layout_marginBottom="72dp"-->
-        <!--android:layout_marginStart="16dp"-->
-        <!--android:text="Frutilla"-->
-        <!--android:textAlignment="textStart"-->
-        <!--android:textColor="@android:color/black"-->
-        <!--android:textSize="20sp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent" />-->
-
-
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="150dp"
+        android:id="@+id/textViewGusto1"
+        android:layout_width="160dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="432dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="120dp"
         android:text="Naranja"
         android:textAlignment="textStart"
         android:textColor="@android:color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textSize="23sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="150dp"
+        android:id="@+id/textViewGusto2"
+        android:layout_width="160dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="388dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="165dp"
         android:text="Manzana"
         android:textAlignment="textStart"
         android:textColor="@android:color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        android:textSize="23sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textViewGusto3"
         android:layout_width="160dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="348dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="210dp"
         android:text="Durazno"
         android:textAlignment="textStart"
         android:textColor="@android:color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        android:textSize="23sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textViewGusto4"
         android:layout_width="160dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="308dp"
-        android:layout_marginStart="16dp"
-        android:text="Pera"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="255dp"
+        android:text="Ananá"
         android:textAlignment="textStart"
         android:textColor="@android:color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textSize="23sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="268dp"
-        android:layout_marginStart="16dp"
-        android:text="Pomelo rosado"
-        android:textAlignment="textStart"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textViewGusto5"
         android:layout_width="160dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="228dp"
-        android:layout_marginStart="16dp"
-        android:text="Pomelo blanco"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="300dp"
+        android:text="Pomelo"
         android:textAlignment="textStart"
         android:textColor="@android:color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textSize="23sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-
-
-    <CheckBox
-        android:id="@+id/checkBox1"
-        android:layout_width="105dp"
+    <TextView
+        android:id="@+id/textViewGusto6"
+        android:layout_width="160dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="432dp"
-        android:layout_marginEnd="92dp"
-        android:text="Agregar"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-
-
-
-    <CheckBox
-        android:id="@+id/checkBox2"
-        android:layout_width="105dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="388dp"
-        android:layout_marginEnd="92dp"
-        android:text="Agregar"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <CheckBox
-        android:id="@+id/checkBox3"
-        android:layout_width="105dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="348dp"
-        android:layout_marginEnd="92dp"
-        android:text="Agregar"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-
-
-    <CheckBox
-        android:id="@+id/checkBox4"
-        android:layout_width="105dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="308dp"
-        android:layout_marginEnd="92dp"
-        android:text="Agregar"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <CheckBox
-        android:id="@+id/checkBox5"
-        android:layout_width="105dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="268dp"
-        android:layout_marginEnd="92dp"
-        android:text="Agregar"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-
-    <CheckBox
-        android:id="@+id/checkBox6"
-        android:layout_width="105dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="228dp"
-        android:layout_marginEnd="92dp"
-        android:text="Agregar"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!--<CheckBox-->
-        <!--android:id="@+id/checkBox10"-->
-        <!--android:layout_width="105dp"-->
-        <!--android:layout_height="30dp"-->
-        <!--android:layout_marginBottom="72dp"-->
-        <!--android:layout_marginEnd="92dp"-->
-        <!--android:text="Agregar"-->
-        <!--android:textSize="18sp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent" />-->
-
-    <!--<CheckBox-->
-        <!--android:id="@+id/checkBox9"-->
-        <!--android:layout_width="105dp"-->
-        <!--android:layout_height="30dp"-->
-        <!--android:layout_marginBottom="108dp"-->
-        <!--android:layout_marginEnd="92dp"-->
-        <!--android:text="Agregar"-->
-        <!--android:textSize="18sp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent" />-->
-
-    <!--<CheckBox-->
-        <!--android:id="@+id/checkBox8"-->
-        <!--android:layout_width="105dp"-->
-        <!--android:layout_height="30dp"-->
-        <!--android:layout_marginBottom="148dp"-->
-        <!--android:layout_marginEnd="92dp"-->
-        <!--android:text="Agregar"-->
-        <!--android:textSize="18sp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent" />-->
-
-    <!--<CheckBox-->
-        <!--android:id="@+id/checkBox7"-->
-        <!--android:layout_width="105dp"-->
-        <!--android:layout_height="30dp"-->
-        <!--android:layout_marginBottom="188dp"-->
-        <!--android:layout_marginEnd="92dp"-->
-        <!--android:text="Agregar"-->
-        <!--android:textSize="18sp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent" />-->
-
-
-
-
-
-
-
-
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="345dp"
+        android:text="Frutilla"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/black"
+        android:textSize="23sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/botonAgregar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="35dp"
+        android:layout_marginEnd="35dp"
         android:text="Agregar a la lista"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-
-    <Spinner
-        android:id="@+id/listaPorcentajes1"
-        android:layout_width="68dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="432dp"
-        android:layout_marginEnd="16dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
-        android:id="@+id/listaPorcentajes2"
-        android:layout_width="68dp"
+        android:id="@+id/spinnerPorcentajesGusto1"
+        android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="388dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="120dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/listaPorcentajes3"
-        android:layout_width="68dp"
+        android:id="@+id/spinnerPorcentajesGusto2"
+        android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="348dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="165dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/listaPorcentajes4"
-        android:layout_width="68dp"
+        android:id="@+id/spinnerPorcentajesGusto3"
+        android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="308dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="210dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/listaPorcentajes5"
-        android:layout_width="68dp"
+        android:id="@+id/spinnerPorcentajesGusto4"
+        android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="268dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="255dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/listaPorcentajes6"
-        android:layout_width="68dp"
+        android:id="@+id/spinnerPorcentajesGusto5"
+        android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="228dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="300dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!--<Spinner-->
-        <!--android:id="@+id/listaPorcentajes7"-->
-        <!--android:layout_width="68dp"-->
-        <!--android:layout_height="30dp"-->
-        <!--android:layout_marginBottom="188dp"-->
-        <!--android:layout_marginEnd="16dp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent" />-->
-
-    <!--<Spinner-->
-        <!--android:id="@+id/listaPorcentajes8"-->
-        <!--android:layout_width="68dp"-->
-        <!--android:layout_height="30dp"-->
-        <!--android:layout_marginBottom="148dp"-->
-        <!--android:layout_marginEnd="16dp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent" />-->
-
-    <!--<Spinner-->
-        <!--android:id="@+id/listaPorcentajes9"-->
-        <!--android:layout_width="68dp"-->
-        <!--android:layout_height="30dp"-->
-        <!--android:layout_marginBottom="108dp"-->
-        <!--android:layout_marginEnd="16dp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent" />-->
-
-    <!--<Spinner-->
-        <!--android:id="@+id/listaPorcentajes10"-->
-        <!--android:layout_width="68dp"-->
-        <!--android:layout_height="30dp"-->
-        <!--android:layout_marginBottom="72dp"-->
-        <!--android:layout_marginEnd="16dp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent" />-->
+    <Spinner
+        android:id="@+id/spinnerPorcentajesGusto6"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="345dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/botonVolver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:layout_marginStart="48dp"
+        android:layout_marginBottom="35dp"
+        android:layout_marginStart="45dp"
         android:text="VOLVER"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -385,10 +164,16 @@
         android:id="@+id/editTextNombreBebida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Nombre de la bebida"
-        app:layout_constraintBottom_toTopOf="@+id/textView1"
-        app:layout_constraintEnd_toStartOf="@+id/listaPorcentajes1" />
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

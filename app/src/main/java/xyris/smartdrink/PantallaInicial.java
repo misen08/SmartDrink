@@ -19,11 +19,20 @@ public class PantallaInicial extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_inicial);
 
-        Button botonSalir = (Button) findViewById(R.id.botonSalir);
+        Button botonSalir = (Button) findViewById(R.id.buttonCloseApp);
         botonSalir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        Button botonLeerQR = (Button) findViewById(R.id.buttonReadQR);
+        botonLeerQR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent leerCodigo = new Intent(PantallaInicial.this, QRReader.class);
+                startActivity(leerCodigo);
             }
         });
 

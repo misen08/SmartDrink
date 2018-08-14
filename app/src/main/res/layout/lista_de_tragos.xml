@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
     tools:context=".ListaDeTragos">
 
     <ListView
         android:id="@+id/listaTragos"
         android:layout_width="384dp"
-        android:layout_height="411dp" />
+        android:layout_height="394dp"
+        android:background="?android:attr/detailsElementBackground" />
 
     <Button
         android:id="@+id/buttonOpcionesAdicionales"

@@ -40,10 +40,8 @@ public class ListaDeTragos extends AppCompatActivity {
         infoImage = getResources().getDrawable(R.drawable.info_icon);
         deleteImage = getResources().getDrawable(R.drawable.delete_icon);
 
-
         buttonInfoImgView = (ImageView)findViewById(R.id.buttonInfo);
         buttonDeleteImgView = (ImageView)findViewById(R.id.buttonDelete);
-
 
         //Se crea el array de items (bebidas)
         ArrayList<CategoryList> items = new ArrayList<CategoryList>();
@@ -52,8 +50,6 @@ public class ListaDeTragos extends AppCompatActivity {
         items.add(new CategoryList("1", "Frutilla Full", infoImage, deleteImage));
         items.add(new CategoryList("2", "Anana Full", infoImage, deleteImage));
         items.add(new CategoryList("3", "Manzana Full", infoImage, deleteImage));
-
-
 
         ListView lv = (ListView) findViewById(R.id.listaTragos);
 
@@ -64,18 +60,11 @@ public class ListaDeTragos extends AppCompatActivity {
         idDevice = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
 
         //Texto en donde se mostrará lo que se grabe
-//        grabar = (TextView) findViewById(R.id.txtGrabarVoz);
+        //grabar = (TextView) findViewById(R.id.txtGrabarVoz);
 
         final Button botonOpcionesAdicionales = findViewById(R.id.buttonOpcionesAdicionales);
 
-
-
-
-
-
-
-
-        botonCrearTrago.setOnClickListener( new View.OnClickListener()
+        botonCrearTrago.setOnClickListener(new View.OnClickListener()
         {
             public void onClick (View v){
                 abrirCrearTragos(v);
@@ -133,7 +122,7 @@ public class ListaDeTragos extends AppCompatActivity {
                     RECOGNIZE_SPEECH_ACTIVITY);
         } catch (ActivityNotFoundException a) {
             Toast.makeText(getApplicationContext(),
-                    "Tú dispositivo no soporta el reconocimiento por voz",
+                    "Tu dispositivo no soporta el reconocimiento por voz",
                     Toast.LENGTH_SHORT).show();
         }
     }
@@ -149,12 +138,9 @@ public class ListaDeTragos extends AppCompatActivity {
         l.remove(i);
     }
 
-
-
     public void getButtonID(){
         Integer test = buttonDeleteImgView.getId();
         String testStr = Integer.toString(test);
         Log.d("tag", testStr);
     }
-
 }

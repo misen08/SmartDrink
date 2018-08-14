@@ -1,222 +1,222 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-34:12
-INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-34:12
-INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-34:12
-INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-34:12
-MERGED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:17:1-55:12
-MERGED from [com.android.volley:volley:1.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\volley-1.1.1.aar\bc5455792c5348107aaca54d1901d380\AndroidManifest.xml:2:1-11:12
-MERGED from [com.android.support:design:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\design-27.1.1.aar\f0d9cf05075c5be3e823b8dd7a00b82c\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\5d6f98806162a573eef3d90c0310c78f\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\f07402fa062ac5bf736fed73c69c488b\AndroidManifest.xml:2:1-11:12
-MERGED from [com.android.support:support-v4:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\9de94ae637c2a1b81b20800e50d86936\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\bc8b531b654bd11aae05aaeb58ec6bd0\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\a9643687efcd8b8043ffd415e3e7f9c4\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:recyclerview-v7:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.1.aar\1e91db426d2c747f1c68cc49056256ac\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\2477c5e7589135626946a2149a109922\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\dbe8fd5884fe56dbba763102ab843d48\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\93a4b076295088dff2ce0c28761688de\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\07148a6569969b18fc125fbedbc6a7cd\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:transition:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\transition-27.1.1.aar\aa6e30bf4c689e8c912485e03a366057\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-compat:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\f0bb292d5c76add8a5f15ceb17d800d6\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\169babd89af054402bb3fb2c714bacad\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\f22e32e4f03ad81039e67d0f008ba44e\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\e1cf142ffc7ffbd7a76f1dd27d6cad4b\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.core:runtime:1.1.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\f3e4b9b1839d6df080deeec1681e0e80\AndroidManifest.xml:17:1-22:12
-INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-34:12
-INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-34:12
-INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-34:12
+ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:2:1-34:12
+INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:2:1-34:12
+INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:2:1-34:12
+INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:2:1-34:12
+MERGED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:17:1-55:12
+MERGED from [com.android.volley:volley:1.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/volley-1.1.1.aar/b889a0e3efc8cd4ae399fc929fe4caff/AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:design:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/design-27.1.1.aar/a2e2965673eb95ccc9c36559423421e2/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:appcompat-v7:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/bd872d24bf1a8232a167f7acf8098738/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] /home/federico/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.0.aar/1c4d060221ed75783b1897d7430c6a70/AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:support-v4:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/support-v4-27.1.1.aar/4ab9739ab65173b771220cc7d5108671/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-fragment:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/28ce5161ef4097b869405cd42f5d1d2b/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.1.aar/24a6cc236aaa630b15b92253d66e1af2/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:recyclerview-v7:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-27.1.1.aar/c709fc874214b04141e5b0008fb062d7/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.1.aar/1fd6537d4ac838c39344305ebad9a4d4/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.1.aar/bd94d03ee9501d4b4085ced0b3159555/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.1.aar/e6429c95af00708f7a5bf0d5eee67c5f/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-media-compat:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/957d5d632e591347a0f2bfb0ab553738/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:transition:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/transition-27.1.1.aar/47a4faad2f8368326cd2ab93f3b1629d/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/40555690c7ef1b23fe84330325aa7863/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/federico/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/69c0287dc1fcb6b714306a0c760c91f2/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/federico/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/2c77bb540cb19bc74da448ea3a6ad0eb/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/federico/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/161df5788b88bcdea3344ee60db7fca3/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.0] /home/federico/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/97dcf245cdca5cb03524bc3136097b84/AndroidManifest.xml:17:1-22:12
+INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:2:1-34:12
+INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:2:1-34:12
+INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:2:1-34:12
 	package
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:3:5-31
-		INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml
-		INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml
+		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:3:5-31
+		INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
+		INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-34:12
-		INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml
+		INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
+		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:2:1-34:12
+		INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
 	android:versionCode
-		INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:1-34:12
-		INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml
+		INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
+		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:2:1-34:12
+		INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:2:11-69
+		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:2:11-69
 uses-permission#android.permission.READ_CONTACTS
-ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:5:5-71
+ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:5:5-71
 	android:name
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:5:22-69
+		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:5:22-69
 uses-permission#android.permission.WRITE_CONTACTS
-ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:6:5-72
+ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:6:5-72
 	android:name
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:6:22-70
+		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:6:22-70
 uses-permission#android.permission.CALL_PHONE
-ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:7:5-68
+ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:7:5-68
 	android:name
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:7:22-66
+		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:7:22-66
 uses-permission#android.permission.INTERNET
-ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:8:5-66
+ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:8:5-66
 	android:name
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:8:22-64
+		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:8:22-64
 application
-ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:11:5-32:19
-MERGED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:45:5-53:19
-MERGED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:45:5-53:19
-MERGED from [com.android.volley:volley:1.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\volley-1.1.1.aar\bc5455792c5348107aaca54d1901d380\AndroidManifest.xml:9:5-20
-MERGED from [com.android.volley:volley:1.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\volley-1.1.1.aar\bc5455792c5348107aaca54d1901d380\AndroidManifest.xml:9:5-20
-MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\f07402fa062ac5bf736fed73c69c488b\AndroidManifest.xml:9:5-20
-MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\f07402fa062ac5bf736fed73c69c488b\AndroidManifest.xml:9:5-20
+ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:11:5-32:19
+MERGED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:45:5-53:19
+MERGED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:45:5-53:19
+MERGED from [com.android.volley:volley:1.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/volley-1.1.1.aar/b889a0e3efc8cd4ae399fc929fe4caff/AndroidManifest.xml:9:5-20
+MERGED from [com.android.volley:volley:1.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/volley-1.1.1.aar/b889a0e3efc8cd4ae399fc929fe4caff/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] /home/federico/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.0.aar/1c4d060221ed75783b1897d7430c6a70/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] /home/federico/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.0.aar/1c4d060221ed75783b1897d7430c6a70/AndroidManifest.xml:9:5-20
 	android:supportsRtl
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:16:9-35
+		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:16:9-35
 	android:label
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:14:9-41
+		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:14:9-37
 	android:roundIcon
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:15:9-54
+		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:15:9-54
 	android:icon
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:13:9-43
+		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:13:9-43
 	android:allowBackup
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:12:9-35
+		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:12:9-35
 	android:theme
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:17:9-40
+		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:17:9-40
 activity#xyris.smartdrink.PantallaInicial
-ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:18:9-24:20
+ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:18:9-24:20
 	android:name
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:18:19-50
+		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:18:19-50
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:19:13-23:29
+ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:19:13-23:29
 action#android.intent.action.MAIN
-ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:20:17-69
+ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:20:17-69
 	android:name
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:20:25-66
+		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:20:25-66
 category#android.intent.category.LAUNCHER
-ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:22:17-77
+ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:22:17-77
 	android:name
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:22:27-74
+		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:22:27-74
 activity#xyris.smartdrink.ListaDeTragos
-ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:25:9-51
+ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:25:9-51
 	android:name
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:25:19-48
+		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:25:19-48
 activity#xyris.smartdrink.CrearTragos
-ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:26:9-49
+ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:26:9-49
 	android:name
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:26:19-46
+		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:26:19-46
 activity#xyris.smartdrink.OpcionesAdicionales
-ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:27:9-57
+ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:27:9-57
 	android:name
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:27:19-54
+		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:27:19-54
 activity#xyris.smartdrink.PreparandoTrago
-ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:28:9-53
+ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:28:9-53
 	android:name
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:28:19-50
+		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:28:19-50
 activity#xyris.smartdrink.ProgramarBebida
-ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:29:9-53
+ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:29:9-53
 	android:name
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:29:19-50
+		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:29:19-50
 activity#xyris.smartdrink.QRReader
-ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:30:9-31:20
+ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:30:9-31:20
 	android:name
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml:30:19-43
+		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:30:19-43
 uses-sdk
-INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml
-INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml
-MERGED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:19:5-43
-MERGED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:19:5-43
-MERGED from [com.android.volley:volley:1.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\volley-1.1.1.aar\bc5455792c5348107aaca54d1901d380\AndroidManifest.xml:7:5-43
-MERGED from [com.android.volley:volley:1.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\volley-1.1.1.aar\bc5455792c5348107aaca54d1901d380\AndroidManifest.xml:7:5-43
-MERGED from [com.android.support:design:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\design-27.1.1.aar\f0d9cf05075c5be3e823b8dd7a00b82c\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:design:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\design-27.1.1.aar\f0d9cf05075c5be3e823b8dd7a00b82c\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\5d6f98806162a573eef3d90c0310c78f\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\5d6f98806162a573eef3d90c0310c78f\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\f07402fa062ac5bf736fed73c69c488b\AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\f07402fa062ac5bf736fed73c69c488b\AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.support:support-v4:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\9de94ae637c2a1b81b20800e50d86936\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-v4:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\9de94ae637c2a1b81b20800e50d86936\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\bc8b531b654bd11aae05aaeb58ec6bd0\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\bc8b531b654bd11aae05aaeb58ec6bd0\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\a9643687efcd8b8043ffd415e3e7f9c4\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\a9643687efcd8b8043ffd415e3e7f9c4\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:recyclerview-v7:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.1.aar\1e91db426d2c747f1c68cc49056256ac\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:recyclerview-v7:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.1.aar\1e91db426d2c747f1c68cc49056256ac\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\2477c5e7589135626946a2149a109922\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\2477c5e7589135626946a2149a109922\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\dbe8fd5884fe56dbba763102ab843d48\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\dbe8fd5884fe56dbba763102ab843d48\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\93a4b076295088dff2ce0c28761688de\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\93a4b076295088dff2ce0c28761688de\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\07148a6569969b18fc125fbedbc6a7cd\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\07148a6569969b18fc125fbedbc6a7cd\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:transition:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\transition-27.1.1.aar\aa6e30bf4c689e8c912485e03a366057\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:transition:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\transition-27.1.1.aar\aa6e30bf4c689e8c912485e03a366057\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\f0bb292d5c76add8a5f15ceb17d800d6\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:27.1.1] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\f0bb292d5c76add8a5f15ceb17d800d6\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\169babd89af054402bb3fb2c714bacad\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\169babd89af054402bb3fb2c714bacad\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\f22e32e4f03ad81039e67d0f008ba44e\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\f22e32e4f03ad81039e67d0f008ba44e\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\e1cf142ffc7ffbd7a76f1dd27d6cad4b\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\e1cf142ffc7ffbd7a76f1dd27d6cad4b\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.core:runtime:1.1.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\f3e4b9b1839d6df080deeec1681e0e80\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.core:runtime:1.1.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\f3e4b9b1839d6df080deeec1681e0e80\AndroidManifest.xml:20:5-44
-INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml
-INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml
+INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
+INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
+MERGED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:19:5-43
+MERGED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:19:5-43
+MERGED from [com.android.volley:volley:1.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/volley-1.1.1.aar/b889a0e3efc8cd4ae399fc929fe4caff/AndroidManifest.xml:7:5-43
+MERGED from [com.android.volley:volley:1.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/volley-1.1.1.aar/b889a0e3efc8cd4ae399fc929fe4caff/AndroidManifest.xml:7:5-43
+MERGED from [com.android.support:design:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/design-27.1.1.aar/a2e2965673eb95ccc9c36559423421e2/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:design:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/design-27.1.1.aar/a2e2965673eb95ccc9c36559423421e2/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/bd872d24bf1a8232a167f7acf8098738/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/bd872d24bf1a8232a167f7acf8098738/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] /home/federico/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.0.aar/1c4d060221ed75783b1897d7430c6a70/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] /home/federico/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.0.aar/1c4d060221ed75783b1897d7430c6a70/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:support-v4:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/support-v4-27.1.1.aar/4ab9739ab65173b771220cc7d5108671/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/support-v4-27.1.1.aar/4ab9739ab65173b771220cc7d5108671/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/28ce5161ef4097b869405cd42f5d1d2b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/28ce5161ef4097b869405cd42f5d1d2b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.1.aar/24a6cc236aaa630b15b92253d66e1af2/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.1.aar/24a6cc236aaa630b15b92253d66e1af2/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-27.1.1.aar/c709fc874214b04141e5b0008fb062d7/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-27.1.1.aar/c709fc874214b04141e5b0008fb062d7/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.1.aar/1fd6537d4ac838c39344305ebad9a4d4/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.1.aar/1fd6537d4ac838c39344305ebad9a4d4/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.1.aar/bd94d03ee9501d4b4085ced0b3159555/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.1.aar/bd94d03ee9501d4b4085ced0b3159555/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.1.aar/e6429c95af00708f7a5bf0d5eee67c5f/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.1.aar/e6429c95af00708f7a5bf0d5eee67c5f/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/957d5d632e591347a0f2bfb0ab553738/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/957d5d632e591347a0f2bfb0ab553738/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/transition-27.1.1.aar/47a4faad2f8368326cd2ab93f3b1629d/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/transition-27.1.1.aar/47a4faad2f8368326cd2ab93f3b1629d/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/40555690c7ef1b23fe84330325aa7863/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/40555690c7ef1b23fe84330325aa7863/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/federico/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/69c0287dc1fcb6b714306a0c760c91f2/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/federico/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/69c0287dc1fcb6b714306a0c760c91f2/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/federico/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/2c77bb540cb19bc74da448ea3a6ad0eb/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/federico/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/2c77bb540cb19bc74da448ea3a6ad0eb/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/federico/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/161df5788b88bcdea3344ee60db7fca3/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/federico/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/161df5788b88bcdea3344ee60db7fca3/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] /home/federico/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/97dcf245cdca5cb03524bc3136097b84/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] /home/federico/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/97dcf245cdca5cb03524bc3136097b84/AndroidManifest.xml:20:5-44
+INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
+INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml
-		INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml
+		INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
+		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
+		INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml
-		ADDED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml
-		INJECTED from E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\AndroidManifest.xml
+		INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
+		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
+		INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
 uses-permission#android.permission.CAMERA
-ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:21:5-65
+ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:21:5-65
 	android:name
-		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:21:22-62
+		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:21:22-62
 uses-feature#android.hardware.camera
-ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:24:5-26:36
+ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:24:5-26:36
 	android:required
-		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:26:9-33
+		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:26:9-33
 	android:name
-		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:25:9-47
+		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:25:9-47
 uses-feature#android.hardware.camera.front
-ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:27:5-29:36
+ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:27:5-29:36
 	android:required
-		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:29:9-33
+		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:29:9-33
 	android:name
-		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:28:9-53
+		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:28:9-53
 uses-feature#android.hardware.camera.autofocus
-ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:32:5-34:36
+ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:32:5-34:36
 	android:required
-		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:34:9-33
+		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:34:9-33
 	android:name
-		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:33:9-57
+		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:33:9-57
 uses-feature#android.hardware.camera.flash
-ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:35:5-37:36
+ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:35:5-37:36
 	android:required
-		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:37:9-33
+		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:37:9-33
 	android:name
-		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:36:9-53
+		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:36:9-53
 uses-feature#android.hardware.screen.landscape
-ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:38:5-40:36
+ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:38:5-40:36
 	android:required
-		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:40:9-33
+		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:40:9-33
 	android:name
-		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:39:9-57
+		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:39:9-57
 uses-feature#android.hardware.wifi
-ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:41:5-43:36
+ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:41:5-43:36
 	android:required
-		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:43:9-33
+		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:43:9-33
 	android:name
-		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:42:9-45
+		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:42:9-45
 activity#com.journeyapps.barcodescanner.CaptureActivity
-ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:46:9-52:63
+ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:46:9-52:63
 	android:screenOrientation
-		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:49:13-56
+		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:49:13-56
 	android:clearTaskOnLaunch
-		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:48:13-45
+		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:48:13-45
 	android:stateNotNeeded
-		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:50:13-42
+		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:50:13-42
 	android:windowSoftInputMode
-		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:52:13-60
+		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:52:13-60
 	android:theme
-		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:51:13-54
+		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:51:13-54
 	android:name
-		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] C:\Users\Micaela\.gradle\caches\transforms-1\files-1.1\zxing-android-embedded-3.2.0.aar\cb40f7a1f9e551f91209255360ab6af7\AndroidManifest.xml:47:13-74
+		ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:47:13-74

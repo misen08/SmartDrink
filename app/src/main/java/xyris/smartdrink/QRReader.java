@@ -26,8 +26,8 @@ public class QRReader extends AppCompatActivity {
     static String direccionIP = "";
     Thread thread ;
     public final static int QRcodeWidth = 350 ;
-    Bitmap bitmap ;
-//commentTest
+    Bitmap bitmap;
+
     TextView tv_qr_readTxt;
 
     @Override
@@ -115,5 +115,13 @@ public class QRReader extends AppCompatActivity {
             // This is important, otherwise the result will not be passed to the fragment
             super.onActivityResult(requestCode, resultCode, data);
         }
+
+        Button botonCancelar = (Button) findViewById(R.id.buttonCancel);
+        botonCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }

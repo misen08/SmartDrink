@@ -17,7 +17,7 @@
             android:layout_width="fill_parent"
             android:layout_height="50dp"
             android:layout_below="@+id/editText"
-            android:text="Scan Your QR Code"
+            android:text="Toca para escanear el código QR"
             android:textAllCaps="false"
             android:textSize="16sp" />
 
@@ -32,6 +32,12 @@
             android:layout_height="200dp"
             android:layout_below="@+id/button"
             android:src="@drawable/scan_qr" />
+
+        <Button
+            android:id="@+id/buttonCancel"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:text="Cancelar" />
 
 
     </LinearLayout>
