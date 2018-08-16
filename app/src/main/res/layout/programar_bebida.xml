@@ -5,31 +5,106 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TimePicker
-        android:id="@+id/timePicker"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="32dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/botonConfirmarHorario"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </TimePicker>
-
     <Button
-        android:id="@+id/botonConfirmarHorario"
+        android:id="@+id/buttonAcceptTime"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="42dp"
+        android:layout_marginBottom="50dp"
         android:text="CONFIRMAR HORARIO"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewSelectTime1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="80dp"
+        android:text="para preparar tu bebida"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timePicker" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewSelectTime2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="50dp"
+        android:text="Seleccioná la fecha y la hora"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/fecha"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="160dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/hora"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="250dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/buttonCalendar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="125dp"
+        android:layout_marginTop="150dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_my_calendar" />
+
+    <ImageButton
+        android:id="@+id/buttonHora"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="125dp"
+        android:layout_marginTop="240dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
+
+    <TextView
+        android:id="@+id/textViewFecha"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="160dp"
+        android:text="Fecha"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewHora"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="250dp"
+        android:text="Hora"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

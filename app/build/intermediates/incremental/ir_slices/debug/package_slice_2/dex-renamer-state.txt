@@ -1,4 +1,4 @@
-#Mon Aug 13 22:10:49 ART 2018
+#Wed Aug 15 22:15:52 ART 2018
 base.0=/home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/build/intermediates/transforms/dexMerger/debug/20
 path.0=classes.dex
 renamed.0=classes.dex

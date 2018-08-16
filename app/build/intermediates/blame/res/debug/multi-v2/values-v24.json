@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/federico/prueba/SmartDrinks/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
+            "outputFile": "/home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
             "map": [
                 {
                     "source": "/home/federico/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/957d5d632e591347a0f2bfb0ab553738/res/values-v24/values-v24.xml",

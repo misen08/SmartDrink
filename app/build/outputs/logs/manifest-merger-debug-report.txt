@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:2:1-34:12
-INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:2:1-34:12
-INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:2:1-34:12
-INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:2:1-34:12
+ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:2:1-34:12
+INJECTED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:2:1-34:12
+INJECTED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:2:1-34:12
+INJECTED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:2:1-34:12
 MERGED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:17:1-55:12
 MERGED from [com.android.volley:volley:1.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/volley-1.1.1.aar/b889a0e3efc8cd4ae399fc929fe4caff/AndroidManifest.xml:2:1-11:12
 MERGED from [com.android.support:design:27.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/design-27.1.1.aar/a2e2965673eb95ccc9c36559423421e2/AndroidManifest.xml:17:1-22:12
@@ -23,41 +23,43 @@ MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/federico/.gradle/
 MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/federico/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/2c77bb540cb19bc74da448ea3a6ad0eb/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/federico/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/161df5788b88bcdea3344ee60db7fca3/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.0] /home/federico/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/97dcf245cdca5cb03524bc3136097b84/AndroidManifest.xml:17:1-22:12
-INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:2:1-34:12
-INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:2:1-34:12
-INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:2:1-34:12
+INJECTED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:2:1-34:12
+INJECTED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:2:1-34:12
+INJECTED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:2:1-34:12
 	package
-		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:3:5-31
-		INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
-		INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
+		ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:4:5-31
+		INJECTED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml
+		INJECTED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
-		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:2:1-34:12
-		INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
+		INJECTED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml
+		ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:2:1-34:12
+		INJECTED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:3:5-51
 	android:versionCode
-		INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
-		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:2:1-34:12
-		INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
+		INJECTED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml
+		ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:2:1-34:12
+		INJECTED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:2:11-69
+		ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:2:11-69
 uses-permission#android.permission.READ_CONTACTS
-ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:5:5-71
+ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:6:5-71
 	android:name
-		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:5:22-69
+		ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:6:22-69
 uses-permission#android.permission.WRITE_CONTACTS
-ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:6:5-72
+ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:7:5-72
 	android:name
-		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:6:22-70
+		ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:7:22-70
 uses-permission#android.permission.CALL_PHONE
-ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:7:5-68
+ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:8:5-68
 	android:name
-		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:7:22-66
+		ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:8:22-66
 uses-permission#android.permission.INTERNET
-ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:8:5-66
+ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:9:5-66
 	android:name
-		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:8:22-64
+		ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:9:22-64
 application
-ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:11:5-32:19
+ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:12:5-32:19
 MERGED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:45:5-53:19
 MERGED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:45:5-53:19
 MERGED from [com.android.volley:volley:1.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/volley-1.1.1.aar/b889a0e3efc8cd4ae399fc929fe4caff/AndroidManifest.xml:9:5-20
@@ -65,59 +67,59 @@ MERGED from [com.android.volley:volley:1.1.1] /home/federico/.gradle/caches/tran
 MERGED from [com.android.support.constraint:constraint-layout:1.1.0] /home/federico/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.0.aar/1c4d060221ed75783b1897d7430c6a70/AndroidManifest.xml:9:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.1.0] /home/federico/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.0.aar/1c4d060221ed75783b1897d7430c6a70/AndroidManifest.xml:9:5-20
 	android:supportsRtl
-		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:16:9-35
+		ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:17:9-35
 	android:label
-		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:14:9-37
+		ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:15:9-37
 	android:roundIcon
-		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:15:9-54
+		ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:16:9-54
 	android:icon
-		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:13:9-43
+		ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:14:9-43
 	android:allowBackup
-		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:12:9-35
+		ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:13:9-35
 	android:theme
-		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:17:9-40
+		ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:18:9-40
 activity#xyris.smartdrink.PantallaInicial
-ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:18:9-24:20
+ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:19:9-24:20
 	android:name
-		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:18:19-50
+		ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:19:19-50
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:19:13-23:29
+ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:20:13-23:29
 action#android.intent.action.MAIN
-ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:20:17-69
+ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:21:17-69
 	android:name
-		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:20:25-66
+		ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:21:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:22:17-77
+ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:22:17-77
 	android:name
-		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:22:27-74
+		ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:22:27-74
 activity#xyris.smartdrink.ListaDeTragos
-ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:25:9-51
+ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:25:9-51
 	android:name
-		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:25:19-48
+		ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:25:19-48
 activity#xyris.smartdrink.CrearTragos
-ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:26:9-49
+ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:26:9-49
 	android:name
-		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:26:19-46
+		ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:26:19-46
 activity#xyris.smartdrink.OpcionesAdicionales
-ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:27:9-57
+ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:27:9-57
 	android:name
-		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:27:19-54
+		ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:27:19-54
 activity#xyris.smartdrink.PreparandoTrago
-ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:28:9-53
+ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:28:9-53
 	android:name
-		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:28:19-50
+		ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:28:19-50
 activity#xyris.smartdrink.ProgramarBebida
-ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:29:9-53
+ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:29:9-53
 	android:name
-		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:29:19-50
+		ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:29:19-50
 activity#xyris.smartdrink.QRReader
-ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:30:9-31:20
+ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:30:9-31:20
 	android:name
-		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml:30:19-43
+		ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml:30:19-43
 uses-sdk
-INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
-INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
+INJECTED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml
+INJECTED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml
 MERGED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:19:5-43
 MERGED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:19:5-43
 MERGED from [com.android.volley:volley:1.1.1] /home/federico/.gradle/caches/transforms-1/files-1.1/volley-1.1.1.aar/b889a0e3efc8cd4ae399fc929fe4caff/AndroidManifest.xml:7:5-43
@@ -156,16 +158,16 @@ MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/federico/.gradle/caches
 MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/federico/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/161df5788b88bcdea3344ee60db7fca3/AndroidManifest.xml:20:5-44
 MERGED from [android.arch.core:runtime:1.1.0] /home/federico/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/97dcf245cdca5cb03524bc3136097b84/AndroidManifest.xml:20:5-44
 MERGED from [android.arch.core:runtime:1.1.0] /home/federico/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/97dcf245cdca5cb03524bc3136097b84/AndroidManifest.xml:20:5-44
-INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
-INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
+INJECTED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml
+INJECTED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
-		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
-		INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
+		INJECTED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml
+		ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml
+		INJECTED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
-		ADDED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
-		INJECTED from /home/federico/prueba/SmartDrinks/app/src/main/AndroidManifest.xml
+		INJECTED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml
+		ADDED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml
+		INJECTED from /home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/AndroidManifest.xml
 uses-permission#android.permission.CAMERA
 ADDED from [com.journeyapps:zxing-android-embedded:3.2.0] /home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/ade2ad47fbcd878be288b7b8ed113ee0/AndroidManifest.xml:21:5-65
 	android:name

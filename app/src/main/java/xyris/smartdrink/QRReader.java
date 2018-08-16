@@ -22,6 +22,7 @@ public class QRReader extends AppCompatActivity {
 
     ImageView imageView;
     Button btnScan;
+    Button btnCancel;
     String EditTextValue ;
     static String direccionIP = "";
     Thread thread ;
@@ -35,9 +36,10 @@ public class QRReader extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrreader);
 
-        imageView = (ImageView)findViewById(R.id.imageView);
-        btnScan = (Button)findViewById(R.id.btnScan);
-        tv_qr_readTxt = (TextView) findViewById(R.id.tv_qr_readTxt);
+        imageView = (ImageView)findViewById(R.id.imageViewBoyQR);
+        btnScan = (Button)findViewById(R.id.buttonScan);
+        btnCancel = (Button)findViewById(R.id.buttonCancel);
+        //tv_qr_readTxt = (TextView) findViewById(R.id.tv_qr_readTxt);
 
         btnScan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,12 +47,18 @@ public class QRReader extends AppCompatActivity {
 
                 IntentIntegrator integrator = new IntentIntegrator(QRReader.this);
                 integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
-                integrator.setPrompt("Scan");
+                integrator.setPrompt("Escaneando");
                 integrator.setCameraId(0);
-                integrator.setBeepEnabled(false);
+                integrator.setBeepEnabled(true);
                 integrator.setBarcodeImageEnabled(false);
                 integrator.initiateScan();
+            }
+        });
 
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }
@@ -68,6 +76,7 @@ public class QRReader extends AppCompatActivity {
 
             return null;
         }
+
         int bitMatrixWidth = bitMatrix.getWidth();
 
         int bitMatrixHeight = bitMatrix.getHeight();
@@ -115,13 +124,5 @@ public class QRReader extends AppCompatActivity {
             // This is important, otherwise the result will not be passed to the fragment
             super.onActivityResult(requestCode, resultCode, data);
         }
-
-        Button botonCancelar = (Button) findViewById(R.id.buttonCancel);
-        botonCancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 }

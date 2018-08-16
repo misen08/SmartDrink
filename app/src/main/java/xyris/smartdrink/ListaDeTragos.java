@@ -1,5 +1,6 @@
 package xyris.smartdrink;
 
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -27,7 +28,7 @@ public class ListaDeTragos extends AppCompatActivity {
     Drawable deleteImage;
     ImageView buttonInfoImgView;
     ImageView buttonDeleteImgView;
-
+    ImageButton buttonDeleteImgBtn;
 
     private static final int RECOGNIZE_SPEECH_ACTIVITY = 1;
 
@@ -42,6 +43,9 @@ public class ListaDeTragos extends AppCompatActivity {
 
         buttonInfoImgView = (ImageView)findViewById(R.id.buttonInfo);
         buttonDeleteImgView = (ImageView)findViewById(R.id.buttonDelete);
+
+        buttonDeleteImgBtn = (ImageButton)findViewById(R.id.imageButtonDelete);
+//        buttonDeleteImgBtn.setOnClickListener(this);
 
         //Se crea el array de items (bebidas)
         ArrayList<CategoryList> items = new ArrayList<CategoryList>();
@@ -132,10 +136,10 @@ public class ListaDeTragos extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void removeItem(Integer i, ArrayList<CategoryList> l){
-        String position = l.get(i).getCategoryId();
-        i = Integer.parseInt(position);
-        l.remove(i);
+    public void removeItem(View view){
+        Integer i = view.getId();
+        String texto = i.toString();
+        Toast.makeText(this, texto, Toast.LENGTH_SHORT).show();
     }
 
     public void getButtonID(){
@@ -143,4 +147,42 @@ public class ListaDeTragos extends AppCompatActivity {
         String testStr = Integer.toString(test);
         Log.d("tag", testStr);
     }
+
+    public void infoBebida(View view){
+        //Integer i = this.buttonDeleteImgBtn.getId();
+        //String texto = i.toString();
+        //Toast.makeText(this, texto, Toast.LENGTH_SHORT).show();
+
+        AlertDialog cuadroDialogo = new AlertDialog.Builder(this).create();
+        cuadroDialogo.setTitle("Naranja");
+        cuadroDialogo.setMessage("Naranja 100%");
+        cuadroDialogo.show();
+    }
+
+    public void infoBebida2(){
+        //Integer i = this.buttonDeleteImgBtn.getId();
+        //String texto = i.toString();
+        //Toast.makeText(this, texto, Toast.LENGTH_SHORT).show();
+
+        AlertDialog cuadroDialogo = new AlertDialog.Builder(this).create();
+        cuadroDialogo.setTitle("Naranja");
+        cuadroDialogo.setMessage("Naranja 100%");
+        cuadroDialogo.show();
+    }
+
+//    @Override
+//    public void onClick(View v) {
+//        switch (v.getId()){
+//            case R.id.imageButtonDelete:
+//                infoBebida2();
+//                break;
+            //case R.id.buttonDelete:
+            //    obtenerHora();
+            //    break;
+            //case R.id.buttonAcceptTime:
+            //    aceptarPrograma();
+            //    break;
+//        }
+//    }
+
 }

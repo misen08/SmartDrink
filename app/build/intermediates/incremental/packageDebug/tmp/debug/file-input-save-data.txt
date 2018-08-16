@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Mon Aug 13 22:06:05 ART 2018
+#Wed Aug 15 20:08:14 ART 2018
 1.base=/home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/build/intermediates/transforms/dexMerger/debug/32
 2.path=classes.dex
 0.baseType=DIRECTORY

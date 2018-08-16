@@ -1,27 +1,8 @@
 {
     "logs": [
         {
-            "outputFile": "/home/federico/prueba/SmartDrinks/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "outputFile": "/home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
             "map": [
-                {
-                    "source": "/home/federico/prueba/SmartDrinks/app/src/main/res/values/strings.xml",
-                    "from": {
-                        "startLines": "50,56,62,18,23,33,41,1,15,10,30,7,67,72,17,14,69,71,9,32,64,74,2",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "1684,1842,1987,729,890,1214,1464,16,576,361,1078,212,2189,2407,642,511,2258,2350,269,1145,2059,2464,65",
-                        "endLines": "54,60,62,22,27,40,48,1,15,12,30,7,67,72,17,14,69,71,9,32,64,74,2",
-                        "endColumns": "19,19,70,19,19,19,19,48,64,13,65,55,67,55,86,64,90,56,91,68,80,54,65",
-                        "endOffsets": "1836,1981,2053,885,1026,1459,1678,60,636,505,1139,263,2252,2458,724,571,2344,2402,356,1209,2135,2514,126"
-                    },
-                    "to": {
-                        "startLines": "2,7,12,13,18,23,31,864,873,874,877,878,879,880,881,882,883,884,885,886,887,888,891",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "150,307,451,521,682,823,1073,69475,70692,70757,70906,70972,71028,71096,71152,71239,71304,71395,71452,71544,71613,71694,71873",
-                        "endLines": "6,11,12,17,22,30,38,864,873,876,877,878,879,880,881,882,883,884,885,886,887,888,891",
-                        "endColumns": "19,19,69,19,19,19,19,48,64,13,65,55,67,55,86,64,90,56,91,68,80,54,65",
-                        "endOffsets": "302,446,516,677,818,1068,1287,69519,70752,70901,70967,71023,71091,71147,71234,71299,71390,71447,71539,71608,71689,71744,71934"
-                    }
-                },
                 {
                     "source": "/home/federico/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/957d5d632e591347a0f2bfb0ab553738/res/values/values.xml",
                     "from": {
@@ -57,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "/home/federico/prueba/SmartDrinks/app/src/main/res/values/ids.xml",
+                    "source": "/home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/res/values/ids.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -71,6 +52,25 @@
                         "startOffsets": "66232,66270",
                         "endColumns": "37,37",
                         "endOffsets": "66265,66303"
+                    }
+                },
+                {
+                    "source": "/home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/res/values/styles.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "54",
+                        "endLines": "8",
+                        "endColumns": "12",
+                        "endOffsets": "368"
+                    },
+                    "to": {
+                        "startLines": "905",
+                        "startColumns": "4",
+                        "startOffsets": "73031",
+                        "endLines": "910",
+                        "endColumns": "12",
+                        "endOffsets": "73345"
                     }
                 },
                 {
@@ -90,23 +90,6 @@
                         "endLines": "246,247,248,249,250,251,252,253,254,255,818,819,820,821,822,823,824,892,893,894,895,2489",
                         "endColumns": "71,60,63,64,64,53,53,53,58,57,46,47,41,48,51,57,53,58,46,143,112,10",
                         "endOffsets": "12691,12752,12816,12881,12946,13000,13054,13108,13167,13225,66430,66478,66520,66569,66621,66679,66733,71993,72040,72184,72297,179611"
-                    }
-                },
-                {
-                    "source": "/home/federico/prueba/SmartDrinks/app/src/main/res/values/colors.xml",
-                    "from": {
-                        "startLines": "4,2,3",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "153,55,102",
-                        "endColumns": "45,46,50",
-                        "endOffsets": "194,97,148"
-                    },
-                    "to": {
-                        "startLines": "190,191,192",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "8934,8980,9027",
-                        "endColumns": "45,46,50",
-                        "endOffsets": "8975,9022,9073"
                     }
                 },
                 {
@@ -148,22 +131,22 @@
                     }
                 },
                 {
-                    "source": "/home/federico/prueba/SmartDrinks/app/src/main/res/values/styles.xml",
+                    "source": "/home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/res/values/strings.xml",
                     "from": {
-                        "startLines": "3",
-                        "startColumns": "4",
-                        "startOffsets": "54",
-                        "endLines": "8",
-                        "endColumns": "12",
-                        "endOffsets": "368"
+                        "startLines": "50,56,62,18,23,33,41,1,15,10,30,7,67,72,17,14,69,71,9,32,64,74,2",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1684,1842,1987,729,890,1214,1464,16,576,361,1078,212,2189,2407,642,511,2258,2350,269,1145,2059,2464,65",
+                        "endLines": "54,60,62,22,27,40,48,1,15,12,30,7,67,72,17,14,69,71,9,32,64,74,2",
+                        "endColumns": "19,19,70,19,19,19,19,48,64,13,65,55,67,55,86,64,90,56,91,68,80,54,65",
+                        "endOffsets": "1836,1981,2053,885,1026,1459,1678,60,636,505,1139,263,2252,2458,724,571,2344,2402,356,1209,2135,2514,126"
                     },
                     "to": {
-                        "startLines": "905",
-                        "startColumns": "4",
-                        "startOffsets": "73031",
-                        "endLines": "910",
-                        "endColumns": "12",
-                        "endOffsets": "73345"
+                        "startLines": "2,7,12,13,18,23,31,864,873,874,877,878,879,880,881,882,883,884,885,886,887,888,891",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "150,307,451,521,682,823,1073,69475,70692,70757,70906,70972,71028,71096,71152,71239,71304,71395,71452,71544,71613,71694,71873",
+                        "endLines": "6,11,12,17,22,30,38,864,873,876,877,878,879,880,881,882,883,884,885,886,887,888,891",
+                        "endColumns": "19,19,69,19,19,19,19,48,64,13,65,55,67,55,86,64,90,56,91,68,80,54,65",
+                        "endOffsets": "302,446,516,677,818,1068,1287,69519,70752,70901,70967,71023,71091,71147,71234,71299,71390,71447,71539,71608,71689,71744,71934"
                     }
                 },
                 {
@@ -238,6 +221,23 @@
                         "startOffsets": "62397,62456,62504,63171,63246,63322,65252",
                         "endColumns": "58,47,55,74,75,71,65",
                         "endOffsets": "62451,62499,62555,63241,63317,63389,65313"
+                    }
+                },
+                {
+                    "source": "/home/federico/Documentos/PROYECTO/App_Android/SmartDrink-master/app/src/main/res/values/colors.xml",
+                    "from": {
+                        "startLines": "4,2,3",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "153,55,102",
+                        "endColumns": "45,46,50",
+                        "endOffsets": "194,97,148"
+                    },
+                    "to": {
+                        "startLines": "190,191,192",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "8934,8980,9027",
+                        "endColumns": "45,46,50",
+                        "endOffsets": "8975,9022,9073"
                     }
                 }
             ]
