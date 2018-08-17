@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -26,9 +27,7 @@ public class ListaDeTragos extends AppCompatActivity {
     TextView grabar;
     Drawable infoImage;
     Drawable deleteImage;
-    ImageView buttonInfoImgView;
-    ImageView buttonDeleteImgView;
-    ImageButton buttonDeleteImgBtn;
+    ListView lv;
 
     private static final int RECOGNIZE_SPEECH_ACTIVITY = 1;
 
@@ -37,14 +36,13 @@ public class ListaDeTragos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lista_de_tragos);
         FloatingActionButton botonCrearTrago = findViewById(R.id.botonCrearTrago);
-        //FloatingActionButton botonReconocimientoDeVoz = findViewById(R.id.buttonMic);
         infoImage = getResources().getDrawable(R.drawable.info_icon);
         deleteImage = getResources().getDrawable(R.drawable.delete_icon);
 
-        buttonInfoImgView = (ImageView)findViewById(R.id.buttonInfo);
-        buttonDeleteImgView = (ImageView)findViewById(R.id.buttonDelete);
+//        buttonInfoImgView = (ImageView)findViewById(R.id.buttonInfo);
+//        buttonDeleteImgView = (ImageView)findViewById(R.id.buttonDelete);
 
-        buttonDeleteImgBtn = (ImageButton)findViewById(R.id.imageButtonDelete);
+//        buttonDeleteImgBtn = (ImageButton)findViewById(R.id.imageButtonDelete);
 //        buttonDeleteImgBtn.setOnClickListener(this);
 
         //Se crea el array de items (bebidas)
@@ -55,11 +53,20 @@ public class ListaDeTragos extends AppCompatActivity {
         items.add(new CategoryList("2", "Anana Full", infoImage, deleteImage));
         items.add(new CategoryList("3", "Manzana Full", infoImage, deleteImage));
 
-        ListView lv = (ListView) findViewById(R.id.listaTragos);
+        lv = (ListView) findViewById(R.id.listaTragos);
 
-        AdapterItem adapter = new AdapterItem(this, items);
+        lv.setAdapter(new AdapterItem(this, items));
 
-        lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                CategoryList item;
+                //TODO: Abrir opciones adicionales luego de seleccionar el trago.
+
+            }
+        });
+
+
 
         idDevice = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
 
@@ -82,6 +89,16 @@ public class ListaDeTragos extends AppCompatActivity {
             }
         });
     }
+
+    public void clickHandlerInfoButton(View v){
+        Log.d("Info button", "boton Info");
+    }
+
+    public void clickHandlerDeleteButton(View v, int i, ArrayList<CategoryList> items){
+        lv.setAdapter(new AdapterItem(this, items));
+
+    }
+
 
     public void abrirOpcionesAdicionales(View v) {
         Intent intent = new Intent(this, OpcionesAdicionales.class);
@@ -142,11 +159,11 @@ public class ListaDeTragos extends AppCompatActivity {
         Toast.makeText(this, texto, Toast.LENGTH_SHORT).show();
     }
 
-    public void getButtonID(){
-        Integer test = buttonDeleteImgView.getId();
-        String testStr = Integer.toString(test);
-        Log.d("tag", testStr);
-    }
+//    public void getButtonID(){
+//        Integer test = buttonDeleteImgView.getId();
+//        String testStr = Integer.toString(test);
+//        Log.d("tag", testStr);
+//    }
 
     public void infoBebida(View view){
         //Integer i = this.buttonDeleteImgBtn.getId();
