@@ -32,7 +32,8 @@ public class WebServiceClient  {
 
         try {
 
-            con.addProperty("Content-type","application/json");
+            con.addProperty("Content-Type","application/json");
+            con.addProperty("Accept","application/json");
             response = con.send(request.toString().getBytes());
         } catch (HttpException e){
 
@@ -52,6 +53,7 @@ public class WebServiceClient  {
             HttpClient httpClient = new HttpClient();
             HttpConnection httpConnection = httpClient.getConnection(url,
                     15000, 15000, new Authentication(), "POST");
+            httpConnection.addProperty("Content-Type","application/json");
             response = httpConnection.send(request.toString().getBytes());
             InputStream stream = new ByteArrayInputStream(response);
             InputStreamReader ir = new InputStreamReader(stream);

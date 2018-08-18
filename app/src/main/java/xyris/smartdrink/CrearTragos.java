@@ -76,15 +76,20 @@ public class CrearTragos extends AppCompatActivity {
 
                WebServiceClient cli = new WebServiceClient("/consultarSabores", new JSONObject(params));
 
-               JSONObject jsonObject = (JSONObject) cli.getResponse();
+               responseReader = (JSONObject) cli.getResponse();
 
-               Log.d("SMARTDRINKS","RESPUESTA: " + jsonObject.toString());
+               Log.d("SMARTDRINKS","RESPUESTA: " + responseReader.toString());
            }
        };
 
         thread.start();
-       //Log.d("jsonObject", ""+ jsonObject.toString());
-       // parsearSaborEnBotella(responseSabores);
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //Log.d("jsonObject", ""+ jsonObject.toString());
+        parsearSaborEnBotella(responseReader.toString());
 
         final Button botonCrear = (Button) findViewById(R.id.botonAgregar);
         final Button botonVolver = (Button) findViewById(R.id.botonVolver);
