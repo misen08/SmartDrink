@@ -18,17 +18,24 @@ import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+
+import xyris.smartdrink.entities.SaborEnBotella;
+import xyris.smartdrink.http.WebServiceClient;
 
 //import xyris.smartdrink.entities.Bebida;
 //import xyris.smartdrink.entities.SaborEnBebida;
 
 public class CrearTragos extends AppCompatActivity {
 
-    //ArrayList<SaborEnBebida> listSaborEnBebida;
-
     Integer porcentajeTotal = 100;
+    String responseSabores;
+    JSONObject responseReader;
+
+
     HashMap<String, Integer> configTrago = new HashMap<String, Integer>() {
         //Deberian ser valores que se obtengan de la DB. Hardcodeados de momento para ir probando..
         {
@@ -49,10 +56,6 @@ public class CrearTragos extends AppCompatActivity {
             porcentajeGusto6 = 0;
     Integer[] porcentajes = {0,10,20,30,40,50,60,70,80,90,100};
 
-    //public ArrayList<SaborEnBebida> getListSaborEnBebida() {
-    //    return listSaborEnBebida;
-    //}
-
     String nombreBebida;
 
     @Override
@@ -60,7 +63,28 @@ public class CrearTragos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_tragos);
 
-        //String[] porcentajes = {"","10%","20%","30%","40%","50%","60%","70%","80%","90%", "100%"};
+
+
+
+
+
+       Thread thread = new Thread(){
+           public void run(){
+               HashMap<String,String> params = new HashMap<String,String>();
+               params.put("idDispositivo","8173924678916234");
+               params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
+
+               WebServiceClient cli = new WebServiceClient("/consultarSabores", new JSONObject(params));
+
+               JSONObject jsonObject = (JSONObject) cli.getResponse();
+
+               Log.d("SMARTDRINKS","RESPUESTA: " + jsonObject.toString());
+           }
+       };
+
+        thread.start();
+       //Log.d("jsonObject", ""+ jsonObject.toString());
+       // parsearSaborEnBotella(responseSabores);
 
         final Button botonCrear = (Button) findViewById(R.id.botonAgregar);
         final Button botonVolver = (Button) findViewById(R.id.botonVolver);
@@ -210,10 +234,10 @@ public class CrearTragos extends AppCompatActivity {
     });
 }
 
-    private void mandarMensaje(){
+    public void mandarMensaje(){
 // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://192.168.0.35:8080/consultarBebidas";
+        String url ="http://192.168.0.35:8080/consultarSabores";
         HashMap<String,String> params = new HashMap<String,String>();
         params.put("idDispositivo","8173924678916234");
         params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
@@ -238,4 +262,78 @@ public class CrearTragos extends AppCompatActivity {
         queue.add(req);
 
     }
+
+
+    public void enviarMensajeConsultarSabores(){
+// Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="http://192.168.0.35:8080/consultarSabores";
+        HashMap<String,String> params = new HashMap<String,String>();
+        params.put("idDispositivo","8173924678916234");
+        params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
+
+
+        try {
+            JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                VolleyLog.v("Response:%n %s", response.toString(4));
+                                responseSabores = response.toString();
+                                Log.d("tag", "fs" + responseSabores);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    VolleyLog.e("Error: ", error.getMessage());
+                    Toast.makeText(getApplicationContext(), "Response:%n %s" + error.getMessage() + error.getStackTrace(),
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
+// Add the request to the RequestQueue.
+            queue.add(req);
+        }catch (Exception e){
+            Log.d("DEBUG","FALLE!!",e);
+        }
+    }
+
+
+
+    public ArrayList<SaborEnBotella> parsearSaborEnBotella (String response) {
+        ArrayList<SaborEnBotella> listSaboresEnBotella = new ArrayList<SaborEnBotella>();
+
+        try {
+
+//            Toast.makeText(getApplicationContext(),"Response:%n %s" + response.toString(4),
+//                    Toast.LENGTH_SHORT).show();
+
+            responseReader = new JSONObject(response);
+            JSONObject codigoError = responseReader.getJSONObject("codigoError");
+
+            if("0".equals(codigoError.toString())){
+                // Se obtiene el nodo del array "sabores"
+                JSONArray sabores = responseReader.getJSONArray("sabores");
+
+                // Ciclando en todos los sabores
+                for (int i = 0; i < sabores.length(); i++) {
+                    JSONObject sabor = sabores.getJSONObject(i);
+                    String idSabor = sabor.getString("idSabor");
+                    String descripcion = sabor.getString("descripcion");
+                    String habilitado = sabor.getString("habilitado");
+                    SaborEnBotella saborEnBotella = new SaborEnBotella(idSabor, descripcion, habilitado);
+                    listSaboresEnBotella.add(saborEnBotella);
+                }
+            } else {
+                // TODO: manejar codigos de error de consultarSabores
+            }
+
+        } catch (JSONException e) { e.printStackTrace(); }
+
+        return listSaboresEnBotella;
+    }
+
 }

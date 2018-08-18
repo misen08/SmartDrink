@@ -68,8 +68,6 @@ public class ListaDeTragos extends AppCompatActivity {
         //Texto en donde se mostrará lo que se grabe
         //grabar = (TextView) findViewById(R.id.txtGrabarVoz);
 
-//        final Button botonOpcionesAdicionales = findViewById(R.id.buttonOpcionesAdicionales);
-
         botonCrearTrago.setOnClickListener(new View.OnClickListener()
         {
             public void onClick (View v){
@@ -147,16 +145,6 @@ public class ListaDeTragos extends AppCompatActivity {
     //    }
     //}
 
-    public void testImgButton(View v){
-        Intent intent = new Intent(this, OpcionesAdicionales.class);
-        startActivity(intent);
-    }
-
-    public void removeItem(View view){
-        Integer i = view.getId();
-        String texto = i.toString();
-        Toast.makeText(this, texto, Toast.LENGTH_SHORT).show();
-    }
 
     public void infoBebida(){
         AlertDialog cuadroDialogo = new AlertDialog.Builder(this).create();
@@ -187,20 +175,4 @@ public class ListaDeTragos extends AppCompatActivity {
     public void clickHandlerDeleteButton(View v, int i, ArrayList<CategoryList> items) {
         lv.setAdapter(new AdapterItem(this, items));
     }
-
-//    @Override
-//    public void onClick(View v) {
-//        switch (v.getId()){
-//            case R.id.imageButtonDelete:
-//                infoBebida2();
-//                break;
-            //case R.id.buttonDelete:
-            //    obtenerHora();
-            //    break;
-            //case R.id.buttonAcceptTime:
-            //    aceptarPrograma();
-            //    break;
-//        }
-//    }
-
 }

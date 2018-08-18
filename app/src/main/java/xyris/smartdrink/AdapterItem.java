@@ -76,7 +76,7 @@ public class AdapterItem extends BaseAdapter {
         ivInfoImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((ListaDeTragos)activity).clickHandlerInfoButton(v);
+               // ((ListaDeTragos)activity).clickHandlerInfoButton(v);
                 String categoryId = items.get(position).getCategoryId();
                 Log.d("id",categoryId);
             }

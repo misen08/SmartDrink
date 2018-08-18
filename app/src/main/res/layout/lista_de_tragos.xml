@@ -13,15 +13,6 @@
         android:layout_height="394dp"
         android:background="?android:attr/detailsElementBackground" />
 
-    <Button
-        android:id="@+id/buttonOpcionesAdicionales"
-        android:layout_width="180dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="168dp"
-        android:text="Opciones Adicionales"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="93dp" />
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/buttonMic"
         android:layout_width="70dp"
