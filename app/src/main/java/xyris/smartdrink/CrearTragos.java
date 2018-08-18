@@ -200,29 +200,7 @@ public class CrearTragos extends AppCompatActivity {
                     }
             }
         });
-
-//        botonVolver.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent abrirOpcionesAdicionales = new Intent(CrearTragos.this, OpcionesAdicionales.class);
-//                startActivity(
-//                        abrirOpcionesAdicionales
-//                );
-//            }
-//        });
-
-
-    //    botonVolver.setOnClickListener(new View.OnClickListener() {
-    //        @Override
-    //        public void onClick(View v) {
-    //            Intent volverPantallaPrincipal = new Intent(CrearTragos.this, ListaDeTragos.class);
-    //            startActivity(
-    //                    volverPantallaPrincipal
-    //            );
-    //        }
-    //    });
-    //}
-
+        
     botonVolver.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {

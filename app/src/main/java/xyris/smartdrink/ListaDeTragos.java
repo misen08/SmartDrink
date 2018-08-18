@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -19,16 +20,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListaDeTragos extends AppCompatActivity {
 
     String idDevice;
-    TextView grabar;
+    TextView tvGrabar;
     Drawable infoImage;
     Drawable deleteImage;
-    ImageView buttonInfoImgView;
-    ImageView buttonDeleteImgView;
-    ImageButton buttonDeleteImgBtn;
+    ListView lv;
 
     private static final int RECOGNIZE_SPEECH_ACTIVITY = 1;
 
@@ -37,15 +37,11 @@ public class ListaDeTragos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lista_de_tragos);
         FloatingActionButton botonCrearTrago = findViewById(R.id.botonCrearTrago);
-        //FloatingActionButton botonReconocimientoDeVoz = findViewById(R.id.buttonMic);
         infoImage = getResources().getDrawable(R.drawable.info_icon);
         deleteImage = getResources().getDrawable(R.drawable.delete_icon);
 
-        buttonInfoImgView = (ImageView)findViewById(R.id.buttonInfo);
-        buttonDeleteImgView = (ImageView)findViewById(R.id.buttonDelete);
-
-        buttonDeleteImgBtn = (ImageButton)findViewById(R.id.imageButtonDelete);
-//        buttonDeleteImgBtn.setOnClickListener(this);
+    //    buttonInfoImgView = (ImageView) findViewById(R.id.buttonInfo);
+    //    buttonDeleteImgView = (ImageView) findViewById(R.id.buttonDelete);
 
         //Se crea el array de items (bebidas)
         ArrayList<CategoryList> items = new ArrayList<CategoryList>();
@@ -55,18 +51,24 @@ public class ListaDeTragos extends AppCompatActivity {
         items.add(new CategoryList("2", "Anana Full", infoImage, deleteImage));
         items.add(new CategoryList("3", "Manzana Full", infoImage, deleteImage));
 
-        ListView lv = (ListView) findViewById(R.id.listaTragos);
+        lv = (ListView) findViewById(R.id.listaTragos);
 
-        AdapterItem adapter = new AdapterItem(this, items);
+        lv.setAdapter(new AdapterItem(this, items));
 
-        lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                abrirOpcionesAdicionales(view, id);
+                //TODO: Abrir opciones adicionales luego de seleccionar el trago
+            }
+        });
 
         idDevice = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
 
         //Texto en donde se mostrará lo que se grabe
         //grabar = (TextView) findViewById(R.id.txtGrabarVoz);
 
-        final Button botonOpcionesAdicionales = findViewById(R.id.buttonOpcionesAdicionales);
+//        final Button botonOpcionesAdicionales = findViewById(R.id.buttonOpcionesAdicionales);
 
         botonCrearTrago.setOnClickListener(new View.OnClickListener()
         {
@@ -75,15 +77,15 @@ public class ListaDeTragos extends AppCompatActivity {
             }
         });
 
-        botonOpcionesAdicionales.setOnClickListener( new View.OnClickListener()
-        {
-            public void onClick (View v){
-                abrirOpcionesAdicionales(v);
-            }
-        });
+//        botonOpcionesAdicionales.setOnClickListener( new View.OnClickListener()
+//        {
+//            public void onClick (View v){
+//                abrirOpcionesAdicionales(v);
+//            }
+//        });
     }
 
-    public void abrirOpcionesAdicionales(View v) {
+    public void abrirOpcionesAdicionales(View v, long i) {
         Intent intent = new Intent(this, OpcionesAdicionales.class);
         startActivity(intent);
     }
@@ -105,7 +107,7 @@ public class ListaDeTragos extends AppCompatActivity {
 
                     ArrayList<String> speech = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     String strSpeech2Text = speech.get(0);
-                    grabar.setText(strSpeech2Text);
+                    tvGrabar.setText(strSpeech2Text);
                 }
                 break;
             default:
@@ -131,6 +133,20 @@ public class ListaDeTragos extends AppCompatActivity {
         }
     }
 
+    //public void actualizarLista(ListView l) {
+    //    int tam = cantidaditemsBD;
+    //    String nombreTrago;
+    //    int categoryId;
+    //    ArrayList<CategoryList> items = new ArrayList<CategoryList>();
+
+    //    items.clear();
+    //    for(int i=0; i<tam; i++) {
+    //        categoryId = buscarIdBD;
+    //        nombreTrago = buscarNombreBD;
+    //        items.add(new CategoryList(categoryId, nombreTrago, infoImage, deleteImage));
+    //    }
+    //}
+
     public void testImgButton(View v){
         Intent intent = new Intent(this, OpcionesAdicionales.class);
         startActivity(intent);
@@ -142,17 +158,7 @@ public class ListaDeTragos extends AppCompatActivity {
         Toast.makeText(this, texto, Toast.LENGTH_SHORT).show();
     }
 
-    public void getButtonID(){
-        Integer test = buttonDeleteImgView.getId();
-        String testStr = Integer.toString(test);
-        Log.d("tag", testStr);
-    }
-
-    public void infoBebida(View view){
-        //Integer i = this.buttonDeleteImgBtn.getId();
-        //String texto = i.toString();
-        //Toast.makeText(this, texto, Toast.LENGTH_SHORT).show();
-
+    public void infoBebida(){
         AlertDialog cuadroDialogo = new AlertDialog.Builder(this).create();
         cuadroDialogo.setTitle("Naranja");
         cuadroDialogo.setMessage("Naranja 100%");
@@ -160,14 +166,26 @@ public class ListaDeTragos extends AppCompatActivity {
     }
 
     public void infoBebida2(){
-        //Integer i = this.buttonDeleteImgBtn.getId();
-        //String texto = i.toString();
-        //Toast.makeText(this, texto, Toast.LENGTH_SHORT).show();
-
         AlertDialog cuadroDialogo = new AlertDialog.Builder(this).create();
-        cuadroDialogo.setTitle("Naranja");
-        cuadroDialogo.setMessage("Naranja 100%");
+        cuadroDialogo.setTitle("Manzana");
+        cuadroDialogo.setMessage("Manzana 100%");
         cuadroDialogo.show();
+    }
+
+    public void clickHandlerInfoButton(View v) {
+        switch (v.getId()) {
+            case 0:
+                infoBebida();
+                break;
+            case 1:
+                infoBebida2();
+                break;
+        }
+        Log.d("Info button", "Button info");
+    }
+
+    public void clickHandlerDeleteButton(View v, int i, ArrayList<CategoryList> items) {
+        lv.setAdapter(new AdapterItem(this, items));
     }
 
 //    @Override

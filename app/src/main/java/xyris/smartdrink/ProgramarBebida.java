@@ -57,6 +57,7 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
 
         //Widget EditText donde se mostrara la fecha obtenida
         etFecha = (EditText) findViewById(R.id.fecha);
+        etFecha.setOnClickListener(this);
         //Widget ImageButton del cual usaremos el evento clic para obtener la fecha
         ibObtenerFecha = (ImageButton) findViewById(R.id.buttonCalendar);
         //Evento setOnClickListener - clic
@@ -64,6 +65,7 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
 
         //Widget EditText donde se mostrara la hora obtenida
         etHora = (EditText) findViewById(R.id.hora);
+        etHora.setOnClickListener(this);
         //Widget ImageButton del cual usaremos el evento clic para obtener la hora
         ibObtenerHora = (ImageButton) findViewById(R.id.buttonHora);
         //Evento setOnClickListener - clic
@@ -79,7 +81,13 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
             case R.id.buttonCalendar:
                 obtenerFecha();
                 break;
+            case R.id.fecha:
+                obtenerFecha();
+                break;
             case R.id.buttonHora:
+                obtenerHora();
+                break;
+            case R.id.hora:
                 obtenerHora();
                 break;
             case R.id.buttonAcceptTime:
@@ -108,7 +116,6 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
         },anio, mes, dia);
         //Muestro el widget
         recogerFecha.show();
-
     }
 
     private void obtenerHora(){

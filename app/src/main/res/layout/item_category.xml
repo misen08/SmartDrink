@@ -22,10 +22,10 @@
         android:id="@+id/buttonInfo"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginStart="85dp"
         android:layout_marginTop="15dp"
         android:clickable="true"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/category"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/info_icon" />
 
@@ -33,23 +33,11 @@
         android:id="@+id/buttonDelete"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginEnd="35dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
         android:clickable="true"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonInfo"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/delete_icon" />
-
-    <ImageButton
-        android:id="@+id/imageButtonDelete"
-        android:layout_width="82dp"
-        android:layout_height="64dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bottle" />
 
 </android.support.constraint.ConstraintLayout>

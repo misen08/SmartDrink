@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/darker_gray"
+    android:background="#e8f3f4"
     tools:context=".ListaDeTragos">
 
     <ListView
@@ -24,25 +24,33 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/buttonMic"
-        android:layout_width="69dp"
+        android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginBottom="25dp"
-        android:layout_marginEnd="90dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginTop="10dp"
         android:clickable="true"
-        android:contentDescription="@string/app_name"
         android:onClick="onClickBotonReconocimientoDeVoz"
+        app:backgroundTint="@color/zxing_custom_viewfinder_laser"
+        app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listaTragos"
         app:srcCompat="@drawable/mic" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/botonCrearTrago"
-        android:layout_width="69dp"
+        android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginBottom="25dp"
-        android:layout_marginStart="90dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="10dp"
         android:clickable="true"
+        app:backgroundTint="@color/zxing_custom_viewfinder_laser"
+        app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:layout_constraintTop_toBottomOf="@+id/listaTragos"
+        app:srcCompat="@drawable/add_icon" />
+
 </android.support.constraint.ConstraintLayout>

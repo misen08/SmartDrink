@@ -11,154 +11,158 @@
         android:layout_width="160dp"
         android:layout_height="30dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="25dp"
         android:text="Naranja"
         android:textAlignment="textStart"
         android:textColor="@android:color/black"
         android:textSize="23sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextNombreBebida" />
 
     <TextView
         android:id="@+id/textViewGusto2"
         android:layout_width="160dp"
         android:layout_height="30dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="165dp"
+        android:layout_marginTop="15dp"
         android:text="Manzana"
         android:textAlignment="textStart"
         android:textColor="@android:color/black"
         android:textSize="23sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewGusto1" />
 
     <TextView
         android:id="@+id/textViewGusto3"
         android:layout_width="160dp"
         android:layout_height="30dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="210dp"
+        android:layout_marginTop="15dp"
         android:text="Durazno"
         android:textAlignment="textStart"
         android:textColor="@android:color/black"
         android:textSize="23sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewGusto2" />
 
     <TextView
         android:id="@+id/textViewGusto4"
         android:layout_width="160dp"
         android:layout_height="30dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="255dp"
+        android:layout_marginTop="15dp"
         android:text="Ananá"
         android:textAlignment="textStart"
         android:textColor="@android:color/black"
         android:textSize="23sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewGusto3" />
 
     <TextView
         android:id="@+id/textViewGusto5"
         android:layout_width="160dp"
         android:layout_height="30dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="15dp"
         android:text="Pomelo"
         android:textAlignment="textStart"
         android:textColor="@android:color/black"
         android:textSize="23sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewGusto4" />
 
     <TextView
         android:id="@+id/textViewGusto6"
         android:layout_width="160dp"
         android:layout_height="30dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="345dp"
+        android:layout_marginTop="15dp"
         android:text="Frutilla"
         android:textAlignment="textStart"
         android:textColor="@android:color/black"
         android:textSize="23sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewGusto5" />
 
     <Button
         android:id="@+id/botonAgregar"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="35dp"
-        android:layout_marginEnd="35dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="45dp"
         android:text="Agregar a la lista"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/botonVolver"
+        app:layout_constraintTop_toBottomOf="@+id/textViewGusto6" />
 
     <Spinner
         android:id="@+id/spinnerPorcentajesGusto1"
         android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginTop="120dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="25dp"
+        android:textSize="23sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewGusto1"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNombreBebida" />
 
     <Spinner
         android:id="@+id/spinnerPorcentajesGusto2"
         android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginTop="165dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="15dp"
+        android:textSize="23sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewGusto2"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerPorcentajesGusto1" />
 
     <Spinner
         android:id="@+id/spinnerPorcentajesGusto3"
         android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginTop="210dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toEndOf="@+id/textViewGusto3"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerPorcentajesGusto2" />
 
     <Spinner
         android:id="@+id/spinnerPorcentajesGusto4"
         android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginTop="255dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toEndOf="@+id/textViewGusto4"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerPorcentajesGusto3" />
 
     <Spinner
         android:id="@+id/spinnerPorcentajesGusto5"
         android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginTop="300dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toEndOf="@+id/textViewGusto5"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerPorcentajesGusto4" />
 
     <Spinner
         android:id="@+id/spinnerPorcentajesGusto6"
         android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginTop="345dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toEndOf="@+id/textViewGusto6"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerPorcentajesGusto5" />
 
     <Button
         android:id="@+id/botonVolver"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="35dp"
-        android:layout_marginStart="45dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="45dp"
         android:text="VOLVER"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewGusto6" />
 
     <EditText
         android:id="@+id/editTextNombreBebida"

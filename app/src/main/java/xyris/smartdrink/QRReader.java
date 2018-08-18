@@ -26,6 +26,7 @@ public class QRReader extends AppCompatActivity {
     String EditTextValue ;
     static String direccionIP = "";
     Thread thread ;
+    public final static String direccionIpPlaca = "-";
     public final static int QRcodeWidth = 350 ;
     Bitmap bitmap;
 
@@ -49,7 +50,7 @@ public class QRReader extends AppCompatActivity {
                 integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
                 integrator.setPrompt("Escaneando");
                 integrator.setCameraId(0);
-                integrator.setBeepEnabled(true);
+                integrator.setBeepEnabled(false);
                 integrator.setBarcodeImageEnabled(false);
                 integrator.initiateScan();
             }
