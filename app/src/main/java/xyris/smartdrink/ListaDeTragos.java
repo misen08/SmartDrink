@@ -93,10 +93,6 @@ public class ListaDeTragos extends AppCompatActivity {
         for(int i=0; i< listBebida.size(); i++){
             //Se llena el array de items (bebidas) - el ID de bebida y el nombre debe tomarlo de la DB
             items.add(new CategoryList(listBebida.get(i).getIdBebida(), listBebida.get(i).getDescripcion(), infoImage, deleteImage));
-            items.add(new CategoryList("0", "Naranja Full", infoImage, deleteImage));
-//            items.add(new CategoryList("1", "Frutilla Full", infoImage, deleteImage));
-//            items.add(new CategoryList("2", "Anana Full", infoImage, deleteImage));
-//            items.add(new CategoryList("3", "Manzana Full", infoImage, deleteImage));
         }
 
         lv = (ListView) findViewById(R.id.listaTragos);
@@ -207,7 +203,6 @@ public class ListaDeTragos extends AppCompatActivity {
         params.put("idDispositivo","8173924678916234");
         params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
 
-
         try {
             JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
                     new Response.Listener<JSONObject>() {
@@ -238,15 +233,15 @@ public class ListaDeTragos extends AppCompatActivity {
 
 
     public ArrayList<Bebida> parsearBebidas (String response) {
+
         ArrayList<Bebida> listBebida = new ArrayList<Bebida>();
         ArrayList<SaborEnBebida> listSaboresEnBebida = new ArrayList<SaborEnBebida>();
 
         try {
-
             responseReader = new JSONObject(response);
-            JSONObject codigoError = responseReader.getJSONObject("codigoError");
+            String codigo = responseReader.getString("codigoError");
 
-            if("0".equals(codigoError.toString())){
+            if("0".equals(codigo)){
                 // Se obtiene el nodo del array "bebidas"
                 JSONArray bebidas = responseReader.getJSONArray("bebidas");
 
@@ -257,19 +252,19 @@ public class ListaDeTragos extends AppCompatActivity {
                     String descripcion = bebidaJson.getString("descripcion");
                     String disponible = bebidaJson.getString("disponible");
 
-//                    // Se obtiene el nodo del array "sabores" para cada bebida
-//                    JSONArray sabores = responseReader.getJSONArray("sabores");
-//
-//                    // Ciclando en todos los sabores de cada bebida
-//                    for (int j = 0; j < sabores.length(); j++) {
-//                        JSONObject sabor = sabores.getJSONObject(i);
-//                        String idSabor = sabor.getString("idSabor");
-//                        String descripcionSabor = sabor.getString("descripcion");
-//                        String habilitadoSabor = sabor.getString("habilitado");
-//                        SaborEnBebida saborEnBebida = new SaborEnBebida(idSabor, descripcionSabor, habilitadoSabor);
-//                        listSaboresEnBebida.add(saborEnBebida);
-//                    }
-//
+                    // Se obtiene el nodo del array "sabores" para cada bebida
+                    JSONArray sabores = bebidaJson.getJSONArray("sabores");
+
+                    // Ciclando en todos los sabores de cada bebida
+                    for (int j = 0; j < sabores.length(); j++) {
+                        JSONObject sabor = sabores.getJSONObject(i);
+                        String idSabor = sabor.getString("idSabor");
+                        String descripcionSabor = sabor.getString("descripcion");
+                        String porcentajeSabor = sabor.getString("porcentaje");
+                        SaborEnBebida saborEnBebida = new SaborEnBebida(idSabor, descripcionSabor, porcentajeSabor);
+                        listSaboresEnBebida.add(saborEnBebida);
+                    }
+
                     Bebida bebida = new Bebida(idBebida, descripcion, disponible, listSaboresEnBebida);
                     listBebida.add(bebida);
                 }
