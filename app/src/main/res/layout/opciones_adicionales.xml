@@ -8,72 +8,62 @@
 
     <CheckBox
         android:id="@+id/checkBoxAgregarHielo"
-        android:layout_width="303dp"
+        android:layout_width="300dp"
         android:layout_height="54dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:button="@null"
         android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
         android:text="Agregar hielo"
         android:textSize="36dp"
         app:layout_constraintBottom_toTopOf="@+id/checkBoxMezclarBebida"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent" />
 
     <CheckBox
         android:id="@+id/checkBoxMezclarBebida"
-        android:layout_width="305dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="21dp"
-        android:layout_marginTop="366dp"
+        android:layout_width="300dp"
+        android:layout_height="54dp"
+        android:layout_marginBottom="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:button="@null"
         android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
         android:text="Mezclar bebida"
         android:textSize="36dp"
-        app:layout_constraintBottom_toTopOf="@+id/botonProgramarBebida"
+        app:layout_constraintBottom_toTopOf="@+id/botonPrepararAhora"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/botonPrepararAhora"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="38dp"
-        android:layout_marginStart="40dp"
+        android:layout_width="220dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/colorAccent"
         android:text="Preparar bebida"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/botonProgramarBebida"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/botonProgramarBebida"
-        app:layout_constraintHorizontal_bias="0.158"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="241dp"
-        android:layout_height="197dp"
-        android:layout_marginTop="68dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ice_cube"
-        tools:layout_marginBottom="20px"
-        tools:layout_marginLeft="15px"
-        tools:layout_marginRight="15px" />
 
     <Button
         android:id="@+id/botonProgramarBebida"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="39dp"
+        android:layout_width="220dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="40dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/colorAccent"
         android:text="PROGRAMAR BEBIDA"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/botonPrepararAhora"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxMezclarBebida" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
