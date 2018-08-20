@@ -39,7 +39,7 @@ public class ListaDeTragos extends AppCompatActivity {
         FloatingActionButton botonCrearTrago = findViewById(R.id.botonCrearTrago);
         infoImage = getResources().getDrawable(R.drawable.info_icon);
         deleteImage = getResources().getDrawable(R.drawable.delete_icon);
-        
+
 
     //    buttonInfoImgView = (ImageView) findViewById(R.id.buttonInfo);
     //    buttonDeleteImgView = (ImageView) findViewById(R.id.buttonDelete);

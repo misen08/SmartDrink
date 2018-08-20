@@ -31,7 +31,7 @@ import xyris.smartdrink.http.WebServiceClient;
 
 public class CrearTragos extends AppCompatActivity {
 
-    Integer porcentajeTotal = 100;
+    Integer porcentajeTotal = 0;
     String responseSabores;
     JSONObject responseReader;
 
@@ -39,21 +39,17 @@ public class CrearTragos extends AppCompatActivity {
     HashMap<String, Integer> configTrago = new HashMap<String, Integer>() {
         //Deberian ser valores que se obtengan de la DB. Hardcodeados de momento para ir probando..
         {
-            put("Naranja", 0);
-            put("Manzana", 0);
-            put("Durazno", 0);
-            put("Pera", 0);
-            put("Pomelo blanco", 0);
-            put("Pomelo rosado", 0);
+//            put("Naranja", 0);
+//            put("Manzana", 0);
+//            put("Durazno", 0);
+//            put("Pera", 0);
+//            put("Pomelo blanco", 0);
+//            put("Pomelo rosado", 0);
         }
     };
 
-    Integer porcentajeGusto1 = 0,
-            porcentajeGusto2 = 0,
-            porcentajeGusto3 = 0,
-            porcentajeGusto4 = 0,
-            porcentajeGusto5 = 0,
-            porcentajeGusto6 = 0;
+    ArrayList<SaborEnBotella> listSaborEnBotella = new ArrayList<SaborEnBotella>();
+    Integer[] porcentajeGustos = {0, 0, 0, 0, 0, 0};
     Integer[] porcentajes = {0,10,20,30,40,50,60,70,80,90,100};
 
     String nombreBebida;
@@ -89,13 +85,16 @@ public class CrearTragos extends AppCompatActivity {
             e.printStackTrace();
         }
         //Log.d("jsonObject", ""+ jsonObject.toString());
-        parsearSaborEnBotella(responseReader.toString());
+         listSaborEnBotella = parsearSaborEnBotella(responseReader.toString());
+
+        for(int i=0; i < listSaborEnBotella.size() ; i++ ){
+            configTrago.put(listSaborEnBotella.get(i).getDescripcion(), porcentajeGustos[i]);
+        }
 
         final Button botonCrear = (Button) findViewById(R.id.botonAgregar);
         final Button botonVolver = (Button) findViewById(R.id.botonVolver);
         final EditText editTextNombreBebida = (EditText) findViewById(R.id.editTextNombreBebida);
 
-        nombreBebida = editTextNombreBebida.getText().toString();
 
         Spinner listaGusto1 = (Spinner) findViewById(R.id.spinnerPorcentajesGusto1);
         listaGusto1.setAdapter(new ArrayAdapter<Integer>(this,android.R.layout.simple_spinner_item, porcentajes));
@@ -103,7 +102,7 @@ public class CrearTragos extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1,
                                        int pos, long id) {
-                porcentajeGusto1 = Integer.parseInt(arg0.getItemAtPosition(pos).toString());
+                porcentajeGustos[0] = Integer.parseInt(arg0.getItemAtPosition(pos).toString());
                 //textGusto1 = arg0.getItemAtPosition(pos).toString();
 
             }
@@ -120,7 +119,7 @@ public class CrearTragos extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1,
                                        int pos, long id) {
-                porcentajeGusto2 = Integer.parseInt(arg0.getItemAtPosition(pos).toString());
+                porcentajeGustos[1] = Integer.parseInt(arg0.getItemAtPosition(pos).toString());
                 //textGusto1 = arg0.getItemAtPosition(pos).toString();
 
             }
@@ -136,7 +135,7 @@ public class CrearTragos extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1,
                                        int pos, long id) {
-                porcentajeGusto3 = Integer.parseInt(arg0.getItemAtPosition(pos).toString());
+                porcentajeGustos[2] = Integer.parseInt(arg0.getItemAtPosition(pos).toString());
                 //textGusto1 = arg0.getItemAtPosition(pos).toString();
 
             }
@@ -153,7 +152,7 @@ public class CrearTragos extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1,
                                        int pos, long id) {
-                porcentajeGusto4 = Integer.parseInt(arg0.getItemAtPosition(pos).toString());
+                porcentajeGustos[3] = Integer.parseInt(arg0.getItemAtPosition(pos).toString());
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
@@ -169,7 +168,7 @@ public class CrearTragos extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1,
                                        int pos, long id) {
-                porcentajeGusto5 = Integer.parseInt(arg0.getItemAtPosition(pos).toString());
+                porcentajeGustos[4] = Integer.parseInt(arg0.getItemAtPosition(pos).toString());
                 //textGusto1 = arg0.getItemAtPosition(pos).toString();
 
             }
@@ -187,7 +186,7 @@ public class CrearTragos extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1,
                                        int pos, long id) {
-                porcentajeGusto6 = Integer.parseInt(arg0.getItemAtPosition(pos).toString());
+                porcentajeGustos[5] = Integer.parseInt(arg0.getItemAtPosition(pos).toString());
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
@@ -199,33 +198,38 @@ public class CrearTragos extends AppCompatActivity {
         botonCrear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                porcentajeTotal = porcentajeGusto1 + porcentajeGusto2 + porcentajeGusto3 + porcentajeGusto4 + porcentajeGusto5 + porcentajeGusto6;
+                nombreBebida = editTextNombreBebida.getText().toString();
+                porcentajeTotal = 0;
+
+                for(int i =0; i < porcentajeGustos.length; i++){
+                    porcentajeTotal += porcentajeGustos[i];
+                }
 
                 Log.d("nombre2", nombreBebida);
                 Log.d("test", "test");
-                if(porcentajeTotal == 100){
 
-                    if(1==1){ //!nombreBebida.isEmpty()
-                        configTrago.put("Naranja",porcentajeGusto1);
-                        configTrago.put("Manzana",porcentajeGusto2);
-                        configTrago.put("Durazno",porcentajeGusto3);
-                        configTrago.put("Pera",porcentajeGusto4);
-                        configTrago.put("Pomelo rosado",porcentajeGusto5);
-                        configTrago.put("Pomelo blanco",porcentajeGusto6);
 
+                    if ((nombreBebida.isEmpty()) || porcentajeTotal != 100) {
+
+                        if (nombreBebida.isEmpty()) {
+                            Toast.makeText(botonCrear.getContext(), "Por favor asigne un nombre a su bebida.", Toast.LENGTH_SHORT).show();
+                        }
+
+                        if (porcentajeTotal != 100) {
+                            Toast.makeText(botonCrear.getContext(), "El porcentaje es distinto de 100.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else
+                    {
+                        for(int i = 0; i < listSaborEnBotella.size() ; i++) {
+                            configTrago.put(listSaborEnBotella.get(i).getDescripcion(), porcentajeGustos[i]);
+
+                        }
+                        enviarMensajeAgregarBebida();
+                        Toast.makeText(botonCrear.getContext(),"Agregado a la lista",Toast.LENGTH_SHORT).show();
                         Log.d("tag", configTrago.toString());
                         Log.d("nombre", nombreBebida);
-
-                        mandarMensaje();
-
-                        Toast.makeText(botonCrear.getContext(),"Agregado a la lista",Toast.LENGTH_SHORT).show();
-
-                    } else {
-                        Toast.makeText(botonCrear.getContext(),"Por favor asigne un nombre a su bebida.",Toast.LENGTH_SHORT).show();
-                    }
-                }
-                    else {
-                        Toast.makeText(botonCrear.getContext(),"El porcentaje es distinto de 100",Toast.LENGTH_SHORT).show();
+                        finish();
                     }
             }
         });
@@ -267,6 +271,37 @@ public class CrearTragos extends AppCompatActivity {
         queue.add(req);
 
     }
+
+
+    public void enviarMensajeAgregarBebida(){
+// Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="http://192.168.0.35:8080/consultarSabores";
+        HashMap<String,String> params = new HashMap<String,String>();
+        params.put("idDispositivo","8173924678916234");
+        params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
+
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+                    @Override public void onResponse(JSONObject response)
+                    {
+                        try {
+                            VolleyLog.v("Response:%n %s", response.toString(4));
+//                            Toast.makeText(getApplicationContext(),"Response:%n %s" + response.toString(4),
+//                                    Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) { e.printStackTrace(); } }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("Error: ", error.getMessage());
+                Toast.makeText(getApplicationContext(),"Response:%n %s" + error.getMessage() + error.getStackTrace(),
+                        Toast.LENGTH_SHORT).show();
+            } });
+// Add the request to the RequestQueue.
+        queue.add(req);
+
+    }
+
 
 
     public void enviarMensajeConsultarSabores(){
