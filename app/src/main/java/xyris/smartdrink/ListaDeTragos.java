@@ -203,6 +203,7 @@ public class ListaDeTragos extends AppCompatActivity {
         params.put("idDispositivo","8173924678916234");
         params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
 
+
         try {
             JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
                     new Response.Listener<JSONObject>() {
