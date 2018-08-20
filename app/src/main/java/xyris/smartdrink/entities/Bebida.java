@@ -15,12 +15,12 @@ public class Bebida {
 		this.sabores = sabores;
 	}
 
-//
-//	public Bebida(String idBebida, String descripcion, String disponible) {
-//		this.idBebida = idBebida;
-//		this.descripcion = descripcion;
-//		this.disponible = disponible;
-//	}
+
+	public Bebida(String idBebida, String descripcion, String disponible) {
+		this.idBebida = idBebida;
+		this.descripcion = descripcion;
+		this.disponible = disponible;
+	}
 
 
 	public String getIdBebida() {

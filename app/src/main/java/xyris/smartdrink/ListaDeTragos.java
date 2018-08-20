@@ -32,6 +32,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -93,10 +94,6 @@ public class ListaDeTragos extends AppCompatActivity {
         for(int i=0; i< listBebida.size(); i++){
             //Se llena el array de items (bebidas) - el ID de bebida y el nombre debe tomarlo de la DB
             items.add(new CategoryList(listBebida.get(i).getIdBebida(), listBebida.get(i).getDescripcion(), infoImage, deleteImage));
-//            items.add(new CategoryList("0", "Naranja Full", infoImage, deleteImage));
-//            items.add(new CategoryList("1", "Frutilla Full", infoImage, deleteImage));
-//            items.add(new CategoryList("2", "Anana Full", infoImage, deleteImage));
-//            items.add(new CategoryList("3", "Manzana Full", infoImage, deleteImage));
         }
 
         lv = (ListView) findViewById(R.id.listaTragos);
@@ -173,23 +170,30 @@ public class ListaDeTragos extends AppCompatActivity {
     }
 
 
-    public void infoBebida(){
+    public void infoBebida(int pos){
         AlertDialog cuadroDialogo = new AlertDialog.Builder(this).create();
-        cuadroDialogo.setTitle("Naranja");
-        cuadroDialogo.setMessage("Naranja 100%");
+        String messageTemp = "";
+        String message = "";
+        //Se obtiene el nombre de la bebida de la base de datos.
+        cuadroDialogo.setTitle(listBebida.get(pos).getDescripcion());
+
+        ArrayList<SaborEnBebida> sabor = listBebida.get(pos).getSabores();
+        //Se muestra el porcentaje de cada sabor.
+        for (int i = 0 ; i < sabor.size(); i++){
+
+
+            messageTemp = sabor.get(i).getDescripcion() + ": " +
+                    sabor.get(i).getPorcentaje() + "%" + "\n";
+            message = message + messageTemp;
+        }
+
+        cuadroDialogo.setMessage(message);
         cuadroDialogo.show();
     }
 
 
-    public void clickHandlerInfoButton(View v) {
-        switch (v.getId()) {
-            case 0:
-                infoBebida();
-                break;
-            case 1:
-//                infoBebida2();
-                break;
-        }
+    public void clickHandlerInfoButton(View v, int position) {
+        infoBebida(position);
         Log.d("Info button", "Button info");
     }
 
@@ -199,47 +203,46 @@ public class ListaDeTragos extends AppCompatActivity {
 
 
 
-    public void enviarMensajeConsultarBebidas(){
-// Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://192.168.0.35:8080/consultarBebidas";
-        HashMap<String,String> params = new HashMap<String,String>();
-        params.put("idDispositivo","8173924678916234");
-        params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
-
-
-        try {
-            JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            try {
-                                VolleyLog.v("Response:%n %s", response.toString(4));
-                                responseBebidas = response.toString();
-                                Log.d("tag", "fs" + responseBebidas);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    VolleyLog.e("Error: ", error.getMessage());
-                    Toast.makeText(getApplicationContext(), "Response:%n %s" + error.getMessage() + error.getStackTrace(),
-                            Toast.LENGTH_SHORT).show();
-                }
-            });
-// Add the request to the RequestQueue.
-            queue.add(req);
-        }catch (Exception e){
-            Log.d("DEBUG","FALLE!!",e);
-        }
-    }
+//    public void enviarMensajeConsultarBebidas(){
+//// Instantiate the RequestQueue.
+//        RequestQueue queue = Volley.newRequestQueue(this);
+//        String url ="http://192.168.0.35:8080/consultarBebidas";
+//        HashMap<String,String> params = new HashMap<String,String>();
+//        params.put("idDispositivo","8173924678916234");
+//        params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
+//
+//
+//        try {
+//            JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
+//                    new Response.Listener<JSONObject>() {
+//                        @Override
+//                        public void onResponse(JSONObject response) {
+//                            try {
+//                                VolleyLog.v("Response:%n %s", response.toString(4));
+//                                responseBebidas = response.toString();
+//                                Log.d("tag", "fs" + responseBebidas);
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                    }, new Response.ErrorListener() {
+//                @Override
+//                public void onErrorResponse(VolleyError error) {
+//                    VolleyLog.e("Error: ", error.getMessage());
+//                    Toast.makeText(getApplicationContext(), "Response:%n %s" + error.getMessage() + error.getStackTrace(),
+//                            Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//// Add the request to the RequestQueue.
+//            queue.add(req);
+//        }catch (Exception e){
+//            Log.d("DEBUG","FALLE!!",e);
+//        }
+//    }
 
 
     public ArrayList<Bebida> parsearBebidas (String response) {
         ArrayList<Bebida> listBebida = new ArrayList<Bebida>();
-        ArrayList<SaborEnBebida> listSaboresEnBebida = new ArrayList<SaborEnBebida>();
 
         try {
 
@@ -252,17 +255,23 @@ public class ListaDeTragos extends AppCompatActivity {
 
                 // Ciclando en todas las bebidas
                 for (int i = 0; i < bebidas.length(); i++) {
+
+                    ArrayList<SaborEnBebida> listSaboresEnBebida = new ArrayList<SaborEnBebida>();
+
+                    listSaboresEnBebida.clear();
                     JSONObject bebidaJson = bebidas.getJSONObject(i);
                     String idBebida = bebidaJson.getString("idBebida");
                     String descripcion = bebidaJson.getString("descripcion");
                     String disponible = bebidaJson.getString("disponible");
+
 
                     // Se obtiene el nodo del array "sabores" para cada bebida
                     JSONArray sabores = bebidaJson.getJSONArray("sabores");
 
                     // Ciclando en todos los sabores de cada bebida
                     for (int j = 0; j < sabores.length(); j++) {
-                        JSONObject sabor = sabores.getJSONObject(i);
+
+                        JSONObject sabor = sabores.getJSONObject(j);
                         String idSabor = sabor.getString("idSabor");
                         String descripcionSabor = sabor.getString("descripcion");
                         String porcentajeSabor = sabor.getString("porcentaje");
@@ -271,6 +280,7 @@ public class ListaDeTragos extends AppCompatActivity {
                     }
 
                     Bebida bebida = new Bebida(idBebida, descripcion, disponible, listSaboresEnBebida);
+
                     listBebida.add(bebida);
                 }
 

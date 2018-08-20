@@ -79,6 +79,7 @@ public class AdapterItem extends BaseAdapter {
                // ((ListaDeTragos)activity).clickHandlerInfoButton(v);
                 String categoryId = items.get(position).getCategoryId();
                 Log.d("id",categoryId);
+                ((ListaDeTragos)activity).clickHandlerInfoButton(v, position);
             }
         });
 

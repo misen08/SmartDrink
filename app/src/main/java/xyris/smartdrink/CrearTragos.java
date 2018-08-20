@@ -72,6 +72,7 @@ public class CrearTragos extends AppCompatActivity {
         //Log.d("jsonObject", ""+ jsonObject.toString());
          listSaborEnBotella = parsearSaborEnBotella(responseReader.toString());
 
+
         for(int i=0; i < listSaborEnBotella.size() ; i++ ){
             configTrago.put(listSaborEnBotella.get(i).getDescripcion(), porcentajeGustos[i]);
         }
