@@ -335,7 +335,8 @@ public class CrearTragos extends AppCompatActivity {
 //                    Toast.LENGTH_SHORT).show();
 
             responseReader = new JSONObject(response);
-            JSONObject codigoError = responseReader.getJSONObject("codigoError");
+            String codigoError = responseReader.getString("codigoError");
+
 
             if("0".equals(codigoError.toString())){
                 // Se obtiene el nodo del array "sabores"
