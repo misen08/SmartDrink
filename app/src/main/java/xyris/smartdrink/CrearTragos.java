@@ -36,17 +36,7 @@ public class CrearTragos extends AppCompatActivity {
     JSONObject responseReader;
 
 
-    HashMap<String, Integer> configTrago = new HashMap<String, Integer>() {
-        //Deberian ser valores que se obtengan de la DB. Hardcodeados de momento para ir probando..
-        {
-//            put("Naranja", 0);
-//            put("Manzana", 0);
-//            put("Durazno", 0);
-//            put("Pera", 0);
-//            put("Pomelo blanco", 0);
-//            put("Pomelo rosado", 0);
-        }
-    };
+    HashMap<String, Integer> configTrago = new HashMap<String, Integer>();
 
     ArrayList<SaborEnBotella> listSaborEnBotella = new ArrayList<SaborEnBotella>();
     Integer[] porcentajeGustos = {0, 0, 0, 0, 0, 0};
@@ -58,11 +48,6 @@ public class CrearTragos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_tragos);
-
-
-
-
-
 
        Thread thread = new Thread(){
            public void run(){
@@ -239,7 +224,6 @@ public class CrearTragos extends AppCompatActivity {
         public void onClick(View v) {
             finish();
         }
-
     });
 }
 
@@ -342,7 +326,6 @@ public class CrearTragos extends AppCompatActivity {
     }
 
 
-
     public ArrayList<SaborEnBotella> parsearSaborEnBotella (String response) {
         ArrayList<SaborEnBotella> listSaboresEnBotella = new ArrayList<SaborEnBotella>();
 
@@ -364,6 +347,7 @@ public class CrearTragos extends AppCompatActivity {
                     String idSabor = sabor.getString("idSabor");
                     String descripcion = sabor.getString("descripcion");
                     String habilitado = sabor.getString("habilitado");
+
                     SaborEnBotella saborEnBotella = new SaborEnBotella(idSabor, descripcion, habilitado);
                     listSaboresEnBotella.add(saborEnBotella);
                 }

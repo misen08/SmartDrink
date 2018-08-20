@@ -19,7 +19,7 @@ public class PantallaSplash extends AppCompatActivity {
         setContentView(R.layout.pantalla_splash);
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        String ipLeida = sp.getString("IP","ERROR");
+        String ipLeida = ipPlaca; //sp.getString("IP","ERROR");
 
         // Comparar con la ip de la placa.
         // FUNCIONA BIEN GUARDAR CUANDO CIERRO APP

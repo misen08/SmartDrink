@@ -1,19 +1,27 @@
 package xyris.smartdrink.entities;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Bebida {
 	private String idBebida;
 	private String descripcion;
 	private String disponible;
-	private List<SaborEnBebida> sabores;
+	private ArrayList<SaborEnBebida> sabores;
 
-	public Bebida(String idBebida, String descripcion, String disponible, List<SaborEnBebida> sabores) {
+	public Bebida(String idBebida, String descripcion, String disponible, ArrayList<SaborEnBebida> sabores) {
 		this.idBebida = idBebida;
 		this.descripcion = descripcion;
 		this.disponible = disponible;
 		this.sabores = sabores;
 	}
+
+//
+//	public Bebida(String idBebida, String descripcion, String disponible) {
+//		this.idBebida = idBebida;
+//		this.descripcion = descripcion;
+//		this.disponible = disponible;
+//	}
+
 
 	public String getIdBebida() {
 		return idBebida;
@@ -33,10 +41,10 @@ public class Bebida {
 	public void setDisponible(String disponible) {
 		this.disponible = disponible;
 	}
-	public List<SaborEnBebida> getSabores() {
+	public ArrayList<SaborEnBebida> getSabores() {
 		return sabores;
 	}
-	public void setSabores(List<SaborEnBebida> sabores) {
+	public void setSabores(ArrayList<SaborEnBebida> sabores) {
 		this.sabores = sabores;
 	}
 }
