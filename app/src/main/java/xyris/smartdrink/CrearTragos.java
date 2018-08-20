@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -35,6 +36,12 @@ public class CrearTragos extends AppCompatActivity {
     String responseSabores;
     JSONObject responseReader;
 
+    TextView tvNombreGusto1;
+    TextView tvNombreGusto2;
+    TextView tvNombreGusto3;
+    TextView tvNombreGusto4;
+    TextView tvNombreGusto5;
+    TextView tvNombreGusto6;
 
     HashMap<String, Integer> configTrago = new HashMap<String, Integer>();
 
@@ -81,6 +88,22 @@ public class CrearTragos extends AppCompatActivity {
         final Button botonVolver = (Button) findViewById(R.id.botonVolver);
         final EditText editTextNombreBebida = (EditText) findViewById(R.id.editTextNombreBebida);
 
+        // Creacion de los TextView estáticos de la pantalla crear tragos
+        tvNombreGusto1 = (TextView) findViewById(R.id.textViewGusto1);
+        tvNombreGusto2 = (TextView) findViewById(R.id.textViewGusto2);
+        tvNombreGusto3 = (TextView) findViewById(R.id.textViewGusto3);
+        tvNombreGusto4 = (TextView) findViewById(R.id.textViewGusto4);
+        tvNombreGusto5 = (TextView) findViewById(R.id.textViewGusto5);
+        tvNombreGusto6 = (TextView) findViewById(R.id.textViewGusto6);
+
+        // Asignación de los nombres de cada uno de los TextView
+        // Se obtinen desde la BD
+        tvNombreGusto1.setText(listSaborEnBotella.get(0).getDescripcion());
+        tvNombreGusto2.setText(listSaborEnBotella.get(1).getDescripcion());
+        tvNombreGusto3.setText(listSaborEnBotella.get(2).getDescripcion());
+        tvNombreGusto4.setText(listSaborEnBotella.get(3).getDescripcion());
+        tvNombreGusto5.setText(listSaborEnBotella.get(4).getDescripcion());
+        tvNombreGusto6.setText(listSaborEnBotella.get(5).getDescripcion());
 
         Spinner listaGusto1 = (Spinner) findViewById(R.id.spinnerPorcentajesGusto1);
         listaGusto1.setAdapter(new ArrayAdapter<Integer>(this,android.R.layout.simple_spinner_item, porcentajes));
@@ -328,16 +351,12 @@ public class CrearTragos extends AppCompatActivity {
 
 
     public ArrayList<SaborEnBotella> parsearSaborEnBotella (String response) {
+
         ArrayList<SaborEnBotella> listSaboresEnBotella = new ArrayList<SaborEnBotella>();
 
         try {
-
-//            Toast.makeText(getApplicationContext(),"Response:%n %s" + response.toString(4),
-//                    Toast.LENGTH_SHORT).show();
-
             responseReader = new JSONObject(response);
             String codigoError = responseReader.getString("codigoError");
-
 
             if("0".equals(codigoError.toString())){
                 // Se obtiene el nodo del array "sabores"

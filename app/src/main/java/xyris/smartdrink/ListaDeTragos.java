@@ -242,14 +242,14 @@ public class ListaDeTragos extends AppCompatActivity {
 
 
     public ArrayList<Bebida> parsearBebidas (String response) {
+
         ArrayList<Bebida> listBebida = new ArrayList<Bebida>();
 
         try {
-
             responseReader = new JSONObject(response);
-            String codigoError = responseReader.getString("codigoError");
+            String codigo = responseReader.getString("codigoError");
 
-            if("0".equals(codigoError)){
+            if("0".equals(codigo)){
                 // Se obtiene el nodo del array "bebidas"
                 JSONArray bebidas = responseReader.getJSONArray("bebidas");
 
