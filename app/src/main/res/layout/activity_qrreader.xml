@@ -5,7 +5,7 @@
     android:id="@+id/linearLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFC209"
+    android:background="@color/colorFondo"
     tools:context=".QRReader">
 
     <ImageView
@@ -21,14 +21,14 @@
     <Button
         android:id="@+id/buttonScan"
         android:layout_width="350dp"
-        android:layout_height="45dp"
+        android:layout_height="36dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
         android:background="@color/colorAccent"
         android:text="Toca para escanear el código QR"
         android:textColor="@android:color/white"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,14 +36,14 @@
     <Button
         android:id="@+id/buttonCancel"
         android:layout_width="210dp"
-        android:layout_height="45dp"
+        android:layout_height="36dp"
         android:layout_marginBottom="40dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:background="@color/colorAccent"
         android:text="Cancelar"
         android:textColor="@android:color/white"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

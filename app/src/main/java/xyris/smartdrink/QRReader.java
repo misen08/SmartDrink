@@ -1,7 +1,11 @@
 package xyris.smartdrink;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,14 +27,12 @@ public class QRReader extends AppCompatActivity {
     ImageView imageView;
     Button btnScan;
     Button btnCancel;
-    String EditTextValue ;
-    static String direccionIP = "";
     Thread thread ;
-    public final static String direccionIpPlaca = "-";
     public final static int QRcodeWidth = 350 ;
     Bitmap bitmap;
+    static final String ipPlaca = "192.168.1.3";
 
-    TextView tv_qr_readTxt;
+    //TextView tv_qr_readTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,23 +105,33 @@ public class QRReader extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sp.edit();
+        String ipLeida;
+
         if(result != null) {
             if(result.getContents() == null) {
                 Log.e("Scan*******", "Cancelled scan");
-
             } else {
                 Log.e("Scan", "Scanned");
 
-                tv_qr_readTxt.setText(result.getContents());
+                // tv_qr_readTxt.setText(result.getContents());
                 // Guardo la dirección IP obtenida del código QR en una variable
-                direccionIP = result.getContents();
+                // ipPlaca = result.getContents();
+                // Toast.makeText(this, ipPlaca, Toast.LENGTH_SHORT).show();
+                ipLeida = result.getContents();
+                editor.putString("IP", ipLeida);
+                editor.commit();
                 Toast.makeText(this, "Código QR escaneado", Toast.LENGTH_LONG).show();
-                //Chequear que la IP sea valida y que el servidor este corriendo.
-                if(!direccionIP.isEmpty()){
-                    Intent ingresoTragos = new Intent(QRReader.this, ListaDeTragos.class);
-                    startActivity(ingresoTragos);
-                }
+                Toast.makeText(this, ipLeida, Toast.LENGTH_LONG).show();
 
+                if(ipPlaca.equals(sp.getString("IP","ERROR"))) {
+                    Intent listaTragos = new Intent(QRReader.this, ListaDeTragos.class);
+                    startActivity(listaTragos);
+                } else {
+                    Toast.makeText(this, "Las direcciones no coinciden", Toast.LENGTH_SHORT).show();
+                }
             }
         } else {
             // This is important, otherwise the result will not be passed to the fragment

@@ -16,18 +16,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PantallaInicial" android:theme="@style/Theme.Design.NoActionBar">
+        <activity android:name=".PantallaSplash" android:theme="@style/Theme.Design.NoActionBar" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ListaDeTragos" />
-        <activity android:name=".CrearTragos" />
-        <activity android:name=".OpcionesAdicionales" />
-        <activity android:name=".PreparandoTrago" />
-        <activity android:name=".ProgramarBebida" />
-        <activity android:name=".QRReader" >
+        <activity android:name=".PantallaInicial" android:theme="@style/Theme.Design.NoActionBar" android:screenOrientation="portrait" />
+        <activity android:name=".ListaDeTragos" android:screenOrientation="portrait" />
+        <activity android:name=".CrearTragos" android:screenOrientation="portrait" />
+        <activity android:name=".OpcionesAdicionales" android:screenOrientation="portrait" />
+        <activity android:name=".PreparandoTrago" android:screenOrientation="portrait" />
+        <activity android:name=".ProgramarBebida" android:screenOrientation="portrait" />
+        <activity android:name=".QRReader" android:screenOrientation="portrait" >
         </activity>
     </application>
 

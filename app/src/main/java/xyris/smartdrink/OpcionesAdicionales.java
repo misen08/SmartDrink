@@ -3,6 +3,7 @@ package xyris.smartdrink;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,6 +32,8 @@ import java.util.HashMap;
 
 public class OpcionesAdicionales  extends AppCompatActivity {
 
+    Boolean conHielo;
+    Boolean agitado;
     Button botonProgramarBebida;
     Button botonPrepararAhora;
     CheckBox agregarHielo;
@@ -41,10 +44,10 @@ public class OpcionesAdicionales  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.opciones_adicionales);
 
-        String urlGif = "https://domain.com/myanimatedgif.gif";
+        //String urlGif = "https://domain.com/myanimatedgif.gif";
         //Agregar implementacion Glide dentro de archivo build.gradle.
-        ImageView imgIceCube = (ImageView)findViewById(R.id.imageView2);
-        Uri uri = Uri.parse(urlGif);
+        //ImageView imgIceCube = (ImageView)findViewById(R.id.imageView2);
+        //Uri uri = Uri.parse(urlGif);
         //Glide.with(getApplicationContext()).load(uri).into(imgIceCube);
 
         botonProgramarBebida = (Button) findViewById(R.id.botonProgramarBebida);
@@ -53,29 +56,23 @@ public class OpcionesAdicionales  extends AppCompatActivity {
         botonProgramarBebida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent volverPantallaPrincipal = new Intent(OpcionesAdicionales.this, ProgramarBebida.class);
-                startActivity(volverPantallaPrincipal);
+                Intent progBebida = new Intent(OpcionesAdicionales.this, ProgramarBebida.class);
+                startActivity(progBebida);
             }
         });
 
         botonPrepararAhora.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent abrirPreparandoTrago = new Intent(OpcionesAdicionales.this, PreparandoTrago.class);
-                startActivity(abrirPreparandoTrago);
-                if(agregarHielo.isEnabled())
-                    Toast.makeText(OpcionesAdicionales.this, "Hielo", Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(OpcionesAdicionales.this, "Sin hielo", Toast.LENGTH_SHORT).show();
-
+                Intent prepararTrago = new Intent(OpcionesAdicionales.this, PreparandoTrago.class);
+                startActivity(prepararTrago);
             }
         });
-
     }
 
-    public void abrirProgramarBebida(View v) {
-        Intent intent = new Intent(this, OpcionesAdicionales.class);
-        startActivity(intent);
+    public void verficarFlags() {
+        conHielo = agregarHielo.isChecked();
+        agitado = mezclarBebida.isChecked();
     }
 
     public void abrirPreparandoTrago(View v) {
