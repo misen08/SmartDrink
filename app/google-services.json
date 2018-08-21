@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "770903539012",
+    "firebase_url": "https://smart-drinks-notifications.firebaseio.com",
+    "project_id": "smart-drinks-notifications",
+    "storage_bucket": "smart-drinks-notifications.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:770903539012:android:74bec6246cbaf65b",
+        "android_client_info": {
+          "package_name": "xyris.smartdrink"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "770903539012-ai02kajfn93phs8q1qvn5fjia5jak92t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3PctbZ6K7PBBKlEfnhej8vs57pg8AhRs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
