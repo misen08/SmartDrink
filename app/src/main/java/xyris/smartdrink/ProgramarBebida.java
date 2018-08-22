@@ -1,10 +1,12 @@
 package xyris.smartdrink;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -127,14 +130,14 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
                 //Formateo el minuto obtenido: antepone el 0 si son menores de 10
                 String minutoFormateado = (minute < 10)? String.valueOf(CERO + minute):String.valueOf(minute);
                 //Obtengo el valor a.m. o p.m., dependiendo de la selección del usuario
-                String AM_PM;
-                if(hourOfDay < 12) {
-                    AM_PM = "a.m.";
-                } else {
-                    AM_PM = "p.m.";
-                }
+                //String AM_PM;
+                //if(hourOfDay < 12) {
+                //    AM_PM = "a.m.";
+                //} else {
+                //    AM_PM = "p.m.";
+                //}
                 //Muestro la hora con el formato deseado
-                etHora.setText(horaFormateada + DOS_PUNTOS + minutoFormateado + " " + AM_PM);
+                etHora.setText(horaFormateada + DOS_PUNTOS + minutoFormateado);
             }
             //Estos valores deben ir en ese orden
             //Al colocar en false se muestra en formato 12 horas y true en formato 24 horas
@@ -145,14 +148,44 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
     }
 
     public void aceptarPrograma(){
-        //Agregar validaciones de fecha y hora
-        if(etFecha.getText().length() == 0)
+        Calendar fechaActual = Calendar.getInstance();
+
+        // Obtengo la feha y hora actuales
+        Integer diaActual = fechaActual.get(Calendar.DAY_OF_MONTH);
+        Integer mesActual = fechaActual.get(Calendar.MONTH)+1;
+        Integer anioActual = fechaActual.get(Calendar.YEAR);
+        Integer horaActual = fechaActual.get(Calendar.HOUR_OF_DAY);
+        Integer minutoActual = fechaActual.get(Calendar.MINUTE);
+
+        // Formateo de acuerdo al formato que tienen los textView
+        String diaFormateado = (diaActual < 10) ? String.valueOf(CERO + diaActual.toString()) : String.valueOf(diaActual.toString());
+        String mesFormateado = (mesActual < 10) ? String.valueOf(CERO + mesActual.toString()) : String.valueOf(mesActual.toString());
+        String horaFormateada = (horaActual < 10) ? String.valueOf(CERO + horaActual.toString()) : String.valueOf(horaActual.toString());
+        String minutoFormateado = (minutoActual < 10) ? String.valueOf(CERO + minutoActual.toString()) : String.valueOf(minutoActual.toString());
+
+        String hoy = diaFormateado + BARRA + mesFormateado + BARRA + anioActual.toString();
+        String ahora = horaFormateada + DOS_PUNTOS + minutoFormateado;
+
+        String fechaIngresada = etFecha.getText().toString();
+        String horaIngresada = etHora.getText().toString();
+
+        // Valido que el usuario haya ingresado fecha y hora
+        if(fechaIngresada.isEmpty())
             Toast.makeText(this, "La fecha no puede ser vacía", Toast.LENGTH_SHORT).show();
-        else if(etHora.getText().length() == 0)
+        if(horaIngresada.isEmpty())
             Toast.makeText(this, "La hora no puede ser vacía", Toast.LENGTH_SHORT).show();
-        else {
-            Toast.makeText(this, "Bebida programada", Toast.LENGTH_SHORT).show();
-            finish();
+
+        // Valido que fecha y hora sean posteriores a ahora.
+        if(!fechaIngresada.isEmpty() && !horaIngresada.isEmpty()) {
+            if ((hoy.compareTo(fechaIngresada) == 0 && ahora.compareTo(horaIngresada) < 0)
+                    || (hoy.compareTo(fechaIngresada) < 0)) {
+                Toast.makeText(this, "Tu bebida fue programada", Toast.LENGTH_SHORT).show();
+                finish();
+            } else if (hoy.compareTo(fechaIngresada) > 0) {
+                Toast.makeText(this, "La fecha no puede ser anterior a hoy", Toast.LENGTH_SHORT).show();
+            } else if (hoy.compareTo(fechaIngresada) == 0 && ahora.compareTo(horaIngresada) >= 0) {
+                Toast.makeText(this, "La hora no puede ser anterior a ahora", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

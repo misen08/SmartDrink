@@ -90,6 +90,7 @@ public class ListaDeTragos extends AppCompatActivity {
 
         //Se crea el array de items (bebidas)
         ArrayList<CategoryList> items = new ArrayList<CategoryList>();
+        items.add(new CategoryList("6","Trago loco",infoImage, deleteImage));
 
         for(int i=0; i< listBebida.size(); i++){
             //Se llena el array de items (bebidas) - el ID de bebida y el nombre debe tomarlo de la DB
