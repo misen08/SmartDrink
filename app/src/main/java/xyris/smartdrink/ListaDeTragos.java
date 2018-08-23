@@ -1,7 +1,9 @@
 package xyris.smartdrink;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.provider.Settings;
@@ -199,8 +201,51 @@ public class ListaDeTragos extends AppCompatActivity {
     }
 
     public void clickHandlerDeleteButton(View v, int i, ArrayList<CategoryList> items) {
+
+        String titleDelete = "Eliminar bebida";
+        String messageDelete = "¿Está seguro que desea eliminar esta bebida?";
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        if (titleDelete != null) builder.setTitle(titleDelete);
+
+        builder.setMessage(messageDelete);
+        builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //TODO: Eliminar bebida de la base de datos
+                Toast.makeText(ListaDeTragos.this, "Borrado", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        builder.setNegativeButton("No", null);
+        builder.show();
+
+        //TODO: Traer nuevamente la lista de bebidas actualizada de la base de datos
         lv.setAdapter(new AdapterItem(this, items));
     }
+
+
+
+    //Dialog builder con dos botones para solicitar confirmación cuando se elimina una bebida.
+//    public void showDialogDeleteButton(Activity activity, String title, CharSequence message) {
+//        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+//
+//        if (title != null) builder.setTitle(title);
+//
+//        builder.setMessage(message);
+//        builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//
+//                //TODO: Eliminar bebida de la base de datos
+//                Toast.makeText(ListaDeTragos.this, "Borrado", Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
+//        builder.setNegativeButton("No", null);
+//        builder.show();
+//    }
 
 
 
