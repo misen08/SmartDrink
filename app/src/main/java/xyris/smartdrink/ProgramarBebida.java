@@ -28,6 +28,7 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
     private static final String CERO = "0";
     private static final String BARRA = "/";
     private static final String DOS_PUNTOS = ":";
+    public SimpleDateFormat fecha;
 
     //Calendario para obtener fecha & hora
     public final Calendar c = Calendar.getInstance();
@@ -99,7 +100,7 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    private void obtenerFecha(){
+    private void obtenerFecha() {
         DatePickerDialog recogerFecha = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -129,13 +130,6 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
                 String horaFormateada =  (hourOfDay < 10)? String.valueOf(CERO + hourOfDay) : String.valueOf(hourOfDay);
                 //Formateo el minuto obtenido: antepone el 0 si son menores de 10
                 String minutoFormateado = (minute < 10)? String.valueOf(CERO + minute):String.valueOf(minute);
-                //Obtengo el valor a.m. o p.m., dependiendo de la selección del usuario
-                //String AM_PM;
-                //if(hourOfDay < 12) {
-                //    AM_PM = "a.m.";
-                //} else {
-                //    AM_PM = "p.m.";
-                //}
                 //Muestro la hora con el formato deseado
                 etHora.setText(horaFormateada + DOS_PUNTOS + minutoFormateado);
             }
@@ -157,7 +151,7 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
         Integer horaActual = fechaActual.get(Calendar.HOUR_OF_DAY);
         Integer minutoActual = fechaActual.get(Calendar.MINUTE);
 
-        // Formateo de acuerdo al formato que tienen los textView
+        // Formateo de acuerdo al formato que tienen los textView para comparar
         String diaFormateado = (diaActual < 10) ? String.valueOf(CERO + diaActual.toString()) : String.valueOf(diaActual.toString());
         String mesFormateado = (mesActual < 10) ? String.valueOf(CERO + mesActual.toString()) : String.valueOf(mesActual.toString());
         String horaFormateada = (horaActual < 10) ? String.valueOf(CERO + horaActual.toString()) : String.valueOf(horaActual.toString());
@@ -179,6 +173,7 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
         if(!fechaIngresada.isEmpty() && !horaIngresada.isEmpty()) {
             if ((hoy.compareTo(fechaIngresada) == 0 && ahora.compareTo(horaIngresada) < 0)
                     || (hoy.compareTo(fechaIngresada) < 0)) {
+                // enviarMensaje(diaFormateado, mesFormateado, anioActual, horaFormateada, minutoFormateado);
                 Toast.makeText(this, "Tu bebida fue programada", Toast.LENGTH_SHORT).show();
                 finish();
             } else if (hoy.compareTo(fechaIngresada) > 0) {
@@ -187,5 +182,9 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
                 Toast.makeText(this, "La hora no puede ser anterior a ahora", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    public void enviarMensaje(String dia, String mes, Integer anio, String hora, String minuto) {
+        // TODO: Comunicarse con la base de datos para guardar la fecha de programacion
     }
 }

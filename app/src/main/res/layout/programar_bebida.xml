@@ -8,15 +8,16 @@
 
     <Button
         android:id="@+id/buttonAcceptTime"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_width="220dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="40dp"
+        android:background="@color/colorAccent"
         android:text="CONFIRMAR HORARIO"
-        android:textSize="22sp"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonHora" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textViewSelectTime1"
@@ -56,7 +57,7 @@
         android:layout_height="40dp"
         android:layout_marginBottom="60dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="70dp"
         android:clickable="true"
         android:editable="false"
         android:textAlignment="center"
@@ -85,7 +86,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="51dp"
         android:background="@android:color/transparent"
         app:layout_constraintStart_toEndOf="@+id/fecha"
         app:layout_constraintTop_toBottomOf="@+id/textViewSelectTime1"
@@ -109,7 +110,7 @@
         android:layout_marginBottom="50dp"
         android:layout_marginEnd="25dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="70dp"
         android:text="Fecha"
         android:textAllCaps="false"
         android:textColor="@android:color/black"
