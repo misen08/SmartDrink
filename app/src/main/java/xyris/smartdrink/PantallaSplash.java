@@ -17,7 +17,7 @@ import javax.xml.datatype.Duration;
 public class PantallaSplash extends AppCompatActivity {
 
     static final String ipPlaca = "192.168.1.3";
-    private final int DURACION_SPLASH = 1500;
+    private final int DURACION_SPLASH = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +48,12 @@ public class PantallaSplash extends AppCompatActivity {
     public void abrirPantallaInicial() {
         Intent pantallaInicial = new Intent(PantallaSplash.this, PantallaInicial.class);
         startActivity(pantallaInicial);
+        finish();
     }
 
     public void abrirPantallaTragos() {
         Intent abrirListaTragos = new Intent(PantallaSplash.this, ListaDeTragos.class);
         startActivity(abrirListaTragos);
+        finish();
     }
 }

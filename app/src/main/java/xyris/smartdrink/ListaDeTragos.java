@@ -5,13 +5,17 @@ import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.speech.RecognizerIntent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -58,6 +62,7 @@ public class ListaDeTragos extends AppCompatActivity {
     ArrayList<Bebida> listBebida = new ArrayList<Bebida>();
 
     private static final int RECOGNIZE_SPEECH_ACTIVITY = 1;
+    private static final String urlPlaca = "52.204.131.123:50000";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +127,29 @@ public class ListaDeTragos extends AppCompatActivity {
                 abrirCrearTragos(v);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_opciones, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.mantenimiento:
+                Toast.makeText(this, "Ver tema mantenimiento", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.aboutUs:
+                Toast.makeText(this, "Grupo Xyris", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.logout:
+                olvidarDireccionPlaca();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void abrirOpcionesAdicionales(View v, long i) {
@@ -214,8 +242,8 @@ public class ListaDeTragos extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //TODO: Eliminar bebida de la base de datos
-                Toast.makeText(ListaDeTragos.this, "Borrado", Toast.LENGTH_SHORT).show();
 
+                Toast.makeText(ListaDeTragos.this, "Borrado", Toast.LENGTH_SHORT).show();
             }
         });
         builder.setNegativeButton("No", null);
@@ -249,43 +277,42 @@ public class ListaDeTragos extends AppCompatActivity {
 
 
 
-//    public void enviarMensajeConsultarBebidas(){
-//// Instantiate the RequestQueue.
-//        RequestQueue queue = Volley.newRequestQueue(this);
-//        String url ="http://192.168.0.35:8080/consultarBebidas";
-//        HashMap<String,String> params = new HashMap<String,String>();
-//        params.put("idDispositivo","8173924678916234");
-//        params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
-//
-//
-//        try {
-//            JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
-//                    new Response.Listener<JSONObject>() {
-//                        @Override
-//                        public void onResponse(JSONObject response) {
-//                            try {
-//                                VolleyLog.v("Response:%n %s", response.toString(4));
-//                                responseBebidas = response.toString();
-//                                Log.d("tag", "fs" + responseBebidas);
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            }
-//                        }
-//                    }, new Response.ErrorListener() {
-//                @Override
-//                public void onErrorResponse(VolleyError error) {
-//                    VolleyLog.e("Error: ", error.getMessage());
-//                    Toast.makeText(getApplicationContext(), "Response:%n %s" + error.getMessage() + error.getStackTrace(),
-//                            Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//// Add the request to the RequestQueue.
-//            queue.add(req);
-//        }catch (Exception e){
-//            Log.d("DEBUG","FALLE!!",e);
-//        }
-//    }
+    public void enviarMensajeConsultarBebidas(){
+// Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = urlPlaca + "/consultarBebidas";
+        HashMap<String,String> params = new HashMap<String,String>();
+        params.put("idDispositivo","8173924678916234");
+        params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
 
+
+        try {
+            JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                VolleyLog.v("Response:%n %s", response.toString(4));
+                                responseBebidas = response.toString();
+                                Log.d("tag", "fs" + responseBebidas);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    VolleyLog.e("Error: ", error.getMessage());
+                    Toast.makeText(getApplicationContext(), "Response:%n %s" + error.getMessage() + error.getStackTrace(),
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
+// Add the request to the RequestQueue.
+            queue.add(req);
+        }catch (Exception e){
+            Log.d("DEBUG","FALLE!!",e);
+        }
+    }
 
     public ArrayList<Bebida> parsearBebidas (String response) {
 
@@ -339,4 +366,14 @@ public class ListaDeTragos extends AppCompatActivity {
         return listBebida;
     }
 
+    public void olvidarDireccionPlaca() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("IP",null);
+        editor.commit();
+
+        Intent pantallaInicial = new Intent(ListaDeTragos.this, PantallaInicial.class);
+        finish();
+        startActivity(pantallaInicial);
+    }
 }

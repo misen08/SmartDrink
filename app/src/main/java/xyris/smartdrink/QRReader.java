@@ -118,8 +118,6 @@ public class QRReader extends AppCompatActivity {
 
                 // tv_qr_readTxt.setText(result.getContents());
                 // Guardo la dirección IP obtenida del código QR en una variable
-                // ipPlaca = result.getContents();
-                // Toast.makeText(this, ipPlaca, Toast.LENGTH_SHORT).show();
                 ipLeida = result.getContents();
                 editor.putString("IP", ipLeida);
                 editor.commit();
@@ -128,6 +126,7 @@ public class QRReader extends AppCompatActivity {
 
                 if(ipPlaca.equals(sp.getString("IP","ERROR"))) {
                     Intent listaTragos = new Intent(QRReader.this, ListaDeTragos.class);
+                    finish();
                     startActivity(listaTragos);
                 } else {
                     Toast.makeText(this, "Las direcciones no coinciden", Toast.LENGTH_SHORT).show();
