@@ -89,8 +89,6 @@ public class AdapterItem extends BaseAdapter {
         ivDeleteImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                // items.remove(position);
                 ((ListaDeTragos)activity).clickHandlerDeleteButton(v, position, items);
             }

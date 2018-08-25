@@ -24,6 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
 import ar.edu.xyris.smartdrinks.messages.creacion.bebida.CreaBebidaRequest;
 import xyris.smartdrink.entities.Bebida;
 import xyris.smartdrink.entities.SaborEnBebida;
@@ -213,7 +214,8 @@ public class CrearTragos extends AppCompatActivity {
                     if (porcentajeTotal != 100) {
                         Toast.makeText(botonCrear.getContext(), "El porcentaje es distinto de 100.", Toast.LENGTH_SHORT).show();
                     }
-                } else {
+                    else
+                    {
                         for(int i = 0; i < listSaborEnBotella.size() ; i++) {
                             configTrago.put(listSaborEnBotella.get(i).getDescripcion(), porcentajeGustos[i]);
                         }
@@ -221,7 +223,7 @@ public class CrearTragos extends AppCompatActivity {
                         Bebida bebidaNueva = new Bebida("0", nombreBebida,null, saboresNuevos);
                         enviarMensajeAgregarBebida(bebidaNueva);
                         Toast.makeText(botonCrear.getContext(),"Agregado a la lista",Toast.LENGTH_SHORT).show();
-                        
+
                         finish();
                     }
             }
