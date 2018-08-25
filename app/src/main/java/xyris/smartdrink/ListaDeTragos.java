@@ -33,6 +33,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -63,9 +64,6 @@ public class ListaDeTragos extends AppCompatActivity {
     ArrayList<Bebida> listBebida = new ArrayList<Bebida>();
     //Se crea el array de items (bebidas)
     ArrayList<CategoryList> items = new ArrayList<CategoryList>();
-    //Se crea el array de items (bebidas)
-    ArrayList<CategoryList> items = new ArrayList<CategoryList>();
-
 
     private static final int RECOGNIZE_SPEECH_ACTIVITY = 1;
     private static final int CREAR_TRAGO_ACTIVITY = 2;
@@ -113,6 +111,10 @@ public class ListaDeTragos extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
+            case R.id.bebidas_programadas:
+                Intent verBebidasProgramadas = new Intent(this, BebidasProgramadas.class);
+                startActivity(verBebidasProgramadas);
+                break;
             case R.id.mantenimiento:
                 Toast.makeText(this, "Ver tema mantenimiento", Toast.LENGTH_SHORT).show();
                 break;

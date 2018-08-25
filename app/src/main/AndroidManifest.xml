@@ -29,7 +29,8 @@
         <activity android:name=".OpcionesAdicionales" android:screenOrientation="portrait" />
         <activity android:name=".PreparandoTrago" android:screenOrientation="portrait" />
         <activity android:name=".ProgramarBebida" android:screenOrientation="portrait" />
-        <activity android:name=".QRReader" android:screenOrientation="portrait" >
+        <activity android:name=".QRReader" android:screenOrientation="portrait" />
+        <activity android:name=".BebidasProgramadas" android:screenOrientation="portrait" >
         </activity>
 
         <service

@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e8f3f4"
     tools:context=".ListaDeTragos">
 
     <ListView
         android:id="@+id/listaTragos"
         android:layout_width="384dp"
         android:layout_height="394dp"
-        android:background="?android:attr/detailsElementBackground" />
+        android:background="?android:attr/detailsElementBackground"></ListView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/buttonMic"
@@ -43,5 +42,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listaTragos"
         app:srcCompat="@drawable/add_icon" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:layout_marginTop="394dp"
+        android:background="@android:color/holo_blue_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/bottom_bar" />
 
 </android.support.constraint.ConstraintLayout>
