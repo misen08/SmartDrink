@@ -14,6 +14,7 @@ import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -23,12 +24,16 @@ import xyris.smartdrink.R;
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     public static final String TAG = "NOTIFICACIONES";
+    public static final String TOPIC = "xyris.smartdrink";
 
     @Override
     public void onNewToken(String s) {
         super.onNewToken(s);
 
         Log.e(TAG, "Token: " + s);
+
+        Log.i(TAG,"Suscribiendose al TOPIC: " + TOPIC);
+        FirebaseMessaging.getInstance().subscribeToTopic(TOPIC);
     }
 
     @Override
