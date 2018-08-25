@@ -67,6 +67,7 @@ public class ListaDeTragos extends AppCompatActivity {
 
 
     private static final int RECOGNIZE_SPEECH_ACTIVITY = 1;
+    private static final int CREAR_TRAGO_ACTIVITY = 2;
     private static final String urlPlaca = "52.204.131.123:50000";
 
     @Override
@@ -131,8 +132,9 @@ public class ListaDeTragos extends AppCompatActivity {
 
     public void abrirCrearTragos(View v) {
         Intent intent = new Intent(this, CrearTragos.class);
-        startActivity(intent);
+        startActivityForResult(intent, 2);
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode,
@@ -147,6 +149,12 @@ public class ListaDeTragos extends AppCompatActivity {
                     ArrayList<String> speech = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     String strSpeech2Text = speech.get(0);
                     tvGrabar.setText(strSpeech2Text);
+                }
+                break;
+
+            case CREAR_TRAGO_ACTIVITY:
+                if (resultCode == RESULT_OK && null != data) {
+                    obtenerLista();
                 }
                 break;
             default:
@@ -227,10 +235,6 @@ public class ListaDeTragos extends AppCompatActivity {
 
         lv = (ListView) findViewById(R.id.listaTragos);
 
-        lv.setAdapter(new AdapterItem(this, items));
-    }
-
-    public void actualizarLista(ArrayList<CategoryList> items){
         lv.setAdapter(new AdapterItem(this, items));
     }
 
