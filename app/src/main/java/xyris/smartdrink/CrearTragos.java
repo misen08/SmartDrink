@@ -1,6 +1,6 @@
 package xyris.smartdrink;
 
-import android.content.Intent;
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,20 +24,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 import ar.edu.xyris.smartdrinks.messages.creacion.bebida.CreaBebidaRequest;
 import xyris.smartdrink.entities.Bebida;
 import xyris.smartdrink.entities.SaborEnBebida;
 import xyris.smartdrink.entities.SaborEnBotella;
 import xyris.smartdrink.http.WebServiceClient;
 
-//import xyris.smartdrink.entities.Bebida;
-//import xyris.smartdrink.entities.SaborEnBebida;
-
 public class CrearTragos extends AppCompatActivity {
 
     Integer porcentajeTotal = 0;
-    String responseSabores;
     JSONObject responseReader;
 
     TextView tvNombreGusto1;
@@ -80,7 +75,7 @@ public class CrearTragos extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        //Log.d("jsonObject", ""+ jsonObject.toString());
+
         listSaborEnBotella = parsearSaborEnBotella(responseReader.toString());
 
         for(int i=0; i < listSaborEnBotella.size() ; i++ ){
@@ -108,14 +103,13 @@ public class CrearTragos extends AppCompatActivity {
         tvNombreGusto5.setText(listSaborEnBotella.get(4).getDescripcion());
         tvNombreGusto6.setText(listSaborEnBotella.get(5).getDescripcion());
 
-        Spinner listaGusto1 = (Spinner) findViewById(R.id.spinnerPorcentajesGusto1);
+        final Spinner listaGusto1 = (Spinner) findViewById(R.id.spinnerPorcentajesGusto1);
         listaGusto1.setAdapter(new ArrayAdapter<Integer>(this,android.R.layout.simple_spinner_item, porcentajes));
         listaGusto1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1,
                                        int pos, long id) {
                 porcentajeGustos[0] = Integer.parseInt(arg0.getItemAtPosition(pos).toString());
-                //textGusto1 = arg0.getItemAtPosition(pos).toString();
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
@@ -130,7 +124,6 @@ public class CrearTragos extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> arg0, View arg1,
                                        int pos, long id) {
                 porcentajeGustos[1] = Integer.parseInt(arg0.getItemAtPosition(pos).toString());
-                //textGusto1 = arg0.getItemAtPosition(pos).toString();
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
@@ -145,7 +138,6 @@ public class CrearTragos extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> arg0, View arg1,
                                        int pos, long id) {
                 porcentajeGustos[2] = Integer.parseInt(arg0.getItemAtPosition(pos).toString());
-                //textGusto1 = arg0.getItemAtPosition(pos).toString();
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
@@ -174,7 +166,6 @@ public class CrearTragos extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> arg0, View arg1,
                                        int pos, long id) {
                 porcentajeGustos[4] = Integer.parseInt(arg0.getItemAtPosition(pos).toString());
-                //textGusto1 = arg0.getItemAtPosition(pos).toString();
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
@@ -205,40 +196,32 @@ public class CrearTragos extends AppCompatActivity {
                 nombreBebida = editTextNombreBebida.getText().toString();
                 porcentajeTotal = 0;
 
-                for(int i =0; i < porcentajeGustos.length; i++){
-                    Integer pos = i;
+                for(int i = 0; i < porcentajeGustos.length; i++){
                     if(porcentajeGustos[i] != 0){
-                        SaborEnBebida sabor = new SaborEnBebida(pos.toString(),listSaborEnBotella.get(pos).getDescripcion(), porcentajeGustos[i].toString());
+                        SaborEnBebida sabor = new SaborEnBebida(listSaborEnBotella.get(i).getIdSabor(), listSaborEnBotella.get(i).getDescripcion(), porcentajeGustos[i].toString());
                         saboresNuevos.add(sabor);
                     }
                     porcentajeTotal += porcentajeGustos[i];
                 }
 
-                Log.d("nombre2", nombreBebida);
-                Log.d("test", "test");
+                if ((nombreBebida.isEmpty()) || porcentajeTotal != 100) {
 
-
-                    if ((nombreBebida.isEmpty()) || porcentajeTotal != 100) {
-
-                        if (nombreBebida.isEmpty()) {
-                            Toast.makeText(botonCrear.getContext(), "Por favor asigne un nombre a su bebida.", Toast.LENGTH_SHORT).show();
-                        }
-
-                        if (porcentajeTotal != 100) {
-                            Toast.makeText(botonCrear.getContext(), "El porcentaje es distinto de 100.", Toast.LENGTH_SHORT).show();
-                        }
+                    if (nombreBebida.isEmpty()) {
+                        Toast.makeText(botonCrear.getContext(), "Por favor asigne un nombre a su bebida.", Toast.LENGTH_SHORT).show();
                     }
-                    else
-                    {
+
+                    if (porcentajeTotal != 100) {
+                        Toast.makeText(botonCrear.getContext(), "El porcentaje es distinto de 100.", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
                         for(int i = 0; i < listSaborEnBotella.size() ; i++) {
                             configTrago.put(listSaborEnBotella.get(i).getDescripcion(), porcentajeGustos[i]);
                         }
-                        
-                        Bebida bebidaNueva = new Bebida("0",nombreBebida,"disponible", saboresNuevos);
+
+                        Bebida bebidaNueva = new Bebida("0", nombreBebida,null, saboresNuevos);
                         enviarMensajeAgregarBebida(bebidaNueva);
                         Toast.makeText(botonCrear.getContext(),"Agregado a la lista",Toast.LENGTH_SHORT).show();
-                        Log.d("tag", configTrago.toString());
-                        Log.d("nombre", nombreBebida);
+                        
                         finish();
                     }
             }
@@ -252,35 +235,6 @@ public class CrearTragos extends AppCompatActivity {
     });
 }
 
-//    public void mandarMensaje(){
-// Instantiate the RequestQueue.
-//        RequestQueue queue = Volley.newRequestQueue(this);
-//        String url ="http://192.168.0.35:8080/consultarSabores";
-//        HashMap<String,String> params = new HashMap<String,String>();
-//        params.put("idDispositivo","8173924678916234");
-//        params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
-//
-//        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
-//                new Response.Listener<JSONObject>() {
-//            @Override public void onResponse(JSONObject response)
-//            {
-//                try {
-//                    VolleyLog.v("Response:%n %s", response.toString(4));
-//                    Toast.makeText(getApplicationContext(),"Response:%n %s" + response.toString(4),
-//                            Toast.LENGTH_SHORT).show();
-//                } catch (JSONException e) { e.printStackTrace(); } }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                VolleyLog.e("Error: ", error.getMessage());
-//                Toast.makeText(getApplicationContext(),"Response:%n %s" + error.getMessage() + error.getStackTrace(),
-//                        Toast.LENGTH_SHORT).show();
-//            } });
-// Add the request to the RequestQueue.
-//        queue.add(req);
-//    }
-
-
     public void enviarMensajeAgregarBebida(Bebida bebida){
 
         CreaBebidaRequest request = new CreaBebidaRequest();
@@ -289,6 +243,7 @@ public class CrearTragos extends AppCompatActivity {
         request.setFechaHoraPeticion("2018-08-04T15:22:00");
         ObjectMapper mapper = new ObjectMapper();
         JSONObject object = null;
+
         try {
             object = new JSONObject(mapper.writeValueAsString(request));
         } catch (Exception e) {
@@ -312,45 +267,6 @@ public class CrearTragos extends AppCompatActivity {
             thread.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
-    }
-
-
-
-    public void enviarMensajeConsultarSabores(){
-// Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://192.168.0.35:8080/consultarSabores";
-        HashMap<String,String> params = new HashMap<String,String>();
-        params.put("idDispositivo","8173924678916234");
-        params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
-
-
-        try {
-            JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            try {
-                                VolleyLog.v("Response:%n %s", response.toString(4));
-                                responseSabores = response.toString();
-                                Log.d("tag", "fs" + responseSabores);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    VolleyLog.e("Error: ", error.getMessage());
-                    Toast.makeText(getApplicationContext(), "Response:%n %s" + error.getMessage() + error.getStackTrace(),
-                            Toast.LENGTH_SHORT).show();
-                }
-            });
-// Add the request to the RequestQueue.
-            queue.add(req);
-        }catch (Exception e){
-            Log.d("DEBUG","FALLE!!",e);
         }
     }
 
