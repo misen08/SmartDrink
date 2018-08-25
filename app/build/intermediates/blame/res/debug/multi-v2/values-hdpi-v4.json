@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\_UNLaM2018\\_PROYECTO2018\\SmartDrink-master\\SmartDrink-master\\SmartDrinks\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hdpi-v4\\values-hdpi-v4.xml",
+            "outputFile": "/home/federico/prueba/SmartDrinks/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hdpi-v4/values-hdpi-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Micaela\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\5d6f98806162a573eef3d90c0310c78f\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "source": "/home/federico/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/9433aff3461bbf87d6c365c40bffbf46/res/values-hdpi-v4/values-hdpi-v4.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

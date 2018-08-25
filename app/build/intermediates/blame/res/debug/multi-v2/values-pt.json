@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\_UNLaM2018\\_PROYECTO2018\\SmartDrink-master\\SmartDrink-master\\SmartDrinks\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-pt\\values-pt.xml",
+            "outputFile": "/home/federico/prueba/SmartDrinks/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-pt/values-pt.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Micaela\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\f0bb292d5c76add8a5f15ceb17d800d6\\res\\values-pt\\values-pt.xml",
+                    "source": "/home/federico/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/b680c8b7c5f94209b04d8011190bf557/res/values-pt/values-pt.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Micaela\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\5d6f98806162a573eef3d90c0310c78f\\res\\values-pt\\values-pt.xml",
+                    "source": "/home/federico/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/9433aff3461bbf87d6c365c40bffbf46/res/values-pt/values-pt.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -31,7 +31,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Micaela\\.gradle\\caches\\transforms-1\\files-1.1\\zxing-android-embedded-3.2.0.aar\\cb40f7a1f9e551f91209255360ab6af7\\res\\values-pt\\values-pt.xml",
+                    "source": "/home/federico/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.2.0.aar/bd37d3817627f8c15dfb6329651d8257/res/values-pt/values-pt.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

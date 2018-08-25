@@ -33,7 +33,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -62,6 +61,8 @@ public class ListaDeTragos extends AppCompatActivity {
     JSONObject responseReader;
 
     ArrayList<Bebida> listBebida = new ArrayList<Bebida>();
+    //Se crea el array de items (bebidas)
+    ArrayList<CategoryList> items = new ArrayList<CategoryList>();
     //Se crea el array de items (bebidas)
     ArrayList<CategoryList> items = new ArrayList<CategoryList>();
 
@@ -239,7 +240,7 @@ public class ListaDeTragos extends AppCompatActivity {
         Log.d("Info button", "Button info");
     }
 
-    public void clickHandlerDeleteButton(View v, final int i, ArrayList<CategoryList> items) {
+        public void clickHandlerDeleteButton(View v, final int i, ArrayList<CategoryList> items) {
 
         String titleDelete = "Eliminar bebida";
         String messageDelete = "¿Está seguro que desea eliminar esta bebida?";
@@ -253,11 +254,8 @@ public class ListaDeTragos extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //TODO: Eliminar bebida de la base de datos
-                String idBebida = listBebida.get(i).getIdBebida();
-                enviarMensajeEliminarBebida(idBebida.toString());
-                obtenerLista();
-                Toast.makeText(ListaDeTragos.this, "Borrado", Toast.LENGTH_SHORT).show();
 
+                Toast.makeText(ListaDeTragos.this, "Borrado", Toast.LENGTH_SHORT).show();
             }
         });
         builder.setNegativeButton("No", null);
