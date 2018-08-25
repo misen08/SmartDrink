@@ -18,12 +18,16 @@ import java.util.HashMap;
 import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 
+import ar.edu.xyris.smartdrinks.messages.creacion.bebida.CreaBebidaRequest;
+import xyris.smartdrink.entities.Bebida;
+import xyris.smartdrink.entities.SaborEnBebida;
 import xyris.smartdrink.entities.SaborEnBotella;
 import xyris.smartdrink.http.WebServiceClient;
 
@@ -56,7 +60,7 @@ public class CrearTragos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_tragos);
 
-       Thread thread = new Thread(){
+        Thread thread = new Thread(){
            public void run(){
                HashMap<String,String> params = new HashMap<String,String>();
                params.put("idDispositivo","8173924678916234");
@@ -68,7 +72,7 @@ public class CrearTragos extends AppCompatActivity {
 
                Log.d("SMARTDRINKS","RESPUESTA: " + responseReader.toString());
            }
-       };
+        };
 
         thread.start();
         try {
@@ -77,8 +81,7 @@ public class CrearTragos extends AppCompatActivity {
             e.printStackTrace();
         }
         //Log.d("jsonObject", ""+ jsonObject.toString());
-         listSaborEnBotella = parsearSaborEnBotella(responseReader.toString());
-
+        listSaborEnBotella = parsearSaborEnBotella(responseReader.toString());
 
         for(int i=0; i < listSaborEnBotella.size() ; i++ ){
             configTrago.put(listSaborEnBotella.get(i).getDescripcion(), porcentajeGustos[i]);
@@ -97,7 +100,7 @@ public class CrearTragos extends AppCompatActivity {
         tvNombreGusto6 = (TextView) findViewById(R.id.textViewGusto6);
 
         // Asignación de los nombres de cada uno de los TextView
-        // Se obtinen desde la BD
+        // Se obtienen desde la BD
         tvNombreGusto1.setText(listSaborEnBotella.get(0).getDescripcion());
         tvNombreGusto2.setText(listSaborEnBotella.get(1).getDescripcion());
         tvNombreGusto3.setText(listSaborEnBotella.get(2).getDescripcion());
@@ -113,14 +116,12 @@ public class CrearTragos extends AppCompatActivity {
                                        int pos, long id) {
                 porcentajeGustos[0] = Integer.parseInt(arg0.getItemAtPosition(pos).toString());
                 //textGusto1 = arg0.getItemAtPosition(pos).toString();
-
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
                 // TODO Auto-generated method stub
             }
         });
-
 
         Spinner listaGusto2 = (Spinner) findViewById(R.id.spinnerPorcentajesGusto2);
         listaGusto2.setAdapter(new ArrayAdapter<Integer>(this,android.R.layout.simple_spinner_item, porcentajes));
@@ -130,7 +131,6 @@ public class CrearTragos extends AppCompatActivity {
                                        int pos, long id) {
                 porcentajeGustos[1] = Integer.parseInt(arg0.getItemAtPosition(pos).toString());
                 //textGusto1 = arg0.getItemAtPosition(pos).toString();
-
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
@@ -146,7 +146,6 @@ public class CrearTragos extends AppCompatActivity {
                                        int pos, long id) {
                 porcentajeGustos[2] = Integer.parseInt(arg0.getItemAtPosition(pos).toString());
                 //textGusto1 = arg0.getItemAtPosition(pos).toString();
-
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
@@ -156,7 +155,6 @@ public class CrearTragos extends AppCompatActivity {
 
         Spinner listaGusto4 = (Spinner) findViewById(R.id.spinnerPorcentajesGusto4);
         listaGusto4.setAdapter(new ArrayAdapter<Integer>(this,android.R.layout.simple_spinner_item, porcentajes));
-
         listaGusto4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1,
@@ -169,17 +167,14 @@ public class CrearTragos extends AppCompatActivity {
             }
         });
 
-
         Spinner listaGusto5 = (Spinner) findViewById(R.id.spinnerPorcentajesGusto5);
         listaGusto5.setAdapter(new ArrayAdapter<Integer>(this,android.R.layout.simple_spinner_item, porcentajes));
-
         listaGusto5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1,
                                        int pos, long id) {
                 porcentajeGustos[4] = Integer.parseInt(arg0.getItemAtPosition(pos).toString());
                 //textGusto1 = arg0.getItemAtPosition(pos).toString();
-
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
@@ -187,10 +182,8 @@ public class CrearTragos extends AppCompatActivity {
             }
         });
 
-
         Spinner listaGusto6 = (Spinner) findViewById(R.id.spinnerPorcentajesGusto6);
         listaGusto6.setAdapter(new ArrayAdapter<Integer>(this,android.R.layout.simple_spinner_item, porcentajes));
-
         listaGusto6.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1,
@@ -203,14 +196,21 @@ public class CrearTragos extends AppCompatActivity {
             }
         });
 
-
         botonCrear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                ArrayList<SaborEnBebida> saboresNuevos = new ArrayList<SaborEnBebida> ();
+
                 nombreBebida = editTextNombreBebida.getText().toString();
                 porcentajeTotal = 0;
 
                 for(int i =0; i < porcentajeGustos.length; i++){
+                    Integer pos = i;
+                    if(porcentajeGustos[i] != 0){
+                        SaborEnBebida sabor = new SaborEnBebida(pos.toString(),listSaborEnBotella.get(pos).getDescripcion(), porcentajeGustos[i].toString());
+                        saboresNuevos.add(sabor);
+                    }
                     porcentajeTotal += porcentajeGustos[i];
                 }
 
@@ -232,9 +232,10 @@ public class CrearTragos extends AppCompatActivity {
                     {
                         for(int i = 0; i < listSaborEnBotella.size() ; i++) {
                             configTrago.put(listSaborEnBotella.get(i).getDescripcion(), porcentajeGustos[i]);
-
                         }
-                        enviarMensajeAgregarBebida();
+                        
+                        Bebida bebidaNueva = new Bebida("0",nombreBebida,"disponible", saboresNuevos);
+                        enviarMensajeAgregarBebida(bebidaNueva);
                         Toast.makeText(botonCrear.getContext(),"Agregado a la lista",Toast.LENGTH_SHORT).show();
                         Log.d("tag", configTrago.toString());
                         Log.d("nombre", nombreBebida);
@@ -251,63 +252,67 @@ public class CrearTragos extends AppCompatActivity {
     });
 }
 
-    public void mandarMensaje(){
+//    public void mandarMensaje(){
 // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://192.168.0.35:8080/consultarSabores";
-        HashMap<String,String> params = new HashMap<String,String>();
-        params.put("idDispositivo","8173924678916234");
-        params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
-
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
-                new Response.Listener<JSONObject>() {
-            @Override public void onResponse(JSONObject response)
-            {
-                try {
-                    VolleyLog.v("Response:%n %s", response.toString(4));
-                    Toast.makeText(getApplicationContext(),"Response:%n %s" + response.toString(4),
-                            Toast.LENGTH_SHORT).show();
-                } catch (JSONException e) { e.printStackTrace(); } }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.e("Error: ", error.getMessage());
-                Toast.makeText(getApplicationContext(),"Response:%n %s" + error.getMessage() + error.getStackTrace(),
-                        Toast.LENGTH_SHORT).show();
-            } });
+//        RequestQueue queue = Volley.newRequestQueue(this);
+//        String url ="http://192.168.0.35:8080/consultarSabores";
+//        HashMap<String,String> params = new HashMap<String,String>();
+//        params.put("idDispositivo","8173924678916234");
+//        params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
+//
+//        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
+//                new Response.Listener<JSONObject>() {
+//            @Override public void onResponse(JSONObject response)
+//            {
+//                try {
+//                    VolleyLog.v("Response:%n %s", response.toString(4));
+//                    Toast.makeText(getApplicationContext(),"Response:%n %s" + response.toString(4),
+//                            Toast.LENGTH_SHORT).show();
+//                } catch (JSONException e) { e.printStackTrace(); } }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                VolleyLog.e("Error: ", error.getMessage());
+//                Toast.makeText(getApplicationContext(),"Response:%n %s" + error.getMessage() + error.getStackTrace(),
+//                        Toast.LENGTH_SHORT).show();
+//            } });
 // Add the request to the RequestQueue.
-        queue.add(req);
+//        queue.add(req);
+//    }
 
-    }
 
+    public void enviarMensajeAgregarBebida(Bebida bebida){
 
-    public void enviarMensajeAgregarBebida(){
-// Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://192.168.0.35:8080/consultarSabores";
-        HashMap<String,String> params = new HashMap<String,String>();
-        params.put("idDispositivo","8173924678916234");
-        params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
+        CreaBebidaRequest request = new CreaBebidaRequest();
+        request.setBebida(bebida);
+        request.setIdDispositivo("compu_Fede");
+        request.setFechaHoraPeticion("2018-08-04T15:22:00");
+        ObjectMapper mapper = new ObjectMapper();
+        JSONObject object = null;
+        try {
+            object = new JSONObject(mapper.writeValueAsString(request));
+        } catch (Exception e) {
 
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
-                new Response.Listener<JSONObject>() {
-                    @Override public void onResponse(JSONObject response)
-                    {
-                        try {
-                            VolleyLog.v("Response:%n %s", response.toString(4));
-//                            Toast.makeText(getApplicationContext(),"Response:%n %s" + response.toString(4),
-//                                    Toast.LENGTH_SHORT).show();
-                        } catch (JSONException e) { e.printStackTrace(); } }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.e("Error: ", error.getMessage());
-                Toast.makeText(getApplicationContext(),"Response:%n %s" + error.getMessage() + error.getStackTrace(),
-                        Toast.LENGTH_SHORT).show();
-            } });
-// Add the request to the RequestQueue.
-        queue.add(req);
+        }
 
+        final JSONObject finalObject = object;
+        Thread thread = new Thread(){
+            public void run(){
+
+                WebServiceClient cli = new WebServiceClient("/crearBebida", finalObject);
+
+                responseReader = (JSONObject) cli.getResponse();
+
+                Log.d("SMARTDRINKS_BEBIDAS","RESPUESTA_BEBIDAS: " + responseReader.toString());
+            }
+        };
+
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -380,5 +385,4 @@ public class CrearTragos extends AppCompatActivity {
 
         return listSaboresEnBotella;
     }
-
 }

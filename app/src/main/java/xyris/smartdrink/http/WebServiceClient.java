@@ -22,6 +22,8 @@ public class WebServiceClient  {
     private String servicio;
     private JSONObject request;
     private byte[] response;
+    private final String hostPlaca = "52.204.131.123";
+    private final int portPlaca = 50000;
 
     public WebServiceClient(String servicio, JSONObject request) {
         this.servicio = servicio;
@@ -49,7 +51,7 @@ public class WebServiceClient  {
 
         JSONObject obj = new JSONObject();
         try {
-            URL url = new URL("http", "192.168.0.35", 8080, servicio);
+            URL url = new URL("http", hostPlaca, portPlaca, servicio);
             HttpClient httpClient = new HttpClient();
             HttpConnection httpConnection = httpClient.getConnection(url,
                     15000, 15000, new Authentication(), "POST");
