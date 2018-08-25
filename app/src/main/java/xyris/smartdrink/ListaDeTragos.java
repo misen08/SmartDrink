@@ -33,6 +33,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,6 +44,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import ar.edu.xyris.smartdrinks.messages.eliminacion.bebida.EliminaBebidaRequest;
 import xyris.smartdrink.entities.Bebida;
 import xyris.smartdrink.entities.SaborEnBebida;
 import xyris.smartdrink.entities.SaborEnBotella;
@@ -60,6 +62,9 @@ public class ListaDeTragos extends AppCompatActivity {
     JSONObject responseReader;
 
     ArrayList<Bebida> listBebida = new ArrayList<Bebida>();
+    //Se crea el array de items (bebidas)
+    ArrayList<CategoryList> items = new ArrayList<CategoryList>();
+
 
     private static final int RECOGNIZE_SPEECH_ACTIVITY = 1;
     private static final String urlPlaca = "52.204.131.123:50000";
@@ -72,40 +77,8 @@ public class ListaDeTragos extends AppCompatActivity {
         infoImage = getResources().getDrawable(R.drawable.info_icon);
         deleteImage = getResources().getDrawable(R.drawable.delete_icon);
 
-        Thread thread = new Thread(){
-            public void run(){
-                HashMap<String,String> params = new HashMap<String,String>();
-                params.put("idDispositivo","8173924678916234");
-                params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
+        obtenerLista();
 
-                WebServiceClient cli = new WebServiceClient("/consultarBebidas", new JSONObject(params));
-
-                responseReader = (JSONObject) cli.getResponse();
-
-                Log.d("SMARTDRINKS_BEBIDAS","RESPUESTA_BEBIDAS: " + responseReader.toString());
-            }
-        };
-
-        thread.start();
-        try {
-            thread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        //Log.d("jsonObject", ""+ jsonObject.toString());
-        listBebida = parsearBebidas(responseReader.toString());
-
-        //Se crea el array de items (bebidas)
-        ArrayList<CategoryList> items = new ArrayList<CategoryList>();
-
-        for(int i=0; i< listBebida.size(); i++){
-            //Se llena el array de items (bebidas) - el ID de bebida y el nombre debe tomarlo de la DB
-            items.add(new CategoryList(listBebida.get(i).getIdBebida(), listBebida.get(i).getDescripcion(), infoImage, deleteImage));
-        }
-
-        lv = (ListView) findViewById(R.id.listaTragos);
-
-        lv.setAdapter(new AdapterItem(this, items));
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -222,12 +195,51 @@ public class ListaDeTragos extends AppCompatActivity {
     }
 
 
+    public void obtenerLista(){
+        Thread thread = new Thread(){
+            public void run(){
+                HashMap<String,String> params = new HashMap<String,String>();
+                params.put("idDispositivo","8173924678916234");
+                params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
+
+                WebServiceClient cli = new WebServiceClient("/consultarBebidas", new JSONObject(params));
+
+                responseReader = (JSONObject) cli.getResponse();
+
+                Log.d("SMARTDRINKS_BEBIDAS","RESPUESTA_BEBIDAS: " + responseReader.toString());
+            }
+        };
+
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //Log.d("jsonObject", ""+ jsonObject.toString());
+        listBebida = parsearBebidas(responseReader.toString());
+        items.clear();
+        for(int i=0; i< listBebida.size(); i++){
+            //Se llena el array de items (bebidas) - el ID de bebida y el nombre debe tomarlo de la DB
+            items.add(new CategoryList(listBebida.get(i).getIdBebida(), listBebida.get(i).getDescripcion(), infoImage, deleteImage));
+        }
+
+        lv = (ListView) findViewById(R.id.listaTragos);
+
+        lv.setAdapter(new AdapterItem(this, items));
+    }
+
+    public void actualizarLista(ArrayList<CategoryList> items){
+        lv.setAdapter(new AdapterItem(this, items));
+    }
+
     public void clickHandlerInfoButton(View v, int position) {
         infoBebida(position);
         Log.d("Info button", "Button info");
     }
 
-    public void clickHandlerDeleteButton(View v, int i, ArrayList<CategoryList> items) {
+    public void clickHandlerDeleteButton(View v, final int i, ArrayList<CategoryList> items) {
 
         String titleDelete = "Eliminar bebida";
         String messageDelete = "¿Está seguro que desea eliminar esta bebida?";
@@ -241,8 +253,11 @@ public class ListaDeTragos extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //TODO: Eliminar bebida de la base de datos
-
+                String idBebida = listBebida.get(i).getIdBebida();
+                enviarMensajeEliminarBebida(idBebida.toString());
+                obtenerLista();
                 Toast.makeText(ListaDeTragos.this, "Borrado", Toast.LENGTH_SHORT).show();
+
             }
         });
         builder.setNegativeButton("No", null);
@@ -273,6 +288,44 @@ public class ListaDeTragos extends AppCompatActivity {
 //        builder.setNegativeButton("No", null);
 //        builder.show();
 //    }
+
+
+public void enviarMensajeEliminarBebida(String idBebida){
+
+    EliminaBebidaRequest request = new EliminaBebidaRequest();
+    request.setIdDispositivo("compu_Mica");
+    request.setFechaHoraPeticion("2018-08-04T15:22:00");
+    request.setIdBebida(idBebida);
+
+    ObjectMapper mapper = new ObjectMapper();
+    JSONObject object = null;
+    try {
+        object = new JSONObject(mapper.writeValueAsString(request));
+    } catch (Exception e) {
+        Log.d("ELIMINAR_BEBIDA","ELIMINAR_BEBIDAS: " + e.getMessage());
+    }
+
+    final JSONObject finalObject = object;
+    Thread thread = new Thread(){
+        public void run(){
+
+            WebServiceClient cli = new WebServiceClient("/eliminarBebida", finalObject);
+
+            responseReader = (JSONObject) cli.getResponse();
+
+            Log.d("ELIMINAR_BEBIDA","ELIMINAR_BEBIDAS: " + responseReader.toString());
+
+        }
+    };
+
+    thread.start();
+    try {
+        thread.join();
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+
+}
 
 
 
