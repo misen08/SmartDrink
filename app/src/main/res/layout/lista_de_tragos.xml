@@ -9,8 +9,11 @@
     <ListView
         android:id="@+id/listaTragos"
         android:layout_width="384dp"
-        android:layout_height="394dp"
-        android:background="?android:attr/detailsElementBackground"></ListView>
+        android:layout_height="0dp"
+        android:layout_marginBottom="120dp"
+        android:background="?android:attr/detailsElementBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></ListView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/buttonMic"
@@ -44,15 +47,15 @@
         app:srcCompat="@drawable/add_icon" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/lineaDivisora"
         android:layout_width="0dp"
         android:layout_height="5dp"
-        android:layout_marginTop="394dp"
-        android:background="@android:color/holo_blue_dark"
+        android:layout_marginTop="390dp"
+        android:background="@color/zxing_custom_viewfinder_laser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/bottom_bar" />
+        app:srcCompat="@color/zxing_custom_viewfinder_laser" />
 
 </android.support.constraint.ConstraintLayout>

@@ -113,12 +113,9 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
                 //Muestro la fecha con el formato deseado
                 etFecha.setText(diaFormateado + BARRA + mesFormateado + BARRA + year);
             }
-            //Estos valores deben ir en ese orden, de lo contrario no mostrara la fecha actual
-            /**
-             *También puede cargar los valores que usted desee
-             */
         },anio, mes, dia);
-        //Muestro el widget
+
+        recogerFecha.getDatePicker().setMinDate(System.currentTimeMillis());
         recogerFecha.show();
     }
 

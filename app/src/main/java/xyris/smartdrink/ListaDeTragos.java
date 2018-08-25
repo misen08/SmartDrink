@@ -79,7 +79,6 @@ public class ListaDeTragos extends AppCompatActivity {
 
         obtenerLista();
 
-
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -107,6 +106,7 @@ public class ListaDeTragos extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    // Opciones del menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -228,7 +228,6 @@ public class ListaDeTragos extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        //Log.d("jsonObject", ""+ jsonObject.toString());
         listBebida = parsearBebidas(responseReader.toString());
         items.clear();
         for(int i=0; i< listBebida.size(); i++){
@@ -331,16 +330,13 @@ public void enviarMensajeEliminarBebida(String idBebida){
 
 }
 
-
-
     public void enviarMensajeConsultarBebidas(){
-// Instantiate the RequestQueue.
+        // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = urlPlaca + "/consultarBebidas";
         HashMap<String,String> params = new HashMap<String,String>();
         params.put("idDispositivo","8173924678916234");
         params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
-
 
         try {
             JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
@@ -363,7 +359,7 @@ public void enviarMensajeEliminarBebida(String idBebida){
                             Toast.LENGTH_SHORT).show();
                 }
             });
-// Add the request to the RequestQueue.
+
             queue.add(req);
         }catch (Exception e){
             Log.d("DEBUG","FALLE!!",e);
@@ -393,7 +389,6 @@ public void enviarMensajeEliminarBebida(String idBebida){
                     String descripcion = bebidaJson.getString("descripcion");
                     String disponible = bebidaJson.getString("disponible");
 
-
                     // Se obtiene el nodo del array "sabores" para cada bebida
                     JSONArray sabores = bebidaJson.getJSONArray("sabores");
 
@@ -412,11 +407,9 @@ public void enviarMensajeEliminarBebida(String idBebida){
 
                     listBebida.add(bebida);
                 }
-
             } else {
                 // TODO: manejar codigos de error de consultarSabores
             }
-
         } catch (JSONException e) { e.printStackTrace(); }
 
         return listBebida;
