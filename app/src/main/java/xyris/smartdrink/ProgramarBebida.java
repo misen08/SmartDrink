@@ -22,6 +22,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import static java.lang.System.currentTimeMillis;
+
 
 public class ProgramarBebida extends AppCompatActivity implements View.OnClickListener {
 
@@ -113,9 +115,14 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
                 //Muestro la fecha con el formato deseado
                 etFecha.setText(diaFormateado + BARRA + mesFormateado + BARRA + year);
             }
+            //Estos valores deben ir en ese orden, de lo contrario no mostrara la fecha actual
+            /**
+             *También puede cargar los valores que usted desee
+             */
         },anio, mes, dia);
-
+        String currentTime = Long.toString(System.currentTimeMillis());
         recogerFecha.getDatePicker().setMinDate(System.currentTimeMillis());
+        //Muestro el widget
         recogerFecha.show();
     }
 
