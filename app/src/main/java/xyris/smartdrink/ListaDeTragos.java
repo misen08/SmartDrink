@@ -259,8 +259,9 @@ public class ListaDeTragos extends AppCompatActivity {
         builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //TODO: Eliminar bebida de la base de datos
-
+                String idBebida = listBebida.get(i).getIdBebida();
+                enviarMensajeEliminarBebida(idBebida.toString());
+                obtenerLista();
                 Toast.makeText(ListaDeTragos.this, "Borrado", Toast.LENGTH_SHORT).show();
             }
         });
@@ -318,7 +319,6 @@ public void enviarMensajeEliminarBebida(String idBebida){
             responseReader = (JSONObject) cli.getResponse();
 
             Log.d("ELIMINAR_BEBIDA","ELIMINAR_BEBIDAS: " + responseReader.toString());
-
         }
     };
 
@@ -328,7 +328,6 @@ public void enviarMensajeEliminarBebida(String idBebida){
     } catch (InterruptedException e) {
         e.printStackTrace();
     }
-
 }
 
     public void enviarMensajeConsultarBebidas(){

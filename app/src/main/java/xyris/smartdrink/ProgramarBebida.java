@@ -221,9 +221,6 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
 
     public void enviarMensajePrepararBebidaProgramada(String idBebida, String hielo, String agitado, String fechaHoraAgendado){
 
-
-
-
         PreparaBebidaRequest request = new PreparaBebidaRequest();
 
         //La fecha y hora sí se tienen en cuenta ya que el pedido se agendará para prepararse con posterioridad.
