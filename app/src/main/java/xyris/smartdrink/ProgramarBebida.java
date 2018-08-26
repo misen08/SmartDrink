@@ -17,10 +17,18 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
+import ar.edu.xyris.smartdrinks.messages.preparacion.PreparaBebidaRequest;
+import xyris.smartdrink.entities.PedidoBebida;
+import xyris.smartdrink.http.WebServiceClient;
 
 import static java.lang.System.currentTimeMillis;
 
@@ -53,6 +61,10 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
     TextView tvFecha;
     TextView tvHora;
 
+    JSONObject responseReader;
+
+    String hielo, agitado, idBebida, fechaHoraAgendado;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +90,12 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
         ibObtenerHora.setOnClickListener(this);
 
         btnAceptar = (Button) findViewById(R.id.buttonAcceptTime);
+
         btnAceptar.setOnClickListener(this);
+
+        idBebida = getIntent().getExtras().getString("idBebida");
+        hielo = getIntent().getExtras().getString("hielo");
+        agitado = getIntent().getExtras().getString("agitado");
     }
 
     @Override
@@ -178,8 +195,22 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
             if ((hoy.compareTo(fechaIngresada) == 0 && ahora.compareTo(horaIngresada) < 0)
                     || (hoy.compareTo(fechaIngresada) < 0)) {
                 // enviarMensaje(diaFormateado, mesFormateado, anioActual, horaFormateada, minutoFormateado);
+                fechaHoraAgendado = anioActual + "-" +  mesFormateado + "-" + diaFormateado +
+                        "T" + horaFormateada + ":" + minutoFormateado + ":00";
+
+//                Toast.makeText(this, idBebida + " " + hielo + " " + agitado + " " + fechaHoraAgendado,
+//                        Toast.LENGTH_SHORT).show();
+                //Se envía el mensaje para programar la bebida
+                enviarMensajePrepararBebidaProgramada(idBebida, hielo, agitado, fechaHoraAgendado);
+
                 Toast.makeText(this, "Tu bebida fue programada", Toast.LENGTH_SHORT).show();
+
+                Intent returnIntent = new Intent();
+                boolean result = true;
+                returnIntent.putExtra("result",result);
+                setResult(Activity.RESULT_OK,returnIntent);
                 finish();
+
             } else if (hoy.compareTo(fechaIngresada) > 0) {
                 Toast.makeText(this, "La fecha no puede ser anterior a hoy", Toast.LENGTH_SHORT).show();
             } else if (hoy.compareTo(fechaIngresada) == 0 && ahora.compareTo(horaIngresada) >= 0) {
@@ -187,6 +218,50 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
             }
         }
     }
+
+    public void enviarMensajePrepararBebidaProgramada(String idBebida, String hielo, String agitado, String fechaHoraAgendado){
+
+
+
+
+        PreparaBebidaRequest request = new PreparaBebidaRequest();
+
+        //La fecha y hora sí se tienen en cuenta ya que el pedido se agendará para prepararse con posterioridad.
+        //Agendado posee valor "TRUE".
+        PedidoBebida pedidoBebida = new PedidoBebida(idBebida, hielo, agitado,
+                "true", fechaHoraAgendado);
+
+        request.setPedidoBebida(pedidoBebida);
+        request.setIdDispositivo("compu_Fede");
+        request.setFechaHoraPeticion("2018-08-04T15:22:00");
+        ObjectMapper mapper = new ObjectMapper();
+        JSONObject object = null;
+        try {
+            object = new JSONObject(mapper.writeValueAsString(request));
+        } catch (Exception e) {
+
+        }
+
+        final JSONObject finalObject = object;
+        Thread thread = new Thread(){
+            public void run(){
+
+                WebServiceClient cli = new WebServiceClient("/prepararBebida", finalObject);
+
+                responseReader = (JSONObject) cli.getResponse();
+
+                Log.d("SMARTDRINKS_BEBIDAS","RESPUESTA_BEBIDAS: " + responseReader.toString());
+            }
+        };
+
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void enviarMensaje(String dia, String mes, Integer anio, String hora, String minuto) {
         // TODO: Comunicarse con la base de datos para guardar la fecha de programacion

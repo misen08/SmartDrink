@@ -2,38 +2,21 @@ package xyris.smartdrink;
 
 
 import android.content.Intent;
-import android.net.Uri;
-import android.provider.Settings;
-import android.support.design.widget.FloatingActionButton;
+import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import ar.edu.xyris.smartdrinks.messages.creacion.bebida.CreaBebidaRequest;
 import ar.edu.xyris.smartdrinks.messages.preparacion.PreparaBebidaRequest;
-import xyris.smartdrink.entities.Bebida;
 import xyris.smartdrink.entities.PedidoBebida;
 import xyris.smartdrink.http.WebServiceClient;
 
@@ -46,8 +29,12 @@ public class OpcionesAdicionales  extends AppCompatActivity {
     Button botonPrepararAhora;
     CheckBox agregarHielo;
     CheckBox agitarBebida;
+    String idBebida;
 
     JSONObject responseReader;
+
+    private static final int PROGRAMAR_BEBIDA_ACTIVITY = 3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +55,11 @@ public class OpcionesAdicionales  extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent progBebida = new Intent(OpcionesAdicionales.this, ProgramarBebida.class);
-                startActivity(progBebida);
+                verficarFlags();
+                progBebida.putExtra("hielo", conHielo.toString());
+                progBebida.putExtra("agitado", agitado.toString());
+                progBebida.putExtra("idBebida", getIntent().getExtras().getString("idBebida"));
+                startActivityForResult(progBebida, 3);
             }
         });
 
@@ -79,7 +70,7 @@ public class OpcionesAdicionales  extends AppCompatActivity {
                 verficarFlags();
                 String hielo = conHielo.toString();
                 String esAgitado = agitado.toString();
-                enviarMensajePrepararBebida(idBebida, hielo, esAgitado);
+                enviarMensajePrepararBebidaAhora(idBebida, hielo, esAgitado);
                 Intent prepararTrago = new Intent(OpcionesAdicionales.this, PreparandoTrago.class);
                 startActivity(prepararTrago);
             }
@@ -97,12 +88,31 @@ public class OpcionesAdicionales  extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-    public void enviarMensajePrepararBebida(String idBebida, String hielo, String agitado){
+        switch (requestCode) {
+            case PROGRAMAR_BEBIDA_ACTIVITY:
+
+                if (resultCode == RESULT_OK && null != data) {
+                    finish();
+                }
+                break;
+
+            default:
+                break;
+        }
+    }
+
+
+    public void enviarMensajePrepararBebidaAhora(String idBebida, String hielo, String agitado){
 
         PreparaBebidaRequest request = new PreparaBebidaRequest();
 
         //La fecha y hora no se tienen en cuenta ya que el pedido se preparará en el momento.
+        //Agendado posee valor "FALSE".
         PedidoBebida pedidoBebida = new PedidoBebida(idBebida, hielo, agitado,
                 "false", "2018-01-01T00:00:00");
 
