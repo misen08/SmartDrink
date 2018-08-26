@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/buttonInfo"
+        android:id="@+id/buttonEdit"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="25dp"
@@ -36,7 +36,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
         android:clickable="true"
-        app:layout_constraintStart_toEndOf="@+id/buttonInfo"
+        app:layout_constraintStart_toEndOf="@+id/buttonEdit"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/delete_icon" />
 

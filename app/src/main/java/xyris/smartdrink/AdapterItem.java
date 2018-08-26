@@ -62,7 +62,7 @@ public class AdapterItem extends BaseAdapter {
         TextView tvTitle = (TextView) v.findViewById(R.id.textViewBebida);
         tvTitle.setText(dir.getTitle());
 
-        ImageView ivInfoImage = (ImageView) v.findViewById(R.id.buttonInfo);
+        ImageView ivInfoImage = (ImageView) v.findViewById(R.id.buttonEdit);
         ivInfoImage.setImageDrawable(dir.getButtonInfo());
 
         ivInfoImage.setOnClickListener(new View.OnClickListener() {

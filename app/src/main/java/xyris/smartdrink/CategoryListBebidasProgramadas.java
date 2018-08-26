@@ -3,42 +3,29 @@ import android.graphics.drawable.Drawable;
 
 public class CategoryListBebidasProgramadas {
 
-    private String title;
-    private String fechaHora;
     private String categoryId;
-    private Drawable buttonInfo;
+    private String nombreBebidaProgramada;
+    private String fechaHora;
+    private String hielo;
+    private String agitado;
+    private Drawable buttonEdit;
     private Drawable buttonDelete;
 
     public CategoryListBebidasProgramadas() {
         super();
     }
 
-    public CategoryListBebidasProgramadas(String categoryId, String title, String fechaHora,
-                                          Drawable buttonInfo, Drawable buttonDelete) {
+    public CategoryListBebidasProgramadas(String categoryId, String nombreBebidaProgramada, String fechaHora,
+                                          String hielo, String agitado,
+                                          Drawable buttonEdit, Drawable buttonDelete) {
         super();
-        this.title = title;
-        this.fechaHora = fechaHora;
-        this.buttonInfo = buttonInfo;
-        this.buttonDelete = buttonDelete;
         this.categoryId = categoryId;
-        this.buttonInfo = buttonInfo;
-        this.buttonDelete = buttonDelete;
-    }
-
-    public String getFechaHora() {
-        return fechaHora;
-    }
-
-    public void setFechaHora(String fechaHora) {
+        this.nombreBebidaProgramada = nombreBebidaProgramada;
         this.fechaHora = fechaHora;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+        this.hielo = hielo;
+        this.agitado = agitado;
+        this.buttonEdit = buttonEdit;
+        this.buttonDelete = buttonDelete;
     }
 
     public String getCategoryId() {
@@ -49,12 +36,44 @@ public class CategoryListBebidasProgramadas {
         this.categoryId = categoryId;
     }
 
-    public Drawable getButtonInfo() {
-        return buttonInfo;
+    public String getNombreBebidaProgramada() {
+        return nombreBebidaProgramada;
     }
 
-    public void setButtonInfo(Drawable buttonInfo) {
-        this.buttonInfo = buttonInfo;
+    public void setNombreBebidaProgramada(String nombreBebidaProgramada) {
+        this.nombreBebidaProgramada = nombreBebidaProgramada;
+    }
+
+    public String getFechaHora() {
+        return fechaHora;
+    }
+
+    public void setFechaHora(String fechaHora) {
+        this.fechaHora = fechaHora;
+    }
+
+    public String getHielo() {
+        return hielo;
+    }
+
+    public void setHielo(String hielo) {
+        this.hielo = hielo;
+    }
+
+    public String getAgitado() {
+        return agitado;
+    }
+
+    public void setAgitado(String agitado) {
+        this.agitado = agitado;
+    }
+
+    public Drawable getButtonEdit() {
+        return buttonEdit;
+    }
+
+    public void setButtonEdit(Drawable buttonEdit) {
+        this.buttonEdit = buttonEdit;
     }
 
     public Drawable getButtonDelete() {
@@ -64,5 +83,4 @@ public class CategoryListBebidasProgramadas {
     public void setButtonDelete(Drawable buttonDelete) {
         this.buttonDelete = buttonDelete;
     }
-
 }

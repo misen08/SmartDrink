@@ -59,16 +59,22 @@ public class AdapterBebidasProgramadas extends BaseAdapter {
 
         CategoryListBebidasProgramadas dir = items.get(position);
 
-        TextView tvTitle = (TextView) v.findViewById(R.id.textViewBebida);
-        tvTitle.setText(dir.getTitle());
+        TextView tvNombreBebidaProgramada = (TextView) v.findViewById(R.id.textViewBebida);
+        tvNombreBebidaProgramada.setText(dir.getNombreBebidaProgramada());
 
         TextView tvFechaHora = (TextView) v.findViewById(R.id.textViewFechaHora);
         tvFechaHora.setText(dir.getFechaHora());
 
-        ImageView ivInfoImage = (ImageView) v.findViewById(R.id.buttonInfo);
-        ivInfoImage.setImageDrawable(dir.getButtonInfo());
+        TextView tvHielo = (TextView) v.findViewById(R.id.textViewHielo);
+        tvHielo.setText(dir.getHielo());
 
-        ivInfoImage.setOnClickListener(new View.OnClickListener() {
+        TextView tvAgitado = (TextView) v.findViewById(R.id.textViewAgitado);
+        tvAgitado.setText(dir.getAgitado());
+
+        ImageView ivEditImage = (ImageView) v.findViewById(R.id.buttonEdit);
+        ivEditImage.setImageDrawable(dir.getButtonEdit());
+
+        ivEditImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                // ((ListaDeTragos)activity).clickHandlerInfoButton(v);
