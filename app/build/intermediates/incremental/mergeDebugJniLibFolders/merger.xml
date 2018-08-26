@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\main\jniLibs"/></dataSet><dataSet config="debug"><source path="E:\_UNLaM2018\_PROYECTO2018\SmartDrink-master\SmartDrink-master\SmartDrinks\app\src\debug\jniLibs"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/home/federico/prueba/SmartDrinks/app/src/main/jniLibs"/></dataSet><dataSet config="debug"><source path="/home/federico/prueba/SmartDrinks/app/src/debug/jniLibs"/></dataSet></merger>

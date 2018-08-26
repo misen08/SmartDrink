@@ -65,7 +65,6 @@ public class ListaDeTragos extends AppCompatActivity {
     //Se crea el array de items (bebidas)
     ArrayList<CategoryList> items = new ArrayList<CategoryList>();
 
-
     private static final int RECOGNIZE_SPEECH_ACTIVITY = 1;
     private static final int CREAR_TRAGO_ACTIVITY = 2;
     private static final String urlPlaca = "52.204.131.123:50000";
@@ -79,7 +78,6 @@ public class ListaDeTragos extends AppCompatActivity {
         deleteImage = getResources().getDrawable(R.drawable.delete_icon);
 
         obtenerLista();
-
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -108,10 +106,15 @@ public class ListaDeTragos extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    // Opciones del menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
+            case R.id.bebidas_programadas:
+                Intent verBebidasProgramadas = new Intent(this, BebidasProgramadas.class);
+                startActivity(verBebidasProgramadas);
+                break;
             case R.id.mantenimiento:
                 Toast.makeText(this, "Ver tema mantenimiento", Toast.LENGTH_SHORT).show();
                 break;
@@ -226,7 +229,6 @@ public class ListaDeTragos extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        //Log.d("jsonObject", ""+ jsonObject.toString());
         listBebida = parsearBebidas(responseReader.toString());
         items.clear();
         for(int i=0; i< listBebida.size(); i++){
@@ -244,7 +246,7 @@ public class ListaDeTragos extends AppCompatActivity {
         Log.d("Info button", "Button info");
     }
 
-    public void clickHandlerDeleteButton(View v, final int i, ArrayList<CategoryList> items) {
+        public void clickHandlerDeleteButton(View v, final int i, ArrayList<CategoryList> items) {
 
         String titleDelete = "Eliminar bebida";
         String messageDelete = "¿Está seguro que desea eliminar esta bebida?";
@@ -258,11 +260,8 @@ public class ListaDeTragos extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //TODO: Eliminar bebida de la base de datos
-                String idBebida = listBebida.get(i).getIdBebida();
-                enviarMensajeEliminarBebida(idBebida.toString());
-                obtenerLista();
-                Toast.makeText(ListaDeTragos.this, "Borrado", Toast.LENGTH_SHORT).show();
 
+                Toast.makeText(ListaDeTragos.this, "Borrado", Toast.LENGTH_SHORT).show();
             }
         });
         builder.setNegativeButton("No", null);
@@ -332,16 +331,13 @@ public void enviarMensajeEliminarBebida(String idBebida){
 
 }
 
-
-
     public void enviarMensajeConsultarBebidas(){
-// Instantiate the RequestQueue.
+        // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = urlPlaca + "/consultarBebidas";
         HashMap<String,String> params = new HashMap<String,String>();
         params.put("idDispositivo","8173924678916234");
         params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
-
 
         try {
             JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
@@ -364,7 +360,7 @@ public void enviarMensajeEliminarBebida(String idBebida){
                             Toast.LENGTH_SHORT).show();
                 }
             });
-// Add the request to the RequestQueue.
+
             queue.add(req);
         }catch (Exception e){
             Log.d("DEBUG","FALLE!!",e);
@@ -394,7 +390,6 @@ public void enviarMensajeEliminarBebida(String idBebida){
                     String descripcion = bebidaJson.getString("descripcion");
                     String disponible = bebidaJson.getString("disponible");
 
-
                     // Se obtiene el nodo del array "sabores" para cada bebida
                     JSONArray sabores = bebidaJson.getJSONArray("sabores");
 
@@ -413,11 +408,9 @@ public void enviarMensajeEliminarBebida(String idBebida){
 
                     listBebida.add(bebida);
                 }
-
             } else {
                 // TODO: manejar codigos de error de consultarSabores
             }
-
         } catch (JSONException e) { e.printStackTrace(); }
 
         return listBebida;

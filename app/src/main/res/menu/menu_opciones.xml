@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item android:id="@+id/bebidas_programadas"
+        android:title="Ver bebidas programadas"></item>
     <item android:id="@+id/mantenimiento"
         android:title="Hacer mantenimiento"></item>
     <item android:id="@+id/logout"
