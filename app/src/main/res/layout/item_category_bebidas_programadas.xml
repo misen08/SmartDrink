@@ -12,7 +12,6 @@
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
-        android:text="TextView"
         android:textColor="#f65034"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,5 +38,16 @@
         app:layout_constraintStart_toEndOf="@+id/buttonInfo"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/delete_icon" />
+
+    <TextView
+        android:id="@+id/textViewFechaHora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewBebida"
+        app:layout_constraintTop_toTopOf="@+id/textViewBebida"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="30dp" />
 
 </android.support.constraint.ConstraintLayout>

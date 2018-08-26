@@ -12,12 +12,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class AdapterItem extends BaseAdapter {
+public class AdapterBebidasProgramadas extends BaseAdapter {
 
     protected Activity activity;
-    protected ArrayList<CategoryList> items;
+    protected ArrayList<CategoryListBebidasProgramadas> items;
 
-    public AdapterItem (Activity activity, ArrayList<CategoryList> items) {
+    public AdapterBebidasProgramadas(Activity activity, ArrayList<CategoryListBebidasProgramadas> items) {
         this.activity = activity;
         this.items = items;
     }
@@ -31,7 +31,7 @@ public class AdapterItem extends BaseAdapter {
         items.clear();
     }
 
-    public void addAll(ArrayList<CategoryList> category) {
+    public void addAll(ArrayList<CategoryListBebidasProgramadas> category) {
         for (int i = 1 ; i < category.size(); i++) {
             items.add(category.get(i));
         }
@@ -54,13 +54,16 @@ public class AdapterItem extends BaseAdapter {
 
         if (convertView == null) {
             LayoutInflater inf = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inf.inflate(R.layout.item_category, null);
+            v = inf.inflate(R.layout.item_category_bebidas_programadas, null);
         }
 
-        CategoryList dir = items.get(position);
+        CategoryListBebidasProgramadas dir = items.get(position);
 
         TextView tvTitle = (TextView) v.findViewById(R.id.textViewBebida);
         tvTitle.setText(dir.getTitle());
+
+        TextView tvFechaHora = (TextView) v.findViewById(R.id.textViewFechaHora);
+        tvFechaHora.setText(dir.getFechaHora());
 
         ImageView ivInfoImage = (ImageView) v.findViewById(R.id.buttonInfo);
         ivInfoImage.setImageDrawable(dir.getButtonInfo());
@@ -82,7 +85,7 @@ public class AdapterItem extends BaseAdapter {
             @Override
             public void onClick(View v) {
                // items.remove(position);
-                ((ListaDeTragos)activity).clickHandlerDeleteButton(v, position, items);
+               // ((ListaDeTragos)activity).clickHandlerDeleteButton(v, position, items);
             }
         });
 
