@@ -7,6 +7,7 @@ import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -22,12 +23,19 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import ar.edu.xyris.smartdrinks.messages.creacion.bebida.CreaBebidaRequest;
+import ar.edu.xyris.smartdrinks.messages.preparacion.PreparaBebidaRequest;
+import xyris.smartdrink.entities.Bebida;
+import xyris.smartdrink.entities.PedidoBebida;
+import xyris.smartdrink.http.WebServiceClient;
 
 
 public class OpcionesAdicionales  extends AppCompatActivity {
@@ -37,7 +45,9 @@ public class OpcionesAdicionales  extends AppCompatActivity {
     Button botonProgramarBebida;
     Button botonPrepararAhora;
     CheckBox agregarHielo;
-    CheckBox mezclarBebida;
+    CheckBox agitarBebida;
+
+    JSONObject responseReader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +62,8 @@ public class OpcionesAdicionales  extends AppCompatActivity {
 
         botonProgramarBebida = (Button) findViewById(R.id.botonProgramarBebida);
         botonPrepararAhora = (Button) findViewById(R.id.botonPrepararAhora);
-
+        agregarHielo = (CheckBox)findViewById(R.id.checkBoxAgregarHielo);
+        agitarBebida = (CheckBox)findViewById(R.id.checkBoxMezclarBebida);
         botonProgramarBebida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,15 +75,21 @@ public class OpcionesAdicionales  extends AppCompatActivity {
         botonPrepararAhora.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String idBebida = getIntent().getExtras().getString("idBebida");
+                verficarFlags();
+                String hielo = conHielo.toString();
+                String esAgitado = agitado.toString();
+                enviarMensajePrepararBebida(idBebida, hielo, esAgitado);
                 Intent prepararTrago = new Intent(OpcionesAdicionales.this, PreparandoTrago.class);
                 startActivity(prepararTrago);
             }
         });
     }
 
+    //Se obtiene el estado de las opciones "AgregarHielo" y "MezclarBebida".
     public void verficarFlags() {
         conHielo = agregarHielo.isChecked();
-        agitado = mezclarBebida.isChecked();
+        agitado = agitarBebida.isChecked();
     }
 
     public void abrirPreparandoTrago(View v) {
@@ -80,31 +97,44 @@ public class OpcionesAdicionales  extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void mandarMensaje() {
-        // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://192.168.0.35:8080/consultarBebidas";
-        HashMap<String,String> params = new HashMap<String,String>();
-        params.put("idDispositivo","8173924678916234");
-        params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
 
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
-                new Response.Listener<JSONObject>() {
-                    @Override public void onResponse(JSONObject response)
-                    {
-                        try {
-                            VolleyLog.v("Response:%n %s", response.toString(4));
-                            Toast.makeText(getApplicationContext(),"Response:%n %s" + response.toString(4),
-                                    Toast.LENGTH_SHORT).show();
-                        } catch (JSONException e) { e.printStackTrace(); } }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.e("Error: ", error.getMessage());
-                Toast.makeText(getApplicationContext(),"Response:%n %s" + error.getMessage() + error.getStackTrace(),
-                        Toast.LENGTH_SHORT).show();
-            } });
-// Add the request to the RequestQueue.
-        queue.add(req);
+    public void enviarMensajePrepararBebida(String idBebida, String hielo, String agitado){
+
+        PreparaBebidaRequest request = new PreparaBebidaRequest();
+
+        //La fecha y hora no se tienen en cuenta ya que el pedido se preparará en el momento.
+        PedidoBebida pedidoBebida = new PedidoBebida(idBebida, hielo, agitado,
+                "false", "2018-01-01T00:00:00");
+
+        request.setPedidoBebida(pedidoBebida);
+        request.setIdDispositivo("compu_Fede");
+        request.setFechaHoraPeticion("2018-08-04T15:22:00");
+        ObjectMapper mapper = new ObjectMapper();
+        JSONObject object = null;
+        try {
+            object = new JSONObject(mapper.writeValueAsString(request));
+        } catch (Exception e) {
+
+        }
+
+        final JSONObject finalObject = object;
+        Thread thread = new Thread(){
+            public void run(){
+
+                WebServiceClient cli = new WebServiceClient("/prepararBebida", finalObject);
+
+                responseReader = (JSONObject) cli.getResponse();
+
+                Log.d("SMARTDRINKS_BEBIDAS","RESPUESTA_BEBIDAS: " + responseReader.toString());
+            }
+        };
+
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
+
 }

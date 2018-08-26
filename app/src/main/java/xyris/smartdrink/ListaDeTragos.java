@@ -84,7 +84,7 @@ public class ListaDeTragos extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                abrirOpcionesAdicionales(view, id);
+                abrirOpcionesAdicionales(view, position);
                 //TODO: Abrir opciones adicionales luego de seleccionar el trago
             }
         });
@@ -125,8 +125,9 @@ public class ListaDeTragos extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void abrirOpcionesAdicionales(View v, long i) {
+    public void abrirOpcionesAdicionales(View v, int i) {
         Intent intent = new Intent(this, OpcionesAdicionales.class);
+        intent.putExtra("idBebida", listBebida.get(i).getIdBebida());
         startActivity(intent);
     }
 
