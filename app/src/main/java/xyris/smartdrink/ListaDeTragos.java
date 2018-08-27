@@ -54,7 +54,7 @@ public class ListaDeTragos extends AppCompatActivity {
     JSONObject responseReader;
 
     ArrayList<Bebida> listBebida = new ArrayList<Bebida>();
-    //Se crea el array de items (bebidas)
+    //Se crea el array de itemsProgramados (bebidas)
     ArrayList<CategoryList> items = new ArrayList<CategoryList>();
 
     private static final int RECOGNIZE_SPEECH_ACTIVITY = 1;
@@ -224,7 +224,7 @@ public class ListaDeTragos extends AppCompatActivity {
         listBebida = parsearBebidas(responseReader.toString());
         items.clear();
         for(int i=0; i< listBebida.size(); i++){
-            //Se llena el array de items (bebidas) - el ID de bebida y el nombre debe tomarlo de la DB
+            //Se llena el array de itemsProgramados (bebidas) - el ID de bebida y el nombre debe tomarlo de la DB
             items.add(new CategoryList(listBebida.get(i).getIdBebida(), listBebida.get(i).getDescripcion(), infoImage, deleteImage));
         }
 

@@ -1,5 +1,7 @@
 package xyris.smartdrink;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +9,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,6 +23,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import ar.edu.xyris.smartdrinks.messages.eliminacion.bebida.EliminaBebidaRequest;
 import xyris.smartdrink.entities.Bebida;
 import xyris.smartdrink.entities.PedidoBebida;
 import xyris.smartdrink.entities.SaborEnBotella;
@@ -31,7 +37,7 @@ public class BebidasProgramadas extends AppCompatActivity {
     Drawable deleteImage;
     ListView lvBebidasProgramadas;
     ArrayList<PedidoBebida> listBebidasProgramadas = new ArrayList<PedidoBebida>();
-    //Se crea el array de items (bebidas)
+    //Se crea el array de itemsProgramados (bebidas)
     ArrayList<CategoryListBebidasProgramadas> itemsProgramados = new ArrayList<CategoryListBebidasProgramadas>();
 
 
@@ -43,23 +49,7 @@ public class BebidasProgramadas extends AppCompatActivity {
         editImage = getResources().getDrawable(R.drawable.edit_icon);
         deleteImage = getResources().getDrawable(R.drawable.delete_icon);
 
-       // obtenerListaBebidasAgendadas();
-
-        itemsProgramados.clear();
-
-        String fechaHoraFormatoDB = "2018-08-17T14:53";
-
-        itemsProgramados.add(new CategoryListBebidasProgramadas("1", "BEBIDA_1",
-                fechaHoraFormateada(fechaHoraFormatoDB),"Con hielo", "Sin agitar", editImage, deleteImage));
-        itemsProgramados.add(new CategoryListBebidasProgramadas("2", "BEBIDA_2",
-                fechaHoraFormateada(fechaHoraFormatoDB), "Sin hielo", "Agitado", editImage, deleteImage));
-        itemsProgramados.add(new CategoryListBebidasProgramadas("3", "BEBIDA_3",
-                fechaHoraFormateada(fechaHoraFormatoDB), "Con hielo", "Agitado", editImage, deleteImage));
-
-
-        lvBebidasProgramadas = (ListView) findViewById(R.id.listaBebidasProgramadas);
-
-        lvBebidasProgramadas.setAdapter(new AdapterBebidasProgramadas(this, itemsProgramados));
+        obtenerListaBebidasAgendadas();
 
         Button btnVolver = (Button) findViewById(R.id.buttonBack);
         btnVolver.setOnClickListener(new View.OnClickListener() {
@@ -78,11 +68,11 @@ public class BebidasProgramadas extends AppCompatActivity {
                 params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
 
                 //TODO: CAMBIAR NOMBRE DE PEDIDOS AGENDADOS POR EL CORRESPONDIENTE
-//                WebServiceClient cli = new WebServiceClient("/consultarPedidosAgendados", new JSONObject(params));
-//
-//                responseReader = (JSONObject) cli.getResponse();
-//
-//                Log.d("SMARTDRINKS_BEBIDAS","RESPUESTA_BEBIDAS: " + responseReader.toString());
+                WebServiceClient cli = new WebServiceClient("/consultarPedidosAgendados", new JSONObject(params));
+
+                responseReader = (JSONObject) cli.getResponse();
+
+                Log.d("SMARTDRINKS_BEBIDAS","RESPUESTA_BEBIDAS: " + responseReader.toString());
             }
         };
 
@@ -96,17 +86,29 @@ public class BebidasProgramadas extends AppCompatActivity {
         listBebidasProgramadas = parsearBebidasAgendadas(responseReader.toString());
         itemsProgramados.clear();
         for(int i=0; i< listBebidasProgramadas.size(); i++){
-            //Se llena el array de items (bebidas programadas)
+            //Se llena el array de itemsProgramados (bebidas programadas)
             itemsProgramados.add(new CategoryListBebidasProgramadas(
                     listBebidasProgramadas.get(i).getIdBebida(),"Nombre",
-                    listBebidasProgramadas.get(i).getFechaHoraAgendado(),
+                    fechaHoraFormateada(listBebidasProgramadas.get(i).getFechaHoraAgendado()),
                     listBebidasProgramadas.get(i).getHielo(), listBebidasProgramadas.get(i).getAgitado(),
                     editImage, deleteImage));
         }
 
-        lvBebidasProgramadas = (ListView) findViewById(R.id.listaTragos);
+
+        String fechaHoraFormatoDB = "2018-08-17T14:53";
+
+        itemsProgramados.add(new CategoryListBebidasProgramadas("1", "BEBIDA_1",
+                fechaHoraFormateada(fechaHoraFormatoDB),"Con hielo", "Sin agitar", editImage, deleteImage));
+        itemsProgramados.add(new CategoryListBebidasProgramadas("2", "BEBIDA_2",
+                fechaHoraFormateada(fechaHoraFormatoDB), "Sin hielo", "Agitado", editImage, deleteImage));
+        itemsProgramados.add(new CategoryListBebidasProgramadas("3", "BEBIDA_3",
+                fechaHoraFormateada(fechaHoraFormatoDB), "Con hielo", "Agitado", editImage, deleteImage));
+
+
+        lvBebidasProgramadas = (ListView) findViewById(R.id.listaBebidasProgramadas);
 
         lvBebidasProgramadas.setAdapter(new AdapterBebidasProgramadas(this, itemsProgramados));
+
     }
 
     public ArrayList<PedidoBebida> parsearBebidasAgendadas (String response) {
@@ -160,6 +162,73 @@ public class BebidasProgramadas extends AppCompatActivity {
         String fechaHora = dia + "/" + mes + "/" + anio + "  " +  hh + ":" + mm;
 
         return fechaHora;
+    }
+
+    public void enviarMensajeCancelarPedidoAgendado(String idBebida){
+
+        EliminaBebidaRequest request = new EliminaBebidaRequest();
+        request.setIdDispositivo("compu_Mica");
+        request.setFechaHoraPeticion("2018-08-04T15:22:00");
+        request.setIdBebida(idBebida);
+
+        ObjectMapper mapper = new ObjectMapper();
+        JSONObject object = null;
+        try {
+            object = new JSONObject(mapper.writeValueAsString(request));
+        } catch (Exception e) {
+            Log.d("ELIMINAR_BEBIDA","ELIMINAR_BEBIDAS: " + e.getMessage());
+        }
+
+        final JSONObject finalObject = object;
+        Thread thread = new Thread(){
+            public void run(){
+
+                WebServiceClient cli = new WebServiceClient("/cancelarPedidoAgendado", finalObject);
+
+                responseReader = (JSONObject) cli.getResponse();
+
+                Log.d("CANCELAR_PEDIDO","CANCELAR_PEDIDO: " + responseReader.toString());
+            }
+        };
+
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void clickHandlerEditButton(View v, int position) {
+        Toast.makeText(this, "EDITAR BEBIDA" + position, Toast.LENGTH_SHORT).show();
+        Log.d("Info button", "Button info");
+    }
+
+    public void clickHandlerDeleteButton(View v, final int i, final ArrayList<CategoryListBebidasProgramadas> itemsProgramados) {
+
+        String titleDelete = "Cancelar pedido";
+        String messageDelete = "¿Está seguro que desea cancelar este pedido agendado?";
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        if (titleDelete != null) builder.setTitle(titleDelete);
+
+        builder.setMessage(messageDelete);
+        builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String idBebida = listBebidasProgramadas.get(i).getIdBebida();
+                enviarMensajeCancelarPedidoAgendado("2");//idBebida.toString());
+                obtenerListaBebidasAgendadas();
+                Toast.makeText(BebidasProgramadas.this, "El pedido fue cancelado.", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setNegativeButton("No", null);
+        builder.show();
+
+        //TODO: Traer nuevamente la lista de bebidas actualizada de la base de datos
+        lvBebidasProgramadas.setAdapter(new AdapterBebidasProgramadas(this, itemsProgramados));
     }
 
 }

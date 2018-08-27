@@ -9,37 +9,38 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class AdapterBebidasProgramadas extends BaseAdapter {
 
     protected Activity activity;
-    protected ArrayList<CategoryListBebidasProgramadas> items;
+    protected ArrayList<CategoryListBebidasProgramadas> itemsProgramados;
 
-    public AdapterBebidasProgramadas(Activity activity, ArrayList<CategoryListBebidasProgramadas> items) {
+    public AdapterBebidasProgramadas(Activity activity, ArrayList<CategoryListBebidasProgramadas> itemsProgramados) {
         this.activity = activity;
-        this.items = items;
+        this.itemsProgramados = itemsProgramados;
     }
 
     @Override
     public int getCount() {
-        return items.size();
+        return itemsProgramados.size();
     }
 
     public void clear() {
-        items.clear();
+        itemsProgramados.clear();
     }
 
     public void addAll(ArrayList<CategoryListBebidasProgramadas> category) {
         for (int i = 1 ; i < category.size(); i++) {
-            items.add(category.get(i));
+            itemsProgramados.add(category.get(i));
         }
     }
 
     @Override
     public Object getItem(int arg0) {
-        return items.get(arg0);
+        return itemsProgramados.get(arg0);
     }
 
     @Override
@@ -57,7 +58,7 @@ public class AdapterBebidasProgramadas extends BaseAdapter {
             v = inf.inflate(R.layout.item_category_bebidas_programadas, null);
         }
 
-        CategoryListBebidasProgramadas dir = items.get(position);
+        CategoryListBebidasProgramadas dir = itemsProgramados.get(position);
 
         TextView tvNombreBebidaProgramada = (TextView) v.findViewById(R.id.textViewBebida);
         tvNombreBebidaProgramada.setText(dir.getNombreBebidaProgramada());
@@ -77,10 +78,9 @@ public class AdapterBebidasProgramadas extends BaseAdapter {
         ivEditImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // ((ListaDeTragos)activity).clickHandlerInfoButton(v);
-                String categoryId = items.get(position).getCategoryId();
+               String categoryId = itemsProgramados.get(position).getCategoryId();
                 Log.d("id",categoryId);
-                ((ListaDeTragos)activity).clickHandlerInfoButton(v, position);
+                ((BebidasProgramadas)activity).clickHandlerEditButton(v, position);
             }
         });
 
@@ -90,8 +90,8 @@ public class AdapterBebidasProgramadas extends BaseAdapter {
         ivDeleteImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // items.remove(position);
-               // ((ListaDeTragos)activity).clickHandlerDeleteButton(v, position, items);
+               // itemsProgramados.remove(position);
+                ((BebidasProgramadas)activity).clickHandlerDeleteButton(v, position, itemsProgramados);
             }
         });
 
