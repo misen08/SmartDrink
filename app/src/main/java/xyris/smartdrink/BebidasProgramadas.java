@@ -2,6 +2,7 @@ package xyris.smartdrink;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -201,8 +202,8 @@ public class BebidasProgramadas extends AppCompatActivity {
 
 
     public void clickHandlerEditButton(View v, int position) {
-        Toast.makeText(this, "EDITAR BEBIDA" + position, Toast.LENGTH_SHORT).show();
-        Log.d("Info button", "Button info");
+        Intent modificar = new Intent(this, ModificarBebidasProgramadas.class);
+        startActivity(modificar);
     }
 
     public void clickHandlerDeleteButton(View v, final int i, final ArrayList<CategoryListBebidasProgramadas> itemsProgramados) {
