@@ -200,10 +200,14 @@ public class BebidasProgramadas extends AppCompatActivity {
         }
     }
 
-
     public void clickHandlerEditButton(View v, int position) {
-        Intent modificar = new Intent(this, ModificarBebidasProgramadas.class);
-        startActivity(modificar);
+        Intent modificarPedido = new Intent(this, ModificarBebidasProgramadas.class);
+        modificarPedido.putExtra("idBebida", itemsProgramados.get(position).getCategoryId());
+        modificarPedido.putExtra("nombreBebida", itemsProgramados.get(position).getNombreBebidaProgramada());
+        modificarPedido.putExtra("hielo", itemsProgramados.get(position).getHielo());
+        modificarPedido.putExtra("agitado", itemsProgramados.get(position).getAgitado());
+        modificarPedido.putExtra("fechaHoraAgendado", itemsProgramados.get(position).getFechaHora());
+        startActivityForResult(modificarPedido, 3);
     }
 
     public void clickHandlerDeleteButton(View v, final int i, final ArrayList<CategoryListBebidasProgramadas> itemsProgramados) {
