@@ -16,7 +16,7 @@ import javax.xml.datatype.Duration;
 
 public class PantallaSplash extends AppCompatActivity {
 
-    static final String ipPlaca = "192.168.1.3";
+    String ipPlaca = "192.168.1.3";
     private final int DURACION_SPLASH = 1000;
 
     @Override
@@ -28,7 +28,7 @@ public class PantallaSplash extends AppCompatActivity {
         setContentView(R.layout.pantalla_splash);
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        final String ipLeida = ipPlaca; //sp.getString("IP","ERROR");
+        final String ipLeida = sp.getString("IP","ERROR"); //ipPlaca;
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -46,8 +46,9 @@ public class PantallaSplash extends AppCompatActivity {
     }
 
     public void abrirPantallaInicial() {
-        Intent pantallaInicial = new Intent(PantallaSplash.this, PantallaInicial.class);
-        startActivity(pantallaInicial);
+        Intent pantallaInicial = new Intent(this, PantallaInicial.class);
+        pantallaInicial.putExtra("ip", ipPlaca);
+        startActivityForResult(pantallaInicial, 3);
         finish();
     }
 
