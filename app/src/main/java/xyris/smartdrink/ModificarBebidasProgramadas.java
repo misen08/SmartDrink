@@ -1,7 +1,9 @@
 package xyris.smartdrink;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,8 +14,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.util.Calendar;
 
@@ -133,7 +133,61 @@ public class ModificarBebidasProgramadas extends AppCompatActivity implements Vi
 
     public void modificarPedidoAgendado() {
         //TODO: Enviar datos del pedido a la BD y actualizar la lista
-        Toast.makeText(this, "Pedido modificado", Toast.LENGTH_SHORT).show();
-        finish();
+        Calendar fechaActual = Calendar.getInstance();
+
+        // Obtengo la feha y hora actuales
+        Integer diaActual = fechaActual.get(Calendar.DAY_OF_MONTH);
+        Integer mesActual = fechaActual.get(Calendar.MONTH)+1;
+        Integer anioActual = fechaActual.get(Calendar.YEAR);
+        Integer horaActual = fechaActual.get(Calendar.HOUR_OF_DAY);
+        Integer minutoActual = fechaActual.get(Calendar.MINUTE);
+
+        // Formateo de acuerdo al formato que tienen los textView para comparar
+        String diaFormateado = (diaActual < 10) ? String.valueOf(CERO + diaActual.toString()) : String.valueOf(diaActual.toString());
+        String mesFormateado = (mesActual < 10) ? String.valueOf(CERO + mesActual.toString()) : String.valueOf(mesActual.toString());
+        String horaFormateada = (horaActual < 10) ? String.valueOf(CERO + horaActual.toString()) : String.valueOf(horaActual.toString());
+        String minutoFormateado = (minutoActual < 10) ? String.valueOf(CERO + minutoActual.toString()) : String.valueOf(minutoActual.toString());
+
+        // Odeno la fecha en el formato yyyy/MM/dd para comparar String
+        String hoy = anioActual.toString() + BARRA + mesFormateado + BARRA + diaFormateado;
+        String ahora = horaFormateada + DOS_PUNTOS + minutoFormateado;
+
+        String fechaIngresada = etFechaAgendada.getText().toString();
+        String horaIngresada = etHoraAgendada.getText().toString();
+
+        // Valido que el usuario haya ingresado fecha y hora
+        if(fechaIngresada.isEmpty())
+            Toast.makeText(this, "La fecha no puede ser vacía", Toast.LENGTH_SHORT).show();
+        if(horaIngresada.isEmpty())
+            Toast.makeText(this, "La hora no puede ser vacía", Toast.LENGTH_SHORT).show();
+
+        // Valido que fecha y hora sean posteriores a ahora.
+        if(!fechaIngresada.isEmpty() && !horaIngresada.isEmpty()) {
+            String fechaDiv[] = fechaIngresada.split("/");
+            fechaIngresada = fechaDiv[2] + BARRA + fechaDiv[1] + BARRA + fechaDiv[0];
+
+            if ((fechaIngresada.compareTo(hoy) == 0 && horaIngresada.compareTo(ahora) > 0)
+                    || (fechaIngresada.compareTo(hoy) > 0)) {
+
+                //fechaHoraAgendado = anioActual + "-" +  mesFormateado + "-" + diaFormateado +
+                //        "T" + horaFormateada + ":" + minutoFormateado + ":00";
+
+                //Se envía el mensaje para programar la bebida
+                //enviarMensajePrepararBebidaProgramada(idBebida, hielo, agitado, fechaHoraAgendado);
+
+                Toast.makeText(this, "Pedido modificado", Toast.LENGTH_SHORT).show();
+
+                Intent returnIntent = new Intent();
+                boolean result = true;
+                returnIntent.putExtra("result", result);
+                setResult(Activity.RESULT_OK, returnIntent);
+                finish();
+
+            } else if (fechaIngresada.compareTo(hoy) < 0) {
+                Toast.makeText(this, "La fecha no puede ser anterior a hoy", Toast.LENGTH_SHORT).show();
+            } else if (fechaIngresada.compareTo(hoy) == 0 && ahora.compareTo(horaIngresada) >= 0) {
+                Toast.makeText(this, "La hora no puede ser anterior a ahora", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

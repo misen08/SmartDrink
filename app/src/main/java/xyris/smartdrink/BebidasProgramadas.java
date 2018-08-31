@@ -41,8 +41,6 @@ public class BebidasProgramadas extends AppCompatActivity {
     //Se crea el array de itemsProgramados (bebidas)
     ArrayList<CategoryListBebidasProgramadas> itemsProgramados = new ArrayList<CategoryListBebidasProgramadas>();
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +63,7 @@ public class BebidasProgramadas extends AppCompatActivity {
         Thread thread = new Thread(){
             public void run(){
                 HashMap<String,String> params = new HashMap<String,String>();
-                params.put("idDispositivo","8173924678916234");
+                params.put("idDispositivo","SmartDrinksApp");
                 params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
 
                 //TODO: CAMBIAR NOMBRE DE PEDIDOS AGENDADOS POR EL CORRESPONDIENTE
@@ -95,7 +93,6 @@ public class BebidasProgramadas extends AppCompatActivity {
                     editImage, deleteImage));
         }
 
-
         String fechaHoraFormatoDB = "2018-08-17T14:53";
 
         itemsProgramados.add(new CategoryListBebidasProgramadas("1", "BEBIDA_1",
@@ -122,7 +119,7 @@ public class BebidasProgramadas extends AppCompatActivity {
 
             if("0".equals(codigoError.toString())){
                 // Se obtiene el nodo del array "pedidoBebida"
-                JSONArray pedidoBebida = responseReader.getJSONArray("pedidoBebida");
+                JSONArray pedidoBebida = responseReader.getJSONArray("pedidos");
 
                 // Ciclando en todos los pedidos de bebida agendados
                 for (int i = 0; i < pedidoBebida.length(); i++) {

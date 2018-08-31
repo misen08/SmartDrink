@@ -28,7 +28,7 @@ public class PantallaSplash extends AppCompatActivity {
         setContentView(R.layout.pantalla_splash);
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        final String ipLeida = sp.getString("IP","ERROR"); //ipPlaca;
+        final String ipLeida = ipPlaca; //sp.getString("IP","ERROR");
 
         new Handler().postDelayed(new Runnable() {
             @Override

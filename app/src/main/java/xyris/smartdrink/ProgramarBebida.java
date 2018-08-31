@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONObject;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -132,12 +133,8 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
                 //Muestro la fecha con el formato deseado
                 etFecha.setText(diaFormateado + BARRA + mesFormateado + BARRA + year);
             }
-            //Estos valores deben ir en ese orden, de lo contrario no mostrara la fecha actual
-            /**
-             *También puede cargar los valores que usted desee
-             */
         },anio, mes, dia);
-        String currentTime = Long.toString(System.currentTimeMillis());
+
         recogerFecha.getDatePicker().setMinDate(System.currentTimeMillis());
         //Muestro el widget
         recogerFecha.show();
@@ -154,9 +151,6 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
                 //Muestro la hora con el formato deseado
                 etHora.setText(horaFormateada + DOS_PUNTOS + minutoFormateado);
             }
-            //Estos valores deben ir en ese orden
-            //Al colocar en false se muestra en formato 12 horas y true en formato 24 horas
-            //Pero el sistema devuelve la hora en formato 24 horas
         }, hora, minuto, true);
 
         recogerHora.show();
@@ -178,7 +172,8 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
         String horaFormateada = (horaActual < 10) ? String.valueOf(CERO + horaActual.toString()) : String.valueOf(horaActual.toString());
         String minutoFormateado = (minutoActual < 10) ? String.valueOf(CERO + minutoActual.toString()) : String.valueOf(minutoActual.toString());
 
-        String hoy = diaFormateado + BARRA + mesFormateado + BARRA + anioActual.toString();
+        // Odeno la fecha en el formato yyyy/MM/dd para comparar String
+        String hoy = anioActual.toString() + BARRA + mesFormateado + BARRA + diaFormateado;
         String ahora = horaFormateada + DOS_PUNTOS + minutoFormateado;
 
         String fechaIngresada = etFecha.getText().toString();
@@ -192,14 +187,15 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
 
         // Valido que fecha y hora sean posteriores a ahora.
         if(!fechaIngresada.isEmpty() && !horaIngresada.isEmpty()) {
-            if ((hoy.compareTo(fechaIngresada) == 0 && ahora.compareTo(horaIngresada) < 0)
-                    || (hoy.compareTo(fechaIngresada) < 0)) {
-                // enviarMensaje(diaFormateado, mesFormateado, anioActual, horaFormateada, minutoFormateado);
+            String fechaDiv [] = fechaIngresada.split("/");
+            fechaIngresada = fechaDiv[2] + BARRA + fechaDiv[1] + BARRA + fechaDiv[0];
+
+            if ((fechaIngresada.compareTo(hoy) == 0 && horaIngresada.compareTo(ahora) > 0)
+                        || (fechaIngresada.compareTo(hoy) > 0)) {
+
                 fechaHoraAgendado = anioActual + "-" +  mesFormateado + "-" + diaFormateado +
                         "T" + horaFormateada + ":" + minutoFormateado + ":00";
 
-//                Toast.makeText(this, idBebida + " " + hielo + " " + agitado + " " + fechaHoraAgendado,
-//                        Toast.LENGTH_SHORT).show();
                 //Se envía el mensaje para programar la bebida
                 enviarMensajePrepararBebidaProgramada(idBebida, hielo, agitado, fechaHoraAgendado);
 
@@ -211,9 +207,9 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
                 setResult(Activity.RESULT_OK,returnIntent);
                 finish();
 
-            } else if (hoy.compareTo(fechaIngresada) > 0) {
+            } else if (fechaIngresada.compareTo(hoy) < 0) {
                 Toast.makeText(this, "La fecha no puede ser anterior a hoy", Toast.LENGTH_SHORT).show();
-            } else if (hoy.compareTo(fechaIngresada) == 0 && ahora.compareTo(horaIngresada) >= 0) {
+            } else if (fechaIngresada.compareTo(hoy) == 0 && ahora.compareTo(horaIngresada) >= 0) {
                 Toast.makeText(this, "La hora no puede ser anterior a ahora", Toast.LENGTH_SHORT).show();
             }
         }
@@ -258,7 +254,6 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
             e.printStackTrace();
         }
     }
-
 
     public void enviarMensaje(String dia, String mes, Integer anio, String hora, String minuto) {
         // TODO: Comunicarse con la base de datos para guardar la fecha de programacion

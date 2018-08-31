@@ -216,15 +216,18 @@ public class CrearTragos extends AppCompatActivity {
                 Log.d("nombre2", nombreBebida);
                 Log.d("test", "test");
 
-
-                    if ((nombreBebida.isEmpty()) || porcentajeTotal != 100) {
+                    if ((nombreBebida.isEmpty()) || porcentajeTotal != 100 || saboresNuevos.size() > 4) {
 
                         if (nombreBebida.isEmpty()) {
-                            Toast.makeText(botonCrear.getContext(), "Por favor asigne un nombre a su bebida.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(botonCrear.getContext(), "Por favor asigne un nombre a su bebida", Toast.LENGTH_SHORT).show();
                         }
 
                         if (porcentajeTotal != 100) {
-                            Toast.makeText(botonCrear.getContext(), "El porcentaje es distinto de 100.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(botonCrear.getContext(), "El porcentaje es distinto de 100", Toast.LENGTH_SHORT).show();
+                        }
+
+                        if(saboresNuevos.size() > 4) {
+                            Toast.makeText(botonCrear.getContext(), "No puede utilizar más de 4 gustos", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
