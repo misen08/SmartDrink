@@ -95,12 +95,12 @@ public class BebidasProgramadas extends AppCompatActivity {
 
         String fechaHoraFormatoDB = "2018-08-17T14:53";
 
-        itemsProgramados.add(new CategoryListBebidasProgramadas("1", "BEBIDA_1",
-                fechaHoraFormateada(fechaHoraFormatoDB),"Con hielo", "Sin agitar", editImage, deleteImage));
-        itemsProgramados.add(new CategoryListBebidasProgramadas("2", "BEBIDA_2",
-                fechaHoraFormateada(fechaHoraFormatoDB), "Sin hielo", "Agitado", editImage, deleteImage));
-        itemsProgramados.add(new CategoryListBebidasProgramadas("3", "BEBIDA_3",
-                fechaHoraFormateada(fechaHoraFormatoDB), "Con hielo", "Agitado", editImage, deleteImage));
+//        itemsProgramados.add(new CategoryListBebidasProgramadas("1", "BEBIDA_1",
+//                fechaHoraFormateada(fechaHoraFormatoDB),"Con hielo", "Sin agitar", editImage, deleteImage));
+//        itemsProgramados.add(new CategoryListBebidasProgramadas("2", "BEBIDA_2",
+//                fechaHoraFormateada(fechaHoraFormatoDB), "Sin hielo", "Agitado", editImage, deleteImage));
+//        itemsProgramados.add(new CategoryListBebidasProgramadas("3", "BEBIDA_3",
+//                fechaHoraFormateada(fechaHoraFormatoDB), "Con hielo", "Agitado", editImage, deleteImage));
 
 
         lvBebidasProgramadas = (ListView) findViewById(R.id.listaBebidasProgramadas);
@@ -123,14 +123,25 @@ public class BebidasProgramadas extends AppCompatActivity {
 
                 // Ciclando en todos los pedidos de bebida agendados
                 for (int i = 0; i < pedidoBebida.length(); i++) {
+                    String hielo="";
+                    String agitado="";
                     JSONObject bebidaAgendada = pedidoBebida.getJSONObject(i);
                     String idBebida = bebidaAgendada.getString("idBebida");
-                    String hielo = bebidaAgendada.getString("hielo");
-                    String agitado = bebidaAgendada.getString("agitado");
+                    if("true".equals(bebidaAgendada.getString("hielo").toString())){
+                        hielo = "Con hielo";
+                    } else {
+                        hielo = "Sin hielo";
+                    }
+                    if("true".equals(bebidaAgendada.getString("agitado").toString())){
+                        agitado = "Agitado";
+                    } else {
+                        agitado = "Sin agitar";
+                    }
                     String agendado = bebidaAgendada.getString("agendado");
                     String fechaHoraAgendado = bebidaAgendada.getString("fechaHoraAgendado");
 
                     PedidoBebida bebida = new PedidoBebida(idBebida, hielo, agitado, agendado, fechaHoraAgendado);
+
                     listBebidasAgendadas.add(bebida);
                 }
             } else {
@@ -165,7 +176,7 @@ public class BebidasProgramadas extends AppCompatActivity {
     public void enviarMensajeCancelarPedidoAgendado(String idBebida){
 
         EliminaBebidaRequest request = new EliminaBebidaRequest();
-        request.setIdDispositivo("compu_Mica");
+        request.setIdDispositivo("SmartDrinksApp");
         request.setFechaHoraPeticion("2018-08-04T15:22:00");
         request.setIdBebida(idBebida);
 

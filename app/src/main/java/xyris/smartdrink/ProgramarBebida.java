@@ -197,7 +197,7 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
                         "T" + horaFormateada + ":" + minutoFormateado + ":00";
 
                 //Se envía el mensaje para programar la bebida
-                enviarMensajePrepararBebidaProgramada(idBebida, hielo, agitado, fechaHoraAgendado);
+                enviarMensajePrepararBebidaProgramada(idBebida, hielo, agitado, fechaHoraFormateada(fechaIngresada, horaIngresada));
 
                 Toast.makeText(this, "Tu bebida fue programada", Toast.LENGTH_SHORT).show();
 
@@ -254,6 +254,23 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
             e.printStackTrace();
         }
     }
+
+    public String fechaHoraFormateada(String fechaIngresada, String horaIngresada){
+
+        String[] f = fechaIngresada.split("/");
+        String dia = f[0]; // 17
+        String mes = f[1]; // 08
+        String anio = f[2]; // 2018
+
+        String[] h = horaIngresada.split(":");
+        String hh = h[0]; // 14
+        String mm = h[1]; // 53
+        String fechaHora = anio + "-" + mes + "-" + dia + "T" +  hh + ":" + mm + ":00";
+
+        return fechaHora;
+    }
+
+
 
     public void enviarMensaje(String dia, String mes, Integer anio, String hora, String minuto) {
         // TODO: Comunicarse con la base de datos para guardar la fecha de programacion
