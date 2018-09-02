@@ -27,6 +27,7 @@ public class CategoryListBebidasProgramadas {
         this.agitado = agitado;
         this.buttonEdit = buttonEdit;
         this.buttonDelete = buttonDelete;
+        this.idPedido = idPedido;
     }
 
     public String getCategoryId() {
@@ -83,5 +84,13 @@ public class CategoryListBebidasProgramadas {
 
     public void setButtonDelete(Drawable buttonDelete) {
         this.buttonDelete = buttonDelete;
+    }
+
+    public String getIdPedido() {
+        return idPedido;
+    }
+
+    public void setIdPedido(String idPedido) {
+        this.idPedido = idPedido;
     }
 }

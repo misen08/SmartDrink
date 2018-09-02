@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import ar.edu.xyris.smartdrinks.messages.eliminacion.bebida.EliminaBebidaRequest;
+import ar.edu.xyris.smartdrinks.messages.preparacion.CancelaPedidoRequest;
 import xyris.smartdrink.entities.Bebida;
 import xyris.smartdrink.entities.PedidoBebida;
 import xyris.smartdrink.entities.PedidoAgendado;
@@ -174,12 +175,12 @@ public class BebidasProgramadas extends AppCompatActivity {
         return fechaHora;
     }
 
-    public void enviarMensajeCancelarPedidoAgendado(String idBebida){
+    public void enviarMensajeCancelarPedidoAgendado(String idPedido){
 
-        EliminaBebidaRequest request = new EliminaBebidaRequest();
+        CancelaPedidoRequest request = new CancelaPedidoRequest();
         request.setIdDispositivo("SmartDrinksApp");
         request.setFechaHoraPeticion("2018-08-04T15:22:00");
-        request.setIdBebida(idBebida);
+        request.setIdPedido(idPedido);
 
         ObjectMapper mapper = new ObjectMapper();
         JSONObject object = null;
@@ -232,8 +233,8 @@ public class BebidasProgramadas extends AppCompatActivity {
         builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String idBebida = listBebidasProgramadas.get(i).getIdBebida();
-                enviarMensajeCancelarPedidoAgendado("2");//idBebida.toString());
+                String idPedido = listBebidasProgramadas.get(i).getIdPedido();
+                enviarMensajeCancelarPedidoAgendado(idPedido);
                 obtenerListaBebidasAgendadas();
                 Toast.makeText(BebidasProgramadas.this, "El pedido fue cancelado.", Toast.LENGTH_SHORT).show();
             }
