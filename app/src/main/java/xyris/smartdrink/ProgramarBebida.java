@@ -235,7 +235,14 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
 
         request.setPedidoBebida(pedidoBebida);
         request.setIdDispositivo(idDevice);
-        request.setFechaHoraPeticion("2018-09-04T15:22:00");
+
+        //Se obtiene la fecha y hora actual y se le aplica el formato que necesita recibir el mensaje.
+        //A "fechaHoraPeticion" se deberá asignar "currentFormattedDate".
+        Date currentDate = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        String currentFormattedDate = df.format(currentDate);
+        request.setFechaHoraPeticion(currentFormattedDate);
+
         ObjectMapper mapper = new ObjectMapper();
         JSONObject object = null;
         try {

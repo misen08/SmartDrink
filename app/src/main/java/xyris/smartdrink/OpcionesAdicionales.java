@@ -16,7 +16,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import ar.edu.xyris.smartdrinks.messages.preparacion.PreparaBebidaRequest;
 import xyris.smartdrink.entities.PedidoBebida;
@@ -125,7 +128,12 @@ public class OpcionesAdicionales  extends AppCompatActivity {
 
         request.setPedidoBebida(pedidoBebida);
         request.setIdDispositivo(idDevice);
-        request.setFechaHoraPeticion("2018-09-02T15:22:00");
+        //Se obtiene la fecha y hora actual y se le aplica el formato que necesita recibir el mensaje.
+        //A "fechaHoraPeticion" se deberá asignar "currentFormattedDate".
+        Date currentDate = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        String currentFormattedDate = df.format(currentDate);
+        request.setFechaHoraPeticion(currentFormattedDate);
         ObjectMapper mapper = new ObjectMapper();
         JSONObject object = null;
         try {

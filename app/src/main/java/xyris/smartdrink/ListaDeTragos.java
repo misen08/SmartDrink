@@ -34,8 +34,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 import ar.edu.xyris.smartdrinks.messages.eliminacion.bebida.EliminaBebidaRequest;
 import xyris.smartdrink.entities.Bebida;
@@ -44,7 +48,6 @@ import xyris.smartdrink.http.WebServiceClient;
 
 public class ListaDeTragos extends AppCompatActivity {
 
-//    String idDevice;
     TextView tvGrabar;
     Drawable infoImage;
     Drawable deleteImage;
@@ -73,6 +76,9 @@ public class ListaDeTragos extends AppCompatActivity {
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         idDevice = sp.getString("idDevice","ERROR");
+
+//
+//        Toast.makeText(this, "fecha actual: " + formattedDate, Toast.LENGTH_SHORT).show();
 
 
         obtenerLista();
@@ -209,7 +215,12 @@ public class ListaDeTragos extends AppCompatActivity {
             public void run(){
                 HashMap<String,String> params = new HashMap<String,String>();
                 params.put("idDispositivo",idDevice);
-                params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
+                //Se obtiene la fecha y hora actual y se le aplica el formato que necesita recibir el mensaje.
+                //A "fechaHoraPeticion" se deberá asignar "currentFormattedDate ".
+                Date currentDate = Calendar.getInstance().getTime();
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                String currentFormattedDate  = df.format(currentDate);
+                params.put("fechaHoraPeticion", currentFormattedDate);
 
                 WebServiceClient cli = new WebServiceClient("/consultarBebidas", new JSONObject(params));
 
@@ -296,7 +307,13 @@ public void enviarMensajeEliminarBebida(String idBebida){
 
     EliminaBebidaRequest request = new EliminaBebidaRequest();
     request.setIdDispositivo(idDevice);
-    request.setFechaHoraPeticion("2018-08-04T15:22:00");
+    //Se obtiene la fecha y hora actual y se le aplica el formato que necesita recibir el mensaje.
+    //A "fechaHoraPeticion" se deberá asignar "currentFormattedDate".
+    Date currentDate = Calendar.getInstance().getTime();
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+    String currentFormattedDate = df.format(currentDate);
+
+    request.setFechaHoraPeticion(currentFormattedDate);
     request.setIdBebida(idBebida);
 
     ObjectMapper mapper = new ObjectMapper();
@@ -333,7 +350,12 @@ public void enviarMensajeEliminarBebida(String idBebida){
         String url = urlPlaca + "/consultarBebidas";
         HashMap<String,String> params = new HashMap<String,String>();
         params.put("idDispositivo",idDevice);
-        params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
+        //Se obtiene la fecha y hora actual y se le aplica el formato que necesita recibir el mensaje.
+        //A "fechaHoraPeticion" se deberá asignar "currentFormattedDate".
+        Date currentDate = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        String currentFormattedDate = df.format(currentDate);
+        params.put("fechaHoraPeticion", currentFormattedDate);
 
         try {
             JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),

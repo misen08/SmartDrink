@@ -20,10 +20,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 import ar.edu.xyris.smartdrinks.messages.eliminacion.bebida.EliminaBebidaRequest;
@@ -74,7 +77,12 @@ public class BebidasProgramadas extends AppCompatActivity {
             public void run(){
                 HashMap<String,String> params = new HashMap<String,String>();
                 params.put("idDispositivo",idDevice);
-                params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
+                //Se obtiene la fecha y hora actual y se le aplica el formato que necesita recibir el mensaje.
+                //A "fechaHoraPeticion" se deberá asignar "currentFormattedDate".
+                Date currentDate = Calendar.getInstance().getTime();
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                String currentFormattedDate = df.format(currentDate);
+                params.put("fechaHoraPeticion", currentFormattedDate);
 
                 //TODO: CAMBIAR NOMBRE DE PEDIDOS AGENDADOS POR EL CORRESPONDIENTE
                 WebServiceClient cli = new WebServiceClient("/consultarPedidosAgendados", new JSONObject(params));
@@ -187,7 +195,13 @@ public class BebidasProgramadas extends AppCompatActivity {
 
         CancelaPedidoRequest request = new CancelaPedidoRequest();
         request.setIdDispositivo(idDevice);
-        request.setFechaHoraPeticion("2018-08-04T15:22:00");
+
+        //Se obtiene la fecha y hora actual y se le aplica el formato que necesita recibir el mensaje.
+        //A "fechaHoraPeticion" se deberá asignar "currentFormattedDate".
+        Date currentDate = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        String currentFormattedDate = df.format(currentDate);
+        request.setFechaHoraPeticion(currentFormattedDate);
         request.setIdPedido(idPedido);
 
         ObjectMapper mapper = new ObjectMapper();

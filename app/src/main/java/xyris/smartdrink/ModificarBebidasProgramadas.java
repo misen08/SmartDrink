@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -15,7 +18,17 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+
+import ar.edu.xyris.smartdrinks.messages.preparacion.PreparaBebidaRequest;
+import xyris.smartdrink.entities.PedidoBebida;
+import xyris.smartdrink.http.WebServiceClient;
 
 public class ModificarBebidasProgramadas extends AppCompatActivity implements View.OnClickListener {
 
@@ -40,9 +53,18 @@ public class ModificarBebidasProgramadas extends AppCompatActivity implements Vi
     CheckBox cbHielo;
     CheckBox cbAgitado;
 
+    JSONObject responseReader;
+
+    private String idDevice;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.modificar_bebidas_programadas);
+
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        idDevice = sp.getString("idDevice","ERROR");
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
         tvNombreBebida = (TextView) findViewById(R.id.textViewNombreBebida);
         tvNombreBebida.setText(getIntent().getStringExtra("nombreBebida"));
@@ -172,8 +194,9 @@ public class ModificarBebidasProgramadas extends AppCompatActivity implements Vi
                 //fechaHoraAgendado = anioActual + "-" +  mesFormateado + "-" + diaFormateado +
                 //        "T" + horaFormateada + ":" + minutoFormateado + ":00";
 
-                //Se envía el mensaje para programar la bebida
-                //enviarMensajePrepararBebidaProgramada(idBebida, hielo, agitado, fechaHoraAgendado);
+                //Se envía el mensaje para modificar el pedido agendado
+                //ToDo: Crear "/modificarPedidoAgendado para realizar el update en la DB.
+                //enviarMensajeModificarPedido(idBebida, hielo, agitado, fechaHoraAgendado);
 
                 Toast.makeText(this, "Pedido modificado", Toast.LENGTH_SHORT).show();
 
@@ -190,4 +213,44 @@ public class ModificarBebidasProgramadas extends AppCompatActivity implements Vi
             }
         }
     }
+
+    public void enviarMensajeModificarPedido(String idBebida, String hielo, String agitado, String fechaHoraAgendado) {
+
+        PreparaBebidaRequest request = new PreparaBebidaRequest();
+
+        //La fecha y hora sí se tienen en cuenta ya que el pedido se agendará para prepararse con posterioridad.
+        //Agendado posee valor "TRUE".
+        PedidoBebida pedidoBebida = new PedidoBebida(idBebida, hielo, agitado,
+                "true", fechaHoraAgendado);
+
+        request.setPedidoBebida(pedidoBebida);
+        request.setIdDispositivo(idDevice);
+        //Se obtiene la fecha y hora actual y se le aplica el formato que necesita recibir el mensaje.
+        //A "fechaHoraPeticion" se deberá asignar "currentFormattedDate".
+        Date currentDate = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        String currentFormattedDate = df.format(currentDate);
+        request.setFechaHoraPeticion(currentFormattedDate);
+        ObjectMapper mapper = new ObjectMapper();
+        JSONObject object = null;
+        try {
+            object = new JSONObject(mapper.writeValueAsString(request));
+        } catch (Exception e) {
+
+        }
+
+        final JSONObject finalObject = object;
+        Thread thread = new Thread() {
+            public void run() {
+
+                WebServiceClient cli = new WebServiceClient("/modificarPedidoAgendado", finalObject);
+
+                responseReader = (JSONObject) cli.getResponse();
+
+                Log.d("SMARTDRINKS_BEBIDAS", "RESPUESTA_BEBIDAS: " + responseReader.toString());
+            }
+        };
+    }
+
+
 }
