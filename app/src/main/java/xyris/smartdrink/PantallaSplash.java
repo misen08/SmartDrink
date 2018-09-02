@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 import android.view.WindowManager;
@@ -29,6 +30,11 @@ public class PantallaSplash extends AppCompatActivity {
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         final String ipLeida = ipPlaca; //sp.getString("IP","ERROR");
+
+        String idDevice = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        SharedPreferences.Editor editorIdDevice = sp.edit();
+        editorIdDevice.putString("idDevice", idDevice);
+        editorIdDevice.commit();
 
         new Handler().postDelayed(new Runnable() {
             @Override

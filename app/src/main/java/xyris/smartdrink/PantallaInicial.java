@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +21,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 public class PantallaInicial extends AppCompatActivity {
 
-    //private String android_id = Secure.getString(getContentResolver(), Secure.ANDROID_ID);
+//    private String android_id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
     public final static int QRcodeWidth = 350;
     String ipPlaca;
     Button botonSalir;
@@ -110,6 +111,7 @@ public class PantallaInicial extends AppCompatActivity {
                 ipLeida = result.getContents();
                 editor.putString("IP", ipLeida);
                 editor.commit();
+
                 //Toast.makeText(this, "Código QR escaneado", Toast.LENGTH_LONG).show();
                 //Toast.makeText(this, ipLeida, Toast.LENGTH_LONG).show();
 

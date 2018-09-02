@@ -3,8 +3,10 @@ package xyris.smartdrink;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -43,12 +45,18 @@ public class BebidasProgramadas extends AppCompatActivity {
     //Se crea el array de itemsProgramados (bebidas)
     ArrayList<CategoryListBebidasProgramadas> itemsProgramados = new ArrayList<CategoryListBebidasProgramadas>();
 
+    private String idDevice;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bebidas_programadas);
         editImage = getResources().getDrawable(R.drawable.edit_icon);
         deleteImage = getResources().getDrawable(R.drawable.delete_icon);
+
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        idDevice = sp.getString("idDevice","ERROR");
+
 
         obtenerListaBebidasAgendadas();
 
@@ -65,7 +73,7 @@ public class BebidasProgramadas extends AppCompatActivity {
         Thread thread = new Thread(){
             public void run(){
                 HashMap<String,String> params = new HashMap<String,String>();
-                params.put("idDispositivo","SmartDrinksApp");
+                params.put("idDispositivo",idDevice);
                 params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
 
                 //TODO: CAMBIAR NOMBRE DE PEDIDOS AGENDADOS POR EL CORRESPONDIENTE
@@ -178,7 +186,7 @@ public class BebidasProgramadas extends AppCompatActivity {
     public void enviarMensajeCancelarPedidoAgendado(String idPedido){
 
         CancelaPedidoRequest request = new CancelaPedidoRequest();
-        request.setIdDispositivo("SmartDrinksApp");
+        request.setIdDispositivo(idDevice);
         request.setFechaHoraPeticion("2018-08-04T15:22:00");
         request.setIdPedido(idPedido);
 

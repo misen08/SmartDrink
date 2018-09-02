@@ -44,7 +44,7 @@ import xyris.smartdrink.http.WebServiceClient;
 
 public class ListaDeTragos extends AppCompatActivity {
 
-    String idDevice;
+//    String idDevice;
     TextView tvGrabar;
     Drawable infoImage;
     Drawable deleteImage;
@@ -61,6 +61,8 @@ public class ListaDeTragos extends AppCompatActivity {
     private static final int CREAR_TRAGO_ACTIVITY = 2;
     private static final String urlPlaca = "52.204.131.123:50000";
 
+    private String idDevice;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +70,10 @@ public class ListaDeTragos extends AppCompatActivity {
         FloatingActionButton botonCrearTrago = findViewById(R.id.botonCrearTrago);
         infoImage = getResources().getDrawable(R.drawable.info_icon);
         deleteImage = getResources().getDrawable(R.drawable.delete_icon);
+
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        idDevice = sp.getString("idDevice","ERROR");
+
 
         obtenerLista();
 
@@ -79,8 +85,7 @@ public class ListaDeTragos extends AppCompatActivity {
             }
         });
 
-        idDevice = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-
+        //idDevice = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         //Texto en donde se mostrará lo que se grabe
         //grabar = (TextView) findViewById(R.id.txtGrabarVoz);
 
@@ -203,7 +208,7 @@ public class ListaDeTragos extends AppCompatActivity {
         Thread thread = new Thread(){
             public void run(){
                 HashMap<String,String> params = new HashMap<String,String>();
-                params.put("idDispositivo","8173924678916234");
+                params.put("idDispositivo",idDevice);
                 params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
 
                 WebServiceClient cli = new WebServiceClient("/consultarBebidas", new JSONObject(params));
@@ -290,7 +295,7 @@ public class ListaDeTragos extends AppCompatActivity {
 public void enviarMensajeEliminarBebida(String idBebida){
 
     EliminaBebidaRequest request = new EliminaBebidaRequest();
-    request.setIdDispositivo("compu_Mica");
+    request.setIdDispositivo(idDevice);
     request.setFechaHoraPeticion("2018-08-04T15:22:00");
     request.setIdBebida(idBebida);
 
@@ -327,7 +332,7 @@ public void enviarMensajeEliminarBebida(String idBebida){
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = urlPlaca + "/consultarBebidas";
         HashMap<String,String> params = new HashMap<String,String>();
-        params.put("idDispositivo","8173924678916234");
+        params.put("idDispositivo",idDevice);
         params.put("fechaHoraPeticion", "2018-08-04T15:22:00");
 
         try {

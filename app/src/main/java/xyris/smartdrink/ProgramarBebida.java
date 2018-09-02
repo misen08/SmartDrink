@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -64,12 +66,19 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
 
     JSONObject responseReader;
 
+    private String idDevice;
+
     String hielo, agitado, idBebida, fechaHoraAgendado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.programar_bebida);
+
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        idDevice = sp.getString("idDevice","ERROR");
+
+        Toast.makeText(this, "id" + idDevice, Toast.LENGTH_SHORT).show();
 
         tvFecha = (TextView) findViewById(R.id.textViewFecha);
         tvHora = (TextView) findViewById(R.id.textViewHora);
@@ -191,7 +200,7 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
             fechaIngresada = fechaDiv[2] + BARRA + fechaDiv[1] + BARRA + fechaDiv[0];
 
             if ((fechaIngresada.compareTo(hoy) == 0 && horaIngresada.compareTo(ahora) > 0)
-                        || (fechaIngresada.compareTo(hoy) > 0)) {
+                    || (fechaIngresada.compareTo(hoy) > 0)) {
 
 //                fechaHoraAgendado = anioActual + "-" +  mesFormateado + "-" + diaFormateado +
 //                        "T" + horaFormateada + ":" + minutoFormateado + ":00";
@@ -225,7 +234,7 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
                 "true", fechaHoraAgendado);
 
         request.setPedidoBebida(pedidoBebida);
-        request.setIdDispositivo("SmartDrinksApp");
+        request.setIdDispositivo(idDevice);
         request.setFechaHoraPeticion("2018-09-04T15:22:00");
         ObjectMapper mapper = new ObjectMapper();
         JSONObject object = null;

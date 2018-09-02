@@ -2,6 +2,8 @@ package xyris.smartdrink;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,6 +32,7 @@ public class OpcionesAdicionales  extends AppCompatActivity {
     CheckBox agregarHielo;
     CheckBox agitarBebida;
     String idBebida;
+    private String idDevice;
 
     JSONObject responseReader;
 
@@ -40,6 +43,10 @@ public class OpcionesAdicionales  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.opciones_adicionales);
+
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        String idDevice = sp.getString("idDevice","ERROR");
+
 
         //String urlGif = "https://domain.com/myanimatedgif.gif";
         //Agregar implementacion Glide dentro de archivo build.gradle.
@@ -117,7 +124,7 @@ public class OpcionesAdicionales  extends AppCompatActivity {
                 "false", "2018-01-01T00:00:00");
 
         request.setPedidoBebida(pedidoBebida);
-        request.setIdDispositivo("SmartDrinksApp");
+        request.setIdDispositivo(idDevice);
         request.setFechaHoraPeticion("2018-09-02T15:22:00");
         ObjectMapper mapper = new ObjectMapper();
         JSONObject object = null;
