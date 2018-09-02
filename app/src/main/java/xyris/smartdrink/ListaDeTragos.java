@@ -9,10 +9,12 @@ import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.speech.RecognizerIntent;
+import android.support.annotation.RequiresPermission;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,7 +44,9 @@ import java.util.HashMap;
 import java.util.Locale;
 
 import ar.edu.xyris.smartdrinks.messages.eliminacion.bebida.EliminaBebidaRequest;
+import ar.edu.xyris.smartdrinks.messages.preparacion.PreparaBebidaRequest;
 import xyris.smartdrink.entities.Bebida;
+import xyris.smartdrink.entities.PedidoBebida;
 import xyris.smartdrink.entities.SaborEnBebida;
 import xyris.smartdrink.http.WebServiceClient;
 
@@ -154,8 +158,41 @@ public class ListaDeTragos extends AppCompatActivity {
                 if (resultCode == RESULT_OK && null != data) {
 
                     ArrayList<String> speech = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    // La variable "strSpeech2Text" contiene el texto obtenido del comando de voz
                     String strSpeech2Text = speech.get(0);
-                    tvGrabar.setText(strSpeech2Text);
+
+                    String strSpeech2TextUpperCase = strSpeech2Text.toUpperCase();
+                    Toast toast = Toast.makeText(this, "voz: "+ strSpeech2Text.toUpperCase(), Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+
+                    String idBebida = "-1";
+                    String hielo = "false";
+                    String agitado = "false";
+                    while("-1".equals(idBebida)){
+                        for(int j=0; j < listBebida.size(); j++) {
+                            String itemBebida = listBebida.get(j).getDescripcion().toUpperCase();
+                            boolean isFound = strSpeech2TextUpperCase.contains(itemBebida);
+                            if (isFound) {
+                                idBebida = listBebida.get(j).getIdBebida();
+                                boolean boolHielo = strSpeech2TextUpperCase.contains("hielo".toUpperCase());
+                                if(boolHielo){
+                                    hielo = "true";
+                                }
+                                boolean boolAgitado = strSpeech2TextUpperCase.contains("agitado".toUpperCase());
+                                if(boolAgitado){
+                                    agitado = "true";
+                                }
+                                Toast.makeText(this, "yeay " + idBebida + " " + itemBebida +
+                                        "Hielo: " + hielo + "Agitado: " + agitado, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        if("-1".equals(idBebida)) {
+                            Toast.makeText(this, "BEBIDA NO ENCONTRADA", Toast.LENGTH_SHORT).show();
+                            idBebida = "0";
+                        }
+                    }
+                    enviarMensajePrepararBebidaAhoraPorVoz(idBebida, hielo, agitado);
                 }
                 break;
 
@@ -268,7 +305,7 @@ public class ListaDeTragos extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String idBebida = listBebida.get(i).getIdBebida();
-                enviarMensajeEliminarBebida(idBebida.toString());
+                enviarMensajeEliminarBebida(idBebida);
                 obtenerLista();
                 Toast.makeText(ListaDeTragos.this, "Borrado", Toast.LENGTH_SHORT).show();
             }
@@ -312,8 +349,9 @@ public void enviarMensajeEliminarBebida(String idBebida){
     Date currentDate = Calendar.getInstance().getTime();
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
     String currentFormattedDate = df.format(currentDate);
-
     request.setFechaHoraPeticion(currentFormattedDate);
+   // request.setFechaHoraPeticion("2018-08-08T20:20:20");
+
     request.setIdBebida(idBebida);
 
     ObjectMapper mapper = new ObjectMapper();
@@ -444,4 +482,54 @@ public void enviarMensajeEliminarBebida(String idBebida){
         finish();
         startActivity(pantallaInicial);
     }
+
+
+    public void enviarMensajePrepararBebidaAhoraPorVoz(String idBebida, String hielo, String agitado){
+
+        PreparaBebidaRequest request = new PreparaBebidaRequest();
+
+        //La fecha y hora no se tienen en cuenta ya que el pedido se preparará en el momento.
+        //Agendado posee valor "FALSE".
+
+
+        PedidoBebida pedidoBebida = new PedidoBebida(idBebida, hielo, agitado,
+                "false", "2018-01-01T00:00:00");
+
+        request.setPedidoBebida(pedidoBebida);
+        request.setIdDispositivo(idDevice);
+        //Se obtiene la fecha y hora actual y se le aplica el formato que necesita recibir el mensaje.
+        //A "fechaHoraPeticion" se deberá asignar "currentFormattedDate".
+        Date currentDate = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        String currentFormattedDate = df.format(currentDate);
+        request.setFechaHoraPeticion(currentFormattedDate);
+        ObjectMapper mapper = new ObjectMapper();
+        JSONObject object = null;
+        try {
+            object = new JSONObject(mapper.writeValueAsString(request));
+        } catch (Exception e) {
+
+        }
+
+        final JSONObject finalObject = object;
+        Thread thread = new Thread(){
+            public void run(){
+
+                WebServiceClient cli = new WebServiceClient("/prepararBebida", finalObject);
+
+                responseReader = (JSONObject) cli.getResponse();
+
+                Log.d("SMARTDRINKS_BEBIDAS","RESPUESTA_BEBIDAS: " + responseReader.toString());
+            }
+        };
+
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -31,6 +32,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         super.onNewToken(s);
 
         Log.e(TAG, "Token: " + s);
+        String subscribe = TOPIC + "." + Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+
+        Log.i(TAG,"Suscribiendose al TOPIC: " + subscribe);
+        FirebaseMessaging.getInstance().subscribeToTopic(subscribe);
 
         Log.i(TAG,"Suscribiendose al TOPIC: " + TOPIC);
         FirebaseMessaging.getInstance().subscribeToTopic(TOPIC);
