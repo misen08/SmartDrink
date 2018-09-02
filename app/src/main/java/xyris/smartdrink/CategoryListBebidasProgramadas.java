@@ -8,6 +8,7 @@ public class CategoryListBebidasProgramadas {
     private String fechaHora;
     private String hielo;
     private String agitado;
+    private String idPedido;
     private Drawable buttonEdit;
     private Drawable buttonDelete;
 
@@ -16,7 +17,7 @@ public class CategoryListBebidasProgramadas {
     }
 
     public CategoryListBebidasProgramadas(String categoryId, String nombreBebidaProgramada, String fechaHora,
-                                          String hielo, String agitado,
+                                          String hielo, String agitado, String idPedido,
                                           Drawable buttonEdit, Drawable buttonDelete) {
         super();
         this.categoryId = categoryId;

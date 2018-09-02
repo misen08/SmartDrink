@@ -7,7 +7,9 @@ public class PedidoBebida {
 	private String agendado;
 	private String fechaHoraAgendado;
 
-	public PedidoBebida(String idBebida, String hielo, String agitado, String agendado, String fechaHoraAgendado) {
+	public PedidoBebida(String idBebida,
+						String hielo, String agitado,
+						String agendado, String fechaHoraAgendado) {
 		this.idBebida = idBebida;
 		this.hielo = hielo;
 		this.agitado = agitado;
@@ -21,6 +23,7 @@ public class PedidoBebida {
 	public void setIdBebida(String idBebida) {
 		this.idBebida = idBebida;
 	}
+
 	public String getHielo() {
 		return hielo;
 	}

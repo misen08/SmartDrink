@@ -118,7 +118,7 @@ public class OpcionesAdicionales  extends AppCompatActivity {
 
         request.setPedidoBebida(pedidoBebida);
         request.setIdDispositivo("SmartDrinksApp");
-        request.setFechaHoraPeticion("2018-08-04T15:22:00");
+        request.setFechaHoraPeticion("2018-09-02T15:22:00");
         ObjectMapper mapper = new ObjectMapper();
         JSONObject object = null;
         try {
