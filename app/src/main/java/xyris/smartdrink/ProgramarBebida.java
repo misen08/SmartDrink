@@ -193,11 +193,11 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
             if ((fechaIngresada.compareTo(hoy) == 0 && horaIngresada.compareTo(ahora) > 0)
                         || (fechaIngresada.compareTo(hoy) > 0)) {
 
-                fechaHoraAgendado = anioActual + "-" +  mesFormateado + "-" + diaFormateado +
-                        "T" + horaFormateada + ":" + minutoFormateado + ":00";
+//                fechaHoraAgendado = anioActual + "-" +  mesFormateado + "-" + diaFormateado +
+//                        "T" + horaFormateada + ":" + minutoFormateado + ":00";
 
                 //Se envía el mensaje para programar la bebida
-                enviarMensajePrepararBebidaProgramada(idBebida, hielo, agitado, fechaHoraFormateada(fechaIngresada, horaIngresada));
+                enviarMensajePrepararBebidaProgramada(idBebida, hielo, agitado, (fechaHoraFormateada(fechaIngresada, horaIngresada)));
 
                 Toast.makeText(this, "Tu bebida fue programada", Toast.LENGTH_SHORT).show();
 
@@ -225,8 +225,8 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
                 "true", fechaHoraAgendado);
 
         request.setPedidoBebida(pedidoBebida);
-        request.setIdDispositivo("compu_Fede");
-        request.setFechaHoraPeticion("2018-08-04T15:22:00");
+        request.setIdDispositivo("SmartDrinksApp");
+        request.setFechaHoraPeticion("2018-09-04T15:22:00");
         ObjectMapper mapper = new ObjectMapper();
         JSONObject object = null;
         try {
@@ -258,9 +258,9 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
     public String fechaHoraFormateada(String fechaIngresada, String horaIngresada){
 
         String[] f = fechaIngresada.split("/");
-        String dia = f[0]; // 17
+        String anio = f[0]; // 17
         String mes = f[1]; // 08
-        String anio = f[2]; // 2018
+        String dia = f[2]; // 2018
 
         String[] h = horaIngresada.split(":");
         String hh = h[0]; // 14
