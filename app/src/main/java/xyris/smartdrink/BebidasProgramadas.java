@@ -27,6 +27,7 @@ import java.util.HashMap;
 import ar.edu.xyris.smartdrinks.messages.eliminacion.bebida.EliminaBebidaRequest;
 import xyris.smartdrink.entities.Bebida;
 import xyris.smartdrink.entities.PedidoBebida;
+import xyris.smartdrink.entities.PedidoAgendado;
 import xyris.smartdrink.entities.SaborEnBotella;
 import xyris.smartdrink.http.WebServiceClient;
 
@@ -37,7 +38,7 @@ public class BebidasProgramadas extends AppCompatActivity {
     Drawable editImage;
     Drawable deleteImage;
     ListView lvBebidasProgramadas;
-    ArrayList<PedidoBebida> listBebidasProgramadas = new ArrayList<PedidoBebida>();
+    ArrayList<PedidoAgendado> listBebidasProgramadas = new ArrayList<PedidoAgendado>();
     //Se crea el array de itemsProgramados (bebidas)
     ArrayList<CategoryListBebidasProgramadas> itemsProgramados = new ArrayList<CategoryListBebidasProgramadas>();
 
@@ -87,20 +88,18 @@ public class BebidasProgramadas extends AppCompatActivity {
         for(int i=0; i< listBebidasProgramadas.size(); i++){
             //Se llena el array de itemsProgramados (bebidas programadas)
             itemsProgramados.add(new CategoryListBebidasProgramadas(
-                    listBebidasProgramadas.get(i).getIdBebida(),"Nombre",
+                    listBebidasProgramadas.get(i).getIdBebida(),
+                    listBebidasProgramadas.get(i).getDescripcion(),
                     fechaHoraFormateada(listBebidasProgramadas.get(i).getFechaHoraAgendado()),
-                    listBebidasProgramadas.get(i).getHielo(), listBebidasProgramadas.get(i).getAgitado(),
-                    editImage, deleteImage));
+                    listBebidasProgramadas.get(i).getHielo(),
+                    listBebidasProgramadas.get(i).getAgitado(),
+                    listBebidasProgramadas.get(i).getIdPedido(),
+                    editImage,
+                    deleteImage));
         }
 
         String fechaHoraFormatoDB = "2018-08-17T14:53";
 
-//        itemsProgramados.add(new CategoryListBebidasProgramadas("1", "BEBIDA_1",
-//                fechaHoraFormateada(fechaHoraFormatoDB),"Con hielo", "Sin agitar", editImage, deleteImage));
-//        itemsProgramados.add(new CategoryListBebidasProgramadas("2", "BEBIDA_2",
-//                fechaHoraFormateada(fechaHoraFormatoDB), "Sin hielo", "Agitado", editImage, deleteImage));
-//        itemsProgramados.add(new CategoryListBebidasProgramadas("3", "BEBIDA_3",
-//                fechaHoraFormateada(fechaHoraFormatoDB), "Con hielo", "Agitado", editImage, deleteImage));
 
 
         lvBebidasProgramadas = (ListView) findViewById(R.id.listaBebidasProgramadas);
@@ -109,9 +108,9 @@ public class BebidasProgramadas extends AppCompatActivity {
 
     }
 
-    public ArrayList<PedidoBebida> parsearBebidasAgendadas (String response) {
+    public ArrayList<PedidoAgendado> parsearBebidasAgendadas (String response) {
 
-        ArrayList<PedidoBebida> listBebidasAgendadas = new ArrayList<PedidoBebida>();
+        ArrayList<PedidoAgendado> listBebidasAgendadas = new ArrayList<PedidoAgendado>();
 
         try {
             responseReader = new JSONObject(response);
@@ -119,14 +118,16 @@ public class BebidasProgramadas extends AppCompatActivity {
 
             if("0".equals(codigoError.toString())){
                 // Se obtiene el nodo del array "pedidoBebida"
-                JSONArray pedidoBebida = responseReader.getJSONArray("pedidos");
+                JSONArray pedidoAgendado = responseReader.getJSONArray("pedidos");
 
                 // Ciclando en todos los pedidos de bebida agendados
-                for (int i = 0; i < pedidoBebida.length(); i++) {
+                for (int i = 0; i < pedidoAgendado.length(); i++) {
                     String hielo="";
                     String agitado="";
-                    JSONObject bebidaAgendada = pedidoBebida.getJSONObject(i);
+                    JSONObject bebidaAgendada = pedidoAgendado.getJSONObject(i);
+                    String idPedido = bebidaAgendada.getString("idPedido");
                     String idBebida = bebidaAgendada.getString("idBebida");
+                    String descripcionBebida = bebidaAgendada.getString("descripcion");
                     if("true".equals(bebidaAgendada.getString("hielo").toString())){
                         hielo = "Con hielo";
                     } else {
@@ -140,7 +141,7 @@ public class BebidasProgramadas extends AppCompatActivity {
                     String agendado = bebidaAgendada.getString("agendado");
                     String fechaHoraAgendado = bebidaAgendada.getString("fechaHoraAgendado");
 
-                    PedidoBebida bebida = new PedidoBebida(idBebida, hielo, agitado, agendado, fechaHoraAgendado);
+                    PedidoAgendado bebida = new PedidoAgendado(idBebida, descripcionBebida, hielo, agitado, agendado, fechaHoraAgendado, idPedido, descripcionBebida);
 
                     listBebidasAgendadas.add(bebida);
                 }
