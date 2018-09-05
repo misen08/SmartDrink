@@ -6,172 +6,189 @@
     android:layout_height="match_parent"
     tools:context=".CrearTragos">
 
+    <EditText
+        android:id="@+id/editTextNombreBebida"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="170dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:hint="Nombre de la bebida"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewDivisorVertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/textViewGusto1"
-        android:layout_width="160dp"
+        android:layout_width="100dp"
         android:layout_height="30dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginBottom="110dp"
+        android:layout_marginEnd="20dp"
         android:textAlignment="textStart"
         android:textColor="@android:color/black"
         android:textSize="23sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNombreBebida" />
+        app:layout_constraintBottom_toTopOf="@+id/imageViewDivisorVertical"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewDivisorVertical" />
 
     <TextView
         android:id="@+id/textViewGusto2"
-        android:layout_width="160dp"
+        android:layout_width="100dp"
         android:layout_height="30dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginBottom="60dp"
+        android:layout_marginEnd="20dp"
         android:textAlignment="textStart"
         android:textColor="@android:color/black"
         android:textSize="23sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewGusto1" />
+        app:layout_constraintBottom_toTopOf="@+id/imageViewDivisorVertical"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewDivisorVertical" />
 
     <TextView
         android:id="@+id/textViewGusto3"
-        android:layout_width="160dp"
+        android:layout_width="100dp"
         android:layout_height="30dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="20dp"
         android:textAlignment="textStart"
         android:textColor="@android:color/black"
         android:textSize="23sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewGusto2" />
+        app:layout_constraintBottom_toTopOf="@+id/imageViewDivisorVertical"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewDivisorVertical" />
 
     <TextView
         android:id="@+id/textViewGusto4"
-        android:layout_width="160dp"
+        android:layout_width="100dp"
         android:layout_height="30dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
         android:textAlignment="textStart"
         android:textColor="@android:color/black"
         android:textSize="23sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewGusto3" />
+        app:layout_constraintEnd_toStartOf="@+id/imageViewDivisorVertical"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewDivisorVertical" />
 
     <TextView
         android:id="@+id/textViewGusto5"
-        android:layout_width="160dp"
+        android:layout_width="100dp"
         android:layout_height="30dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="60dp"
         android:textAlignment="textStart"
         android:textColor="@android:color/black"
         android:textSize="23sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewGusto4" />
+        app:layout_constraintEnd_toStartOf="@+id/imageViewDivisorVertical"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewDivisorVertical" />
 
     <TextView
         android:id="@+id/textViewGusto6"
-        android:layout_width="160dp"
+        android:layout_width="100dp"
         android:layout_height="30dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="110dp"
         android:textAlignment="textStart"
         android:textColor="@android:color/black"
         android:textSize="23sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewGusto5" />
-
-    <Button
-        android:id="@+id/botonAgregar"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="45dp"
-        android:text="Agregar a la lista"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/botonVolver"
-        app:layout_constraintTop_toBottomOf="@+id/textViewGusto6" />
+        app:layout_constraintEnd_toStartOf="@+id/imageViewDivisorVertical"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewDivisorVertical" />
 
     <Spinner
         android:id="@+id/spinnerPorcentajesGusto1"
         android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="25dp"
-        android:textSize="23sp"
-        app:layout_constraintStart_toEndOf="@+id/textViewGusto1"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNombreBebida" />
+        android:layout_marginBottom="110dp"
+        android:layout_marginStart="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewDivisorVertical"
+        app:layout_constraintStart_toEndOf="@+id/imageViewDivisorVertical" />
 
     <Spinner
         android:id="@+id/spinnerPorcentajesGusto2"
         android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="15dp"
-        android:textSize="23sp"
-        app:layout_constraintStart_toEndOf="@+id/textViewGusto2"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerPorcentajesGusto1" />
+        android:layout_marginBottom="60dp"
+        android:layout_marginStart="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewDivisorVertical"
+        app:layout_constraintStart_toEndOf="@+id/imageViewDivisorVertical" />
 
     <Spinner
         android:id="@+id/spinnerPorcentajesGusto3"
         android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintStart_toEndOf="@+id/textViewGusto3"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerPorcentajesGusto2" />
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewDivisorVertical"
+        app:layout_constraintStart_toEndOf="@+id/imageViewDivisorVertical" />
 
     <Spinner
         android:id="@+id/spinnerPorcentajesGusto4"
         android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintStart_toEndOf="@+id/textViewGusto4"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerPorcentajesGusto3" />
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toEndOf="@+id/imageViewDivisorVertical"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewDivisorVertical" />
 
     <Spinner
         android:id="@+id/spinnerPorcentajesGusto5"
         android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintStart_toEndOf="@+id/textViewGusto5"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerPorcentajesGusto4" />
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintStart_toEndOf="@+id/imageViewDivisorVertical"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewDivisorVertical" />
 
     <Spinner
         android:id="@+id/spinnerPorcentajesGusto6"
         android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintStart_toEndOf="@+id/textViewGusto6"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerPorcentajesGusto5" />
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="110dp"
+        app:layout_constraintStart_toEndOf="@+id/imageViewDivisorVertical"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewDivisorVertical" />
 
     <Button
         android:id="@+id/botonVolver"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="45dp"
-        android:text="VOLVER"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewGusto6" />
+        android:layout_height="36dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginEnd="70dp"
+        android:background="@color/colorAccent"
+        android:text="Volver"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewDivisorVertical"
+        tools:ignore="MissingConstraints" />
 
-    <EditText
-        android:id="@+id/editTextNombreBebida"
+    <Button
+        android:id="@+id/botonAgregar"
+        android:layout_width="200dp"
+        android:layout_height="36dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginStart="30dp"
+        android:background="@color/colorAccent"
+        android:text="Agregar a la lista"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/botonVolver"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageViewDivisorVertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:hint="Nombre de la bebida"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        android:textSize="25sp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:color/transparent" />
 
 </android.support.constraint.ConstraintLayout>

@@ -80,7 +80,6 @@ public class ListaDeTragos extends AppCompatActivity {
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         idDevice = sp.getString("idDevice","ERROR");
-
 //
 //        Toast.makeText(this, "fecha actual: " + formattedDate, Toast.LENGTH_SHORT).show();
 
@@ -122,6 +121,8 @@ public class ListaDeTragos extends AppCompatActivity {
                 Intent verBebidasProgramadas = new Intent(this, BebidasProgramadas.class);
                 startActivity(verBebidasProgramadas);
                 break;
+            case R.id.cambiar_sabores:
+                Toast.makeText(this, "Cambiar sabores", Toast.LENGTH_SHORT).show();
             case R.id.mantenimiento:
                 Toast.makeText(this, "Ver tema mantenimiento", Toast.LENGTH_SHORT).show();
                 break;

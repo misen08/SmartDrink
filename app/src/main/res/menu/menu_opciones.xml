@@ -3,6 +3,8 @@
 
     <item android:id="@+id/bebidas_programadas"
         android:title="Ver bebidas programadas"></item>
+    <item android:id="@+id/cambiar_sabores"
+        android:title="Cambiar sabores"></item>
     <item android:id="@+id/mantenimiento"
         android:title="Hacer mantenimiento"></item>
     <item android:id="@+id/logout"

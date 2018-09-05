@@ -82,7 +82,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         notificationBuilder.setAutoCancel(true)
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setWhen(System.currentTimeMillis())
-                .setSmallIcon(R.drawable.drink)
+                .setSmallIcon(R.mipmap.ic_launcher_round)
                 .setTicker("Hearty365")
                 //     .setPriority(Notification.PRIORITY_MAX)
                 .setContentTitle(title)
