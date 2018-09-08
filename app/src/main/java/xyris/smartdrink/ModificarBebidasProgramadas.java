@@ -26,7 +26,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import ar.edu.xyris.smartdrinks.messages.preparacion.ModificaPedidoRequest;
 import ar.edu.xyris.smartdrinks.messages.preparacion.PreparaBebidaRequest;
+import xyris.smartdrink.entities.PedidoAgendado;
 import xyris.smartdrink.entities.PedidoBebida;
 import xyris.smartdrink.http.WebServiceClient;
 
@@ -43,7 +45,7 @@ public class ModificarBebidasProgramadas extends AppCompatActivity implements Vi
     final int dia = c.get(Calendar.DAY_OF_MONTH);
     final int anio = c.get(Calendar.YEAR);
 
-    //Variables para obtener la hora hora
+    //Variables para obtener la hora
     final int hora = c.get(Calendar.HOUR_OF_DAY);
     final int minuto = c.get(Calendar.MINUTE);
 
@@ -56,6 +58,11 @@ public class ModificarBebidasProgramadas extends AppCompatActivity implements Vi
     JSONObject responseReader;
 
     private String idDevice;
+    private String idPedido;
+    private String idBebida;
+    private String hielo;
+    private String agitado;
+    private String fechaHoraAgendado;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +76,8 @@ public class ModificarBebidasProgramadas extends AppCompatActivity implements Vi
         tvNombreBebida = (TextView) findViewById(R.id.textViewNombreBebida);
         tvNombreBebida.setText(getIntent().getStringExtra("nombreBebida"));
 
-        String fechaHora [] = getIntent().getStringExtra("fechaHoraAgendado").split(" ");
+        fechaHoraAgendado = getIntent().getStringExtra("fechaHoraAgendado");
+        String fechaHora [] = fechaHoraAgendado.split(" ");
         String fecha = fechaHora[0];
         String hora = fechaHora[2];
 
@@ -80,11 +88,13 @@ public class ModificarBebidasProgramadas extends AppCompatActivity implements Vi
         etHoraAgendada.setText(hora);
 
         cbHielo = (CheckBox) findViewById(R.id.checkBoxOpcionHielo);
-        if(getIntent().getStringExtra("hielo").equals("Con hielo"))
+        hielo = getIntent().getStringExtra("hielo");
+        if(hielo.equals("Con hielo"))
             cbHielo.setChecked(true);
 
         cbAgitado = (CheckBox) findViewById(R.id.checkBoxOpcionAgitado);
-        if(getIntent().getStringExtra("agitado").equals("Agitado"))
+        agitado = getIntent().getStringExtra("agitado");
+        if(agitado.equals("Agitado"))
             cbAgitado.setChecked(true);
 
         Button botonModificarFecha = (Button) findViewById(R.id.buttonModificarFecha);
@@ -191,13 +201,15 @@ public class ModificarBebidasProgramadas extends AppCompatActivity implements Vi
             if ((fechaIngresada.compareTo(hoy) == 0 && horaIngresada.compareTo(ahora) > 0)
                     || (fechaIngresada.compareTo(hoy) > 0)) {
 
-                //fechaHoraAgendado = anioActual + "-" +  mesFormateado + "-" + diaFormateado +
-                //        "T" + horaFormateada + ":" + minutoFormateado + ":00";
+                fechaHoraAgendado = anioActual + "-" +  mesFormateado + "-" + diaFormateado +
+                        "T" + horaFormateada + ":" + minutoFormateado + ":00";
 
                 //Se envía el mensaje para modificar el pedido agendado
                 //ToDo: Crear "/modificarPedidoAgendado para realizar el update en la DB.
-                //enviarMensajeModificarPedido(idBebida, hielo, agitado, fechaHoraAgendado);
 
+                idPedido = getIntent().getStringExtra("idPedido");
+                idBebida = getIntent().getStringExtra("idBebida");
+                enviarMensajeModificarPedido(idPedido, idBebida, hielo, agitado, fechaHoraAgendado);
                 Toast.makeText(this, "Pedido modificado", Toast.LENGTH_SHORT).show();
 
                 Intent returnIntent = new Intent();
@@ -214,16 +226,26 @@ public class ModificarBebidasProgramadas extends AppCompatActivity implements Vi
         }
     }
 
-    public void enviarMensajeModificarPedido(String idBebida, String hielo, String agitado, String fechaHoraAgendado) {
+    public void enviarMensajeModificarPedido(String idPedido, String idBebida, String hielo, String agitado, String fechaHoraAgendado) {
 
-        PreparaBebidaRequest request = new PreparaBebidaRequest();
+        hielo = "false";
+        agitado = "false";
+
+        if(hielo.equals("Con hielo"))
+            hielo = "true";
+
+        if(agitado.equals("Agitado"))
+            agitado = "true";
+
+        ModificaPedidoRequest request = new ModificaPedidoRequest();
 
         //La fecha y hora sí se tienen en cuenta ya que el pedido se agendará para prepararse con posterioridad.
         //Agendado posee valor "TRUE".
-        PedidoBebida pedidoBebida = new PedidoBebida(idBebida, hielo, agitado,
-                "true", fechaHoraAgendado);
 
-        request.setPedidoBebida(pedidoBebida);
+        PedidoBebida pedidoAgendado = new PedidoBebida(idBebida, hielo, agitado, "true", fechaHoraAgendado);
+
+        request.setIdPedido(idPedido);
+        request.setPedidoBebida(pedidoAgendado);
         request.setIdDispositivo(idDevice);
         //Se obtiene la fecha y hora actual y se le aplica el formato que necesita recibir el mensaje.
         //A "fechaHoraPeticion" se deberá asignar "currentFormattedDate".
@@ -250,7 +272,12 @@ public class ModificarBebidasProgramadas extends AppCompatActivity implements Vi
                 Log.d("SMARTDRINKS_BEBIDAS", "RESPUESTA_BEBIDAS: " + responseReader.toString());
             }
         };
+
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
-
-
 }

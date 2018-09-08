@@ -11,6 +11,12 @@ public class PedidoAgendado extends PedidoBebida {
         this.descripcion = descripcion;
     }
 
+    public PedidoAgendado(String idPedido, String idBebida, String hielo, String agitado,
+                          String agendado, String fechaHoraAgendado) {
+        super(idBebida, hielo, agitado, agendado, fechaHoraAgendado);
+        this.idPedido = idPedido;
+    }
+
     /**
      * @return the descripcion
      */
