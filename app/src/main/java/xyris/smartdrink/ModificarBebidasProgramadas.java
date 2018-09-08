@@ -227,7 +227,6 @@ public class ModificarBebidasProgramadas extends AppCompatActivity implements Vi
     }
 
     public void enviarMensajeModificarPedido(String idPedido, String idBebida, String hielo, String agitado, String fechaHoraAgendado) {
-
         hielo = "false";
         agitado = "false";
 
