@@ -30,6 +30,7 @@
         <activity android:name=".PreparandoTrago" android:screenOrientation="portrait" />
         <activity android:name=".ProgramarBebida" android:screenOrientation="portrait" />
         <activity android:name=".BebidasProgramadas" android:screenOrientation="portrait" />
+        <activity android:name=".SaboresEnBotellas" android:screenOrientation="portrait" />
         <activity android:name=".ModificarBebidasProgramadas" android:screenOrientation="portrait" >
         </activity>
 

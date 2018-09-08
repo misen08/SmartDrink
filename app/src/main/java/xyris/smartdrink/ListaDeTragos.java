@@ -122,7 +122,9 @@ public class ListaDeTragos extends AppCompatActivity {
                 startActivity(verBebidasProgramadas);
                 break;
             case R.id.cambiar_sabores:
-                Toast.makeText(this, "Cambiar sabores", Toast.LENGTH_SHORT).show();
+                Intent cambiarSabores = new Intent(this, SaboresEnBotellas.class);
+                startActivity(cambiarSabores);
+                break;
             case R.id.mantenimiento:
                 Toast.makeText(this, "Ver tema mantenimiento", Toast.LENGTH_SHORT).show();
                 break;
