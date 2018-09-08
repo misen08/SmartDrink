@@ -2,6 +2,7 @@ package xyris.smartdrink;
 
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
+import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -69,6 +70,10 @@ public class ListaDeTragos extends AppCompatActivity {
     private static final String urlPlaca = "52.204.131.123:50000";
 
     private String idDevice;
+    private String modoViernesStatus;
+    SharedPreferences sp;
+    SharedPreferences.Editor modoViernesEditor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,12 +82,13 @@ public class ListaDeTragos extends AppCompatActivity {
         FloatingActionButton botonCrearTrago = findViewById(R.id.botonCrearTrago);
         infoImage = getResources().getDrawable(R.drawable.info_icon);
         deleteImage = getResources().getDrawable(R.drawable.delete_icon);
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
 
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         idDevice = sp.getString("idDevice","ERROR");
-//
-//        Toast.makeText(this, "fecha actual: " + formattedDate, Toast.LENGTH_SHORT).show();
 
+        modoViernesStatus = sp.getString("modoViernes", "ERROR");
+
+        Toast.makeText(this, "modo viernes status: " + modoViernesStatus, Toast.LENGTH_LONG).show();
 
         obtenerLista();
 
@@ -112,6 +118,10 @@ public class ListaDeTragos extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+
+
+
+
     // Opciones del menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -124,6 +134,28 @@ public class ListaDeTragos extends AppCompatActivity {
             case R.id.cambiar_sabores:
                 Intent cambiarSabores = new Intent(this, SaboresEnBotellas.class);
                 startActivity(cambiarSabores);
+                break;
+            case R.id.modo_viernes:
+                //ToDo: ver cómo traer el texto correcto del menu "modo viernes" al abrir la aplicación.
+                //ToDo: ver cómo se va a implementar el "modo viernes".
+
+                modoViernesStatus = sp.getString("modoViernes", "ERROR");
+                modoViernesEditor = sp.edit();
+
+                if("desactivado".equals(modoViernesStatus)){
+                    modoViernesStatus = "activado";
+                    item.setTitle("Desactivar modo viernes");
+                    modoViernesEditor.putString("modoViernes",modoViernesStatus);
+                    modoViernesEditor.commit();
+                    Toast.makeText(this, "Modo viernes: Activado", Toast.LENGTH_LONG).show();
+                } else {
+                    modoViernesStatus = "desactivado";
+                    item.setTitle("Activar modo viernes");
+                    modoViernesEditor.putString("modoViernes",modoViernesStatus);
+                    modoViernesEditor.commit();
+                    Toast.makeText(this, "Modo viernes: Desactivado", Toast.LENGTH_LONG).show();
+                }
+
                 break;
             case R.id.mantenimiento:
                 Toast.makeText(this, "Ver tema mantenimiento", Toast.LENGTH_SHORT).show();
@@ -178,7 +210,7 @@ public class ListaDeTragos extends AppCompatActivity {
                             boolean isFound = strSpeech2TextUpperCase.contains(itemBebida);
                             if (isFound) {
                                 idBebida = listBebida.get(j).getIdBebida();
-                                boolean boolHielo = strSpeech2TextUpperCase.contains("hielo".toUpperCase());
+                                boolean boolHielo = strSpeech2TextUpperCase.contains("con hielo".toUpperCase());
                                 if(boolHielo){
                                     hielo = "true";
                                 }
