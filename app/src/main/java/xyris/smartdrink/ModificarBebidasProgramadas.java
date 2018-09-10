@@ -28,6 +28,7 @@ import java.util.Date;
 
 import ar.edu.xyris.smartdrinks.messages.preparacion.ModificaPedidoRequest;
 import ar.edu.xyris.smartdrinks.messages.preparacion.PreparaBebidaRequest;
+import xyris.smartdrink.entities.FechaHora;
 import xyris.smartdrink.entities.PedidoAgendado;
 import xyris.smartdrink.entities.PedidoBebida;
 import xyris.smartdrink.http.WebServiceClient;
@@ -248,10 +249,8 @@ public class ModificarBebidasProgramadas extends AppCompatActivity implements Vi
         request.setIdDispositivo(idDevice);
         //Se obtiene la fecha y hora actual y se le aplica el formato que necesita recibir el mensaje.
         //A "fechaHoraPeticion" se deberá asignar "currentFormattedDate".
-        Date currentDate = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        String currentFormattedDate = df.format(currentDate);
-        request.setFechaHoraPeticion(currentFormattedDate);
+        request.setFechaHoraPeticion(new FechaHora().formatDate(Calendar.getInstance().getTime()));
+
         ObjectMapper mapper = new ObjectMapper();
         JSONObject object = null;
         try {

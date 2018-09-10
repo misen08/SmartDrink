@@ -1,12 +1,15 @@
 package xyris.smartdrink.entities;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class FechaHora {
     private String dia;
     private String mes;
     private String anio;
     private String hora;
     private String minutos;
-
+    private SimpleDateFormat df;
 
     public void FechaHora(String dia, String mes, String anio, String hora, String minutos){
         this.dia = dia;
@@ -54,5 +57,10 @@ public class FechaHora {
 
     public void setMinutos(String minutos) {
         this.minutos = minutos;
+    }
+
+    public String formatDate(Date date) {
+        df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        return df.format(date);
     }
 }

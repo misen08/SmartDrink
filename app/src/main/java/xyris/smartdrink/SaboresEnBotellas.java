@@ -1,17 +1,27 @@
 package xyris.smartdrink;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import xyris.smartdrink.entities.FechaHora;
+import xyris.smartdrink.http.WebServiceClient;
 
 public class SaboresEnBotellas extends AppCompatActivity {
 
@@ -20,11 +30,37 @@ public class SaboresEnBotellas extends AppCompatActivity {
     Button btnAceptarSabores;
     private int dotsCount;
     private ImageView [] dots;
+    private String idDevice;
+    private JSONObject responseReader;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cargar_sabores);
+
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        idDevice = sp.getString("idDevice","ERROR");
+
+        Thread thread = new Thread(){
+            public void run(){
+                HashMap<String,String> params = new HashMap<String,String>();
+                params.put("idDispositivo",idDevice);
+                params.put("fechaHoraPeticion", new FechaHora().formatDate(Calendar.getInstance().getTime()));
+
+                WebServiceClient cli = new WebServiceClient("/consultarSabores", new JSONObject(params));
+
+                responseReader = (JSONObject) cli.getResponse();
+
+                Log.d("SMARTDRINKS","RESPUESTA: " + responseReader.toString());
+            }
+        };
+
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         viewPager = (ViewPager) findViewById(R.id.ViewPagerSabores);
 

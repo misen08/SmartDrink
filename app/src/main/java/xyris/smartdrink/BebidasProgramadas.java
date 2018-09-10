@@ -32,6 +32,7 @@ import java.util.HashMap;
 import ar.edu.xyris.smartdrinks.messages.eliminacion.bebida.EliminaBebidaRequest;
 import ar.edu.xyris.smartdrinks.messages.preparacion.CancelaPedidoRequest;
 import xyris.smartdrink.entities.Bebida;
+import xyris.smartdrink.entities.FechaHora;
 import xyris.smartdrink.entities.PedidoBebida;
 import xyris.smartdrink.entities.PedidoAgendado;
 import xyris.smartdrink.entities.SaborEnBotella;
@@ -60,7 +61,6 @@ public class BebidasProgramadas extends AppCompatActivity {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         idDevice = sp.getString("idDevice","ERROR");
 
-
         obtenerListaBebidasAgendadas();
 
         Button btnVolver = (Button) findViewById(R.id.buttonBack);
@@ -79,10 +79,7 @@ public class BebidasProgramadas extends AppCompatActivity {
                 params.put("idDispositivo",idDevice);
                 //Se obtiene la fecha y hora actual y se le aplica el formato que necesita recibir el mensaje.
                 //A "fechaHoraPeticion" se deberá asignar "currentFormattedDate".
-                Date currentDate = Calendar.getInstance().getTime();
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-                String currentFormattedDate = df.format(currentDate);
-                params.put("fechaHoraPeticion", currentFormattedDate);
+                params.put("fechaHoraPeticion", new FechaHora().formatDate(Calendar.getInstance().getTime()));
 
                 //TODO: CAMBIAR NOMBRE DE PEDIDOS AGENDADOS POR EL CORRESPONDIENTE
                 WebServiceClient cli = new WebServiceClient("/consultarPedidosAgendados", new JSONObject(params));
@@ -114,9 +111,6 @@ public class BebidasProgramadas extends AppCompatActivity {
                     editImage,
                     deleteImage));
         }
-
-        String fechaHoraFormatoDB = "2018-08-17T14:53";
-
 
 
         lvBebidasProgramadas = (ListView) findViewById(R.id.listaBebidasProgramadas);
@@ -198,10 +192,7 @@ public class BebidasProgramadas extends AppCompatActivity {
 
         //Se obtiene la fecha y hora actual y se le aplica el formato que necesita recibir el mensaje.
         //A "fechaHoraPeticion" se deberá asignar "currentFormattedDate".
-        Date currentDate = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        String currentFormattedDate = df.format(currentDate);
-        request.setFechaHoraPeticion(currentFormattedDate);
+        request.setFechaHoraPeticion(new FechaHora().formatDate(Calendar.getInstance().getTime()));
         request.setIdPedido(idPedido);
 
         ObjectMapper mapper = new ObjectMapper();
@@ -269,5 +260,4 @@ public class BebidasProgramadas extends AppCompatActivity {
 
         lvBebidasProgramadas.setAdapter(new AdapterBebidasProgramadas(this, itemsProgramados));
     }
-
 }
