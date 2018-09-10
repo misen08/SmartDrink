@@ -159,6 +159,8 @@ public class ListaDeTragos extends AppCompatActivity {
                 break;
             case R.id.mantenimiento:
                 Toast.makeText(this, "Ver tema mantenimiento", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, Mantenimiento.class);
+                startActivity(intent);
                 break;
             case R.id.aboutUs:
                 Toast.makeText(this, "Grupo Xyris", Toast.LENGTH_SHORT).show();
