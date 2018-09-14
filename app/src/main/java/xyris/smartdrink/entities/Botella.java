@@ -3,7 +3,7 @@ package xyris.smartdrink.entities;
 public class Botella {
 	private String idBotella;
 	private String idSabor;
-	
+
 	/**
 	 * @return the idBotella
 	 */

@@ -4,7 +4,9 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -13,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -23,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
+import xyris.smartdrink.entities.Botella;
 import xyris.smartdrink.entities.FechaHora;
 import xyris.smartdrink.entities.SaborEnBotella;
 import xyris.smartdrink.http.WebServiceClient;
@@ -34,8 +38,6 @@ public class ViewPagerAdapter extends PagerAdapter {
     private Integer [] images = {R.drawable.botella_icon, R.drawable.botella_icon, R.drawable.botella_icon, R.drawable.botella_icon};
     public ArrayList<SaborEnBotella> listSabores;
     private String idDevice;
-    private String saborSeleccionado;
-    private String sabor;
     JSONObject responseReader;
 
     public ViewPagerAdapter(Context context) {
@@ -58,7 +60,7 @@ public class ViewPagerAdapter extends PagerAdapter {
 
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.custom_layout, null);
-        ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
+        final ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
         imageView.setImageResource(images[position]);
 
         Thread thread = new Thread(){
@@ -86,6 +88,7 @@ public class ViewPagerAdapter extends PagerAdapter {
 
         final String [] sabores = new String[listSabores.size()];
 
+        // Se obtienen los id de sabores para cargar las botellas
         for(int i = 0; i < listSabores.size(); i++) {
             sabores[i] = listSabores.get(i).getDescripcion();
         }
@@ -95,17 +98,13 @@ public class ViewPagerAdapter extends PagerAdapter {
             @Override
             public void onClick(View v) {
                 if(position == 0) {
-                    saborSeleccionado = onCreateDialog(sabores);
-                    Toast.makeText(context, "Sabor: "+saborSeleccionado, Toast.LENGTH_SHORT).show();
+                    onCreateDialog(listSabores, sabores, (position+1));
                 } else if(position == 1) {
-                    saborSeleccionado = onCreateDialog(sabores);
-                    Toast.makeText(context, "Sabor: "+saborSeleccionado, Toast.LENGTH_SHORT).show();
+                    onCreateDialog(listSabores, sabores, (position+1));
                 } else if(position == 2) {
-                    saborSeleccionado = onCreateDialog(sabores);
-                    Toast.makeText(context, "Sabor: "+saborSeleccionado, Toast.LENGTH_SHORT).show();
+                    onCreateDialog(listSabores, sabores, (position+1));
                 } else {
-                    saborSeleccionado = onCreateDialog(sabores);
-                    Toast.makeText(context, "Sabor: "+saborSeleccionado, Toast.LENGTH_SHORT).show();
+                    onCreateDialog(listSabores, sabores, (position+1));
                 }
             }
         });
@@ -123,19 +122,20 @@ public class ViewPagerAdapter extends PagerAdapter {
         vp.removeView(view);
     }
 
-    public String onCreateDialog (final String [] listSabores) {
+    public void onCreateDialog (final ArrayList<SaborEnBotella> listSabores, final String[] sabores, final Integer pos) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this.context);
         String titleDialog = "Seleccioná el sabor";
 
         builder.setTitle(titleDialog);
-        builder.setItems(listSabores, new DialogInterface.OnClickListener() {
+        builder.setItems(sabores, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                sabor = listSabores[i];
+                Toast.makeText(context, "Botella: "+pos.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Sabor: "+listSabores.get(i).getDescripcion(), Toast.LENGTH_SHORT).show();
+                SaborEnBotella saborEnBotella = new SaborEnBotella(pos.toString(), listSabores.get(i).getIdSabor(), "true");
             }
         });
         builder.show();
-        return sabor;
     }
 }

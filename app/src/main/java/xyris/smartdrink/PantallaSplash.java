@@ -14,7 +14,6 @@ import com.google.zxing.multi.qrcode.QRCodeMultiReader;
 
 import javax.xml.datatype.Duration;
 
-
 public class PantallaSplash extends AppCompatActivity {
 
     String ipPlaca = "192.168.1.3";

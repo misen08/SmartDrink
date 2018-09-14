@@ -12,16 +12,26 @@
         android:layout_height="280dp"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="40dp"/>
-    
+
     <LinearLayout
         android:id="@+id/SliderDots"
-        android:layout_below="@+id/ViewPagerSabores"
+        android:layout_below="@+id/textViewSaborElegido"
         android:orientation="horizontal"
         android:gravity="center_horizontal|center_vertical"
         android:layout_width="match_parent"
         android:layout_height="40dp">
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewSaborElegido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ViewPagerSabores"
+        android:layout_centerHorizontal="true"
+        android:text=""
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="162dp" />
 
     <TextView
         android:id="@+id/textViewCargarSabores"
@@ -31,7 +41,7 @@
         android:layout_centerHorizontal="true"
         android:text="Selecciona los sabores"
         android:textColor="@android:color/black"
-        android:textSize="30dp"/>
+        android:textSize="30dp" />
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -53,6 +63,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
     </android.support.constraint.ConstraintLayout>
 
 
