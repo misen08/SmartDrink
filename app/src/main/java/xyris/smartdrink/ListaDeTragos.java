@@ -58,6 +58,7 @@ public class ListaDeTragos extends AppCompatActivity {
     Drawable deleteImage;
     ListView lv;
 
+    ArrayList<String> nombreBebidasExistentes = new ArrayList<String>();
     String responseBebidas;
     String codigoErrorEliminarBebida;
     String descripcionErrorEliminarBebida;
@@ -69,7 +70,6 @@ public class ListaDeTragos extends AppCompatActivity {
 
     private static final int RECOGNIZE_SPEECH_ACTIVITY = 1;
     private static final int CREAR_TRAGO_ACTIVITY = 2;
-    private static final String urlPlaca = "52.204.131.123:50000";
 
     private String idDevice;
     private String modoViernesStatus;
@@ -119,10 +119,6 @@ public class ListaDeTragos extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_opciones, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
-
-
-
 
     // Opciones del menu
     @Override
@@ -182,6 +178,7 @@ public class ListaDeTragos extends AppCompatActivity {
 
     public void abrirCrearTragos(View v) {
         Intent intent = new Intent(this, CrearTragos.class);
+        intent.putExtra("nombreBebidasExistentes", nombreBebidasExistentes);
         startActivityForResult(intent, 2);
     }
 
@@ -263,7 +260,6 @@ public class ListaDeTragos extends AppCompatActivity {
         }
     }
 
-
     public void infoBebida(int pos){
         AlertDialog cuadroDialogo = new AlertDialog.Builder(this).create();
         String messageTemp = "";
@@ -284,7 +280,6 @@ public class ListaDeTragos extends AppCompatActivity {
         cuadroDialogo.setMessage(message);
         cuadroDialogo.show();
     }
-
 
     public void obtenerLista(){
         Thread thread = new Thread(){
@@ -318,6 +313,8 @@ public class ListaDeTragos extends AppCompatActivity {
         for(int i=0; i< listBebida.size(); i++){
             //Se llena el array de itemsProgramados (bebidas) - el ID de bebida y el nombre debe tomarlo de la DB
             items.add(new CategoryList(listBebida.get(i).getIdBebida(), listBebida.get(i).getDescripcion(), infoImage, deleteImage));
+            //Se obtiene el nombre de las bebidas existentes para validar cuando se crea una nueva bebida.
+            nombreBebidasExistentes.add(listBebida.get(i).getDescripcion());
         }
 
         lv = (ListView) findViewById(R.id.listaTragos);
@@ -362,29 +359,6 @@ public class ListaDeTragos extends AppCompatActivity {
         //TODO: Traer nuevamente la lista de bebidas actualizada de la base de datos
         lv.setAdapter(new AdapterItem(this, items));
     }
-
-
-
-    //Dialog builder con dos botones para solicitar confirmación cuando se elimina una bebida.
-//    public void showDialogDeleteButton(Activity activity, String title, CharSequence message) {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-//
-//        if (title != null) builder.setTitle(title);
-//
-//        builder.setMessage(message);
-//        builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//
-//                //TODO: Eliminar bebida de la base de datos
-//                Toast.makeText(ListaDeTragos.this, "Borrado", Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
-//        builder.setNegativeButton("No", null);
-//        builder.show();
-//    }
-
 
     public void enviarMensajeEliminarBebida(String idBebida){
 
@@ -433,47 +407,6 @@ public class ListaDeTragos extends AppCompatActivity {
             descripcionErrorEliminarBebida = responseReader.getString("descripcionError");
 
         } catch (JSONException e) { e.printStackTrace(); }
-    }
-
-    public void enviarMensajeConsultarBebidas(){
-        // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = urlPlaca + "/consultarBebidas";
-        HashMap<String,String> params = new HashMap<String,String>();
-        params.put("idDispositivo",idDevice);
-        //Se obtiene la fecha y hora actual y se le aplica el formato que necesita recibir el mensaje.
-        //A "fechaHoraPeticion" se deberá asignar "currentFormattedDate".
-        Date currentDate = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        String currentFormattedDate = df.format(currentDate);
-        params.put("fechaHoraPeticion", currentFormattedDate);
-
-        try {
-            JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            try {
-                                VolleyLog.v("Response:%n %s", response.toString(4));
-                                responseBebidas = response.toString();
-                                Log.d("tag", "fs" + responseBebidas);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    VolleyLog.e("Error: ", error.getMessage());
-                    Toast.makeText(getApplicationContext(), "Response:%n %s" + error.getMessage() + error.getStackTrace(),
-                            Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            queue.add(req);
-        }catch (Exception e){
-            Log.d("DEBUG","FALLE!!",e);
-        }
     }
 
     public ArrayList<Bebida> parsearBebidas (String response) {
@@ -536,7 +469,6 @@ public class ListaDeTragos extends AppCompatActivity {
         startActivity(pantallaInicial);
     }
 
-
     public void enviarMensajePrepararBebidaAhoraPorVoz(String idBebida, String hielo, String agitado){
 
         PreparaBebidaRequest request = new PreparaBebidaRequest();
@@ -583,7 +515,5 @@ public class ListaDeTragos extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-
 }
 

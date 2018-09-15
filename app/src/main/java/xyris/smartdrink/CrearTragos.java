@@ -54,17 +54,22 @@ public class CrearTragos extends AppCompatActivity {
 
     HashMap<String, Integer> configTrago = new HashMap<String, Integer>();
 
+    Boolean nombreBebidasExists;
+    ArrayList<String> nombreBebidasExistentes = new  ArrayList<String>();
     ArrayList<SaborEnBotella> listSaborEnBotella = new ArrayList<SaborEnBotella>();
     Integer[] porcentajeGustos = {0, 0, 0, 0, 0, 0};
     Integer[] porcentajes = {0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
 
-    String nombreBebida;
+    String nombreBebida = "";
     private String idDevice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_tragos);
+
+        nombreBebidasExistentes = getIntent().getExtras().getStringArrayList("nombreBebidasExistentes");
+
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         idDevice = sp.getString("idDevice", "ERROR");
@@ -217,7 +222,15 @@ public class CrearTragos extends AppCompatActivity {
 
                 ArrayList<SaborEnBebida> saboresNuevos = new ArrayList<SaborEnBebida>();
 
-                nombreBebida = editTextNombreBebida.getText().toString();
+                for(int j = 0; j < nombreBebidasExistentes.size(); j++) {
+                    if (editTextNombreBebida.getText().toString().equals(nombreBebidasExistentes.get(j))) {
+                        nombreBebidasExists = true;
+                    }
+                }
+                if(!nombreBebidasExists){
+                    nombreBebida = editTextNombreBebida.getText().toString();
+                }
+
                 porcentajeTotal = 0;
 
                 for (int i = 0; i < porcentajeGustos.length; i++) {
@@ -234,17 +247,25 @@ public class CrearTragos extends AppCompatActivity {
                 if ((nombreBebida.isEmpty()) || porcentajeTotal != 100 || saboresNuevos.size() > 4) {
 
                     if (nombreBebida.isEmpty()) {
-                        Toast.makeText(botonCrear.getContext(), "Por favor asigne un nombre a su bebida", Toast.LENGTH_SHORT).show();
+                        if (nombreBebidasExists) {
+                            Toast.makeText(botonCrear.getContext(), "El nombre ingresado ya existe. " +
+                                    "Por favor asigne otro nombre a su bebida.", Toast.LENGTH_SHORT).show();
+                            nombreBebidasExists = false;
+                        } else {
+                            Toast.makeText(botonCrear.getContext(), "Por favor asigne un nombre a su bebida.", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                     if (porcentajeTotal != 100) {
-                        Toast.makeText(botonCrear.getContext(), "El porcentaje es distinto de 100", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(botonCrear.getContext(), "El porcentaje es distinto de 100.", Toast.LENGTH_SHORT).show();
                     }
 
                     if (saboresNuevos.size() > 4) {
-                        Toast.makeText(botonCrear.getContext(), "No puede utilizar más de 4 gustos", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(botonCrear.getContext(), "No puede utilizar más de 4 gustos.", Toast.LENGTH_SHORT).show();
                     }
                 } else {
+
+
                     for (int i = 0; i < listSaborEnBotella.size(); i++) {
                         configTrago.put(listSaborEnBotella.get(i).getDescripcion(), porcentajeGustos[i]);
                     }
