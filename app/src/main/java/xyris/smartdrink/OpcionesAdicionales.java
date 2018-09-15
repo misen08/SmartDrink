@@ -48,7 +48,7 @@ public class OpcionesAdicionales  extends AppCompatActivity {
         setContentView(R.layout.opciones_adicionales);
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        String idDevice = sp.getString("idDevice","ERROR");
+        idDevice = sp.getString("idDevice","ERROR");
 
 
         //String urlGif = "https://domain.com/myanimatedgif.gif";
@@ -124,7 +124,7 @@ public class OpcionesAdicionales  extends AppCompatActivity {
         //La fecha y hora no se tienen en cuenta ya que el pedido se preparará en el momento.
         //Agendado posee valor "FALSE".
         PedidoBebida pedidoBebida = new PedidoBebida(idBebida, hielo, agitado,
-                "false", "2018-01-01T00:00:00");
+                "false", "");
 
         request.setPedidoBebida(pedidoBebida);
         request.setIdDispositivo(idDevice);
