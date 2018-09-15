@@ -1,5 +1,11 @@
 package xyris.smartdrink.entities;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 public class PedidoBebida {
 	private String idBebida;
 	private String hielo;
@@ -15,6 +21,10 @@ public class PedidoBebida {
 		this.agitado = agitado;
 		this.agendado = agendado;
 		this.fechaHoraAgendado = fechaHoraAgendado;
+	}
+
+	public PedidoBebida() {
+
 	}
 
 	public String getIdBebida() {
@@ -48,5 +58,53 @@ public class PedidoBebida {
 	public void setFechaHoraAgendado(String fechaHoraAgendado) {
 		this.fechaHoraAgendado = fechaHoraAgendado;
 	}
-	
+
+
+	public ArrayList<PedidoAgendado> parsearBebidasAgendadas (String response) {
+
+		JSONObject responseReader;
+
+		ArrayList<PedidoAgendado> listBebidasAgendadas = new ArrayList<PedidoAgendado>();
+
+		try {
+			responseReader = new JSONObject(response);
+			String codigoError = responseReader.getString("codigoError");
+
+			if("0".equals(codigoError.toString())){
+				// Se obtiene el nodo del array "pedidoBebida"
+				JSONArray pedidoAgendado = responseReader.getJSONArray("pedidos");
+
+				// Ciclando en todos los pedidos de bebida agendados
+				for (int i = 0; i < pedidoAgendado.length(); i++) {
+					String hielo="";
+					String agitado="";
+					JSONObject bebidaAgendada = pedidoAgendado.getJSONObject(i);
+					String idPedido = bebidaAgendada.getString("idPedido");
+					String idBebida = bebidaAgendada.getString("idBebida");
+					String descripcionBebida = bebidaAgendada.getString("descripcion");
+					if("true".equals(bebidaAgendada.getString("hielo").toString())){
+						hielo = "Con hielo";
+					} else {
+						hielo = "Sin hielo";
+					}
+					if("true".equals(bebidaAgendada.getString("agitado").toString())){
+						agitado = "Agitado";
+					} else {
+						agitado = "Sin agitar";
+					}
+					String agendado = bebidaAgendada.getString("agendado");
+					String fechaHoraAgendado = bebidaAgendada.getString("fechaHoraAgendado");
+
+					PedidoAgendado bebida = new PedidoAgendado(idBebida, descripcionBebida, hielo, agitado, agendado, fechaHoraAgendado, idPedido, descripcionBebida);
+
+					listBebidasAgendadas.add(bebida);
+				}
+			} else {
+				// TODO: manejar codigos de error de consultarPedidos
+			}
+
+		} catch (JSONException e) { e.printStackTrace(); }
+
+		return listBebidasAgendadas;
+	}
 }

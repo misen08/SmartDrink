@@ -7,8 +7,10 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -41,6 +43,8 @@ import xyris.smartdrink.http.WebServiceClient;
 public class BebidasProgramadas extends AppCompatActivity {
 
     JSONObject responseReader;
+    public int resultCode;
+    private static final int MODIFICAR_BEBIDAS_PROGAMADAS = 3;
 
     Drawable editImage;
     Drawable deleteImage;
@@ -97,8 +101,10 @@ public class BebidasProgramadas extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        listBebidasProgramadas = parsearBebidasAgendadas(responseReader.toString());
+        listBebidasProgramadas = new PedidoBebida().parsearBebidasAgendadas(responseReader.toString());
+
         itemsProgramados.clear();
+
         for(int i=0; i< listBebidasProgramadas.size(); i++){
             //Se llena el array de itemsProgramados (bebidas programadas)
             itemsProgramados.add(new CategoryListBebidasProgramadas(
@@ -112,57 +118,10 @@ public class BebidasProgramadas extends AppCompatActivity {
                     deleteImage));
         }
 
-
         lvBebidasProgramadas = (ListView) findViewById(R.id.listaBebidasProgramadas);
 
         lvBebidasProgramadas.setAdapter(new AdapterBebidasProgramadas(this, itemsProgramados));
 
-    }
-
-    public ArrayList<PedidoAgendado> parsearBebidasAgendadas (String response) {
-
-        ArrayList<PedidoAgendado> listBebidasAgendadas = new ArrayList<PedidoAgendado>();
-
-        try {
-            responseReader = new JSONObject(response);
-            String codigoError = responseReader.getString("codigoError");
-
-            if("0".equals(codigoError.toString())){
-                // Se obtiene el nodo del array "pedidoBebida"
-                JSONArray pedidoAgendado = responseReader.getJSONArray("pedidos");
-
-                // Ciclando en todos los pedidos de bebida agendados
-                for (int i = 0; i < pedidoAgendado.length(); i++) {
-                    String hielo="";
-                    String agitado="";
-                    JSONObject bebidaAgendada = pedidoAgendado.getJSONObject(i);
-                    String idPedido = bebidaAgendada.getString("idPedido");
-                    String idBebida = bebidaAgendada.getString("idBebida");
-                    String descripcionBebida = bebidaAgendada.getString("descripcion");
-                    if("true".equals(bebidaAgendada.getString("hielo").toString())){
-                        hielo = "Con hielo";
-                    } else {
-                        hielo = "Sin hielo";
-                    }
-                    if("true".equals(bebidaAgendada.getString("agitado").toString())){
-                        agitado = "Agitado";
-                    } else {
-                        agitado = "Sin agitar";
-                    }
-                    String agendado = bebidaAgendada.getString("agendado");
-                    String fechaHoraAgendado = bebidaAgendada.getString("fechaHoraAgendado");
-
-                    PedidoAgendado bebida = new PedidoAgendado(idBebida, descripcionBebida, hielo, agitado, agendado, fechaHoraAgendado, idPedido, descripcionBebida);
-
-                    listBebidasAgendadas.add(bebida);
-                }
-            } else {
-                // TODO: manejar codigos de error de consultarPedidos
-            }
-
-        } catch (JSONException e) { e.printStackTrace(); }
-
-        return listBebidasAgendadas;
     }
 
     public String fechaHoraFormateada(String fechaHoraFormatoDB){
@@ -233,7 +192,10 @@ public class BebidasProgramadas extends AppCompatActivity {
         modificarPedido.putExtra("fechaHoraAgendado", itemsProgramados.get(position).getFechaHora());
         startActivityForResult(modificarPedido, 3);
 
-        lvBebidasProgramadas.setAdapter(new AdapterBebidasProgramadas(this, itemsProgramados));
+        if (resultCode == RESULT_OK) {
+            obtenerListaBebidasAgendadas();
+            lvBebidasProgramadas.setAdapter(new AdapterBebidasProgramadas(this, itemsProgramados));
+        }
     }
 
     public void clickHandlerDeleteButton(View v, final int i, final ArrayList<CategoryListBebidasProgramadas> itemsProgramados) {
@@ -259,5 +221,21 @@ public class BebidasProgramadas extends AppCompatActivity {
         builder.show();
 
         lvBebidasProgramadas.setAdapter(new AdapterBebidasProgramadas(this, itemsProgramados));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case MODIFICAR_BEBIDAS_PROGAMADAS:
+                if (resultCode == RESULT_OK && null != data) {
+                    obtenerListaBebidasAgendadas();
+                }
+                break;
+            default:
+                break;
+        }
     }
 }

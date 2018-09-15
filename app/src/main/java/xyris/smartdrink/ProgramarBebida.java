@@ -30,17 +30,14 @@ import java.util.Date;
 import java.util.Locale;
 
 import ar.edu.xyris.smartdrinks.messages.preparacion.PreparaBebidaRequest;
+import xyris.smartdrink.entities.FechaHora;
 import xyris.smartdrink.entities.PedidoBebida;
 import xyris.smartdrink.http.WebServiceClient;
 
 import static java.lang.System.currentTimeMillis;
 
-
 public class ProgramarBebida extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String CERO = "0";
-    private static final String BARRA = "/";
-    private static final String DOS_PUNTOS = ":";
     public SimpleDateFormat fecha;
 
     //Calendario para obtener fecha & hora
@@ -136,11 +133,11 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
                 //Esta variable lo que realiza es aumentar en uno el mes ya que comienza desde 0 = enero
                 final int mesActual = month + 1;
                 //Formateo el día obtenido: antepone el 0 si son menores de 10
-                String diaFormateado = (dayOfMonth < 10)? CERO + String.valueOf(dayOfMonth):String.valueOf(dayOfMonth);
+                String diaFormateado = (dayOfMonth < 10)? "0" + String.valueOf(dayOfMonth):String.valueOf(dayOfMonth);
                 //Formateo el mes obtenido: antepone el 0 si son menores de 10
-                String mesFormateado = (mesActual < 10)? CERO + String.valueOf(mesActual):String.valueOf(mesActual);
+                String mesFormateado = (mesActual < 10)? "0" + String.valueOf(mesActual):String.valueOf(mesActual);
                 //Muestro la fecha con el formato deseado
-                etFecha.setText(diaFormateado + BARRA + mesFormateado + BARRA + year);
+                etFecha.setText(diaFormateado + "/" + mesFormateado + "/" + year);
             }
         },anio, mes, dia);
 
@@ -154,11 +151,11 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 //Formateo el hora obtenido: antepone el 0 si son menores de 10
-                String horaFormateada =  (hourOfDay < 10)? String.valueOf(CERO + hourOfDay) : String.valueOf(hourOfDay);
+                String horaFormateada =  (hourOfDay < 10)? String.valueOf("0" + hourOfDay) : String.valueOf(hourOfDay);
                 //Formateo el minuto obtenido: antepone el 0 si son menores de 10
-                String minutoFormateado = (minute < 10)? String.valueOf(CERO + minute):String.valueOf(minute);
+                String minutoFormateado = (minute < 10)? String.valueOf("0" + minute):String.valueOf(minute);
                 //Muestro la hora con el formato deseado
-                etHora.setText(horaFormateada + DOS_PUNTOS + minutoFormateado);
+                etHora.setText(horaFormateada + ":" + minutoFormateado);
             }
         }, hora, minuto, true);
 
@@ -176,14 +173,14 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
         Integer minutoActual = fechaActual.get(Calendar.MINUTE);
 
         // Formateo de acuerdo al formato que tienen los textView para comparar
-        String diaFormateado = (diaActual < 10) ? String.valueOf(CERO + diaActual.toString()) : String.valueOf(diaActual.toString());
-        String mesFormateado = (mesActual < 10) ? String.valueOf(CERO + mesActual.toString()) : String.valueOf(mesActual.toString());
-        String horaFormateada = (horaActual < 10) ? String.valueOf(CERO + horaActual.toString()) : String.valueOf(horaActual.toString());
-        String minutoFormateado = (minutoActual < 10) ? String.valueOf(CERO + minutoActual.toString()) : String.valueOf(minutoActual.toString());
+        String diaFormateado = (diaActual < 10) ? String.valueOf("0" + diaActual.toString()) : String.valueOf(diaActual.toString());
+        String mesFormateado = (mesActual < 10) ? String.valueOf("0" + mesActual.toString()) : String.valueOf(mesActual.toString());
+        String horaFormateada = (horaActual < 10) ? String.valueOf("0" + horaActual.toString()) : String.valueOf(horaActual.toString());
+        String minutoFormateado = (minutoActual < 10) ? String.valueOf("0" + minutoActual.toString()) : String.valueOf(minutoActual.toString());
 
         // Odeno la fecha en el formato yyyy/MM/dd para comparar String
-        String hoy = anioActual.toString() + BARRA + mesFormateado + BARRA + diaFormateado;
-        String ahora = horaFormateada + DOS_PUNTOS + minutoFormateado;
+        String hoy = anioActual.toString() + "/" + mesFormateado + "/" + diaFormateado;
+        String ahora = horaFormateada + ":" + minutoFormateado;
 
         String fechaIngresada = etFecha.getText().toString();
         String horaIngresada = etHora.getText().toString();
@@ -197,16 +194,13 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
         // Valido que fecha y hora sean posteriores a ahora.
         if(!fechaIngresada.isEmpty() && !horaIngresada.isEmpty()) {
             String fechaDiv [] = fechaIngresada.split("/");
-            fechaIngresada = fechaDiv[2] + BARRA + fechaDiv[1] + BARRA + fechaDiv[0];
+            fechaIngresada = fechaDiv[2] + "/" + fechaDiv[1] + "/" + fechaDiv[0];
 
             if ((fechaIngresada.compareTo(hoy) == 0 && horaIngresada.compareTo(ahora) > 0)
                     || (fechaIngresada.compareTo(hoy) > 0)) {
 
-//                fechaHoraAgendado = anioActual + "-" +  mesFormateado + "-" + diaFormateado +
-//                        "T" + horaFormateada + ":" + minutoFormateado + ":00";
-
                 //Se envía el mensaje para programar la bebida
-                enviarMensajePrepararBebidaProgramada(idBebida, hielo, agitado, (fechaHoraFormateada(fechaIngresada, horaIngresada)));
+                enviarMensajePrepararBebidaProgramada(idBebida, hielo, agitado, (new FechaHora().fechaHoraFormateada(fechaIngresada, horaIngresada)));
 
                 Toast.makeText(this, "Tu bebida fue programada", Toast.LENGTH_SHORT).show();
 
@@ -269,26 +263,5 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    public String fechaHoraFormateada(String fechaIngresada, String horaIngresada){
-
-        String[] f = fechaIngresada.split("/");
-        String anio = f[0]; // 17
-        String mes = f[1]; // 08
-        String dia = f[2]; // 2018
-
-        String[] h = horaIngresada.split(":");
-        String hh = h[0]; // 14
-        String mm = h[1]; // 53
-        String fechaHora = anio + "-" + mes + "-" + dia + "T" +  hh + ":" + mm + ":00";
-
-        return fechaHora;
-    }
-
-
-
-    public void enviarMensaje(String dia, String mes, Integer anio, String hora, String minuto) {
-        // TODO: Comunicarse con la base de datos para guardar la fecha de programacion
     }
 }

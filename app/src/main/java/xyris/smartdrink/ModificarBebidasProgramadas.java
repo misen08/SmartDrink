@@ -35,10 +35,6 @@ import xyris.smartdrink.http.WebServiceClient;
 
 public class ModificarBebidasProgramadas extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String CERO = "0";
-    private static final String BARRA = "/";
-    private static final String DOS_PUNTOS = ":";
-
     public final Calendar c = Calendar.getInstance();
 
     //Variables para obtener la fecha
@@ -71,8 +67,6 @@ public class ModificarBebidasProgramadas extends AppCompatActivity implements Vi
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         idDevice = sp.getString("idDevice","ERROR");
-
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
         tvNombreBebida = (TextView) findViewById(R.id.textViewNombreBebida);
         tvNombreBebida.setText(getIntent().getStringExtra("nombreBebida"));
@@ -134,9 +128,9 @@ public class ModificarBebidasProgramadas extends AppCompatActivity implements Vi
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 final int mesActual = month + 1;
-                String diaFormateado = (dayOfMonth < 10)? CERO + String.valueOf(dayOfMonth):String.valueOf(dayOfMonth);
-                String mesFormateado = (mesActual < 10)? CERO + String.valueOf(mesActual):String.valueOf(mesActual);
-                etFechaAgendada.setText(diaFormateado + BARRA + mesFormateado + BARRA + year);
+                String diaFormateado = (dayOfMonth < 10)? "0" + String.valueOf(dayOfMonth):String.valueOf(dayOfMonth);
+                String mesFormateado = (mesActual < 10)? "0" + String.valueOf(mesActual):String.valueOf(mesActual);
+                etFechaAgendada.setText(diaFormateado + "/" + mesFormateado + "/" + year);
             }
             //Estos valores deben ir en ese orden, de lo contrario no mostrara la fecha actual
             /**
@@ -152,9 +146,9 @@ public class ModificarBebidasProgramadas extends AppCompatActivity implements Vi
         TimePickerDialog recogerHora = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                String horaFormateada =  (hourOfDay < 10)? String.valueOf(CERO + hourOfDay) : String.valueOf(hourOfDay);
-                String minutoFormateado = (minute < 10)? String.valueOf(CERO + minute):String.valueOf(minute);
-                etHoraAgendada.setText(horaFormateada + DOS_PUNTOS + minutoFormateado);
+                String horaFormateada =  (hourOfDay < 10)? String.valueOf("0" + hourOfDay) : String.valueOf(hourOfDay);
+                String minutoFormateado = (minute < 10)? String.valueOf("0" + minute):String.valueOf(minute);
+                etHoraAgendada.setText(horaFormateada + ":" + minutoFormateado);
             }
             //Estos valores deben ir en ese orden
             //Al colocar en false se muestra en formato 12 horas y true en formato 24 horas
@@ -165,7 +159,10 @@ public class ModificarBebidasProgramadas extends AppCompatActivity implements Vi
     }
 
     public void modificarPedidoAgendado() {
-        //TODO: Enviar datos del pedido a la BD y actualizar la lista
+
+        hielo = "false";
+        agitado = "false";
+
         Calendar fechaActual = Calendar.getInstance();
 
         // Obtengo la feha y hora actuales
@@ -176,14 +173,14 @@ public class ModificarBebidasProgramadas extends AppCompatActivity implements Vi
         Integer minutoActual = fechaActual.get(Calendar.MINUTE);
 
         // Formateo de acuerdo al formato que tienen los textView para comparar
-        String diaFormateado = (diaActual < 10) ? String.valueOf(CERO + diaActual.toString()) : String.valueOf(diaActual.toString());
-        String mesFormateado = (mesActual < 10) ? String.valueOf(CERO + mesActual.toString()) : String.valueOf(mesActual.toString());
-        String horaFormateada = (horaActual < 10) ? String.valueOf(CERO + horaActual.toString()) : String.valueOf(horaActual.toString());
-        String minutoFormateado = (minutoActual < 10) ? String.valueOf(CERO + minutoActual.toString()) : String.valueOf(minutoActual.toString());
+        String diaFormateado = (diaActual < 10) ? String.valueOf("0" + diaActual.toString()) : String.valueOf(diaActual.toString());
+        String mesFormateado = (mesActual < 10) ? String.valueOf("0" + mesActual.toString()) : String.valueOf(mesActual.toString());
+        String horaFormateada = (horaActual < 10) ? String.valueOf("0" + horaActual.toString()) : String.valueOf(horaActual.toString());
+        String minutoFormateado = (minutoActual < 10) ? String.valueOf("0" + minutoActual.toString()) : String.valueOf(minutoActual.toString());
 
         // Odeno la fecha en el formato yyyy/MM/dd para comparar String
-        String hoy = anioActual.toString() + BARRA + mesFormateado + BARRA + diaFormateado;
-        String ahora = horaFormateada + DOS_PUNTOS + minutoFormateado;
+        String hoy = anioActual.toString() + "/" + mesFormateado + "/" + diaFormateado;
+        String ahora = horaFormateada + ":" + minutoFormateado;
 
         String fechaIngresada = etFechaAgendada.getText().toString();
         String horaIngresada = etHoraAgendada.getText().toString();
@@ -197,19 +194,25 @@ public class ModificarBebidasProgramadas extends AppCompatActivity implements Vi
         // Valido que fecha y hora sean posteriores a ahora.
         if(!fechaIngresada.isEmpty() && !horaIngresada.isEmpty()) {
             String fechaDiv[] = fechaIngresada.split("/");
-            fechaIngresada = fechaDiv[2] + BARRA + fechaDiv[1] + BARRA + fechaDiv[0];
+            fechaIngresada = fechaDiv[2] + "/" + fechaDiv[1] + "/" + fechaDiv[0];
 
             if ((fechaIngresada.compareTo(hoy) == 0 && horaIngresada.compareTo(ahora) > 0)
                     || (fechaIngresada.compareTo(hoy) > 0)) {
 
-                fechaHoraAgendado = anioActual + "-" +  mesFormateado + "-" + diaFormateado +
-                        "T" + horaFormateada + ":" + minutoFormateado + ":00";
+                fechaHoraAgendado = new FechaHora().fechaHoraFormateada(fechaIngresada, horaIngresada);
 
                 //Se envía el mensaje para modificar el pedido agendado
                 //ToDo: Crear "/modificarPedidoAgendado para realizar el update en la DB.
 
                 idPedido = getIntent().getStringExtra("idPedido");
                 idBebida = getIntent().getStringExtra("idBebida");
+
+                if(cbHielo.isChecked())
+                    hielo = "true";
+
+                if(cbAgitado.isChecked())
+                    agitado = "true";
+
                 enviarMensajeModificarPedido(idPedido, idBebida, hielo, agitado, fechaHoraAgendado);
                 Toast.makeText(this, "Pedido modificado", Toast.LENGTH_SHORT).show();
 
@@ -228,14 +231,6 @@ public class ModificarBebidasProgramadas extends AppCompatActivity implements Vi
     }
 
     public void enviarMensajeModificarPedido(String idPedido, String idBebida, String hielo, String agitado, String fechaHoraAgendado) {
-        hielo = "false";
-        agitado = "false";
-
-        if(hielo.equals("Con hielo"))
-            hielo = "true";
-
-        if(agitado.equals("Agitado"))
-            agitado = "true";
 
         ModificaPedidoRequest request = new ModificaPedidoRequest();
 
@@ -247,8 +242,6 @@ public class ModificarBebidasProgramadas extends AppCompatActivity implements Vi
         request.setIdPedido(idPedido);
         request.setPedidoBebida(pedidoAgendado);
         request.setIdDispositivo(idDevice);
-        //Se obtiene la fecha y hora actual y se le aplica el formato que necesita recibir el mensaje.
-        //A "fechaHoraPeticion" se deberá asignar "currentFormattedDate".
         request.setFechaHoraPeticion(new FechaHora().formatDate(Calendar.getInstance().getTime()));
 
         ObjectMapper mapper = new ObjectMapper();
