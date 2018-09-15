@@ -4,6 +4,11 @@ public class Botella {
 	private String idBotella;
 	private String idSabor;
 
+	public Botella(String idBotella, String idSabor) {
+		this.idBotella = idBotella;
+		this.idSabor = idSabor;
+	}
+
 	/**
 	 * @return the idBotella
 	 */
