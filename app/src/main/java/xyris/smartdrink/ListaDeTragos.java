@@ -59,6 +59,8 @@ public class ListaDeTragos extends AppCompatActivity {
     ListView lv;
 
     String responseBebidas;
+    String codigoErrorEliminarBebida;
+    String descripcionErrorEliminarBebida;
     JSONObject responseReader;
 
     ArrayList<Bebida> listBebida = new ArrayList<Bebida>();
@@ -328,7 +330,7 @@ public class ListaDeTragos extends AppCompatActivity {
         Log.d("Info button", "Button info");
     }
 
-        public void clickHandlerDeleteButton(View v, final int i, ArrayList<CategoryList> items) {
+    public void clickHandlerDeleteButton(View v, final int i, ArrayList<CategoryList> items) {
 
         String titleDelete = "Eliminar bebida";
         String messageDelete = "¿Está seguro que desea eliminar esta bebida?";
@@ -343,8 +345,15 @@ public class ListaDeTragos extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 String idBebida = listBebida.get(i).getIdBebida();
                 enviarMensajeEliminarBebida(idBebida);
-                obtenerLista();
-                Toast.makeText(ListaDeTragos.this, "Borrado", Toast.LENGTH_SHORT).show();
+                if("0".equals(codigoErrorEliminarBebida)){
+                    obtenerLista();
+                    Toast.makeText(ListaDeTragos.this, "Se eliminó la bebida seleccionada.",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(ListaDeTragos.this, descripcionErrorEliminarBebida + " " +
+                            "Código de error: " + codigoErrorEliminarBebida,
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
         builder.setNegativeButton("No", null);
@@ -377,47 +386,54 @@ public class ListaDeTragos extends AppCompatActivity {
 //    }
 
 
-public void enviarMensajeEliminarBebida(String idBebida){
+    public void enviarMensajeEliminarBebida(String idBebida){
 
-    EliminaBebidaRequest request = new EliminaBebidaRequest();
-    request.setIdDispositivo(idDevice);
-    //Se obtiene la fecha y hora actual y se le aplica el formato que necesita recibir el mensaje.
-    //A "fechaHoraPeticion" se deberá asignar "currentFormattedDate".
-    Date currentDate = Calendar.getInstance().getTime();
-    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-    String currentFormattedDate = df.format(currentDate);
-    request.setFechaHoraPeticion(currentFormattedDate);
-   // request.setFechaHoraPeticion("2018-08-08T20:20:20");
+        EliminaBebidaRequest request = new EliminaBebidaRequest();
+        request.setIdDispositivo(idDevice);
+        //Se obtiene la fecha y hora actual y se le aplica el formato que necesita recibir el mensaje.
+        //A "fechaHoraPeticion" se deberá asignar "currentFormattedDate".
+        Date currentDate = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        String currentFormattedDate = df.format(currentDate);
+        request.setFechaHoraPeticion(currentFormattedDate);
+        // request.setFechaHoraPeticion("2018-08-08T20:20:20");
 
-    request.setIdBebida(idBebida);
+        request.setIdBebida(idBebida);
 
-    ObjectMapper mapper = new ObjectMapper();
-    JSONObject object = null;
-    try {
-        object = new JSONObject(mapper.writeValueAsString(request));
-    } catch (Exception e) {
-        Log.d("ELIMINAR_BEBIDA","ELIMINAR_BEBIDAS: " + e.getMessage());
-    }
-
-    final JSONObject finalObject = object;
-    Thread thread = new Thread(){
-        public void run(){
-
-            WebServiceClient cli = new WebServiceClient("/eliminarBebida", finalObject);
-
-            responseReader = (JSONObject) cli.getResponse();
-
-            Log.d("ELIMINAR_BEBIDA","ELIMINAR_BEBIDAS: " + responseReader.toString());
+        ObjectMapper mapper = new ObjectMapper();
+        JSONObject object = null;
+        try {
+            object = new JSONObject(mapper.writeValueAsString(request));
+        } catch (Exception e) {
+            Log.d("ELIMINAR_BEBIDA","ELIMINAR_BEBIDAS: " + e.getMessage());
         }
-    };
 
-    thread.start();
-    try {
-        thread.join();
-    } catch (InterruptedException e) {
-        e.printStackTrace();
+        final JSONObject finalObject = object;
+        Thread thread = new Thread(){
+            public void run(){
+
+                WebServiceClient cli = new WebServiceClient("/eliminarBebida", finalObject);
+
+                responseReader = (JSONObject) cli.getResponse();
+
+                Log.d("ELIMINAR_BEBIDA","ELIMINAR_BEBIDAS: " + responseReader.toString());
+            }
+        };
+
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        try {
+
+            codigoErrorEliminarBebida = responseReader.getString("codigoError");
+            descripcionErrorEliminarBebida = responseReader.getString("descripcionError");
+
+        } catch (JSONException e) { e.printStackTrace(); }
     }
-}
 
     public void enviarMensajeConsultarBebidas(){
         // Instantiate the RequestQueue.
@@ -570,3 +586,4 @@ public void enviarMensajeEliminarBebida(String idBebida){
 
 
 }
+
