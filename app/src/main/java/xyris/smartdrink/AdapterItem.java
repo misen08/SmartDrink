@@ -2,6 +2,8 @@ package xyris.smartdrink;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ public class AdapterItem extends BaseAdapter {
 
     protected Activity activity;
     protected ArrayList<CategoryList> items;
+    SharedPreferences sp;
 
     public AdapterItem (Activity activity, ArrayList<CategoryList> items) {
         this.activity = activity;
@@ -54,7 +57,13 @@ public class AdapterItem extends BaseAdapter {
 
         if (convertView == null) {
             LayoutInflater inf = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inf.inflate(R.layout.item_category, null);
+            sp = PreferenceManager.getDefaultSharedPreferences(this.activity);
+
+            if(sp.getString("modoViernes", "ERROR").equals("activado")) {
+                v = inf.inflate(R.layout.item_category_viernes, null);
+            } else {
+                v = inf.inflate(R.layout.item_category, null);
+            }
         }
 
         CategoryList dir = items.get(position);

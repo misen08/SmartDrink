@@ -2,15 +2,12 @@ package xyris.smartdrink;
 
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
-import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.speech.RecognizerIntent;
-import android.support.annotation.RequiresPermission;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,13 +21,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONArray;
@@ -42,7 +32,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 
 import ar.edu.xyris.smartdrinks.messages.eliminacion.bebida.EliminaBebidaRequest;
 import ar.edu.xyris.smartdrinks.messages.preparacion.PreparaBebidaRequest;
@@ -76,15 +65,20 @@ public class ListaDeTragos extends AppCompatActivity {
     SharedPreferences sp;
     SharedPreferences.Editor modoViernesEditor;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lista_de_tragos);
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
+
+        if(sp.getString("modoViernes", "ERROR").equals("activado")) {
+            setContentView(R.layout.lista_de_tragos_viernes);
+        } else {
+            setContentView(R.layout.lista_de_tragos);
+        }
         FloatingActionButton botonCrearTrago = findViewById(R.id.botonCrearTrago);
         infoImage = getResources().getDrawable(R.drawable.info_icon);
         deleteImage = getResources().getDrawable(R.drawable.delete_icon);
-        sp = PreferenceManager.getDefaultSharedPreferences(this);
+
 
         idDevice = sp.getString("idDevice","ERROR");
 
@@ -145,18 +139,22 @@ public class ListaDeTragos extends AppCompatActivity {
                     item.setTitle("Desactivar modo viernes");
                     modoViernesEditor.putString("modoViernes",modoViernesStatus);
                     modoViernesEditor.commit();
+                    Intent activarModoViernes = new Intent(this, ListaDeTragos.class);
+                    startActivity(activarModoViernes);
+                    finish();
                     Toast.makeText(this, "Modo viernes: Activado", Toast.LENGTH_LONG).show();
                 } else {
                     modoViernesStatus = "desactivado";
                     item.setTitle("Activar modo viernes");
                     modoViernesEditor.putString("modoViernes",modoViernesStatus);
                     modoViernesEditor.commit();
+                    Intent desactivarModoViernes = new Intent(this, ListaDeTragos.class);
+                    startActivity(desactivarModoViernes);
+                    finish();
                     Toast.makeText(this, "Modo viernes: Desactivado", Toast.LENGTH_LONG).show();
                 }
-
                 break;
             case R.id.mantenimiento:
-                Toast.makeText(this, "Ver tema mantenimiento", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, Mantenimiento.class);
                 startActivity(intent);
                 break;
@@ -181,7 +179,6 @@ public class ListaDeTragos extends AppCompatActivity {
         intent.putExtra("nombreBebidasExistentes", nombreBebidasExistentes);
         startActivityForResult(intent, 2);
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode,
@@ -309,17 +306,20 @@ public class ListaDeTragos extends AppCompatActivity {
         }
 
         listBebida = parsearBebidas(responseReader.toString());
+        String [] bebidas = new String[listBebida.size()];
         items.clear();
         for(int i=0; i< listBebida.size(); i++){
             //Se llena el array de itemsProgramados (bebidas) - el ID de bebida y el nombre debe tomarlo de la DB
             items.add(new CategoryList(listBebida.get(i).getIdBebida(), listBebida.get(i).getDescripcion(), infoImage, deleteImage));
             //Se obtiene el nombre de las bebidas existentes para validar cuando se crea una nueva bebida.
             nombreBebidasExistentes.add(listBebida.get(i).getDescripcion());
+            bebidas[i] = listBebida.get(i).getDescripcion();
         }
 
         lv = (ListView) findViewById(R.id.listaTragos);
 
         lv.setAdapter(new AdapterItem(this, items));
+
     }
 
     public void clickHandlerInfoButton(View v, int position) {

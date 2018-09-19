@@ -8,11 +8,7 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 import android.view.WindowManager;
-import com.google.zxing.multi.qrcode.QRCodeMultiReader;
-
-import javax.xml.datatype.Duration;
 
 public class PantallaSplash extends AppCompatActivity {
 
@@ -30,6 +26,14 @@ public class PantallaSplash extends AppCompatActivity {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         final String ipLeida = ipPlaca; //sp.getString("IP","ERROR");
 
+        // Inicializar modo viernes como desactivado
+        if(sp.getString("modoViernes", "ERROR").equals("ERROR")) {
+            SharedPreferences.Editor editorModoViernes = sp.edit();
+            editorModoViernes.putString("modoViernes", "desactivado");
+            editorModoViernes.commit();
+        }
+
+        // Se obtiene el id device del dispositivo y se almacena para ser usado en otras clases
         String idDevice = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         SharedPreferences.Editor editorIdDevice = sp.edit();
         editorIdDevice.putString("idDevice", idDevice);

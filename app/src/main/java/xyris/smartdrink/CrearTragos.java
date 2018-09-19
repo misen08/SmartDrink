@@ -3,7 +3,6 @@ package xyris.smartdrink;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.TestLooperManager;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,15 +19,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import com.android.volley.*;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-
 
 import ar.edu.xyris.smartdrinks.messages.creacion.bebida.CreaBebidaRequest;
 import xyris.smartdrink.entities.Bebida;
@@ -36,9 +29,6 @@ import xyris.smartdrink.entities.FechaHora;
 import xyris.smartdrink.entities.SaborEnBebida;
 import xyris.smartdrink.entities.SaborEnBotella;
 import xyris.smartdrink.http.WebServiceClient;
-
-//import xyris.smartdrink.entities.Bebida;
-//import xyris.smartdrink.entities.SaborEnBebida;
 
 public class CrearTragos extends AppCompatActivity {
 
@@ -54,7 +44,8 @@ public class CrearTragos extends AppCompatActivity {
 
     HashMap<String, Integer> configTrago = new HashMap<String, Integer>();
 
-    Boolean nombreBebidasExists;
+    Boolean nombreBebidasExists = false;
+    SharedPreferences sp;
     ArrayList<String> nombreBebidasExistentes = new  ArrayList<String>();
     ArrayList<SaborEnBotella> listSaborEnBotella = new ArrayList<SaborEnBotella>();
     Integer[] porcentajeGustos = {0, 0, 0, 0, 0, 0};
@@ -66,10 +57,14 @@ public class CrearTragos extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crear_tragos);
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
 
+        if(sp.getString("modoViernes", "ERROR").equals("activado")) {
+            setContentView(R.layout.activity_crear_tragos_viernes);
+        } else {
+            setContentView(R.layout.activity_crear_tragos);
+        }
         nombreBebidasExistentes = getIntent().getExtras().getStringArrayList("nombreBebidasExistentes");
-
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         idDevice = sp.getString("idDevice", "ERROR");
@@ -264,7 +259,6 @@ public class CrearTragos extends AppCompatActivity {
                         Toast.makeText(botonCrear.getContext(), "No puede utilizar más de 4 gustos.", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-
 
                     for (int i = 0; i < listSaborEnBotella.size(); i++) {
                         configTrago.put(listSaborEnBotella.get(i).getDescripcion(), porcentajeGustos[i]);
