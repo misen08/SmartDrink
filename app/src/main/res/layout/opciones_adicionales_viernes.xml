@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondoModoViernes"
+    tools:layout_editor_absoluteY="81dp">
+
+    <TextView
+        android:id="@+id/textViewOpcionesAdicionales"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:text="Completá tu bebida"
+        android:textAlignment="center"
+        android:textColor="@color/amarilloModoViernes"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageViewAgregarHielo"
+        android:layout_width="80dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginEnd="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewDivisorOA"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewDivisorOA"
+        app:srcCompat="@drawable/ice_icon" />
+
+    <CheckBox
+        android:id="@+id/checkBoxAgregarHielo"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginStart="10dp"
+        android:button="@null"
+        android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+        android:text="Agregar hielo"
+        android:textAlignment="center"
+        android:textColor="@color/amarilloModoViernes"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewDivisorOA"
+        app:layout_constraintStart_toEndOf="@+id/imageViewDivisorOA" />
+
+    <ImageView
+        android:id="@+id/imageViewAgitado"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewDivisorOA"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewDivisorOA"
+        app:srcCompat="@drawable/agitar_icon" />
+
+    <CheckBox
+        android:id="@+id/checkBoxMezclarBebida"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:button="@null"
+        android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+        android:text="Agitar bebida"
+        android:textAlignment="center"
+        android:textColor="@color/amarilloModoViernes"
+        android:textSize="30dp"
+        app:layout_constraintStart_toEndOf="@+id/imageViewDivisorOA"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewDivisorOA" />
+
+    <Button
+        android:id="@+id/botonPrepararAhora"
+        android:layout_width="270dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/amarilloModoViernes"
+        android:text="Preparar ahora"
+        android:textColor="@color/fondoModoViernes"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/botonProgramarBebida"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/botonProgramarBebida"
+        android:layout_width="270dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/amarilloModoViernes"
+        android:text="Programar para después"
+        android:textColor="@color/fondoModoViernes"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageViewDivisorOA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:color/transparent" />
+
+</android.support.constraint.ConstraintLayout>

@@ -65,12 +65,22 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
 
     private String idDevice;
 
-    String hielo, agitado, idBebida, fechaHoraAgendado;
+    String hielo, agitado, idBebida;
+    private String modoViernesStatus;
+    SharedPreferences sp;
+    SharedPreferences.Editor modoViernesEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.programar_bebida);
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
+        modoViernesStatus = sp.getString("modoViernes", "ERROR");
+
+        if(modoViernesStatus.equals("activado")) {
+            setContentView(R.layout.programar_bebida_viernes);
+        } else {
+            setContentView(R.layout.programar_bebida);
+        }
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         idDevice = sp.getString("idDevice","ERROR");

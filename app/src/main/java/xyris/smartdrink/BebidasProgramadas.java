@@ -54,11 +54,23 @@ public class BebidasProgramadas extends AppCompatActivity {
     ArrayList<CategoryListBebidasProgramadas> itemsProgramados = new ArrayList<CategoryListBebidasProgramadas>();
 
     private String idDevice;
+    private String modoViernesStatus;
+    SharedPreferences sp;
+    SharedPreferences.Editor modoViernesEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bebidas_programadas);
+
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
+        modoViernesStatus = sp.getString("modoViernes", "ERROR");
+
+        if(modoViernesStatus.equals("activado")) {
+            setContentView(R.layout.bebidas_programadas_viernes);
+        } else {
+            setContentView(R.layout.bebidas_programadas);
+        }
+
         editImage = getResources().getDrawable(R.drawable.edit_icon);
         deleteImage = getResources().getDrawable(R.drawable.delete_icon);
 

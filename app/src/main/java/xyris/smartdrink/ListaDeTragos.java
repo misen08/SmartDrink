@@ -69,22 +69,19 @@ public class ListaDeTragos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sp = PreferenceManager.getDefaultSharedPreferences(this);
+        modoViernesStatus = sp.getString("modoViernes", "ERROR");
 
-        if(sp.getString("modoViernes", "ERROR").equals("activado")) {
+        if(modoViernesStatus.equals("activado")) {
             setContentView(R.layout.lista_de_tragos_viernes);
         } else {
             setContentView(R.layout.lista_de_tragos);
         }
+
         FloatingActionButton botonCrearTrago = findViewById(R.id.botonCrearTrago);
         infoImage = getResources().getDrawable(R.drawable.info_icon);
         deleteImage = getResources().getDrawable(R.drawable.delete_icon);
 
-
         idDevice = sp.getString("idDevice","ERROR");
-
-        modoViernesStatus = sp.getString("modoViernes", "ERROR");
-
-        Toast.makeText(this, "modo viernes status: " + modoViernesStatus, Toast.LENGTH_LONG).show();
 
         obtenerLista();
 
@@ -114,6 +111,18 @@ public class ListaDeTragos extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+
+        if(modoViernesStatus.equals("activado")) {
+            menu.getItem(3).setTitle("Desactivar modo viernes");
+        } else {
+            menu.getItem(3).setTitle("Activar modo viernes");
+        }
+        return true;
+    }
+
     // Opciones del menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -128,15 +137,13 @@ public class ListaDeTragos extends AppCompatActivity {
                 startActivity(cambiarSabores);
                 break;
             case R.id.modo_viernes:
-                //ToDo: ver cómo traer el texto correcto del menu "modo viernes" al abrir la aplicación.
                 //ToDo: ver cómo se va a implementar el "modo viernes".
 
                 modoViernesStatus = sp.getString("modoViernes", "ERROR");
                 modoViernesEditor = sp.edit();
 
-                if("desactivado".equals(modoViernesStatus)){
+                if(modoViernesStatus.equals("desactivado")) {
                     modoViernesStatus = "activado";
-                    item.setTitle("Desactivar modo viernes");
                     modoViernesEditor.putString("modoViernes",modoViernesStatus);
                     modoViernesEditor.commit();
                     Intent activarModoViernes = new Intent(this, ListaDeTragos.class);
@@ -145,7 +152,6 @@ public class ListaDeTragos extends AppCompatActivity {
                     Toast.makeText(this, "Modo viernes: Activado", Toast.LENGTH_LONG).show();
                 } else {
                     modoViernesStatus = "desactivado";
-                    item.setTitle("Activar modo viernes");
                     modoViernesEditor.putString("modoViernes",modoViernesStatus);
                     modoViernesEditor.commit();
                     Intent desactivarModoViernes = new Intent(this, ListaDeTragos.class);

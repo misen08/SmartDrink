@@ -2,6 +2,8 @@ package xyris.smartdrink;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +19,7 @@ public class AdapterBebidasProgramadas extends BaseAdapter {
 
     protected Activity activity;
     protected ArrayList<CategoryListBebidasProgramadas> itemsProgramados;
+    SharedPreferences sp;
 
     public AdapterBebidasProgramadas(Activity activity, ArrayList<CategoryListBebidasProgramadas> itemsProgramados) {
         this.activity = activity;
@@ -55,7 +58,13 @@ public class AdapterBebidasProgramadas extends BaseAdapter {
 
         if (convertView == null) {
             LayoutInflater inf = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inf.inflate(R.layout.item_category_bebidas_programadas, null);
+            sp = PreferenceManager.getDefaultSharedPreferences(this.activity);
+
+            if(sp.getString("modoViernes", "ERROR").equals("activado")) {
+                v = inf.inflate(R.layout.item_category_bebidas_programadas_viernes, null);
+            } else {
+                v = inf.inflate(R.layout.item_category_bebidas_programadas, null);
+            }
         }
 
         CategoryListBebidasProgramadas dir = itemsProgramados.get(position);
