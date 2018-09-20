@@ -35,7 +35,9 @@ public class OpcionesAdicionales  extends AppCompatActivity {
     CheckBox agregarHielo;
     CheckBox agitarBebida;
     String idBebida;
+    String modoViernesStatus;
     private String idDevice;
+
 
     JSONObject responseReader;
 
@@ -50,7 +52,7 @@ public class OpcionesAdicionales  extends AppCompatActivity {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         idDevice = sp.getString("idDevice","ERROR");
 
-
+        modoViernesStatus = getIntent().getExtras().getString("modoViernes");
         //String urlGif = "https://domain.com/myanimatedgif.gif";
         //Agregar implementacion Glide dentro de archivo build.gradle.
         //ImageView imgIceCube = (ImageView)findViewById(R.id.imageView2);
@@ -82,6 +84,7 @@ public class OpcionesAdicionales  extends AppCompatActivity {
                 String esAgitado = agitado.toString();
                 enviarMensajePrepararBebidaAhora(idBebida, hielo, esAgitado);
                 Intent prepararTrago = new Intent(OpcionesAdicionales.this, PreparandoTrago.class);
+                prepararTrago.putExtra("modoViernes", modoViernesStatus);
                 startActivity(prepararTrago);
             }
         });

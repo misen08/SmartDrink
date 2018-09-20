@@ -171,6 +171,8 @@ public class ListaDeTragos extends AppCompatActivity {
     public void abrirOpcionesAdicionales(View v, int i) {
         Intent intent = new Intent(this, OpcionesAdicionales.class);
         intent.putExtra("idBebida", listBebida.get(i).getIdBebida());
+        intent.putExtra("modoViernes", modoViernesStatus);
+
         startActivity(intent);
     }
 
