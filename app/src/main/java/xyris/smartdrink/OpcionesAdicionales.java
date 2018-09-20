@@ -42,12 +42,21 @@ public class OpcionesAdicionales  extends AppCompatActivity {
     JSONObject responseReader;
 
     private static final int PROGRAMAR_BEBIDA_ACTIVITY = 3;
-
+    private String modoViernesStatus;
+    SharedPreferences sp;
+    SharedPreferences.Editor modoViernesEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.opciones_adicionales);
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
+        modoViernesStatus = sp.getString("modoViernes", "ERROR");
+
+        if(modoViernesStatus.equals("activado")) {
+            setContentView(R.layout.opciones_adicionales_viernes);
+        } else {
+            setContentView(R.layout.opciones_adicionales);
+        }
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         idDevice = sp.getString("idDevice","ERROR");
