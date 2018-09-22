@@ -36,6 +36,7 @@ import java.util.HashMap;
 import ar.edu.xyris.smartdrinks.messages.eliminacion.bebida.EliminaBebidaRequest;
 import ar.edu.xyris.smartdrinks.messages.preparacion.PreparaBebidaRequest;
 import xyris.smartdrink.entities.Bebida;
+import xyris.smartdrink.entities.FechaHora;
 import xyris.smartdrink.entities.PedidoBebida;
 import xyris.smartdrink.entities.SaborEnBebida;
 import xyris.smartdrink.http.WebServiceClient;
@@ -47,19 +48,18 @@ public class ListaDeTragos extends AppCompatActivity {
     Drawable deleteImage;
     ListView lv;
 
-    ArrayList<String> nombreBebidasExistentes = new ArrayList<String>();
-    String responseBebidas;
-    String codigoErrorEliminarBebida;
-    String descripcionErrorEliminarBebida;
     JSONObject responseReader;
 
     ArrayList<Bebida> listBebida = new ArrayList<Bebida>();
     //Se crea el array de itemsProgramados (bebidas)
     ArrayList<CategoryList> items = new ArrayList<CategoryList>();
+    ArrayList<String> nombreBebidasExistentes = new ArrayList<String>();
 
     private static final int RECOGNIZE_SPEECH_ACTIVITY = 1;
     private static final int CREAR_TRAGO_ACTIVITY = 2;
 
+    String codigoErrorEliminarBebida;
+    String descripcionErrorEliminarBebida;
     private String idDevice;
     private String modoViernesStatus;
     SharedPreferences sp;
@@ -490,12 +490,8 @@ public class ListaDeTragos extends AppCompatActivity {
 
         request.setPedidoBebida(pedidoBebida);
         request.setIdDispositivo(idDevice);
-        //Se obtiene la fecha y hora actual y se le aplica el formato que necesita recibir el mensaje.
-        //A "fechaHoraPeticion" se deberá asignar "currentFormattedDate".
-        Date currentDate = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        String currentFormattedDate = df.format(currentDate);
-        request.setFechaHoraPeticion(currentFormattedDate);
+        request.setFechaHoraPeticion(new FechaHora().formatDate(Calendar.getInstance().getTime()));
+
         ObjectMapper mapper = new ObjectMapper();
         JSONObject object = null;
         try {

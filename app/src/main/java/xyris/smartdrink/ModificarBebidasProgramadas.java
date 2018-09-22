@@ -60,12 +60,20 @@ public class ModificarBebidasProgramadas extends AppCompatActivity implements Vi
     private String hielo;
     private String agitado;
     private String fechaHoraAgendado;
+    private String modoViernesStatus;
+    SharedPreferences sp;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.modificar_bebidas_programadas);
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
+        modoViernesStatus = sp.getString("modoViernes", "ERROR");
 
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        if(modoViernesStatus.equals("activado")) {
+            setContentView(R.layout.modificar_bebidas_programadas_viernes);
+        } else {
+            setContentView(R.layout.modificar_bebidas_programadas);
+        }
+
         idDevice = sp.getString("idDevice","ERROR");
 
         tvNombreBebida = (TextView) findViewById(R.id.textViewNombreBebida);

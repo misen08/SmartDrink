@@ -1,10 +1,8 @@
 package xyris.smartdrink;
 
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,14 +15,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 import ar.edu.xyris.smartdrinks.messages.preparacion.PreparaBebidaRequest;
+import xyris.smartdrink.entities.FechaHora;
 import xyris.smartdrink.entities.PedidoBebida;
 import xyris.smartdrink.http.WebServiceClient;
-
 
 public class OpcionesAdicionales  extends AppCompatActivity {
 
@@ -34,17 +31,14 @@ public class OpcionesAdicionales  extends AppCompatActivity {
     Button botonPrepararAhora;
     CheckBox agregarHielo;
     CheckBox agitarBebida;
-    String idBebida;
-    String modoViernesStatus;
-    private String idDevice;
 
+    private String idDevice;
 
     JSONObject responseReader;
 
     private static final int PROGRAMAR_BEBIDA_ACTIVITY = 3;
 
     SharedPreferences sp;
-    SharedPreferences.Editor modoViernesEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +55,6 @@ public class OpcionesAdicionales  extends AppCompatActivity {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         idDevice = sp.getString("idDevice","ERROR");
 
-        modoViernesStatus = getIntent().getExtras().getString("modoViernes");
         //String urlGif = "https://domain.com/myanimatedgif.gif";
         //Agregar implementacion Glide dentro de archivo build.gradle.
         //ImageView imgIceCube = (ImageView)findViewById(R.id.imageView2);
@@ -72,6 +65,7 @@ public class OpcionesAdicionales  extends AppCompatActivity {
         botonPrepararAhora = (Button) findViewById(R.id.botonPrepararAhora);
         agregarHielo = (CheckBox)findViewById(R.id.checkBoxAgregarHielo);
         agitarBebida = (CheckBox)findViewById(R.id.checkBoxMezclarBebida);
+
         botonProgramarBebida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,7 +87,6 @@ public class OpcionesAdicionales  extends AppCompatActivity {
                 String esAgitado = agitado.toString();
                 enviarMensajePrepararBebidaAhora(idBebida, hielo, esAgitado);
                 Intent prepararTrago = new Intent(OpcionesAdicionales.this, PreparandoTrago.class);
-                prepararTrago.putExtra("modoViernes", modoViernesStatus);
                 startActivity(prepararTrago);
             }
         });
@@ -103,11 +96,6 @@ public class OpcionesAdicionales  extends AppCompatActivity {
     public void verficarFlags() {
         conHielo = agregarHielo.isChecked();
         agitado = agitarBebida.isChecked();
-    }
-
-    public void abrirPreparandoTrago(View v) {
-        Intent intent = new Intent(this, PreparandoTrago.class);
-        startActivity(intent);
     }
 
     @Override
@@ -140,12 +128,8 @@ public class OpcionesAdicionales  extends AppCompatActivity {
 
         request.setPedidoBebida(pedidoBebida);
         request.setIdDispositivo(idDevice);
-        //Se obtiene la fecha y hora actual y se le aplica el formato que necesita recibir el mensaje.
-        //A "fechaHoraPeticion" se deberá asignar "currentFormattedDate".
-        Date currentDate = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        String currentFormattedDate = df.format(currentDate);
-        request.setFechaHoraPeticion(currentFormattedDate);
+        request.setFechaHoraPeticion(new FechaHora().formatDate(Calendar.getInstance().getTime()));
+
         ObjectMapper mapper = new ObjectMapper();
         JSONObject object = null;
         try {

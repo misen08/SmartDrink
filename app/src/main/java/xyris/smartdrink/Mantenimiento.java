@@ -35,18 +35,24 @@ public class Mantenimiento extends AppCompatActivity {
 
     JSONObject responseReader;
     private String idDevice;
+    private String modoViernesStatus;
     SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mantenimiento);
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
+        modoViernesStatus = sp.getString("modoViernes", "ERROR");
+
+        if(modoViernesStatus.equals("activado")) {
+            setContentView(R.layout.mantenimiento_viernes);
+        } else {
+            setContentView(R.layout.mantenimiento);
+        }
 
         final Button buttonMantenimientoVolver = (Button) findViewById(R.id.buttonMantenimientoVolver);
         final Button buttonMantenimientoRealizado = (Button) findViewById(R.id.buttonMantenimientoRealizado);
         cantidadBebidasPreparadas = findViewById(R.id.tvCantidadBebidasPreparadas).toString();
-
-        sp = PreferenceManager.getDefaultSharedPreferences(this);
 
         idDevice = sp.getString("idDevice","ERROR");
 
@@ -60,8 +66,6 @@ public class Mantenimiento extends AppCompatActivity {
         lvFechas = (ListView) findViewById(R.id.lvFechaNotificaciones);
 
         lvFechas.setAdapter(new AdapterMantenimiento(this, items));
-
-
 
         buttonMantenimientoRealizado.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,4 +158,3 @@ public class Mantenimiento extends AppCompatActivity {
         }
 
     }
-
