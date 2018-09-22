@@ -1,7 +1,13 @@
 package xyris.smartdrink;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -13,38 +19,38 @@ public class PreparandoTrago  extends AppCompatActivity {
 
     Button btnCerrar;
     ImageButton btnMusic;
-    String botonStartMusicStatus = "true";
+    String botonStartMusicStatus = "false";
     String modoViernesStatus;
-//    Intent svcBrunoMars;
-//    Intent svcMaluma;
-    MediaPlayer songBrunoMars;
-    MediaPlayer songMaluma;
+    MediaPlayer songModoNormal;
+    MediaPlayer songModoViernes;
 
     private static final String STATUS_TRUE = "true";
     private static final String STATUS_FALSE = "false";
 
+    SharedPreferences sp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.preparando_trago);
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
+        modoViernesStatus = sp.getString("modoViernes", "ERROR");
+
+        if(modoViernesStatus.equals("activado")) {
+            setContentView(R.layout.preparando_trago);
+        } else {
+            setContentView(R.layout.preparando_trago);
+        }
+
         btnMusic = findViewById(R.id.btnMusic);
         btnCerrar = findViewById(R.id.btnCerrar);
 
-        songBrunoMars = MediaPlayer.create(PreparandoTrago.this,R.raw.brunomars);
-        songMaluma = MediaPlayer.create(PreparandoTrago.this,R.raw.maluma);
-
-        modoViernesStatus = getIntent().getExtras().getString("modoViernes");
-        Toast.makeText(this, "modo viernes: " + modoViernesStatus, Toast.LENGTH_SHORT).show();
-
-//        svcBrunoMars = new Intent(this, BackgroundSoundService.class);
-//        svcMaluma = new Intent(this, BackgroundSoundServiceModoViernes.class);
+        songModoNormal = MediaPlayer.create(PreparandoTrago.this,R.raw.song_default);
+        songModoViernes = MediaPlayer.create(PreparandoTrago.this,R.raw.song_viernes);
 
         if("desactivado".equals(modoViernesStatus)){
-            songBrunoMars.start();
-//            startService(svcBrunoMars);
+            songModoNormal.start();
         } else {
-            songMaluma.start();
-//            startService(svcMaluma);
+            songModoViernes.start();
         }
 
         btnMusic.setOnClickListener(new View.OnClickListener() {
@@ -56,46 +62,38 @@ public class PreparandoTrago  extends AppCompatActivity {
                         botonStartMusicStatus = "false";
                         btnMusic.setImageResource(R.drawable.audio_si);
                         if("desactivado".equals(modoViernesStatus)){
-//                            songBrunoMars.start();
-                            songBrunoMars.setVolume(100,100);
-
+                            songModoNormal.setVolume(1,1);
                         } else {
-//                            songMaluma.start();
-
-                            songMaluma.setVolume(100,100);
-
+                            songModoViernes.setVolume(1,1);
                         }
                         break;
 
                     case STATUS_FALSE:
-//                        stopService(svcBrunoMars);
-//                        stopService(svcMaluma);
-//                        songMaluma.pause();
-//                        songBrunoMars.pause();
-                        songMaluma.setVolume(0,0);
 
-                        songBrunoMars.setVolume(0,0);
+                        songModoNormal.setVolume(0,0);
+                        songModoViernes.setVolume(0,0);
                         botonStartMusicStatus = "true";
                         btnMusic.setImageResource(R.drawable.audio_no);
                         break;
                     default:
                         break;
                 }
-
             }
         });
 
         btnCerrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                songBrunoMars.stop();
-                songMaluma.stop();
+
+
+                Intent returnIntent = new Intent();
+                boolean result = true;
+                returnIntent.putExtra("result",result);
+                setResult(Activity.RESULT_OK,returnIntent);
                 finish();
+
             }
         });
-
-
-
     }
 
     @Override
@@ -103,14 +101,14 @@ public class PreparandoTrago  extends AppCompatActivity {
     {
         super.onStop();
         Log.d("HOME PRESSED", "MYonStop is called");
-        songBrunoMars.pause();
-        songMaluma.pause();
+        songModoNormal.pause();
+        songModoViernes.pause();
     }
 
     @Override
     public void onBackPressed() {
-        songBrunoMars.stop();
-        songMaluma.stop();
+        songModoNormal.stop();
+        songModoViernes.stop();
         finish();
     }
 }
