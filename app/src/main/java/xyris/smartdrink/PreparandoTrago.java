@@ -121,7 +121,7 @@ public class PreparandoTrago  extends AppCompatActivity {
 
                 if("0".equals(codigoErrorPrepararBebida)){
 
-                    Toast.makeText(PreparandoTrago.this, "Se eliminó la bebida seleccionada.",
+                    Toast.makeText(PreparandoTrago.this, "BEBIDA PREPARADA CORRECTAMENTE.",
                             Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(PreparandoTrago.this, descripcionPrepararBebida + " " +
@@ -203,55 +203,6 @@ public class PreparandoTrago  extends AppCompatActivity {
         songModoViernes.stop();
         finish();
     }
-
-
-//    public void enviarMensajePrepararBebidaAhora(String idBebida, String hielo, String agitado){
-//
-//        PreparaBebidaRequest request = new PreparaBebidaRequest();
-//
-//        //La fecha y hora no se tienen en cuenta ya que el pedido se preparará en el momento.
-//        //Agendado posee valor "FALSE".
-//        PedidoBebida pedidoBebida = new PedidoBebida(idBebida, hielo, agitado,
-//                "false", "");
-//
-//        request.setPedidoBebida(pedidoBebida);
-//        request.setIdDispositivo(idDevice);
-//        request.setFechaHoraPeticion(new FechaHora().formatDate(Calendar.getInstance().getTime()));
-//
-//        ObjectMapper mapper = new ObjectMapper();
-//        JSONObject object = null;
-//        try {
-//            object = new JSONObject(mapper.writeValueAsString(request));
-//        } catch (Exception e) {
-//
-//        }
-//
-//        final JSONObject finalObject = object;
-//        Thread thread = new Thread(){
-//            public void run(){
-//
-//                WebServiceClient cli = new WebServiceClient("/prepararBebida", finalObject);
-//
-//                responseReader = (JSONObject) cli.getResponse();
-//
-//                Log.d("SMARTDRINKS_BEBIDAS","RESPUESTA_BEBIDAS: " + responseReader.toString());
-//            }
-//        };
-//
-//        thread.start();
-//        try {
-//            thread.join();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//
-//        try {
-//            codigoErrorPrepararBebida = responseReader.getString("codigoError");
-//            descripcionPrepararBebida = responseReader.getString("descripcionError");
-//        } catch (JSONException e) { e.printStackTrace(); }
-//    }
-
-
 
 
     public void enviarMensajePrepararBebidaAhora(String idBebida, String hielo, String agitado) {

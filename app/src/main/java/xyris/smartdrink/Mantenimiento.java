@@ -10,10 +10,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
@@ -22,13 +24,18 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
+import ar.edu.xyris.smartdrinks.messages.Mantenimiento.RealizaMantenimientoRequest;
+import ar.edu.xyris.smartdrinks.messages.creacion.bebida.CreaBebidaRequest;
+import ar.edu.xyris.smartdrinks.messages.modificacion.ReseteaContadorRequest;
 import ar.edu.xyris.smartdrinks.messages.preparacion.PreparaBebidaRequest;
+import xyris.smartdrink.entities.FechaHora;
 import xyris.smartdrink.http.WebServiceClient;
 
 public class Mantenimiento extends AppCompatActivity {
 
     String cantidad = "0";
-    String cantidadBebidasPreparadas = "Bebidas preparadas: ";
+    String cantidadBebidasPreparadas;
+    TextView tvCantidadBebidasPreparadas;
     ArrayList<String> listFechas = new ArrayList<String>();
     ListView lvFechas;
     ArrayList<String> items = new ArrayList<String>();
@@ -52,16 +59,20 @@ public class Mantenimiento extends AppCompatActivity {
 
         final Button buttonMantenimientoVolver = (Button) findViewById(R.id.buttonMantenimientoVolver);
         final Button buttonMantenimientoRealizado = (Button) findViewById(R.id.buttonMantenimientoRealizado);
-        cantidadBebidasPreparadas = findViewById(R.id.tvCantidadBebidasPreparadas).toString();
+        tvCantidadBebidasPreparadas = (TextView) findViewById(R.id.tvCantidadBebidasPreparadas);
 
         idDevice = sp.getString("idDevice","ERROR");
 
         //Se obtiene la cantidad de bebidas preparadas de la base de datos.
-//        obtenerCantidadBebidasPreparadas();
+        obtenerCantidadBebidasPreparadas();
+        tvCantidadBebidasPreparadas.setText("Cantidad de bebidas preparadas: " + cantidadBebidasPreparadas);
+
+        //ToDo: Cada vez que se reciba una notificacion, se debe tomar la fecha actual y agregarla al listado.
 
         items.add("16/09/2018");
         items.add("18/09/2018");
         items.add("20/09/2018");
+
 
         lvFechas = (ListView) findViewById(R.id.lvFechaNotificaciones);
 
@@ -71,7 +82,10 @@ public class Mantenimiento extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //ToDo: Mantenimiento realizado - enviar mensaje para resetear contador & vaciar lista de fechas.
-                //enviarMensajeLimpiezaRealizada();
+                enviarMensajeLimpiezaRealizada();
+                Toast.makeText(Mantenimiento.this, "Se reseteo el contador.", Toast.LENGTH_SHORT).show();
+                listFechas.clear();
+                finish();
 
             }
         });
@@ -97,8 +111,7 @@ public class Mantenimiento extends AppCompatActivity {
                 String currentFormattedDate  = df.format(currentDate);
                 params.put("fechaHoraPeticion", currentFormattedDate);
 
-                WebServiceClient cli = new WebServiceClient("/consultarCantidadBebidasPreparadas", new JSONObject(params));
-
+                WebServiceClient cli = new WebServiceClient("/consultarContadores", new JSONObject(params));
                 responseReader = (JSONObject) cli.getResponse();
 
                 Log.d("SMARTDRINKS_CANTBEBIDAS","CANTIDAD_BEBIDAS_PREPARADAS: " + responseReader.toString());
@@ -112,39 +125,39 @@ public class Mantenimiento extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        cantidad = responseReader.toString();
+        try {
+
+            cantidadBebidasPreparadas = responseReader.getString("cantidadBebidasPreparadas");
+
+        } catch (JSONException e) { e.printStackTrace(); }
+
+
     }
 
 
     public void enviarMensajeLimpiezaRealizada(){
-        //PreparaBebidaRequest request = new PreparaBebidaRequest();
+        ReseteaContadorRequest request = new ReseteaContadorRequest();
 
+        request.setIdDispositivo(idDevice);
+        request.setFechaHoraPeticion(new FechaHora().formatDate(Calendar.getInstance().getTime()));
 
-        Thread thread = new Thread(){
-            public void run(){
-                HashMap<String,String> params = new HashMap<String,String>();
-                params.put("idDispositivo",idDevice);
-                //Se obtiene la fecha y hora actual y se le aplica el formato que necesita recibir el mensaje.
-                //A "fechaHoraPeticion" se deberá asignar "currentFormattedDate ".
-                Date currentDate = Calendar.getInstance().getTime();
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-                String currentFormattedDate  = df.format(currentDate);
-                params.put("fechaHoraPeticion", currentFormattedDate);
-                params.put("limpiezaRealizada", "true");
+        ObjectMapper mapper = new ObjectMapper();
+        JSONObject object = null;
+        try {
+            object = new JSONObject(mapper.writeValueAsString(request));
+        } catch (Exception e) {
 
-                ObjectMapper mapper = new ObjectMapper();
-                JSONObject object = null;
-                try {
-                    //object = new JSONObject(mapper.writeValueAsString(request));
-                } catch (Exception e) {
+        }
 
-                }
+        final JSONObject finalObject = object;
+        Thread thread = new Thread() {
+            public void run() {
 
-                WebServiceClient cli = new WebServiceClient("/consultarBebidas", new JSONObject(params));
+                WebServiceClient cli = new WebServiceClient("/resetearContador", finalObject);
 
                 responseReader = (JSONObject) cli.getResponse();
 
-                Log.d("SMARTDRINKS_BEBIDAS","RESPUESTA_BEBIDAS: " + responseReader.toString());
+                Log.d("SMARTDRINKS_RESETEA_CON", "RESETEAR_CONTADOR: " + responseReader.toString());
             }
         };
 
@@ -154,7 +167,6 @@ public class Mantenimiento extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        }
-
     }
+}
+
