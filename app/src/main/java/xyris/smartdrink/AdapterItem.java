@@ -63,7 +63,7 @@ public class AdapterItem extends BaseAdapter {
 
             if (resPantalla.equals("800")) {
                 if (sp.getString("modoViernes", "ERROR").equals("activado")) {
-                    v = inf.inflate(R.layout.item_category_viernes, null);
+                    v = inf.inflate(R.layout.item_category_viernes_tablet, null);
                 } else {
                     v = inf.inflate(R.layout.item_category_tablet, null);
                 }

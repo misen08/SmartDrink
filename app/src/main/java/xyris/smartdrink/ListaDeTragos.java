@@ -44,6 +44,7 @@ import xyris.smartdrink.http.WebServiceClient;
 public class ListaDeTragos extends AppCompatActivity {
 
     TextView tvGrabar;
+    TextView textViewListaBebidas;
     Drawable infoImage;
     Drawable deleteImage;
     ListView lv;
@@ -88,6 +89,8 @@ public class ListaDeTragos extends AppCompatActivity {
             }
         }
 
+        textViewListaBebidas = (TextView) findViewById(R.id.textViewLista);
+        textViewListaBebidas.setText("Lista de bebidas");
         FloatingActionButton botonCrearTrago = findViewById(R.id.botonCrearTrago);
         infoImage = getResources().getDrawable(R.drawable.info_icon);
         deleteImage = getResources().getDrawable(R.drawable.delete_icon);

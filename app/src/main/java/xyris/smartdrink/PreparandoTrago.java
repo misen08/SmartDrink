@@ -71,7 +71,8 @@ public class PreparandoTrago  extends AppCompatActivity {
         btnMusic = findViewById(R.id.btnMusic);
         btnCerrar = findViewById(R.id.btnCerrar);
 
-        songModoNormal = MediaPlayer.create(PreparandoTrago.this, R.raw.song_default);
+        songModoNormal = MediaPlayer.create(PreparandoTrago.this, R.raw.song_default)
+        ;
         songModoViernes = MediaPlayer.create(PreparandoTrago.this, R.raw.song_viernes);
 
         if ("desactivado".equals(modoViernesStatus)) {
