@@ -85,7 +85,7 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         idDevice = sp.getString("idDevice","ERROR");
 
-        Toast.makeText(this, "id" + idDevice, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "id" + idDevice, Toast.LENGTH_SHORT).show();
 
         tvFecha = (TextView) findViewById(R.id.textViewFecha);
         tvHora = (TextView) findViewById(R.id.textViewHora);
@@ -239,13 +239,13 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
 
         request.setPedidoBebida(pedidoBebida);
         request.setIdDispositivo(idDevice);
-
+        request.setFechaHoraPeticion(new FechaHora().formatDate(Calendar.getInstance().getTime()));
         //Se obtiene la fecha y hora actual y se le aplica el formato que necesita recibir el mensaje.
         //A "fechaHoraPeticion" se deberá asignar "currentFormattedDate".
-        Date currentDate = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        String currentFormattedDate = df.format(currentDate);
-        request.setFechaHoraPeticion(currentFormattedDate);
+        //Date currentDate = Calendar.getInstance().getTime();
+        //SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        //String currentFormattedDate = df.format(currentDate);
+        //request.setFechaHoraPeticion(currentFormattedDate);
 
         ObjectMapper mapper = new ObjectMapper();
         JSONObject object = null;
