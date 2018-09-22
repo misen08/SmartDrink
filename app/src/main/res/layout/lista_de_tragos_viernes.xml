@@ -7,11 +7,22 @@
     android:background="@color/fondoModoViernes"
     tools:context=".ListaDeTragos">
 
+    <TextView
+        android:id="@+id/textViewLista"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Lista de bebidas"
+        android:textColor="@color/amarilloModoViernes"
+        android:textSize="24sp" />
+
     <ListView
         android:id="@+id/listaTragos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="120dp"
+        android:layout_below="@id/textViewLista"
         android:divider="@color/amarilloModoViernes"
         android:background="@color/fondoModoViernes"></ListView>
 
