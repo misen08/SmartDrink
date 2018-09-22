@@ -1,5 +1,6 @@
 package xyris.smartdrink;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -38,6 +39,7 @@ public class OpcionesAdicionales  extends AppCompatActivity {
     JSONObject responseReader;
 
     private static final int PROGRAMAR_BEBIDA_ACTIVITY = 3;
+    private static final int PREPARAR_BEBIDA_AHORA_ACTIVITY = 4;
 
     SharedPreferences sp;
 
@@ -88,7 +90,7 @@ public class OpcionesAdicionales  extends AppCompatActivity {
                 String esAgitado = agitado.toString();
                 enviarMensajePrepararBebidaAhora(idBebida, hielo, esAgitado);
                 Intent prepararTrago = new Intent(OpcionesAdicionales.this, PreparandoTrago.class);
-                startActivity(prepararTrago);
+                startActivityForResult(prepararTrago, 4);
             }
         });
     }
@@ -110,6 +112,18 @@ public class OpcionesAdicionales  extends AppCompatActivity {
                 if (resultCode == RESULT_OK && null != data) {
                     finish();
                 }
+                break;
+
+            case PREPARAR_BEBIDA_AHORA_ACTIVITY:
+
+                if (resultCode == RESULT_OK && null != data) {
+                    Intent returnIntent = new Intent();
+                    boolean result = true;
+                    returnIntent.putExtra("result",result);
+                    setResult(Activity.RESULT_OK,returnIntent);
+                    finish();
+                }
+
                 break;
 
             default:

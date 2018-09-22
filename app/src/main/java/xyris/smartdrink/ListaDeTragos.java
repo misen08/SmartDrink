@@ -57,6 +57,7 @@ public class ListaDeTragos extends AppCompatActivity {
 
     private static final int RECOGNIZE_SPEECH_ACTIVITY = 1;
     private static final int CREAR_TRAGO_ACTIVITY = 2;
+    private static final int OPCIONES_ADICIONALES_ACTIVITY = 3;
 
     String codigoErrorEliminarBebida;
     String descripcionErrorEliminarBebida;
@@ -189,7 +190,7 @@ public class ListaDeTragos extends AppCompatActivity {
         intent.putExtra("idBebida", listBebida.get(i).getIdBebida());
         intent.putExtra("modoViernes", modoViernesStatus);
 
-        startActivity(intent);
+        startActivityForResult(intent, 3);
     }
 
     public void abrirCrearTragos(View v) {
@@ -252,6 +253,7 @@ public class ListaDeTragos extends AppCompatActivity {
                     obtenerLista();
                 }
                 break;
+
             default:
                 break;
         }
