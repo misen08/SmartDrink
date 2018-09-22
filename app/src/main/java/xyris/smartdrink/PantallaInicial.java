@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,16 +20,25 @@ import com.google.zxing.integration.android.IntentResult;
 
 public class PantallaInicial extends AppCompatActivity {
 
-//    private String android_id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
     public final static int QRcodeWidth = 350;
-    String ipPlaca;
+    public String ipPlaca;
     Button botonSalir;
     Button botonLeerQR;
+
+    private String resPantalla;
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pantalla_inicial);
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
+        resPantalla = sp.getString("resolucionPantalla", "ERROR");
+
+        if (resPantalla.equals("800")) {
+            setContentView(R.layout.activity_pantalla_inicial_tablet);
+        } else {
+            setContentView(R.layout.activity_pantalla_inicial);
+        }
 
         botonSalir = (Button) findViewById(R.id.buttonCloseApp);
         // Con finishAffinity se cierra totalmente la aplicación
@@ -112,10 +120,7 @@ public class PantallaInicial extends AppCompatActivity {
                 editor.putString("IP", ipLeida);
                 editor.commit();
 
-                //Toast.makeText(this, "Código QR escaneado", Toast.LENGTH_LONG).show();
-                //Toast.makeText(this, ipLeida, Toast.LENGTH_LONG).show();
-
-                if(getIntent().getStringExtra("ip").equals(sp.getString("IP","ERROR"))) {
+                if(sp.getString("ipPlaca", "ERROR").equals(ipLeida)) {
                     Intent listaTragos = new Intent(PantallaInicial.this, ListaDeTragos.class);
                     finish();
                     startActivity(listaTragos);

@@ -30,20 +30,17 @@ public class PreparandoTrago  extends AppCompatActivity {
         btnMusic = findViewById(R.id.btnMusic);
         btnCerrar = findViewById(R.id.btnCerrar);
 
-        songBrunoMars = MediaPlayer.create(PreparandoTrago.this,R.raw.brunomars);
-        songMaluma = MediaPlayer.create(PreparandoTrago.this,R.raw.maluma);
-
-        modoViernesStatus = getIntent().getExtras().getString("modoViernes");
-        Toast.makeText(this, "modo viernes: " + modoViernesStatus, Toast.LENGTH_SHORT).show();
+        //songBrunoMars = MediaPlayer.create(PreparandoTrago.this,R.raw.brunomars);
+        //songMaluma = MediaPlayer.create(PreparandoTrago.this,R.raw.maluma);
 
 //        svcBrunoMars = new Intent(this, BackgroundSoundService.class);
 //        svcMaluma = new Intent(this, BackgroundSoundServiceModoViernes.class);
 
         if("desactivado".equals(modoViernesStatus)){
-            songBrunoMars.start();
+//            songBrunoMars.start();
 //            startService(svcBrunoMars);
         } else {
-            songMaluma.start();
+//            songMaluma.start();
 //            startService(svcMaluma);
         }
 
@@ -57,12 +54,12 @@ public class PreparandoTrago  extends AppCompatActivity {
                         btnMusic.setImageResource(R.drawable.audio_si);
                         if("desactivado".equals(modoViernesStatus)){
 //                            songBrunoMars.start();
-                            songBrunoMars.setVolume(100,100);
+                            //songBrunoMars.setVolume(100,100);
 
                         } else {
 //                            songMaluma.start();
 
-                            songMaluma.setVolume(100,100);
+                            //songMaluma.setVolume(100,100);
 
                         }
                         break;

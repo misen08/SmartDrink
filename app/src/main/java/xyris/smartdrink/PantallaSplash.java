@@ -14,23 +14,31 @@ public class PantallaSplash extends AppCompatActivity {
 
     String ipPlaca = "192.168.1.3";
     private final int DURACION_SPLASH = 1000;
+    SharedPreferences.Editor editor;
+    Integer res;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.pantalla_splash);
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        // Se obtiene resolución de pantalla para cargar el layout correspondiente
+        res = this.getResources().getConfiguration().screenWidthDp;
+        editor = sp.edit();
+        editor.putString("resolucionPantalla", res.toString());
+        editor.putString("ipPlaca", ipPlaca);
+        editor.commit();
+
         final String ipLeida = ipPlaca; //sp.getString("IP","ERROR");
 
         // Inicializar modo viernes como desactivado
         if(sp.getString("modoViernes", "ERROR").equals("ERROR")) {
-            SharedPreferences.Editor editorModoViernes = sp.edit();
-            editorModoViernes.putString("modoViernes", "desactivado");
-            editorModoViernes.commit();
+            editor = sp.edit();
+            editor.putString("modoViernes", "desactivado");
+            editor.commit();
         }
 
         // Se obtiene el id device del dispositivo y se almacena para ser usado en otras clases
@@ -56,8 +64,7 @@ public class PantallaSplash extends AppCompatActivity {
 
     public void abrirPantallaInicial() {
         Intent pantallaInicial = new Intent(this, PantallaInicial.class);
-        pantallaInicial.putExtra("ip", ipPlaca);
-        startActivityForResult(pantallaInicial, 3);
+        startActivity(pantallaInicial);
         finish();
     }
 

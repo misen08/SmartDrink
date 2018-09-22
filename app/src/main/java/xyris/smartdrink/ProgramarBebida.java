@@ -75,11 +75,18 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         modoViernesStatus = sp.getString("modoViernes", "ERROR");
-
-        if(modoViernesStatus.equals("activado")) {
-            setContentView(R.layout.programar_bebida_viernes);
+        if(this.getResources().getConfiguration().screenWidthDp == 800) {
+            if(modoViernesStatus.equals("activado")) {
+                setContentView(R.layout.programar_bebida_viernes_tablet);
+            } else {
+                setContentView(R.layout.programar_bebida_tablet);
+            }
         } else {
-            setContentView(R.layout.programar_bebida);
+            if(modoViernesStatus.equals("activado")) {
+                setContentView(R.layout.programar_bebida_viernes);
+            } else {
+                setContentView(R.layout.programar_bebida);
+            }
         }
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);

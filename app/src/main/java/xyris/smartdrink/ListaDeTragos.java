@@ -62,6 +62,7 @@ public class ListaDeTragos extends AppCompatActivity {
     String descripcionErrorEliminarBebida;
     private String idDevice;
     private String modoViernesStatus;
+    private String resPantalla;
     SharedPreferences sp;
     SharedPreferences.Editor modoViernesEditor;
 
@@ -70,11 +71,20 @@ public class ListaDeTragos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         modoViernesStatus = sp.getString("modoViernes", "ERROR");
+        resPantalla = sp.getString("resolucionPantalla", "ERROR");
 
-        if(modoViernesStatus.equals("activado")) {
-            setContentView(R.layout.lista_de_tragos_viernes);
+        if (resPantalla.equals("800")) {
+            if (modoViernesStatus.equals("activado")) {
+                setContentView(R.layout.lista_de_tragos_tablet_viernes);
+            } else {
+                setContentView(R.layout.lista_de_tragos_tablet);
+            }
         } else {
-            setContentView(R.layout.lista_de_tragos);
+            if (modoViernesStatus.equals("activado")) {
+                setContentView(R.layout.lista_de_tragos_viernes);
+            } else {
+                setContentView(R.layout.lista_de_tragos);
+            }
         }
 
         FloatingActionButton botonCrearTrago = findViewById(R.id.botonCrearTrago);

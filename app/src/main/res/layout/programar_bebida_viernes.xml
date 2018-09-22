@@ -1,43 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fondoModoViernes">
 
-    <Button
-        android:id="@+id/buttonAcceptTime"
-        android:layout_width="220dp"
-        android:layout_height="36dp"
-        android:layout_marginBottom="40dp"
-        android:background="@color/amarilloModoViernes"
-        android:text="CONFIRMAR HORARIO"
-        android:textColor="@color/fondoModoViernes"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <TextView
         android:id="@+id/textViewSelectTime1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="para preparar tu bebida"
-        android:textAlignment="center"
-        android:textColor="@color/amarilloModoViernes"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSelectTime2" />
-
-    <TextView
-        android:id="@+id/textViewSelectTime2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -45,94 +18,133 @@
         android:text="Seleccioná la fecha y la hora"
         android:textAlignment="center"
         android:textColor="@color/amarilloModoViernes"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/textViewSelectTime1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/fecha"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="60dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="70dp"
-        android:clickable="true"
-        android:editable="false"
-        android:textAlignment="center"
-        android:textColor="@color/amarilloModoViernes"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/hora"
-        app:layout_constraintStart_toEndOf="@+id/textViewFecha"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSelectTime1" />
-
-    <EditText
-        android:id="@+id/hora"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="60dp"
-        android:clickable="true"
-        android:editable="false"
-        android:textAlignment="center"
-        android:textColor="@color/amarilloModoViernes"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/textViewHora"
-        app:layout_constraintTop_toBottomOf="@+id/fecha" />
-
-    <ImageButton
-        android:id="@+id/buttonCalendar"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="51dp"
-        android:background="@android:color/transparent"
-        app:layout_constraintStart_toEndOf="@+id/fecha"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSelectTime1"
-        app:srcCompat="@drawable/calendario" />
-
-    <ImageButton
-        android:id="@+id/buttonHora"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="40dp"
-        android:background="@android:color/transparent"
-        app:layout_constraintStart_toEndOf="@+id/hora"
-        app:layout_constraintTop_toBottomOf="@+id/buttonCalendar"
-        app:srcCompat="@drawable/reloj" />
+        android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/textViewFecha"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="50dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="70dp"
-        android:text="Fecha"
-        android:textAllCaps="false"
+        android:id="@+id/textViewSelectTime2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewSelectTime1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="para preparar tu bebida"
+        android:textAlignment="center"
         android:textColor="@color/amarilloModoViernes"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/textViewHora"
-        app:layout_constraintEnd_toStartOf="@+id/fecha"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSelectTime1" />
+        android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/textViewHora"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="60dp"
-        android:text="Hora"
-        android:textColor="@color/amarilloModoViernes"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/hora"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewFecha" />
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/divisorProgramarBebida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:color/transparent" />
+
+        <TextView
+            android:id="@+id/textViewFecha"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="35dp"
+            android:layout_marginEnd="80dp"
+            android:text="Fecha"
+            android:textAllCaps="false"
+            android:textColor="@color/amarilloModoViernes"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/divisorProgramarBebida"
+            app:layout_constraintEnd_toStartOf="@+id/divisorProgramarBebida" />
+
+        <EditText
+            android:id="@+id/fecha"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="35dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:clickable="true"
+            android:editable="false"
+            android:textAlignment="center"
+            android:textColor="@color/amarilloModoViernes"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/divisorProgramarBebida"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/buttonCalendar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginStart="90dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/calendario"
+            app:layout_constraintBottom_toTopOf="@+id/divisorProgramarBebida"
+            app:layout_constraintStart_toEndOf="@+id/divisorProgramarBebida" />
+
+        <TextView
+            android:id="@+id/textViewHora"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="80dp"
+            android:layout_marginTop="35dp"
+            android:text="Hora"
+            android:textColor="@color/amarilloModoViernes"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/divisorProgramarBebida"
+            app:layout_constraintTop_toBottomOf="@+id/divisorProgramarBebida" />
+
+        <EditText
+            android:id="@+id/hora"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="35dp"
+            android:clickable="true"
+            android:editable="false"
+            android:textAlignment="center"
+            android:textColor="@color/amarilloModoViernes"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divisorProgramarBebida" />
+
+        <ImageButton
+            android:id="@+id/buttonHora"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="90dp"
+            android:layout_marginTop="25dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/reloj"
+            app:layout_constraintStart_toEndOf="@+id/divisorProgramarBebida"
+            app:layout_constraintTop_toBottomOf="@+id/divisorProgramarBebida" />
+
+        <Button
+            android:id="@+id/buttonAcceptTime"
+            android:layout_width="220dp"
+            android:layout_height="36dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@color/amarilloModoViernes"
+            android:text="CONFIRMAR HORARIO"
+            android:textColor="@color/fondoModoViernes"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </android.support.constraint.ConstraintLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

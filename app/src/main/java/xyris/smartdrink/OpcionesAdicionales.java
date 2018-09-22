@@ -33,6 +33,7 @@ public class OpcionesAdicionales  extends AppCompatActivity {
     CheckBox agitarBebida;
 
     private String idDevice;
+    String modoViernesStatus;
 
     JSONObject responseReader;
 

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondoModoViernes">
+
+    <TextView
+        android:id="@+id/textViewBebida"
+        android:layout_width="500dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:text="TextView"
+        android:textColor="@color/amarilloModoViernes"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/buttonEdit"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginTop="15dp"
+        android:clickable="true"
+        app:layout_constraintEnd_toStartOf="@+id/buttonDelete"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/info_icon" />
+
+    <ImageView
+        android:id="@+id/buttonDelete"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="15dp"
+        android:clickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/delete_icon" />
+
+</android.support.constraint.ConstraintLayout>

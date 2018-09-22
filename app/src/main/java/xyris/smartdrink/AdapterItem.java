@@ -59,11 +59,22 @@ public class AdapterItem extends BaseAdapter {
             LayoutInflater inf = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             sp = PreferenceManager.getDefaultSharedPreferences(this.activity);
 
-            if(sp.getString("modoViernes", "ERROR").equals("activado")) {
-                v = inf.inflate(R.layout.item_category_viernes, null);
+            String resPantalla = sp.getString("resolucionPantalla", "ERROR");
+
+            if (resPantalla.equals("800")) {
+                if (sp.getString("modoViernes", "ERROR").equals("activado")) {
+                    v = inf.inflate(R.layout.item_category_viernes, null);
+                } else {
+                    v = inf.inflate(R.layout.item_category_tablet, null);
+                }
             } else {
-                v = inf.inflate(R.layout.item_category, null);
+                if (sp.getString("modoViernes", "ERROR").equals("activado")) {
+                    v = inf.inflate(R.layout.item_category_viernes, null);
+                } else {
+                    v = inf.inflate(R.layout.item_category, null);
+                }
             }
+
         }
 
         CategoryList dir = items.get(position);
