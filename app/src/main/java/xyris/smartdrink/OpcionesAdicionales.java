@@ -42,7 +42,7 @@ public class OpcionesAdicionales  extends AppCompatActivity {
     JSONObject responseReader;
 
     private static final int PROGRAMAR_BEBIDA_ACTIVITY = 3;
-    private String modoViernesStatus;
+
     SharedPreferences sp;
     SharedPreferences.Editor modoViernesEditor;
 

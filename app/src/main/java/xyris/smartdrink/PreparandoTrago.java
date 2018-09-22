@@ -1,26 +1,13 @@
 package xyris.smartdrink;
 
-import android.content.ComponentName;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.ServiceConnection;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
-
-import com.google.android.gms.common.api.Api;
-
-import java.util.ArrayList;
-
-import static java.lang.Boolean.TRUE;
 
 public class PreparandoTrago  extends AppCompatActivity {
 
@@ -43,7 +30,7 @@ public class PreparandoTrago  extends AppCompatActivity {
         btnMusic = findViewById(R.id.btnMusic);
         btnCerrar = findViewById(R.id.btnCerrar);
 
-        songBrunoMars = MediaPlayer.create(PreparandoTrago.this,R.raw.song);
+        songBrunoMars = MediaPlayer.create(PreparandoTrago.this,R.raw.brunomars);
         songMaluma = MediaPlayer.create(PreparandoTrago.this,R.raw.maluma);
 
         modoViernesStatus = getIntent().getExtras().getString("modoViernes");
@@ -69,17 +56,25 @@ public class PreparandoTrago  extends AppCompatActivity {
                         botonStartMusicStatus = "false";
                         btnMusic.setImageResource(R.drawable.audio_si);
                         if("desactivado".equals(modoViernesStatus)){
-                            songBrunoMars.start();
+//                            songBrunoMars.start();
+                            songBrunoMars.setVolume(100,100);
+
                         } else {
-                            songMaluma.start();
+//                            songMaluma.start();
+
+                            songMaluma.setVolume(100,100);
+
                         }
                         break;
 
                     case STATUS_FALSE:
 //                        stopService(svcBrunoMars);
 //                        stopService(svcMaluma);
-                        songMaluma.pause();
-                        songBrunoMars.pause();
+//                        songMaluma.pause();
+//                        songBrunoMars.pause();
+                        songMaluma.setVolume(0,0);
+
+                        songBrunoMars.setVolume(0,0);
                         botonStartMusicStatus = "true";
                         btnMusic.setImageResource(R.drawable.audio_no);
                         break;
@@ -99,6 +94,24 @@ public class PreparandoTrago  extends AppCompatActivity {
             }
         });
 
+
+
+    }
+
+    @Override
+    protected void onStop()
+    {
+        super.onStop();
+        Log.d("HOME PRESSED", "MYonStop is called");
+        songBrunoMars.pause();
+        songMaluma.pause();
+    }
+
+    @Override
+    public void onBackPressed() {
+        songBrunoMars.stop();
+        songMaluma.stop();
+        finish();
     }
 }
 
