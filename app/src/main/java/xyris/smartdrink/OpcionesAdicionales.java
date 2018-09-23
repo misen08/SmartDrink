@@ -85,11 +85,13 @@ public class OpcionesAdicionales  extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String idBebida = getIntent().getExtras().getString("idBebida");
+                String descripcionBebida = getIntent().getExtras().getString("descripcionBebida");
                 verficarFlags();
-                String hielo = conHielo.toString();
-                String esAgitado = agitado.toString();
-                enviarMensajePrepararBebidaAhora(idBebida, hielo, esAgitado);
                 Intent prepararTrago = new Intent(OpcionesAdicionales.this, PreparandoTrago.class);
+                prepararTrago.putExtra("hielo", conHielo.toString());
+                prepararTrago.putExtra("agitado", agitado.toString());
+                prepararTrago.putExtra("idBebida", idBebida);
+                prepararTrago.putExtra("descripcionBebida", descripcionBebida);
                 startActivityForResult(prepararTrago, 4);
             }
         });

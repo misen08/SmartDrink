@@ -191,6 +191,7 @@ public class ListaDeTragos extends AppCompatActivity {
     public void abrirOpcionesAdicionales(View v, int i) {
         Intent intent = new Intent(this, OpcionesAdicionales.class);
         intent.putExtra("idBebida", listBebida.get(i).getIdBebida());
+        intent.putExtra("descripcionBebida", listBebida.get(i).getDescripcion());
         intent.putExtra("modoViernes", modoViernesStatus);
 
         startActivityForResult(intent, 3);
@@ -210,6 +211,7 @@ public class ListaDeTragos extends AppCompatActivity {
         switch (requestCode) {
             case RECOGNIZE_SPEECH_ACTIVITY:
 
+
                 if (resultCode == RESULT_OK && null != data) {
 
                     ArrayList<String> speech = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
@@ -217,18 +219,24 @@ public class ListaDeTragos extends AppCompatActivity {
                     String strSpeech2Text = speech.get(0);
 
                     String strSpeech2TextUpperCase = strSpeech2Text.toUpperCase();
-                    Toast toast = Toast.makeText(this, "voz: "+ strSpeech2Text.toUpperCase(), Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
 
+                    String itemBebida = "";
                     String idBebida = "-1";
                     String hielo = "false";
                     String agitado = "false";
                     while("-1".equals(idBebida)){
+                        Toast toast = Toast.makeText(this, "Pedido por voz: "+ strSpeech2Text.toUpperCase(), Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+
                         for(int j=0; j < listBebida.size(); j++) {
-                            String itemBebida = listBebida.get(j).getDescripcion().toUpperCase();
+                            itemBebida = listBebida.get(j).getDescripcion().toUpperCase();
                             boolean isFound = strSpeech2TextUpperCase.contains(itemBebida);
+//                            Toast.makeText(this, "ACA_1", Toast.LENGTH_SHORT).show();
+
                             if (isFound) {
+//                                Toast.makeText(this, "ACA_2", Toast.LENGTH_SHORT).show();
+
                                 idBebida = listBebida.get(j).getIdBebida();
                                 boolean boolHielo = strSpeech2TextUpperCase.contains("con hielo".toUpperCase());
                                 if(boolHielo){
@@ -238,8 +246,18 @@ public class ListaDeTragos extends AppCompatActivity {
                                 if(boolAgitado){
                                     agitado = "true";
                                 }
+
+                                Toast.makeText(this, "SUPER!!", Toast.LENGTH_LONG).show();
                                 Toast.makeText(this, "yeay " + idBebida + " " + itemBebida +
-                                        "Hielo: " + hielo + "Agitado: " + agitado, Toast.LENGTH_SHORT).show();
+                                        "Hielo: " + hielo + "Agitado: " + agitado, Toast.LENGTH_LONG).show();
+
+                                Intent prepararTrago = new Intent(ListaDeTragos.this, PreparandoTrago.class);
+                                prepararTrago.putExtra("hielo", hielo);
+                                prepararTrago.putExtra("agitado", agitado);
+                                prepararTrago.putExtra("idBebida", idBebida);
+                                prepararTrago.putExtra("descripcionBebida", itemBebida);
+                                startActivityForResult(prepararTrago, 4);
+
                             }
                         }
                         if("-1".equals(idBebida)) {
@@ -247,7 +265,8 @@ public class ListaDeTragos extends AppCompatActivity {
                             idBebida = "0";
                         }
                     }
-                    enviarMensajePrepararBebidaAhoraPorVoz(idBebida, hielo, agitado);
+                    //enviarMensajePrepararBebidaAhoraPorVoz(idBebida, hielo, agitado);
+
                 }
                 break;
 
