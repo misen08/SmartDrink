@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -33,6 +34,7 @@ import xyris.smartdrink.http.WebServiceClient;
 
 public class PreparandoTrago  extends AppCompatActivity {
 
+    TextView tvPreparandoTrago;
     Button btnCerrar;
     ImageButton btnMusic;
     String botonStartMusicStatus = "false";
@@ -43,6 +45,7 @@ public class PreparandoTrago  extends AppCompatActivity {
     String hielo;
     String esAgitado;
     String idBebida;
+    String descripcionBebida;
 
     private static final String STATUS_TRUE = "true";
     private static final String STATUS_FALSE = "false";
@@ -61,12 +64,15 @@ public class PreparandoTrago  extends AppCompatActivity {
         modoViernesStatus = sp.getString("modoViernes", "ERROR");
         idDevice = sp.getString("idDevice", "ERROR");
 
-
         if (modoViernesStatus.equals("activado")) {
             setContentView(R.layout.preparando_trago);
         } else {
             setContentView(R.layout.preparando_trago);
         }
+
+        tvPreparandoTrago = (TextView) findViewById(R.id.textViewPreparando);
+        descripcionBebida = getIntent().getExtras().get("descripcionBebida").toString();
+        tvPreparandoTrago.setText("Tu bebida \"" + descripcionBebida + "\" está siendo preparada.");
 
         btnMusic = findViewById(R.id.btnMusic);
         btnCerrar = findViewById(R.id.btnCerrar);
@@ -85,7 +91,7 @@ public class PreparandoTrago  extends AppCompatActivity {
         //Se obtienen los valores para preparar la bebida.
         idBebida = getIntent().getExtras().get("idBebida").toString();
         hielo = getIntent().getExtras().get("hielo").toString();
-        esAgitado = getIntent().getExtras().get("esAgitado").toString();
+        esAgitado = getIntent().getExtras().get("agitado").toString();
 
         enviarMensajePrepararBebidaAhora(idBebida, hielo, esAgitado);
 
