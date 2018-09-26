@@ -32,7 +32,8 @@
         <activity android:name=".BebidasProgramadas" android:screenOrientation="portrait" />
         <activity android:name=".SaboresEnBotellas" android:screenOrientation="portrait" />
         <activity android:name=".Mantenimiento" android:screenOrientation="portrait" />
-        <activity android:name=".ModificarBebidasProgramadas" android:screenOrientation="portrait" >
+        <activity android:name=".ModificarBebidasProgramadas" android:screenOrientation="portrait" />
+        <activity android:name=".CambiarSaborEnBotella" android:screenOrientation="portrait" >
         </activity>
 
         <service

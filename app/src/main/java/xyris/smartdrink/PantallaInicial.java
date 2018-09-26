@@ -21,7 +21,6 @@ import com.google.zxing.integration.android.IntentResult;
 public class PantallaInicial extends AppCompatActivity {
 
     public final static int QRcodeWidth = 350;
-    public String ipPlaca;
     Button botonSalir;
     Button botonLeerQR;
 

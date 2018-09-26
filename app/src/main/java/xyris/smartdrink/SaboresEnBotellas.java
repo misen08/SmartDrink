@@ -31,9 +31,30 @@ public class SaboresEnBotellas extends AppCompatActivity {
     private int dotsCount;
     private ImageView [] dots;
 
+    private String modoViernesStatus;
+    private String resPantalla;
+    SharedPreferences sp;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
+        modoViernesStatus = sp.getString("modoViernes", "ERROR");
+        resPantalla = sp.getString("resolucionPantalla", "ERROR");
+
+        if (resPantalla.equals("800")) {
+            if (modoViernesStatus.equals("activado")) {
+                setContentView(R.layout.lista_de_tragos_tablet_viernes);
+            } else {
+                setContentView(R.layout.lista_de_tragos_tablet);
+            }
+        } else {
+            if (modoViernesStatus.equals("activado")) {
+                setContentView(R.layout.lista_de_tragos_viernes);
+            } else {
+                setContentView(R.layout.cargar_sabores);
+            }
+        }
         setContentView(R.layout.cargar_sabores);
 
         viewPager = (ViewPager) findViewById(R.id.ViewPagerSabores);

@@ -45,7 +45,7 @@ public class CrearTragos extends AppCompatActivity {
     HashMap<String, Integer> configTrago = new HashMap<String, Integer>();
 
     Boolean nombreBebidasExists = false;
-    SharedPreferences sp;
+
     ArrayList<String> nombreBebidasExistentes = new  ArrayList<String>();
     ArrayList<SaborEnBotella> listSaborEnBotella = new ArrayList<SaborEnBotella>();
     Integer[] porcentajeGustos = {0, 0, 0, 0, 0, 0};
@@ -53,17 +53,32 @@ public class CrearTragos extends AppCompatActivity {
 
     String nombreBebida = "";
     private String idDevice;
+    private String modoViernesStatus;
+    private String resPantalla;
+    SharedPreferences sp;
+    SharedPreferences.Editor modoViernesEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sp = PreferenceManager.getDefaultSharedPreferences(this);
 
-        if(sp.getString("modoViernes", "ERROR").equals("activado")) {
-            setContentView(R.layout.activity_crear_tragos_viernes);
+        resPantalla = sp.getString("resolucionPantalla", "ERROR");
+
+        if (resPantalla.equals("800")) {
+            if (sp.getString("modoViernes", "ERROR").equals("activado")) {
+                setContentView(R.layout.activity_crear_tragos_viernes);
+            } else {
+                setContentView(R.layout.activity_crear_tragos);
+            }
         } else {
-            setContentView(R.layout.activity_crear_tragos);
+            if (sp.getString("modoViernes", "ERROR").equals("activado")) {
+                setContentView(R.layout.activity_crear_tragos_viernes);
+            } else {
+                setContentView(R.layout.activity_crear_tragos);
+            }
         }
+
         nombreBebidasExistentes = getIntent().getExtras().getStringArrayList("nombreBebidasExistentes");
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);

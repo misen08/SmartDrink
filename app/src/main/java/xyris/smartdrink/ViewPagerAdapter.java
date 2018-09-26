@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -33,9 +34,11 @@ import java.util.List;
 import java.util.ListIterator;
 
 import ar.edu.xyris.smartdrinks.messages.asignacion.AsignaBotellaRequest;
+import ar.edu.xyris.smartdrinks.messages.consulta.sabor.ConsultaSaborResponse;
 import ar.edu.xyris.smartdrinks.messages.creacion.bebida.CreaBebidaRequest;
 import xyris.smartdrink.entities.Bebida;
 import xyris.smartdrink.entities.Botella;
+import xyris.smartdrink.entities.BotellaExt;
 import xyris.smartdrink.entities.FechaHora;
 import xyris.smartdrink.entities.SaborEnBotella;
 import xyris.smartdrink.http.WebServiceClient;
@@ -106,17 +109,47 @@ public class ViewPagerAdapter extends PagerAdapter {
             sabores[i] = listSabores.get(i).getDescripcion();
         }
 
+        Thread threadBotellas = new Thread() {
+            public void run() {
+                HashMap<String, String> params = new HashMap<String, String>();
+                params.put("idDispositivo", idDevice);
+                params.put("fechaHoraPeticion", new FechaHora().formatDate(Calendar.getInstance().getTime()));
+
+                WebServiceClient cli = new WebServiceClient("/consultarBotellas", new JSONObject(params));
+
+                responseReader = (JSONObject) cli.getResponse();
+
+                Log.d("SMARTDRINKS", "RESPUESTA: " + responseReader.toString());
+            }
+        };
+
+        threadBotellas.start();
+        try {
+            threadBotellas.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        ArrayList<BotellaExt> saboresEnBotella = new BotellaExt().parsearSabor(responseReader.toString());
+
+        for(int i = 0; i < saboresEnBotella.size(); i++) {
+            int imagenSabor = cargarImagenBotella(saboresEnBotella.get(i).getIdSabor());
+            images[i] = imagenSabor;
+            Toast.makeText(context, "Sabor: "+images[i].toString(), Toast.LENGTH_SHORT).show();
+            imageView.setImageResource(images[i]);
+        }
+
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (position == 0) {
-                    onCreateDialog(listSabores, sabores, botellas, (position + 1), idDevice);
+                    onCreateDialog(listSabores, sabores, botellas, (position + 1), idDevice, imageView);
                 } else if (position == 1) {
-                    onCreateDialog(listSabores, sabores, botellas, (position + 1), idDevice);
+                    onCreateDialog(listSabores, sabores, botellas, (position + 1), idDevice, imageView);
                 } else if (position == 2) {
-                    onCreateDialog(listSabores, sabores, botellas, (position + 1), idDevice);
+                    onCreateDialog(listSabores, sabores, botellas, (position + 1), idDevice, imageView);
                 } else if (position == 3) {
-                    onCreateDialog(listSabores, sabores, botellas, (position + 1), idDevice);
+                    onCreateDialog(listSabores, sabores, botellas, (position + 1), idDevice, imageView);
                 }
             }
         });
@@ -134,7 +167,7 @@ public class ViewPagerAdapter extends PagerAdapter {
         vp.removeView(view);
     }
 
-    public void onCreateDialog(final ArrayList<SaborEnBotella> listSabores, final String[] sabores, final List<Botella> botellas, final Integer pos, final String idDevice) {
+    public void onCreateDialog(final ArrayList<SaborEnBotella> listSabores, final String[] sabores, final List<Botella> botellas, final Integer pos, final String idDevice, final ImageView imageView) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this.context);
         String titleDialog = "Seleccioná el sabor";
@@ -183,8 +216,32 @@ public class ViewPagerAdapter extends PagerAdapter {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+
+                // De acuerdo al sabor elegido, se modifica la imagen de la botella
+                images[pos] = cargarImagenBotella(listSabores.get(i).getDescripcion());
+                imageView.setImageResource(images[pos]);
+
             }
         });
         builder.show();
+    }
+
+    public int cargarImagenBotella(String idSabor) {
+        switch (idSabor) {
+            case "1":
+                return R.drawable.botella_frutilla;
+            case "2":
+                return R.drawable.botella_anana;
+            case "3":
+                return R.drawable.botella_naranja;
+            case "4":
+                return R.drawable.botella_pomelo;
+            case "5":
+                return R.drawable.botella_durazno;
+            case "6":
+                return R.drawable.botella_manzana;
+        }
+
+        return R.drawable.botella_icon;
     }
 }

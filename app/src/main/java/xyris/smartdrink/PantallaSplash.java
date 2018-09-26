@@ -8,7 +8,6 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
-import android.view.WindowManager;
 
 public class PantallaSplash extends AppCompatActivity {
 

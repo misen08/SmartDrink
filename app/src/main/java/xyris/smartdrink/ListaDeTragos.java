@@ -43,7 +43,6 @@ import xyris.smartdrink.http.WebServiceClient;
 
 public class ListaDeTragos extends AppCompatActivity {
 
-    TextView tvGrabar;
     TextView textViewListaBebidas;
     Drawable infoImage;
     Drawable deleteImage;
@@ -146,9 +145,9 @@ public class ListaDeTragos extends AppCompatActivity {
                 Intent verBebidasProgramadas = new Intent(this, BebidasProgramadas.class);
                 startActivity(verBebidasProgramadas);
                 break;
-            case R.id.cambiar_sabores:
-                Intent cambiarSabores = new Intent(this, SaboresEnBotellas.class);
-                startActivity(cambiarSabores);
+            case R.id.cargar_sabores:
+                Intent cargarSabores = new Intent(this, SaboresEnBotellas.class);
+                startActivity(cargarSabores);
                 break;
             case R.id.modo_viernes:
                 //ToDo: ver cómo se va a implementar el "modo viernes".
@@ -535,4 +534,3 @@ public class ListaDeTragos extends AppCompatActivity {
         }
     }
 }
-
