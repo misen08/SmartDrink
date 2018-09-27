@@ -69,7 +69,7 @@ public class CrearTragos extends AppCompatActivity {
             if (sp.getString("modoViernes", "ERROR").equals("activado")) {
                 setContentView(R.layout.activity_crear_tragos_viernes);
             } else {
-                setContentView(R.layout.activity_crear_tragos);
+                setContentView(R.layout.activity_crear_tragos_tablet);
             }
         } else {
             if (sp.getString("modoViernes", "ERROR").equals("activado")) {

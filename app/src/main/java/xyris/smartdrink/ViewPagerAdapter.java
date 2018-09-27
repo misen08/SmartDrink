@@ -1,12 +1,9 @@
 package xyris.smartdrink;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.media.Image;
-import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
@@ -16,27 +13,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import ar.edu.xyris.smartdrinks.messages.asignacion.AsignaBotellaRequest;
-import ar.edu.xyris.smartdrinks.messages.consulta.sabor.ConsultaSaborResponse;
-import ar.edu.xyris.smartdrinks.messages.creacion.bebida.CreaBebidaRequest;
-import xyris.smartdrink.entities.Bebida;
 import xyris.smartdrink.entities.Botella;
 import xyris.smartdrink.entities.BotellaExt;
 import xyris.smartdrink.entities.FechaHora;
@@ -76,9 +64,8 @@ public class ViewPagerAdapter extends PagerAdapter {
 
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.custom_layout, null);
-        final ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
-        imageView.setImageResource(images[position]);
 
+        // Se obtienen los sabores en un responseReader
         Thread thread = new Thread() {
             public void run() {
                 HashMap<String, String> params = new HashMap<String, String>();
@@ -100,15 +87,17 @@ public class ViewPagerAdapter extends PagerAdapter {
             e.printStackTrace();
         }
 
+        // Se parsean los sabores para trabajar individualmente cada campo
         listSabores = new SaborEnBotella().parsearSaborEnBotella(responseReader.toString());
 
         final String[] sabores = new String[listSabores.size()];
 
-        // Se obtienen los id de sabores para cargar las botellas
+        // Se obtienen los nombres de los sabores para cargar las botellas
         for (int i = 0; i < listSabores.size(); i++) {
             sabores[i] = listSabores.get(i).getDescripcion();
         }
 
+        // Se obtienen las botellas con sus respectivos sabores
         Thread threadBotellas = new Thread() {
             public void run() {
                 HashMap<String, String> params = new HashMap<String, String>();
@@ -132,12 +121,18 @@ public class ViewPagerAdapter extends PagerAdapter {
 
         ArrayList<BotellaExt> saboresEnBotella = new BotellaExt().parsearSabor(responseReader.toString());
 
+        // Se otienen los sabores de las botellas y se cargar la respectiva imagen en cada una
+        botellas.clear();
+
         for(int i = 0; i < saboresEnBotella.size(); i++) {
+            Botella botella = new Botella(saboresEnBotella.get(i).getIdBotella(), saboresEnBotella.get(i).getIdSabor());
+            botellas.add(botella);
             int imagenSabor = cargarImagenBotella(saboresEnBotella.get(i).getIdSabor());
             images[i] = imagenSabor;
-            Toast.makeText(context, "Sabor: "+images[i].toString(), Toast.LENGTH_SHORT).show();
-            imageView.setImageResource(images[i]);
         }
+
+        final ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
+        imageView.setImageResource(images[position]);
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,7 +162,9 @@ public class ViewPagerAdapter extends PagerAdapter {
         vp.removeView(view);
     }
 
-    public void onCreateDialog(final ArrayList<SaborEnBotella> listSabores, final String[] sabores, final List<Botella> botellas, final Integer pos, final String idDevice, final ImageView imageView) {
+    public void onCreateDialog(final ArrayList<SaborEnBotella> listSabores, final String[] sabores,
+                               final List<Botella> botellas, final Integer pos,
+                               final String idDevice, final ImageView imageView) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this.context);
         String titleDialog = "Seleccioná el sabor";
@@ -177,49 +174,60 @@ public class ViewPagerAdapter extends PagerAdapter {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                Botella botella = new Botella(pos.toString(), listSabores.get(i).getIdSabor());
-
-                //Si la botella ya fue asignada, modifico el valor de la posición
-                if(botellas.contains(pos))
-                    botellas.add(pos, botella);
-                //Si la botella no fue asignada, agrego la botella a la lista
-                else    botellas.add(botella);
-
-                AsignaBotellaRequest request = new AsignaBotellaRequest();
-                request.setBotellas(botellas);
-                request.setIdDispositivo(idDevice);
-                request.setFechaHoraPeticion(new FechaHora().formatDate(Calendar.getInstance().getTime()));
-
-                ObjectMapper mapper = new ObjectMapper();
-                JSONObject object = null;
-                try {
-                    object = new JSONObject(mapper.writeValueAsString(request));
-                } catch (Exception e) {
-
+                boolean existeSabor = false;
+                for(int j = 0; j < botellas.size(); j++) {
+                    if(botellas.get(j).getIdSabor().equals(listSabores.get(i).getIdSabor()))
+                        existeSabor = true;
                 }
 
-                final JSONObject finalObject = object;
-                Thread thread = new Thread() {
-                    public void run() {
+                if(!existeSabor) {
+                    Botella botella = new Botella(pos.toString(), listSabores.get(i).getIdSabor());
 
-                        WebServiceClient cli = new WebServiceClient("/asignarBotella", finalObject);
+                    //Si la botella ya fue asignada, modifico el valor de la posición
+                    if(botellas.contains(pos))
+                        botellas.add(pos, botella);
+                        //Si la botella no fue asignada, agrego la botella a la lista
+                    else    botellas.add(botella);
 
-                        responseReader = (JSONObject) cli.getResponse();
+                    AsignaBotellaRequest request = new AsignaBotellaRequest();
+                    request.setBotellas(botellas);
+                    request.setIdDispositivo(idDevice);
+                    request.setFechaHoraPeticion(new FechaHora().formatDate(Calendar.getInstance().getTime()));
 
-                        Log.d("SMARTDRINKS_BEBIDAS", "RESPUESTA_BEBIDAS: " + responseReader.toString());
+                    ObjectMapper mapper = new ObjectMapper();
+                    JSONObject object = null;
+                    try {
+                        object = new JSONObject(mapper.writeValueAsString(request));
+                    } catch (Exception e) {
+
                     }
-                };
 
-                thread.start();
-                try {
-                    thread.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    final JSONObject finalObject = object;
+                    Thread thread = new Thread() {
+                        public void run() {
+
+                            WebServiceClient cli = new WebServiceClient("/asignarBotella", finalObject);
+
+                            responseReader = (JSONObject) cli.getResponse();
+
+                            Log.d("SMARTDRINKS_BEBIDAS", "RESPUESTA_BEBIDAS: " + responseReader.toString());
+                        }
+                    };
+
+                    thread.start();
+                    try {
+                        thread.join();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    // De acuerdo al sabor elegido, se modifica la imagen de la botella
+                    images[pos-1] = cargarImagenBotella(listSabores.get(i).getIdSabor());
+                    imageView.setImageResource(images[pos-1]);
+
+                } else {
+                    Toast.makeText(context, "Ese sabor ya está asignado en otra botella", Toast.LENGTH_SHORT).show();
                 }
-
-                // De acuerdo al sabor elegido, se modifica la imagen de la botella
-                images[pos] = cargarImagenBotella(listSabores.get(i).getDescripcion());
-                imageView.setImageResource(images[pos]);
 
             }
         });
