@@ -15,9 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import ar.edu.xyris.smartdrinks.messages.preparacion.PreparaBebidaRequest;
 import xyris.smartdrink.entities.FechaHora;
@@ -34,7 +32,8 @@ public class OpcionesAdicionales  extends AppCompatActivity {
     CheckBox agitarBebida;
 
     private String idDevice;
-    String modoViernesStatus;
+    private String modoViernesStatus;
+    private String resPantalla;
 
     JSONObject responseReader;
 
@@ -47,16 +46,23 @@ public class OpcionesAdicionales  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sp = PreferenceManager.getDefaultSharedPreferences(this);
-        modoViernesStatus = sp.getString("modoViernes", "ERROR");
-
-        if(modoViernesStatus.equals("activado")) {
-            setContentView(R.layout.opciones_adicionales_viernes);
-        } else {
-            setContentView(R.layout.opciones_adicionales);
-        }
-
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         idDevice = sp.getString("idDevice","ERROR");
+        modoViernesStatus = sp.getString("modoViernes", "ERROR");
+        resPantalla = sp.getString("resolucionPantalla", "ERROR");
+
+        if (resPantalla.equals("800")) {
+            if (modoViernesStatus.equals("activado")) {
+                setContentView(R.layout.opciones_adicionales_tablet_viernes);
+            } else {
+                setContentView(R.layout.opciones_adicionales_tablet);
+            }
+        } else {
+            if (modoViernesStatus.equals("activado")) {
+                setContentView(R.layout.opciones_adicionales_viernes);
+            } else {
+                setContentView(R.layout.opciones_adicionales);
+            }
+        }
 
         //String urlGif = "https://domain.com/myanimatedgif.gif";
         //Agregar implementacion Glide dentro de archivo build.gradle.
@@ -97,7 +103,7 @@ public class OpcionesAdicionales  extends AppCompatActivity {
         });
     }
 
-    //Se obtiene el estado de las opciones "AgregarHielo" y "MezclarBebida".
+    // Se obtiene el estado de las opciones "AgregarHielo" y "MezclarBebida".
     public void verficarFlags() {
         conHielo = agregarHielo.isChecked();
         agitado = agitarBebida.isChecked();
@@ -174,5 +180,4 @@ public class OpcionesAdicionales  extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 }

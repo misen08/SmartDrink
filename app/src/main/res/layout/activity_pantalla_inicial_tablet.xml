@@ -16,7 +16,7 @@
     <Button
         android:id="@+id/buttonCloseApp"
         android:layout_width="450dp"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="60dp"
@@ -28,7 +28,7 @@
     <Button
         android:id="@+id/buttonReadQR"
         android:layout_width="450dp"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="160dp"
