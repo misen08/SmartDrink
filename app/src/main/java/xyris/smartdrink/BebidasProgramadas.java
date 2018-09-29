@@ -7,10 +7,8 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -18,26 +16,16 @@ import android.widget.Toast;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 
-import ar.edu.xyris.smartdrinks.messages.eliminacion.bebida.EliminaBebidaRequest;
 import ar.edu.xyris.smartdrinks.messages.preparacion.CancelaPedidoRequest;
-import xyris.smartdrink.entities.Bebida;
 import xyris.smartdrink.entities.FechaHora;
 import xyris.smartdrink.entities.PedidoBebida;
 import xyris.smartdrink.entities.PedidoAgendado;
-import xyris.smartdrink.entities.SaborEnBotella;
 import xyris.smartdrink.http.WebServiceClient;
 
 public class BebidasProgramadas extends AppCompatActivity {
@@ -55,8 +43,9 @@ public class BebidasProgramadas extends AppCompatActivity {
 
     private String idDevice;
     private String modoViernesStatus;
+    private String resPantalla;
+
     SharedPreferences sp;
-    SharedPreferences.Editor modoViernesEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,11 +53,20 @@ public class BebidasProgramadas extends AppCompatActivity {
 
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         modoViernesStatus = sp.getString("modoViernes", "ERROR");
+        resPantalla = sp.getString("resolucionPantalla", "ERROR");
 
-        if(modoViernesStatus.equals("activado")) {
-            setContentView(R.layout.bebidas_programadas_viernes);
+        if (resPantalla.equals("800")) {
+            if (modoViernesStatus.equals("activado")) {
+                setContentView(R.layout.bebidas_programadas_viernes_tablet);
+            } else {
+                setContentView(R.layout.bebidas_programadas_tablet);
+            }
         } else {
-            setContentView(R.layout.bebidas_programadas);
+            if(modoViernesStatus.equals("activado")) {
+                setContentView(R.layout.bebidas_programadas_viernes);
+            } else {
+                setContentView(R.layout.bebidas_programadas);
+            }
         }
 
         editImage = getResources().getDrawable(R.drawable.edit_icon);

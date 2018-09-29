@@ -6,13 +6,22 @@
     android:layout_height="match_parent"
     android:background="@color/fondoModoViernes">
 
+    <TextView
+        android:id="@+id/textViewBebidasProgramadas"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Tus bebidas programadas"
+        android:textColor="@color/amarilloModoViernes"
+        android:textSize="24sp" />
+
     <ListView
         android:id="@+id/listaBebidasProgramadas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="120dp"
-        android:background="@color/fondoModoViernes"
-        android:divider="@color/amarilloModoViernes" />
+        android:layout_below="@id/textViewBebidasProgramadas"
+        android:layout_marginBottom="120dp" />
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"

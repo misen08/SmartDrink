@@ -3,22 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/fondoModoViernes">
 
     <TextView
         android:id="@+id/textViewBebidasProgramadas"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:text="Tus bebidas programadas"
-        android:textColor="@android:color/black"
-        android:textSize="24sp" />
+        android:textAlignment="center"
+        android:textColor="@color/amarilloModoViernes"
+        android:textSize="50sp" />
 
     <ListView
         android:id="@+id/listaBebidasProgramadas"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="810dp"
         android:layout_below="@id/textViewBebidasProgramadas"
         android:layout_marginBottom="120dp" />
 
@@ -28,15 +30,15 @@
 
         <Button
             android:id="@+id/buttonBack"
-            android:layout_width="220dp"
-            android:layout_height="36dp"
-            android:layout_marginBottom="40dp"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="60dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:background="@color/colorAccent"
+            android:background="@color/amarilloModoViernes"
             android:text="Volver"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
+            android:textColor="@color/fondoModoViernes"
+            android:textSize="36sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

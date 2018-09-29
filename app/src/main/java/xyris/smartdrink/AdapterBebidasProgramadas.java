@@ -17,6 +17,9 @@ import java.util.ArrayList;
 
 public class AdapterBebidasProgramadas extends BaseAdapter {
 
+    private String modoViernesStatus;
+    private String resPantalla;
+
     protected Activity activity;
     protected ArrayList<CategoryListBebidasProgramadas> itemsProgramados;
     SharedPreferences sp;
@@ -60,10 +63,21 @@ public class AdapterBebidasProgramadas extends BaseAdapter {
             LayoutInflater inf = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             sp = PreferenceManager.getDefaultSharedPreferences(this.activity);
 
-            if(sp.getString("modoViernes", "ERROR").equals("activado")) {
-                v = inf.inflate(R.layout.item_category_bebidas_programadas_viernes, null);
+            modoViernesStatus = sp.getString("modoViernes", "ERROR");
+            resPantalla = sp.getString("resolucionPantalla", "ERROR");
+
+            if (resPantalla.equals("800")) {
+                if (modoViernesStatus.equals("activado")) {
+                    v = inf.inflate(R.layout.item_category_bebidas_programadas_viernes_tablet, null);
+                } else {
+                    v = inf.inflate(R.layout.item_category_bebidas_programadas_tablet, null);
+                }
             } else {
-                v = inf.inflate(R.layout.item_category_bebidas_programadas, null);
+                if (modoViernesStatus.equals("activado")) {
+                    v = inf.inflate(R.layout.item_category_bebidas_programadas_viernes, null);
+                } else {
+                    v = inf.inflate(R.layout.item_category_bebidas_programadas, null);
+                }
             }
         }
 

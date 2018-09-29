@@ -35,7 +35,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="200dp"
-        android:background="#FF408CFA" />
+        android:background="@color/amarilloModoViernes" />
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -48,11 +48,11 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="40dp"
-            android:layout_marginStart="100dp"
+            android:layout_marginStart="80dp"
             android:clickable="true"
             android:onClick="onClickBotonReconocimientoDeVoz"
             android:src="@drawable/mic"
-            app:backgroundTint="#FF408CFA"
+            app:backgroundTint="@color/amarilloModoViernes"
             app:fabSize="mini"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/divisor" />
@@ -60,14 +60,14 @@
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/botonCrearTrago"
             android:layout_width="120dp"
-            android:layout_height="130dp"
+            android:layout_height="120dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
             android:layout_marginBottom="40dp"
-            android:layout_marginEnd="40dp"
+            android:layout_marginEnd="80dp"
             android:clickable="true"
             android:src="@drawable/add_icon"
-            app:backgroundTint="#FF408CFA"
+            app:backgroundTint="@color/amarilloModoViernes"
             app:fabSize="mini"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/divisor" />
