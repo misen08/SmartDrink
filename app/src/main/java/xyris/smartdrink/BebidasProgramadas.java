@@ -52,6 +52,7 @@ public class BebidasProgramadas extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         sp = PreferenceManager.getDefaultSharedPreferences(this);
+        idDevice = sp.getString("idDevice","ERROR");
         modoViernesStatus = sp.getString("modoViernes", "ERROR");
         resPantalla = sp.getString("resolucionPantalla", "ERROR");
 
@@ -71,9 +72,6 @@ public class BebidasProgramadas extends AppCompatActivity {
 
         editImage = getResources().getDrawable(R.drawable.edit_icon);
         deleteImage = getResources().getDrawable(R.drawable.delete_icon);
-
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        idDevice = sp.getString("idDevice","ERROR");
 
         obtenerListaBebidasAgendadas();
 

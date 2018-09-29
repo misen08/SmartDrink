@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondoModoViernes">
+
+    <TextView
+        android:id="@+id/textViewBebida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:text="Tu bebida"
+        android:textAlignment="center"
+        android:textColor="@color/amarilloModoViernes"
+        android:textSize="70sp" />
+
+    <TextView
+        android:id="@+id/textViewNombreBebida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:textAlignment="center"
+        android:textColor="@color/amarilloModoViernes"
+        android:textSize="70sp" />
+    />
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <Button
+            android:id="@+id/buttonCancelarModificacion"
+            android:layout_width="250dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="60dp"
+            android:layout_marginEnd="50dp"
+            android:background="@color/amarilloModoViernes"
+            android:text="Cancelar"
+            android:textColor="@color/fondoModoViernes"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/divisorHorizontal" />
+
+        <Button
+            android:id="@+id/buttonAceptarModificacion"
+            android:layout_width="250dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="60dp"
+            android:layout_marginStart="50dp"
+            android:background="@color/amarilloModoViernes"
+            android:text="Aceptar"
+            android:textColor="@color/fondoModoViernes"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/divisorHorizontal" />
+
+        <Button
+            android:id="@+id/buttonModificarFecha"
+            android:layout_width="320dp"
+            android:layout_height="70dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="100dp"
+            android:layout_marginStart="20dp"
+            android:background="@color/amarilloModoViernes"
+            android:text="Cambiar fecha"
+            android:textColor="@color/fondoModoViernes"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toTopOf="@+id/divisorVertical"
+            app:layout_constraintStart_toEndOf="@+id/divisorVertical" />
+
+        <EditText
+            android:id="@+id/editTextFechaAgendada"
+            android:layout_width="250dp"
+            android:layout_height="80dp"
+            android:layout_alignEnd="@+id/buttonModificarFecha"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="100dp"
+            android:layout_marginEnd="60dp"
+            android:editable="false"
+            android:textAlignment="center"
+            android:textColor="@color/amarilloModoViernes"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toTopOf="@+id/divisorVertical"
+            app:layout_constraintEnd_toStartOf="@+id/divisorVertical" />
+
+        <Button
+            android:id="@+id/buttonModificarHora"
+            android:layout_width="320dp"
+            android:layout_height="70dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/editTextFechaAgendada"
+            android:background="@color/amarilloModoViernes"
+            android:text="Cambiar hora"
+            android:textColor="@color/fondoModoViernes"
+            android:textSize="36sp"
+            app:layout_constraintStart_toEndOf="@+id/divisorVertical"
+            app:layout_constraintTop_toBottomOf="@+id/divisorVertical" />
+
+        <EditText
+            android:id="@+id/editTextHoraAgendada"
+            android:layout_width="250dp"
+            android:layout_height="80dp"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_toStartOf="@+id/editTextFechaAgendada"
+            android:editable="false"
+            android:textAlignment="center"
+            android:textColor="@color/amarilloModoViernes"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toStartOf="@+id/divisorVertical"
+            app:layout_constraintTop_toBottomOf="@+id/divisorVertical" />
+
+        <CheckBox
+            android:id="@+id/checkBoxOpcionHielo"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="330dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:button="@null"
+            android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+            android:focusable="auto"
+            android:text="Agregar hielo"
+            android:textColor="@color/amarilloModoViernes"
+            android:textSize="50sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <CheckBox
+            android:id="@+id/checkBoxOpcionAgitado"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="220dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:button="@null"
+            android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+            android:text="Agitar bebida"
+            android:textColor="@color/amarilloModoViernes"
+            android:textSize="50sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/divisorHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@android:color/transparent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="359dp" />
+
+        <ImageView
+            android:id="@+id/divisorVertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:color/transparent" />
+    </android.support.constraint.ConstraintLayout>
+</RelativeLayout>

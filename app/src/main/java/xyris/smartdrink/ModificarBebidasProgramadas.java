@@ -22,14 +22,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import ar.edu.xyris.smartdrinks.messages.preparacion.ModificaPedidoRequest;
-import ar.edu.xyris.smartdrinks.messages.preparacion.PreparaBebidaRequest;
 import xyris.smartdrink.entities.FechaHora;
-import xyris.smartdrink.entities.PedidoAgendado;
 import xyris.smartdrink.entities.PedidoBebida;
 import xyris.smartdrink.http.WebServiceClient;
 
@@ -61,20 +57,30 @@ public class ModificarBebidasProgramadas extends AppCompatActivity implements Vi
     private String agitado;
     private String fechaHoraAgendado;
     private String modoViernesStatus;
+    private String resPantalla;
+
     SharedPreferences sp;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sp = PreferenceManager.getDefaultSharedPreferences(this);
-        modoViernesStatus = sp.getString("modoViernes", "ERROR");
-
-        if(modoViernesStatus.equals("activado")) {
-            setContentView(R.layout.modificar_bebidas_programadas_viernes);
-        } else {
-            setContentView(R.layout.modificar_bebidas_programadas);
-        }
-
         idDevice = sp.getString("idDevice","ERROR");
+        modoViernesStatus = sp.getString("modoViernes", "ERROR");
+        resPantalla = sp.getString("resolucionPantalla", "ERROR");
+
+        if (resPantalla.equals("800")) {
+            if (modoViernesStatus.equals("activado")) {
+                setContentView(R.layout.modificar_bebidas_programadas_tablet_viernes);
+            } else {
+                setContentView(R.layout.modificar_bebidas_programadas_tablet);
+            }
+        } else {
+            if(modoViernesStatus.equals("activado")) {
+                setContentView(R.layout.modificar_bebidas_programadas_viernes);
+            } else {
+                setContentView(R.layout.modificar_bebidas_programadas);
+            }
+        }
 
         tvNombreBebida = (TextView) findViewById(R.id.textViewNombreBebida);
         tvNombreBebida.setText(getIntent().getStringExtra("nombreBebida"));
