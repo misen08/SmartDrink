@@ -97,7 +97,7 @@ public class PreparandoTrago  extends AppCompatActivity {
 
         while(!("0".equals(codigoErrorPrepararBebida))){
             try {
-                Thread.sleep(10000);
+                //Thread.sleep(10000);
                 Toast.makeText(this, "Sleep", Toast.LENGTH_SHORT).show();
 
                 codigoErrorPrepararBebida = "0";
@@ -211,19 +211,32 @@ public class PreparandoTrago  extends AppCompatActivity {
     }
 
 
-    public void enviarMensajePrepararBebidaAhora(String idBebida, String hielo, String agitado) {
+    public void enviarMensajePrepararBebidaAhora(final String idBebida, String hielo, String agitado) {
+
+        PreparaBebidaRequest request = new PreparaBebidaRequest();
+
+        //La fecha y hora no se tienen en cuenta ya que el pedido se preparará en el momento.
+        //Agendado posee valor "FALSE".
+        PedidoBebida pedidoBebida = new PedidoBebida(idBebida, hielo, agitado,
+                "false", "");
+
+        request.setPedidoBebida(pedidoBebida);
+        request.setIdDispositivo(idDevice);
+        request.setFechaHoraPeticion(new FechaHora().formatDate(Calendar.getInstance().getTime()));
+
+        ObjectMapper mapper = new ObjectMapper();
+        JSONObject object = null;
+        try {
+            object = new JSONObject(mapper.writeValueAsString(request));
+        } catch (Exception e) {
+
+        }
+
+        final JSONObject finalObject = object;
         Thread thread = new Thread(){
             public void run(){
-                HashMap<String,String> params = new HashMap<String,String>();
-                params.put("idDispositivo",idDevice);
-                //Se obtiene la fecha y hora actual y se le aplica el formato que necesita recibir el mensaje.
-                //A "fechaHoraPeticion" se deberá asignar "currentFormattedDate ".
-                Date currentDate = Calendar.getInstance().getTime();
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-                String currentFormattedDate  = df.format(currentDate);
-                params.put("fechaHoraPeticion", currentFormattedDate);
 
-                WebServiceClient cli = new WebServiceClient("/prepararBebida", new JSONObject(params));
+                WebServiceClient cli = new WebServiceClient("/prepararBebida", finalObject);
 
                 responseReader = (JSONObject) cli.getResponse();
 
@@ -242,11 +255,10 @@ public class PreparandoTrago  extends AppCompatActivity {
             codigoErrorPrepararBebida = responseReader.getString("codigoError");
             descripcionPrepararBebida = responseReader.getString("descripcionError");
         } catch (JSONException e) { e.printStackTrace(); }
-
-
-        }
-
     }
+}
+
+
 
 
 
