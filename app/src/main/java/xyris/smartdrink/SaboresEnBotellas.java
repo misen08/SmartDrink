@@ -6,22 +6,11 @@ import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
-import org.json.JSONObject;
-
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import xyris.smartdrink.entities.FechaHora;
-import xyris.smartdrink.http.WebServiceClient;
 
 public class SaboresEnBotellas extends AppCompatActivity {
 
@@ -44,18 +33,17 @@ public class SaboresEnBotellas extends AppCompatActivity {
 
         if (resPantalla.equals("800")) {
             if (modoViernesStatus.equals("activado")) {
-                setContentView(R.layout.lista_de_tragos_tablet_viernes);
+                setContentView(R.layout.cargar_sabores_viernes_tablet);
             } else {
-                setContentView(R.layout.lista_de_tragos_tablet);
+                setContentView(R.layout.cargar_sabores_tablet);
             }
         } else {
             if (modoViernesStatus.equals("activado")) {
-                setContentView(R.layout.lista_de_tragos_viernes);
+                setContentView(R.layout.cargar_sabores_viernes);
             } else {
                 setContentView(R.layout.cargar_sabores);
             }
         }
-        setContentView(R.layout.cargar_sabores);
 
         viewPager = (ViewPager) findViewById(R.id.ViewPagerSabores);
 
@@ -73,8 +61,13 @@ public class SaboresEnBotellas extends AppCompatActivity {
         dots = new ImageView[dotsCount];
 
         for(int i = 0; i < dotsCount; i++){
-            dots[i] = new ImageView(this);
-            dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.nonactive_dot));
+            if(modoViernesStatus.equals("activado")) {
+                dots[i] = new ImageView(this);
+                dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.nonactive_dot_viernes));
+            } else {
+                dots[i] = new ImageView(this);
+                dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.nonactive_dot));
+            }
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
@@ -83,7 +76,11 @@ public class SaboresEnBotellas extends AppCompatActivity {
             sliderDotsPanel.addView(dots[i], params);
         }
 
-        dots[0].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.active_dot));
+        if(modoViernesStatus.equals("activado")) {
+            dots[0].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.active_dot_viernes));
+        } else  {
+            dots[0].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.active_dot));
+        }
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -95,11 +92,18 @@ public class SaboresEnBotellas extends AppCompatActivity {
             public void onPageSelected(int position) {
 
                 for(int i = 0; i < dotsCount; i++) {
-                    dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.nonactive_dot));
+                    if(modoViernesStatus.equals("activado")) {
+                        dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.nonactive_dot_viernes));
+                    } else {
+                        dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.nonactive_dot));
+                    }
                 }
 
-                dots[position].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.active_dot));
-
+                if(modoViernesStatus.equals("activado")) {
+                    dots[position].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.active_dot_viernes));
+                } else {
+                    dots[position].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.active_dot));
+                }
             }
 
             @Override

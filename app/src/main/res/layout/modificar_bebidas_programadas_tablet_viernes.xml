@@ -125,41 +125,66 @@
 
         <CheckBox
             android:id="@+id/checkBoxOpcionHielo"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="120dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="330dp"
+            android:layout_marginBottom="320dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:button="@null"
             android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
             android:focusable="auto"
-            android:text="Agregar hielo"
-            android:textColor="@color/amarilloModoViernes"
-            android:textSize="50sp"
+            android:scaleX="3"
+            android:scaleY="3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints" />
 
-        <CheckBox
-            android:id="@+id/checkBoxOpcionAgitado"
+        <TextView
+            android:id="@+id/textViewAgregarHielo"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="220dp"
+            android:layout_marginEnd="8dp"
+            android:text="Agitar bebida"
+            android:textAlignment="center"
+            android:textColor="@color/amarilloModoViernes"
+            android:textSize="50sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/checkBoxOpcionHielo" />
+
+        <CheckBox
+            android:id="@+id/checkBoxOpcionAgitado"
+            android:layout_width="150dp"
+            android:layout_height="120dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="220dp"
+            android:layout_marginBottom="190dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:button="@null"
             android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
-            android:text="Agitar bebida"
-            android:textColor="@color/amarilloModoViernes"
-            android:textSize="50sp"
+            android:focusable="auto"
+            android:scaleX="3"
+            android:scaleY="3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewAgitarBebida"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="350dp"
+            android:layout_marginEnd="8dp"
+            android:text="Agregar hielo"
+            android:textAlignment="center"
+            android:textColor="@color/amarilloModoViernes"
+            android:textSize="50sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/checkBoxOpcionHielo" />
 
         <ImageView
             android:id="@+id/divisorHorizontal"
