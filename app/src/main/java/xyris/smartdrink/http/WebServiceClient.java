@@ -54,7 +54,7 @@ public class WebServiceClient  {
             URL url = new URL("http", hostPlaca, portPlaca, servicio);
             HttpClient httpClient = new HttpClient();
             HttpConnection httpConnection = httpClient.getConnection(url,
-                    15000, 15000, new Authentication(), "POST");
+                    120000, 120000, new Authentication(), "POST");
             httpConnection.addProperty("Content-Type","application/json");
             response = httpConnection.send(request.toString().getBytes());
             InputStream stream = new ByteArrayInputStream(response);
