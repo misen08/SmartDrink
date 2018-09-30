@@ -35,7 +35,7 @@ import xyris.smartdrink.http.WebServiceClient;
 public class PreparandoTrago  extends AppCompatActivity {
 
     TextView tvPreparandoTrago;
-    Button btnCerrar;
+    TextView tvMusica;
     ImageButton btnMusic;
     String botonStartMusicStatus = "false";
     String modoViernesStatus;
@@ -52,10 +52,11 @@ public class PreparandoTrago  extends AppCompatActivity {
 
     SharedPreferences sp;
     JSONObject responseReader;
-    String codigoErrorPrepararBebida;
+    String codigoErrorPrepararBebida = "1";
     String descripcionPrepararBebida;
 
     private String idDevice;
+    private String resPantalla;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,22 +64,34 @@ public class PreparandoTrago  extends AppCompatActivity {
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         modoViernesStatus = sp.getString("modoViernes", "ERROR");
         idDevice = sp.getString("idDevice", "ERROR");
+        resPantalla = sp.getString("resolucionPantalla", "ERROR");
 
-        if (modoViernesStatus.equals("activado")) {
-            setContentView(R.layout.preparando_trago);
+        if (resPantalla.equals("800")) {
+            if (sp.getString("modoViernes", "ERROR").equals("activado")) {
+                setContentView(R.layout.preparando_trago_tablet);
+            } else {
+                setContentView(R.layout.preparando_trago_tablet);
+            }
         } else {
-            setContentView(R.layout.preparando_trago);
+            if (sp.getString("modoViernes", "ERROR").equals("activado")) {
+                setContentView(R.layout.preparando_trago_viernes);
+            } else {
+                setContentView(R.layout.preparando_trago);
+            }
         }
 
         tvPreparandoTrago = (TextView) findViewById(R.id.textViewPreparando);
         descripcionBebida = getIntent().getExtras().get("descripcionBebida").toString();
-        tvPreparandoTrago.setText("Tu bebida \"" + descripcionBebida + "\" está siendo preparada.");
+        tvPreparandoTrago.setText("Tu bebida \n \"" + descripcionBebida + "\" \n está siendo preparada");
 
+        tvMusica = (TextView) findViewById(R.id.textViewMusica);
+        tvMusica.setText("Desactivar música");
         btnMusic = findViewById(R.id.btnMusic);
-        btnCerrar = findViewById(R.id.btnCerrar);
+        if (resPantalla.equals("800"))
+            btnMusic.setImageResource(R.drawable.audio_no_tablet);
+        else btnMusic.setImageResource(R.drawable.audio_no);
 
-        songModoNormal = MediaPlayer.create(PreparandoTrago.this, R.raw.song_default)
-        ;
+        songModoNormal = MediaPlayer.create(PreparandoTrago.this, R.raw.song_default);
         songModoViernes = MediaPlayer.create(PreparandoTrago.this, R.raw.song_viernes);
 
         if ("desactivado".equals(modoViernesStatus)) {
@@ -87,69 +100,11 @@ public class PreparandoTrago  extends AppCompatActivity {
             songModoViernes.start();
         }
 
-
         //Se obtienen los valores para preparar la bebida.
         idBebida = getIntent().getExtras().get("idBebida").toString();
         hielo = getIntent().getExtras().get("hielo").toString();
         esAgitado = getIntent().getExtras().get("agitado").toString();
 
-        enviarMensajePrepararBebidaAhora(idBebida, hielo, esAgitado);
-
-        while(!("0".equals(codigoErrorPrepararBebida))){
-            try {
-                //Thread.sleep(10000);
-                Toast.makeText(this, "Sleep", Toast.LENGTH_SHORT).show();
-
-                codigoErrorPrepararBebida = "0";
-            } catch (Exception e) {
-                ;
-            }
-        }
-
-
-        String titleDelete = "Preparación finalizada";
-        String messageDelete = "Su bebida se encuentra lista!";
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-        if (titleDelete != null) builder.setTitle(titleDelete);
-
-        builder.setMessage(messageDelete);
-        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-                Intent returnIntent = new Intent();
-                boolean result = true;
-                returnIntent.putExtra("result",result);
-                setResult(Activity.RESULT_OK,returnIntent);
-                finish();
-
-                if("0".equals(codigoErrorPrepararBebida)){
-
-                    Toast.makeText(PreparandoTrago.this, "BEBIDA PREPARADA CORRECTAMENTE.",
-                            Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(PreparandoTrago.this, descripcionPrepararBebida + " " +
-                                    "Código de error: " + codigoErrorPrepararBebida,
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        builder.show();
-
-
-
-        if ("0".equals(codigoErrorPrepararBebida)) {
-
-            Toast.makeText(PreparandoTrago.this, "Finalizó la preparación de la bebida.",
-                    Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(PreparandoTrago.this, descripcionPrepararBebida + " " +
-                            "Código de error: " + codigoErrorPrepararBebida,
-                    Toast.LENGTH_LONG).show();
-        }
 
         btnMusic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,20 +113,24 @@ public class PreparandoTrago  extends AppCompatActivity {
                 switch (botonStartMusicStatus) {
                     case STATUS_TRUE:
                         botonStartMusicStatus = "false";
-                        btnMusic.setImageResource(R.drawable.audio_si);
+                        if (resPantalla.equals("800"))
+                            btnMusic.setImageResource(R.drawable.audio_no_tablet);
+                        else btnMusic.setImageResource(R.drawable.audio_no);
+                        tvMusica.setText("Desactivar musica");
                         if ("desactivado".equals(modoViernesStatus)) {
                             songModoNormal.setVolume(1, 1);
                         } else {
                             songModoViernes.setVolume(1, 1);
                         }
                         break;
-
                     case STATUS_FALSE:
-
                         songModoNormal.setVolume(0, 0);
                         songModoViernes.setVolume(0, 0);
                         botonStartMusicStatus = "true";
-                        btnMusic.setImageResource(R.drawable.audio_no);
+                        if (resPantalla.equals("800"))
+                            btnMusic.setImageResource(R.drawable.audio_si_tablet);
+                        else btnMusic.setImageResource(R.drawable.audio_si);
+                        tvMusica.setText("Activar musica");
                         break;
                     default:
                         break;
@@ -179,20 +138,19 @@ public class PreparandoTrago  extends AppCompatActivity {
             }
         });
 
-        btnCerrar.setOnClickListener(new View.OnClickListener() {
+        Thread t = new Thread(new Runnable() {
             @Override
-            public void onClick(View v) {
-
-
-                Intent returnIntent = new Intent();
-                boolean result = true;
-                returnIntent.putExtra("result",result);
-                setResult(Activity.RESULT_OK,returnIntent);
-                finish();
-
+            public void run() {
+                enviarMensajePrepararBebidaAhora(idBebida, hielo, esAgitado);
             }
         });
+        t.start();
+
+        while(!t.isAlive()) {
+            Toast.makeText(this, "Termino", Toast.LENGTH_SHORT).show();
+        }
     }
+
 
     @Override
     protected void onStop()
@@ -255,13 +213,41 @@ public class PreparandoTrago  extends AppCompatActivity {
             codigoErrorPrepararBebida = responseReader.getString("codigoError");
             descripcionPrepararBebida = responseReader.getString("descripcionError");
         } catch (JSONException e) { e.printStackTrace(); }
+
+    }
+
+
+    public void abrirCuadroDialogo() {
+
+        String titleDelete = "Preparación finalizada";
+        String messageDelete = "Su bebida se encuentra lista!";
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        if (titleDelete != null) builder.setTitle(titleDelete);
+
+        builder.setMessage(messageDelete);
+        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                Intent returnIntent = new Intent();
+                boolean result = true;
+                returnIntent.putExtra("result", result);
+                setResult(Activity.RESULT_OK, returnIntent);
+                finish();
+
+                if ("0".equals(codigoErrorPrepararBebida)) {
+                    Toast.makeText(PreparandoTrago.this, "BEBIDA PREPARADA CORRECTAMENTE.",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(PreparandoTrago.this, descripcionPrepararBebida + " " +
+                                    "Código de error: " + codigoErrorPrepararBebida,
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        builder.show();
     }
 }
-
-
-
-
-
-
-
-
