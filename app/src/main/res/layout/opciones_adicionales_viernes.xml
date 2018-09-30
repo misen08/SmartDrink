@@ -27,7 +27,7 @@
         android:layout_width="80dp"
         android:layout_height="100dp"
         android:layout_marginBottom="25dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="50dp"
         app:layout_constraintBottom_toTopOf="@+id/imageViewDivisorOA"
         app:layout_constraintEnd_toStartOf="@+id/imageViewDivisorOA"
         app:srcCompat="@drawable/ice_icon" />
@@ -37,7 +37,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="40dp"
         android:button="@null"
         android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
         android:text="Agregar hielo"
@@ -45,13 +45,13 @@
         android:textColor="@color/amarilloModoViernes"
         android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/imageViewDivisorOA"
-        app:layout_constraintStart_toEndOf="@+id/imageViewDivisorOA" />
+        app:layout_constraintStart_toEndOf="@+id/imageViewAgregarHielo" />
 
     <ImageView
         android:id="@+id/imageViewAgitado"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginEnd="60dp"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toStartOf="@+id/imageViewDivisorOA"
         app:layout_constraintTop_toBottomOf="@+id/imageViewDivisorOA"
@@ -61,7 +61,7 @@
         android:id="@+id/checkBoxMezclarBebida"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="10dp"
         android:button="@null"
         android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
@@ -69,7 +69,7 @@
         android:textAlignment="center"
         android:textColor="@color/amarilloModoViernes"
         android:textSize="30dp"
-        app:layout_constraintStart_toEndOf="@+id/imageViewDivisorOA"
+        app:layout_constraintStart_toEndOf="@+id/imageViewAgitado"
         app:layout_constraintTop_toBottomOf="@+id/imageViewDivisorOA" />
 
     <Button
