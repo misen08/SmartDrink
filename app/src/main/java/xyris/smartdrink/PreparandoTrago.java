@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -146,9 +147,6 @@ public class PreparandoTrago  extends AppCompatActivity {
         });
         t.start();
 
-        while(!t.isAlive()) {
-            Toast.makeText(this, "Termino", Toast.LENGTH_SHORT).show();
-        }
     }
 
 
@@ -214,6 +212,20 @@ public class PreparandoTrago  extends AppCompatActivity {
             descripcionPrepararBebida = responseReader.getString("descripcionError");
         } catch (JSONException e) { e.printStackTrace(); }
 
+
+        if(codigoErrorPrepararBebida.equals("0")) {
+            Intent returnIntent = new Intent();
+            boolean result = true;
+            returnIntent.putExtra("result", result);
+            setResult(Activity.RESULT_OK, returnIntent);
+            finish();
+        } else {
+            Intent returnIntent = new Intent();
+            boolean result = false;
+            returnIntent.putExtra("result", result);
+            setResult(Activity.RESULT_CANCELED, returnIntent);
+            finish();
+        }
     }
 
 

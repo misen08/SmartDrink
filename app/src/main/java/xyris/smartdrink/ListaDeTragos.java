@@ -58,6 +58,7 @@ public class ListaDeTragos extends AppCompatActivity {
     private static final int RECOGNIZE_SPEECH_ACTIVITY = 1;
     private static final int CREAR_TRAGO_ACTIVITY = 2;
     private static final int OPCIONES_ADICIONALES_ACTIVITY = 3;
+    private static final int RETURN_PEDIDO_POR_VOZ = 4;
 
     String codigoErrorEliminarBebida;
     String descripcionErrorEliminarBebida;
@@ -71,6 +72,7 @@ public class ListaDeTragos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sp = PreferenceManager.getDefaultSharedPreferences(this);
+        idDevice = sp.getString("idDevice","ERROR");
         modoViernesStatus = sp.getString("modoViernes", "ERROR");
         resPantalla = sp.getString("resolucionPantalla", "ERROR");
 
@@ -93,8 +95,6 @@ public class ListaDeTragos extends AppCompatActivity {
         FloatingActionButton botonCrearTrago = findViewById(R.id.botonCrearTrago);
         infoImage = getResources().getDrawable(R.drawable.info_icon);
         deleteImage = getResources().getDrawable(R.drawable.delete_icon);
-
-        idDevice = sp.getString("idDevice","ERROR");
 
         obtenerLista();
 
@@ -150,8 +150,6 @@ public class ListaDeTragos extends AppCompatActivity {
                 startActivity(cargarSabores);
                 break;
             case R.id.modo_viernes:
-                //ToDo: ver cómo se va a implementar el "modo viernes".
-
                 modoViernesStatus = sp.getString("modoViernes", "ERROR");
                 modoViernesEditor = sp.edit();
 
@@ -203,13 +201,11 @@ public class ListaDeTragos extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode,
-                                    Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode) {
             case RECOGNIZE_SPEECH_ACTIVITY:
-
 
                 if (resultCode == RESULT_OK && null != data) {
 
@@ -223,32 +219,31 @@ public class ListaDeTragos extends AppCompatActivity {
                     String idBebida = "-1";
                     String hielo = "false";
                     String agitado = "false";
+
                     while("-1".equals(idBebida)){
-                        Toast toast = Toast.makeText(this, "Pedido por voz: "+ strSpeech2Text.toUpperCase(), Toast.LENGTH_SHORT);
-                        toast.setGravity(Gravity.CENTER, 0, 0);
-                        toast.show();
+                        //Toast toast = Toast.makeText(this, "Pedido por voz: "+ strSpeech2Text.toUpperCase(), Toast.LENGTH_SHORT);
+                        //toast.setGravity(Gravity.CENTER, 0, 0);
+                        //toast.show();
 
                         for(int j=0; j < listBebida.size(); j++) {
                             itemBebida = listBebida.get(j).getDescripcion().toUpperCase();
                             boolean isFound = strSpeech2TextUpperCase.contains(itemBebida);
-//                            Toast.makeText(this, "ACA_1", Toast.LENGTH_SHORT).show();
 
                             if (isFound) {
-//                                Toast.makeText(this, "ACA_2", Toast.LENGTH_SHORT).show();
-
                                 idBebida = listBebida.get(j).getIdBebida();
                                 boolean boolHielo = strSpeech2TextUpperCase.contains("con hielo".toUpperCase());
                                 if(boolHielo){
                                     hielo = "true";
                                 }
+
                                 boolean boolAgitado = strSpeech2TextUpperCase.contains("agitado".toUpperCase());
                                 if(boolAgitado){
                                     agitado = "true";
                                 }
 
-                                Toast.makeText(this, "SUPER!!", Toast.LENGTH_LONG).show();
-                                Toast.makeText(this, "yeay " + idBebida + " " + itemBebida +
-                                        "Hielo: " + hielo + "Agitado: " + agitado, Toast.LENGTH_LONG).show();
+                                //Toast.makeText(this, "SUPER!!", Toast.LENGTH_LONG).show();
+                                //Toast.makeText(this, "yeay " + idBebida + " " + itemBebida +
+                                //        "Hielo: " + hielo + "Agitado: " + agitado, Toast.LENGTH_LONG).show();
 
                                 Intent prepararTrago = new Intent(ListaDeTragos.this, PreparandoTrago.class);
                                 prepararTrago.putExtra("hielo", hielo);
@@ -256,22 +251,30 @@ public class ListaDeTragos extends AppCompatActivity {
                                 prepararTrago.putExtra("idBebida", idBebida);
                                 prepararTrago.putExtra("descripcionBebida", itemBebida);
                                 startActivityForResult(prepararTrago, 4);
-
                             }
                         }
+
                         if("-1".equals(idBebida)) {
                             Toast.makeText(this, "BEBIDA NO ENCONTRADA", Toast.LENGTH_SHORT).show();
                             idBebida = "0";
                         }
-                    }
-                    //enviarMensajePrepararBebidaAhoraPorVoz(idBebida, hielo, agitado);
 
+                    }
                 }
                 break;
 
             case CREAR_TRAGO_ACTIVITY:
+
                 if (resultCode == RESULT_OK && null != data) {
                     obtenerLista();
+                }
+                break;
+
+            case OPCIONES_ADICIONALES_ACTIVITY:
+            case RETURN_PEDIDO_POR_VOZ:
+
+                if(resultCode == RESULT_OK && null != data) {
+                    abrirCuadroDialogoBebidaFinalizada();
                 }
                 break;
 
@@ -308,10 +311,7 @@ public class ListaDeTragos extends AppCompatActivity {
         ArrayList<SaborEnBebida> sabor = listBebida.get(pos).getSabores();
         //Se muestra el porcentaje de cada sabor.
         for (int i = 0 ; i < sabor.size(); i++){
-
-
-            messageTemp = sabor.get(i).getDescripcion() + ": " +
-                    sabor.get(i).getPorcentaje() + "%" + "\n";
+            messageTemp = sabor.get(i).getDescripcion() + ": " + sabor.get(i).getPorcentaje() + "%" + "\n";
             message = message + messageTemp;
         }
 
@@ -397,7 +397,6 @@ public class ListaDeTragos extends AppCompatActivity {
         builder.setNegativeButton("No", null);
         builder.show();
 
-        //TODO: Traer nuevamente la lista de bebidas actualizada de la base de datos
         lv.setAdapter(new AdapterItem(this, items));
     }
 
@@ -405,14 +404,7 @@ public class ListaDeTragos extends AppCompatActivity {
 
         EliminaBebidaRequest request = new EliminaBebidaRequest();
         request.setIdDispositivo(idDevice);
-        //Se obtiene la fecha y hora actual y se le aplica el formato que necesita recibir el mensaje.
-        //A "fechaHoraPeticion" se deberá asignar "currentFormattedDate".
-        Date currentDate = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        String currentFormattedDate = df.format(currentDate);
-        request.setFechaHoraPeticion(currentFormattedDate);
-        // request.setFechaHoraPeticion("2018-08-08T20:20:20");
-
+        request.setFechaHoraPeticion(new FechaHora().formatDate(Calendar.getInstance().getTime()));
         request.setIdBebida(idBebida);
 
         ObjectMapper mapper = new ObjectMapper();
@@ -443,10 +435,8 @@ public class ListaDeTragos extends AppCompatActivity {
         }
 
         try {
-
             codigoErrorEliminarBebida = responseReader.getString("codigoError");
             descripcionErrorEliminarBebida = responseReader.getString("descripcionError");
-
         } catch (JSONException e) { e.printStackTrace(); }
     }
 
@@ -517,7 +507,6 @@ public class ListaDeTragos extends AppCompatActivity {
         //La fecha y hora no se tienen en cuenta ya que el pedido se preparará en el momento.
         //Agendado posee valor "FALSE".
 
-
         PedidoBebida pedidoBebida = new PedidoBebida(idBebida, hielo, agitado,
                 "false", "2018-01-01T00:00:00");
 
@@ -551,5 +540,24 @@ public class ListaDeTragos extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public void abrirCuadroDialogoBebidaFinalizada () {
+        String titleDelete = "PREPARACIÓN FINALIZADA";
+        String messageDelete = "¡Tu bebida ya está lista!\nPodes retirarla de la máquina\n\n¡Que la disfrutes!";
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        if (titleDelete != null) builder.setTitle(titleDelete);
+
+        builder.setMessage(messageDelete);
+        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        builder.show();
     }
 }
