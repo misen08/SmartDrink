@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 import ar.edu.xyris.smartdrinks.messages.eliminacion.bebida.EliminaBebidaRequest;
 import ar.edu.xyris.smartdrinks.messages.preparacion.PreparaBebidaRequest;
@@ -46,7 +48,11 @@ public class ListaDeTragos extends AppCompatActivity {
     TextView textViewListaBebidas;
     Drawable infoImage;
     Drawable deleteImage;
+    Drawable disableImage;
     ListView lv;
+    Map<String, String> mapDisable = new HashMap<String, String>();
+
+
 
     JSONObject responseReader;
 
@@ -101,7 +107,28 @@ public class ListaDeTragos extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                abrirOpcionesAdicionales(view, position);
+                if("0".equals(items.get(position).getDisponible())){
+                    String titleDelete = "Bebida no disponible";
+                    String messageDelete = "La bebida no puede prepararse debido a que alguno de los gustos " +
+                            "que la componen no se encuentra disponible. " +
+                            "¿Querés preparar PRUEBA_SUGERENCIA";
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ListaDeTragos.this);
+
+                    if (titleDelete != null) builder.setTitle(titleDelete);
+
+                    builder.setMessage(messageDelete);
+                    builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    builder.setNegativeButton("No", null);
+                    builder.show();
+                } else {
+                    abrirOpcionesAdicionales(view, position);
+                }
                 //TODO: Abrir opciones adicionales luego de seleccionar el trago
             }
         });
@@ -245,12 +272,34 @@ public class ListaDeTragos extends AppCompatActivity {
                                 //Toast.makeText(this, "yeay " + idBebida + " " + itemBebida +
                                 //        "Hielo: " + hielo + "Agitado: " + agitado, Toast.LENGTH_LONG).show();
 
-                                Intent prepararTrago = new Intent(ListaDeTragos.this, PreparandoTrago.class);
-                                prepararTrago.putExtra("hielo", hielo);
-                                prepararTrago.putExtra("agitado", agitado);
-                                prepararTrago.putExtra("idBebida", idBebida);
-                                prepararTrago.putExtra("descripcionBebida", itemBebida);
-                                startActivityForResult(prepararTrago, 4);
+                                if("0".equals(listBebida.get(j).getDisponible())){
+                                    String titleDelete = "Bebida no disponible";
+                                    String messageDelete = "La bebida no puede prepararse debido a que alguno de los gustos " +
+                                            "que la componen no se encuentra disponible. " +
+                                            "¿Querés preparar PRUEBA_SUGERENCIA";
+
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(ListaDeTragos.this);
+
+                                    if (titleDelete != null) builder.setTitle(titleDelete);
+
+                                    builder.setMessage(messageDelete);
+                                    builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                        }
+                                    });
+                                    builder.setNegativeButton("No", null);
+                                    builder.show();
+                                } else {
+                                    Intent prepararTrago = new Intent(ListaDeTragos.this, PreparandoTrago.class);
+                                    prepararTrago.putExtra("hielo", hielo);
+                                    prepararTrago.putExtra("agitado", agitado);
+                                    prepararTrago.putExtra("idBebida", idBebida);
+                                    prepararTrago.putExtra("descripcionBebida", itemBebida);
+                                    startActivityForResult(prepararTrago, 4);
+                                }
+//                                startActivityForResult(prepararTrago, 4);
                             }
                         }
 
@@ -350,8 +399,10 @@ public class ListaDeTragos extends AppCompatActivity {
         String [] bebidas = new String[listBebida.size()];
         items.clear();
         for(int i=0; i< listBebida.size(); i++){
-            //Se llena el array de itemsProgramados (bebidas) - el ID de bebida y el nombre debe tomarlo de la DB
-            items.add(new CategoryList(listBebida.get(i).getIdBebida(), listBebida.get(i).getDescripcion(), infoImage, deleteImage));
+            //Se obtiene el valor "disponible" para cada bebida.
+            mapDisable.put(listBebida.get(i).getIdBebida(), listBebida.get(i).getDisponible());
+            //Se llena el array de itemsProgramados (bebidas).
+                items.add(new CategoryList(listBebida.get(i).getIdBebida(), listBebida.get(i).getDescripcion(), disableImage, infoImage, deleteImage, listBebida.get(i).getDisponible()));
             //Se obtiene el nombre de las bebidas existentes para validar cuando se crea una nueva bebida.
             nombreBebidasExistentes.add(listBebida.get(i).getDescripcion());
             bebidas[i] = listBebida.get(i).getDescripcion();
@@ -359,7 +410,7 @@ public class ListaDeTragos extends AppCompatActivity {
 
         lv = (ListView) findViewById(R.id.listaTragos);
 
-        lv.setAdapter(new AdapterItem(this, items));
+        lv.setAdapter(new AdapterItem(this, items, mapDisable));
 
     }
 
@@ -397,7 +448,7 @@ public class ListaDeTragos extends AppCompatActivity {
         builder.setNegativeButton("No", null);
         builder.show();
 
-        lv.setAdapter(new AdapterItem(this, items));
+        lv.setAdapter(new AdapterItem(this, items, mapDisable));
     }
 
     public void enviarMensajeEliminarBebida(String idBebida){

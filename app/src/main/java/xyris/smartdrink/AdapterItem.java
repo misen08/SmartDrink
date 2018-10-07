@@ -3,6 +3,7 @@ package xyris.smartdrink;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,16 +14,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AdapterItem extends BaseAdapter {
 
     protected Activity activity;
     protected ArrayList<CategoryList> items;
+    Map<String, String> mapDisable;
     SharedPreferences sp;
 
-    public AdapterItem (Activity activity, ArrayList<CategoryList> items) {
+    public AdapterItem (Activity activity, ArrayList<CategoryList> items, Map<String, String> mapDisable) {
         this.activity = activity;
         this.items = items;
+        this.mapDisable = mapDisable;
     }
 
     @Override
@@ -81,6 +86,20 @@ public class AdapterItem extends BaseAdapter {
 
         TextView tvTitle = (TextView) v.findViewById(R.id.textViewBebida);
         tvTitle.setText(dir.getTitle());
+        int colorDisable = colorTexto(mapDisable.get(items.get(position).getCategoryId()));
+
+        tvTitle.setTextColor(colorDisable);
+//        if("0".equals(mapDisable.get(items.get(position).getCategoryId()))){
+//            tvTitle.setTextColor(Color.GRAY);
+//        }
+
+
+        ImageView ivDisableImage = (ImageView) v.findViewById(R.id.disableImage);
+
+        int imagenDisable = cargarImagenDisable(mapDisable.get(items.get(position).getCategoryId()));
+
+        ivDisableImage.setImageResource(imagenDisable);
+
 
         ImageView ivInfoImage = (ImageView) v.findViewById(R.id.buttonEdit);
         ivInfoImage.setImageDrawable(dir.getButtonInfo());
@@ -107,5 +126,43 @@ public class AdapterItem extends BaseAdapter {
         });
 
         return v;
+    }
+
+    public int cargarImagenDisable(String habilitado) {
+        switch (habilitado) {
+            case "0":
+                return R.drawable.disable;
+            case "1":
+                return R.color.zxing_transparent;
+        }
+        return R.color.zxing_transparent;
+    }
+
+    public int colorTexto(String habilitado) {
+        switch (habilitado) {
+            case "0":
+                return Color.GRAY;
+            case "1":
+                if (sp.getString("modoViernes", "ERROR").equals("activado")){
+                 return 0xfefffa67;
+                } else {
+                    return 0xfff55722;
+                }
+        }
+        if (sp.getString("modoViernes", "ERROR").equals("activado")){
+            return 0xfefffa67;
+        } else {
+            return 0xfff55722;
+        }
+    }
+
+    public int colorTextoModoViernes(String habilitado) {
+        switch (habilitado) {
+            case "0":
+                return Color.GRAY;
+            case "1":
+                return 0xfff55722;
+        }
+        return 0xfff55722;
     }
 }

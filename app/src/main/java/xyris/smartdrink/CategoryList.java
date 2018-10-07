@@ -10,20 +10,41 @@ public class CategoryList {
     private String categoryId;
     private Drawable buttonInfo;
     private Drawable buttonDelete;
+    private Drawable disableImage;
+
+    public Drawable getDisableImage() {
+        return disableImage;
+    }
+
+    public void setDisableImage(Drawable disableImage) {
+        this.disableImage = disableImage;
+    }
+
+    public String getDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(String disponible) {
+        this.disponible = disponible;
+    }
+
+    private String disponible;
 
     public CategoryList() {
         super();
     }
 
-    public CategoryList(String categoryId, String title,
-                        Drawable buttonInfo, Drawable buttonDelete) {
+    public CategoryList(String categoryId, String title, Drawable disableImage,
+                        Drawable buttonInfo, Drawable buttonDelete, String disponible) {
         super();
         this.title = title;
         this.buttonInfo = buttonInfo;
         this.buttonDelete = buttonDelete;
         this.categoryId = categoryId;
+        this.disableImage = disableImage;
         this.buttonInfo = buttonInfo;
         this.buttonDelete = buttonDelete;
+        this.disponible = disponible;
     }
 
     public String getTitle() {
