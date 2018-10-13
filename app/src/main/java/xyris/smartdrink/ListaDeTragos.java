@@ -52,8 +52,6 @@ public class ListaDeTragos extends AppCompatActivity {
     ListView lv;
     Map<String, String> mapDisable = new HashMap<String, String>();
 
-
-
     JSONObject responseReader;
 
     ArrayList<Bebida> listBebida = new ArrayList<Bebida>();
@@ -319,11 +317,21 @@ public class ListaDeTragos extends AppCompatActivity {
             case CREAR_TRAGO_ACTIVITY:
 
                 if (resultCode == RESULT_OK && null != data) {
-                    abrirCuadroDialogoBebidaFinalizada();
+                    obtenerLista();
                 }
                 break;
 
             case OPCIONES_ADICIONALES_ACTIVITY:
+
+                if(resultCode == RESULT_OK && null != data) {
+                    abrirCuadroDialogoBebidaFinalizada();
+                } else {
+                    if(resultCode == RESULT_CANCELED && null != data) {
+                        Toast.makeText(this, "Algo fallo...", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                break;
+
             case RETURN_PEDIDO_POR_VOZ:
 
                 if(resultCode == RESULT_OK && null != data) {

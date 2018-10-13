@@ -229,37 +229,37 @@ public class PreparandoTrago  extends AppCompatActivity {
     }
 
 
-    public void abrirCuadroDialogo() {
+//    public void abrirCuadroDialogo() {
+//
+//        String titleDelete = "Preparación finalizada";
+//        String messageDelete = "Su bebida se encuentra lista!";
+//
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//
+//        if (titleDelete != null) builder.setTitle(titleDelete);
+//
+//        builder.setMessage(messageDelete);
+//        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//
+//                Intent returnIntent = new Intent();
+//               boolean result = true;
+//                returnIntent.putExtra("result", result);
+//                setResult(Activity.RESULT_OK, returnIntent);
+//                finish();
+//
+//                if ("0".equals(codigoErrorPrepararBebida)) {
+//                    Toast.makeText(PreparandoTrago.this, "BEBIDA PREPARADA CORRECTAMENTE.",
+//                            Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(PreparandoTrago.this, descripcionPrepararBebida + " " +
+//                                    "Código de error: " + codigoErrorPrepararBebida,
+//                            Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
 
-        String titleDelete = "Preparación finalizada";
-        String messageDelete = "Su bebida se encuentra lista!";
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-        if (titleDelete != null) builder.setTitle(titleDelete);
-
-        builder.setMessage(messageDelete);
-        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-                Intent returnIntent = new Intent();
-                boolean result = true;
-                returnIntent.putExtra("result", result);
-                setResult(Activity.RESULT_OK, returnIntent);
-                finish();
-
-                if ("0".equals(codigoErrorPrepararBebida)) {
-                    Toast.makeText(PreparandoTrago.this, "BEBIDA PREPARADA CORRECTAMENTE.",
-                            Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(PreparandoTrago.this, descripcionPrepararBebida + " " +
-                                    "Código de error: " + codigoErrorPrepararBebida,
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        builder.show();
-    }
+//        builder.show();
+//    }
 }
