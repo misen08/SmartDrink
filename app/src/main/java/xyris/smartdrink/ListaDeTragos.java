@@ -304,7 +304,11 @@ public class ListaDeTragos extends AppCompatActivity {
                         }
 
                         if("-1".equals(idBebida)) {
-                            Toast.makeText(this, "BEBIDA NO ENCONTRADA", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(this, "BEBIDA NO ENCONTRADA.\nENTENDÍ: " + strSpeech2TextUpperCase.toUpperCase(), Toast.LENGTH_SHORT).show();
+                            Toast toast = Toast.makeText(this, "BEBIDA NO ENCONTRADA.\nENTENDÍ: " + strSpeech2TextUpperCase.toUpperCase(), Toast.LENGTH_LONG);
+                            toast.setGravity(Gravity.CENTER, 0, 0);
+
+                            toast.show();
                             idBebida = "0";
                         }
 
@@ -315,7 +319,7 @@ public class ListaDeTragos extends AppCompatActivity {
             case CREAR_TRAGO_ACTIVITY:
 
                 if (resultCode == RESULT_OK && null != data) {
-                    obtenerLista();
+                    abrirCuadroDialogoBebidaFinalizada();
                 }
                 break;
 

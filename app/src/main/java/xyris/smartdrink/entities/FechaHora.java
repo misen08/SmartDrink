@@ -82,4 +82,10 @@ public class FechaHora {
         df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         return df.format(date);
     }
+
+    public String formatDateMantenimiento(Date date) {
+        df = new SimpleDateFormat("dd/MM/yyyy");
+        return df.format(date);
+    }
+
 }

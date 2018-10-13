@@ -36,6 +36,7 @@ public class Mantenimiento extends AppCompatActivity {
     String cantidad = "0";
     String cantidadBebidasPreparadas;
     TextView tvCantidadBebidasPreparadas;
+    TextView tvFechaNotificacionMantenimiento;
     ArrayList<String> listFechas = new ArrayList<String>();
     ListView lvFechas;
     ArrayList<String> items = new ArrayList<String>();
@@ -44,6 +45,8 @@ public class Mantenimiento extends AppCompatActivity {
     private String idDevice;
     private String modoViernesStatus;
     SharedPreferences sp;
+    SharedPreferences.Editor dateMantenimientoEditor;
+    String[] dateMantenimiento = new String[5];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,19 +63,37 @@ public class Mantenimiento extends AppCompatActivity {
         final Button buttonMantenimientoVolver = (Button) findViewById(R.id.buttonMantenimientoVolver);
         final Button buttonMantenimientoRealizado = (Button) findViewById(R.id.buttonMantenimientoRealizado);
         tvCantidadBebidasPreparadas = (TextView) findViewById(R.id.tvCantidadBebidasPreparadas);
+        tvFechaNotificacionMantenimiento = (TextView) findViewById(R.id.tvFechaNotificacionMantenimiento);
+
 
         idDevice = sp.getString("idDevice","ERROR");
+
+        String spDateMantenimiento = sp.getString("FECHAS_MANTENIMIENTO","ERROR");
+
+        dateMantenimiento = spDateMantenimiento.split(",");
+        Log.d("dateMantenimiento", dateMantenimiento[0]);
 
         //Se obtiene la cantidad de bebidas preparadas de la base de datos.
         obtenerCantidadBebidasPreparadas();
         tvCantidadBebidasPreparadas.setText("Cantidad de bebidas preparadas: " + cantidadBebidasPreparadas);
 
+
+
         //ToDo: Cada vez que se reciba una notificacion, se debe tomar la fecha actual y agregarla al listado.
 
-        items.add("16/09/2018");
-        items.add("18/09/2018");
-        items.add("20/09/2018");
+        for(int i=0; i < dateMantenimiento.length ; i++){
+            items.add(dateMantenimiento[i]);
+        }
 
+        if(spDateMantenimiento.equals("ERROR")){
+            items.clear();
+        }
+
+        if(items.isEmpty()){
+            tvFechaNotificacionMantenimiento.setText("No hay notificaciones");
+        } else {
+            tvFechaNotificacionMantenimiento.setText("Fecha de notificaciones de mantenimiento");
+        }
 
         lvFechas = (ListView) findViewById(R.id.lvFechaNotificaciones);
 
@@ -83,9 +104,14 @@ public class Mantenimiento extends AppCompatActivity {
             public void onClick(View v) {
                 //ToDo: Mantenimiento realizado - enviar mensaje para resetear contador & vaciar lista de fechas.
                 enviarMensajeLimpiezaRealizada();
+                vaciarListaFechas();
                 Toast.makeText(Mantenimiento.this, "Se reseteo el contador.", Toast.LENGTH_SHORT).show();
-                listFechas.clear();
-                finish();
+                dateMantenimientoEditor = sp.edit();
+                //Se borran todas las fechas del editor y se guarda el editor vacio mediante el commit.
+                dateMantenimientoEditor.clear();
+                dateMantenimientoEditor.commit();
+
+//                finish();
 
             }
         });
@@ -97,6 +123,12 @@ public class Mantenimiento extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void vaciarListaFechas(){
+        items.clear();
+        lvFechas.setAdapter(new AdapterMantenimiento(this, items));
+        tvFechaNotificacionMantenimiento.setText("No hay notificaciones");
     }
 
     public void obtenerCantidadBebidasPreparadas(){

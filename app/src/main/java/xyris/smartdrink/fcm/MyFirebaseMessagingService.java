@@ -7,10 +7,12 @@ import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -19,16 +21,24 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
 import xyris.smartdrink.PantallaInicial;
 import xyris.smartdrink.R;
+import xyris.smartdrink.entities.FechaHora;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     public static final String TAG = "NOTIFICACIONES";
     public static final String TOPIC = "xyris.smartdrink";
 
+    SharedPreferences sp;
+    SharedPreferences.Editor dateNotificationsEditor;
+
     @Override
-    public void onNewToken(String s) {
+        public void onNewToken(String s) {
         super.onNewToken(s);
 
         Log.e(TAG, "Token: " + s);
@@ -45,18 +55,37 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
 
+        String bodyNotification = "";
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String dateMantenimiento = new FechaHora().formatDateMantenimiento(Calendar.getInstance().getTime());
+
         String from = remoteMessage.getFrom();
         Log.d(TAG, "Mensaje recibido de: " + from);
 
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Notificación: " + remoteMessage.getNotification().getBody());
-
+            bodyNotification = remoteMessage.getNotification().getBody();
             showNotificationMessage(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
         }
 
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Data: " + remoteMessage.getData());
         }
+
+
+        if(bodyNotification.contains("mantenimiento")){
+            String fechasMantenimiento = sp.getString("FECHAS_MANTENIMIENTO", "ERROR");
+            dateNotificationsEditor = sp.edit();
+            if(fechasMantenimiento.equals("ERROR")){
+                dateNotificationsEditor.putString("FECHAS_MANTENIMIENTO", dateMantenimiento.toString());
+            } else {
+                dateNotificationsEditor.putString("FECHAS_MANTENIMIENTO", fechasMantenimiento + "," + dateMantenimiento.toString());
+            }
+            dateNotificationsEditor.commit();
+            Log.d("TAG_MICA", sp.getString("FECHAS_MANTENIMIENTO", "ERROR"));
+        }
+
     }
 
 
