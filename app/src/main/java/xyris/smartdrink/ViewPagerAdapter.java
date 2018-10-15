@@ -92,13 +92,12 @@ public class ViewPagerAdapter extends PagerAdapter {
         // Se parsean los sabores para trabajar individualmente cada campo
         listSabores = new SaborEnBotella().parsearSaborEnBotella(responseReader.toString());
 
-        final String[] sabores = new String[listSabores.size()+1];
+        final String[] sabores = new String[listSabores.size()];
 
         // Se obtienen los nombres de los sabores para cargar las botellas
         for (int i = 0; i < listSabores.size(); i++) {
             sabores[i] = listSabores.get(i).getDescripcion();
         }
-        sabores[listSabores.size()] = "Sin sabor";
 
         // Se obtienen las botellas con sus respectivos sabores
         Thread threadBotellas = new Thread() {
@@ -124,7 +123,8 @@ public class ViewPagerAdapter extends PagerAdapter {
 
         ArrayList<Botella> saboresEnBotella = new Botella().parsearSabor(responseReader.toString());
 
-        // Se otienen los sabores de las botellas y se cargar la respectiva imagen en cada una
+
+        // Se otienen los sabores de las botellas y se carga la respectiva imagen en cada una
         botellas.clear();
 
         for(int i = 0; i < saboresEnBotella.size(); i++) {
@@ -186,17 +186,25 @@ public class ViewPagerAdapter extends PagerAdapter {
             public void onClick(DialogInterface dialogInterface, int i) {
 
                 boolean existeSabor = false;
-
+                int flag = 0;
                 // Si se elige "Sin sabor" se pone la imagen de la botella vacía
                 if(sabores[i].equals("Sin sabor")) {
                     images[pos - 1] = cargarImagenBotella("0");
                     imageView.setImageResource(images[pos - 1]);
-                    Botella botella = new Botella(pos.toString(), "1", "false");
+                    Botella botella = new Botella(pos.toString(), "7", "false");
                     //Si la botella ya fue asignada, modifico el valor de la posición
-                    if (botellas.contains(pos))
-                        botellas.set(pos, botella);
-                        //Si la botella no fue asignada, agrego la botella a la lista
-                    else botellas.add(botella);
+
+                    for(int j = 0; j < botellas.size() ; j++){
+                        if((pos-1) == j){
+                            botellas.set(j, botella);
+                            flag = 1;
+                        }
+                    }
+
+                    if(flag == 0){
+                        botellas.add(botella);
+                    }
+
                 } else {
 
                     // Si se elige un sabor, se chequea que no exista el sabor en otra botella
@@ -212,10 +220,16 @@ public class ViewPagerAdapter extends PagerAdapter {
                         Botella botella = new Botella(pos.toString(), listSabores.get(i).getIdSabor(), "true");
 
                         //Si la botella ya fue asignada, modifico el valor de la posición
-                        if (botellas.contains(pos))
-                            botellas.set(pos, botella);
-                            //Si la botella no fue asignada, agrego la botella a la lista
-                        else botellas.add(botella);
+                        for(int j = 0; j < botellas.size() ; j++){
+                            if((pos-1) == j){
+                                botellas.set(j, botella);
+                                flag = 1;
+                            }
+                        }
+
+                        if(flag == 0){
+                            botellas.add(botella);
+                        }
 
                         // Se carga la imagen del sabor elegido en la botella
                         images[pos - 1] = cargarImagenBotella(listSabores.get(i).getIdSabor());
@@ -278,6 +292,8 @@ public class ViewPagerAdapter extends PagerAdapter {
                 return R.drawable.botella_frutilla;
             case "6":
                 return R.drawable.botella_pomelo;
+            case "7":
+                return R.drawable.botella_icon;
         }
 
         return R.drawable.botella_icon;

@@ -109,7 +109,8 @@ public class CrearTragos extends AppCompatActivity {
 
         listSaborEnBotella = new SaborEnBotella().parsearSaborEnBotella(responseReader.toString());
 
-        for (int i = 0; i < listSaborEnBotella.size(); i++) {
+        //Se realiza el for hasta size -1 , ya que la ultima posicion contiene "sin sabor" (y no existe el porcentaje asociado a "sin sabor".
+        for (int i = 0; i < listSaborEnBotella.size() -1 ; i++) {
             configTrago.put(listSaborEnBotella.get(i).getDescripcion(), porcentajeGustos[i]);
         }
 
@@ -267,7 +268,8 @@ public class CrearTragos extends AppCompatActivity {
                     }
                 } else {
 
-                    for (int i = 0; i < listSaborEnBotella.size(); i++) {
+                    //Se realiza el for hasta size -1 , ya que la ultima posicion contiene "sin sabor" (y no existe el porcentaje asociado a "sin sabor".
+                    for (int i = 0; i < listSaborEnBotella.size() -1 ; i++) {
                         configTrago.put(listSaborEnBotella.get(i).getDescripcion(), porcentajeGustos[i]);
                     }
 
