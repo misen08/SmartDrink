@@ -410,6 +410,7 @@ public class ListaDeTragos extends AppCompatActivity {
         listBebida = parsearBebidas(responseReader.toString());
         String [] bebidas = new String[listBebida.size()];
         items.clear();
+        nombreBebidasExistentes.clear();
         for(int i=0; i< listBebida.size(); i++){
             //Se obtiene el valor "disponible" para cada bebida.
             mapDisable.put(listBebida.get(i).getIdBebida(), listBebida.get(i).getDisponible());

@@ -22,10 +22,12 @@ public class WebServiceClient  {
     private String servicio;
     private JSONObject request;
     private byte[] response;
-    //private final String hostPlaca = "52.204.131.123"
+    //private final String hostPlaca = "52.204.131.123";
     //private final int portPlaca = 50000;
-    private final String hostPlaca = "192.168.0.35";
-    private final int portPlaca = 8090;
+    //private final String hostPlaca = "192.168.0.35";
+    //private final int portPlaca = 8090;
+    private final String hostPlaca = "192.168.0.10";
+    private final int portPlaca = 8080;
 
     public WebServiceClient(String servicio, JSONObject request) {
         this.servicio = servicio;

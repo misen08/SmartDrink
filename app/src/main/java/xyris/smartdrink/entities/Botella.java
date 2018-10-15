@@ -45,7 +45,6 @@ public class Botella {
 	public void setIdSabor(String idSabor) {
 		this.idSabor = idSabor;
 	}
-
 	/**
 	 * @return the disponible
 	 */
@@ -76,9 +75,9 @@ public class Botella {
 					JSONObject sabor = saboresEnBotella.getJSONObject(i);
 					String idBotella = sabor.getString("idBotella");
 					String idSabor = sabor.getString("idSabor");
-					String habilitado = sabor.getString("disponible");
+					String disponible = sabor.getString("disponible");
 
-					Botella botella = new Botella(idBotella, idSabor, habilitado);
+					Botella botella = new Botella(idBotella, idSabor, disponible);
 					listSaboresEnBotella.add(botella);
 				}
 			} else {

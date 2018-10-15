@@ -11,7 +11,9 @@ import android.support.v7.app.AppCompatActivity;
 
 public class PantallaSplash extends AppCompatActivity {
 
-    String ipPlaca = "192.168.0.35";
+    //String ipPlaca = "52.204.131.123";
+    //String ipPlaca = "192.168.0.35";
+    private final String ipPlaca = "192.168.0.10";
     private final int DURACION_SPLASH = 1000;
     SharedPreferences.Editor editor;
     Integer res;

@@ -37,7 +37,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     private LayoutInflater layoutInflater;
     private Integer[] images = {R.drawable.botella_icon, R.drawable.botella_icon, R.drawable.botella_icon, R.drawable.botella_icon};
     public ArrayList<SaborEnBotella> listSabores;
-    public List<Botella> botellas = new ArrayList<Botella>();
+    public ArrayList<Botella> botellas = new ArrayList<Botella>();
 
     public int imagenSabor;
 
@@ -174,7 +174,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     }
 
     public void onCreateDialog(final ArrayList<SaborEnBotella> listSabores, final String[] sabores,
-                               final List<Botella> botellas, final Integer pos,
+                               final ArrayList<Botella> botellas, final Integer pos,
                                final String idDevice, final ImageView imageView) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this.context);
@@ -191,8 +191,12 @@ public class ViewPagerAdapter extends PagerAdapter {
                 if(sabores[i].equals("Sin sabor")) {
                     images[pos - 1] = cargarImagenBotella("0");
                     imageView.setImageResource(images[pos - 1]);
-                    Botella botella = new Botella(pos.toString(), botellas.get(pos).getIdSabor(), "false");
-                    botellas.add(pos, botella);
+                    Botella botella = new Botella(pos.toString(), "1", "false");
+                    //Si la botella ya fue asignada, modifico el valor de la posición
+                    if (botellas.contains(pos))
+                        botellas.set(pos, botella);
+                        //Si la botella no fue asignada, agrego la botella a la lista
+                    else botellas.add(botella);
                 } else {
 
                     // Si se elige un sabor, se chequea que no exista el sabor en otra botella
@@ -209,7 +213,7 @@ public class ViewPagerAdapter extends PagerAdapter {
 
                         //Si la botella ya fue asignada, modifico el valor de la posición
                         if (botellas.contains(pos))
-                            botellas.add(pos, botella);
+                            botellas.set(pos, botella);
                             //Si la botella no fue asignada, agrego la botella a la lista
                         else botellas.add(botella);
 
