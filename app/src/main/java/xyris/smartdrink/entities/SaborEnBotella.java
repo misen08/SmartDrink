@@ -9,12 +9,10 @@ import java.util.ArrayList;
 public class SaborEnBotella {
 	private String idSabor;
 	private String descripcion;
-	private String habilitado;
 
-	public SaborEnBotella(String idSabor, String descripcion, String habilitado){
+	public SaborEnBotella(String idSabor, String descripcion){
 		this.idSabor = idSabor;
 		this.descripcion = descripcion;
-		this.habilitado = habilitado;
 	}
 
 	public SaborEnBotella() {
@@ -32,12 +30,6 @@ public class SaborEnBotella {
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-	}
-	public String getHabilitado() {
-		return habilitado;
-	}
-	public void setHabilitado(String habilitado) {
-		this.habilitado = habilitado;
 	}
 
     public ArrayList<SaborEnBotella> parsearSaborEnBotella (String response) {
@@ -57,9 +49,8 @@ public class SaborEnBotella {
                     JSONObject sabor = sabores.getJSONObject(i);
                     String idSabor = sabor.getString("idSabor");
                     String descripcion = sabor.getString("descripcion");
-                    String habilitado = sabor.getString("habilitado");
 
-                    SaborEnBotella saborEnBotella = new SaborEnBotella(idSabor, descripcion, habilitado);
+                    SaborEnBotella saborEnBotella = new SaborEnBotella(idSabor, descripcion);
                     listSaboresEnBotella.add(saborEnBotella);
                 }
             } else {

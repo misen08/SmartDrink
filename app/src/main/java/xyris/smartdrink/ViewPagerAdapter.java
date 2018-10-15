@@ -39,6 +39,8 @@ public class ViewPagerAdapter extends PagerAdapter {
     public ArrayList<SaborEnBotella> listSabores;
     public List<Botella> botellas = new ArrayList<Botella>();
 
+    public int imagenSabor;
+
     JSONObject responseReader;
 
     public ViewPagerAdapter(Context context) {
@@ -90,12 +92,13 @@ public class ViewPagerAdapter extends PagerAdapter {
         // Se parsean los sabores para trabajar individualmente cada campo
         listSabores = new SaborEnBotella().parsearSaborEnBotella(responseReader.toString());
 
-        final String[] sabores = new String[listSabores.size()];
+        final String[] sabores = new String[listSabores.size()+1];
 
         // Se obtienen los nombres de los sabores para cargar las botellas
         for (int i = 0; i < listSabores.size(); i++) {
             sabores[i] = listSabores.get(i).getDescripcion();
         }
+        sabores[listSabores.size()] = "Sin sabor";
 
         // Se obtienen las botellas con sus respectivos sabores
         Thread threadBotellas = new Thread() {
@@ -119,15 +122,23 @@ public class ViewPagerAdapter extends PagerAdapter {
             e.printStackTrace();
         }
 
-        ArrayList<BotellaExt> saboresEnBotella = new BotellaExt().parsearSabor(responseReader.toString());
+        ArrayList<Botella> saboresEnBotella = new Botella().parsearSabor(responseReader.toString());
 
         // Se otienen los sabores de las botellas y se cargar la respectiva imagen en cada una
         botellas.clear();
 
         for(int i = 0; i < saboresEnBotella.size(); i++) {
-            Botella botella = new Botella(saboresEnBotella.get(i).getIdBotella(), saboresEnBotella.get(i).getIdSabor());
-            botellas.add(botella);
-            int imagenSabor = cargarImagenBotella(saboresEnBotella.get(i).getIdSabor());
+            // Si hay un sabor disponible, busca el nombre y carga la imagen;
+            if(saboresEnBotella.get(i).getDisponible().equals("true")) {
+                Botella botella = new Botella(saboresEnBotella.get(i).getIdBotella(), saboresEnBotella.get(i).getIdSabor(), "true");
+                botellas.add(botella);
+                imagenSabor = cargarImagenBotella(saboresEnBotella.get(i).getIdSabor());
+            } else {
+                Botella botella = new Botella(saboresEnBotella.get(i).getIdBotella(), saboresEnBotella.get(i).getIdSabor(), "false");
+                botellas.add(botella);
+                imagenSabor = cargarImagenBotella("0");
+            }
+
             images[i] = imagenSabor;
         }
 
@@ -175,19 +186,37 @@ public class ViewPagerAdapter extends PagerAdapter {
             public void onClick(DialogInterface dialogInterface, int i) {
 
                 boolean existeSabor = false;
-                for(int j = 0; j < botellas.size(); j++) {
-                    if(botellas.get(j).getIdSabor().equals(listSabores.get(i).getIdSabor()))
-                        existeSabor = true;
+
+                // Si se elige "Sin sabor" se pone la imagen de la botella vacía
+                if(sabores[i].equals("Sin sabor")) {
+                    images[pos - 1] = cargarImagenBotella("0");
+                    imageView.setImageResource(images[pos - 1]);
+                    Botella botella = new Botella(pos.toString(), botellas.get(pos).getIdSabor(), "false");
+                    botellas.add(pos, botella);
+                } else {
+
+                    // Si se elige un sabor, se chequea que no exista el sabor en otra botella
+                    for (int j = 0; j < botellas.size(); j++) {
+                        if (botellas.get(j).getIdSabor().equals(listSabores.get(i).getIdSabor()))
+                            existeSabor = true;
+                    }
                 }
 
-                if(!existeSabor) {
-                    Botella botella = new Botella(pos.toString(), listSabores.get(i).getIdSabor());
+                // Si el sabor no existe en otra botella y no es "Sin sabor" se asigna a la botella correspondiente
+                if (!existeSabor) {
+                    if(!sabores[i].equals("Sin sabor")) {
+                        Botella botella = new Botella(pos.toString(), listSabores.get(i).getIdSabor(), "true");
 
-                    //Si la botella ya fue asignada, modifico el valor de la posición
-                    if(botellas.contains(pos))
-                        botellas.add(pos, botella);
-                        //Si la botella no fue asignada, agrego la botella a la lista
-                    else    botellas.add(botella);
+                        //Si la botella ya fue asignada, modifico el valor de la posición
+                        if (botellas.contains(pos))
+                            botellas.add(pos, botella);
+                            //Si la botella no fue asignada, agrego la botella a la lista
+                        else botellas.add(botella);
+
+                        // Se carga la imagen del sabor elegido en la botella
+                        images[pos - 1] = cargarImagenBotella(listSabores.get(i).getIdSabor());
+                        imageView.setImageResource(images[pos - 1]);
+                    }
 
                     AsignaBotellaRequest request = new AsignaBotellaRequest();
                     request.setBotellas(botellas);
@@ -220,15 +249,10 @@ public class ViewPagerAdapter extends PagerAdapter {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
-                    // De acuerdo al sabor elegido, se modifica la imagen de la botella
-                    images[pos-1] = cargarImagenBotella(listSabores.get(i).getIdSabor());
-                    imageView.setImageResource(images[pos-1]);
-
-                } else {
+                }
+                else {
                     Toast.makeText(context, "Ese sabor ya está asignado en otra botella", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
         builder.show();
@@ -236,18 +260,20 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     public int cargarImagenBotella(String idSabor) {
         switch (idSabor) {
+            case "0":
+                return R.drawable.botella_icon;
             case "1":
-                return R.drawable.botella_frutilla;
-            case "2":
-                return R.drawable.botella_anana;
-            case "3":
                 return R.drawable.botella_naranja;
-            case "4":
-                return R.drawable.botella_pomelo;
-            case "5":
-                return R.drawable.botella_durazno;
-            case "6":
+            case "2":
                 return R.drawable.botella_manzana;
+            case "3":
+                return R.drawable.botella_anana;
+            case "4":
+                return R.drawable.botella_durazno;
+            case "5":
+                return R.drawable.botella_frutilla;
+            case "6":
+                return R.drawable.botella_pomelo;
         }
 
         return R.drawable.botella_icon;

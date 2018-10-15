@@ -32,8 +32,7 @@
         <activity android:name=".BebidasProgramadas" android:screenOrientation="portrait" />
         <activity android:name=".SaboresEnBotellas" android:screenOrientation="portrait" />
         <activity android:name=".Mantenimiento" android:screenOrientation="portrait" />
-        <activity android:name=".ModificarBebidasProgramadas" android:screenOrientation="portrait" />
-        <activity android:name=".CambiarSaborEnBotella" android:screenOrientation="portrait" >
+        <activity android:name=".ModificarBebidasProgramadas" android:screenOrientation="portrait" >
         </activity>
 
         <service
@@ -43,10 +42,6 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
-        <service android:enabled="true" android:name=".BackgroundSoundService" />
-        <service android:enabled="true" android:name=".BackgroundSoundServiceModoViernes" />
-
 
     </application>
 

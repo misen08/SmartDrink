@@ -53,10 +53,8 @@ public class CrearTragos extends AppCompatActivity {
 
     String nombreBebida = "";
     private String idDevice;
-    private String modoViernesStatus;
     private String resPantalla;
     SharedPreferences sp;
-    SharedPreferences.Editor modoViernesEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +65,7 @@ public class CrearTragos extends AppCompatActivity {
 
         if (resPantalla.equals("800")) {
             if (sp.getString("modoViernes", "ERROR").equals("activado")) {
-                setContentView(R.layout.activity_crear_tragos_viernes);
+                //setContentView(R.layout.activity_crear_tragos_viernes_tablet);
             } else {
                 setContentView(R.layout.activity_crear_tragos_tablet);
             }
@@ -95,6 +93,10 @@ public class CrearTragos extends AppCompatActivity {
                 responseReader = (JSONObject) cli.getResponse();
 
                 Log.d("SMARTDRINKS", "RESPUESTA: " + responseReader.toString());
+
+                if(responseReader.equals("")) {
+                    Toast.makeText(CrearTragos.this, "No se pudo conectar al servidor", Toast.LENGTH_SHORT).show();
+                }
             }
         };
 
@@ -136,10 +138,8 @@ public class CrearTragos extends AppCompatActivity {
         listaGusto1.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, porcentajes));
         listaGusto1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1,
-                                       int pos, long id) {
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int pos, long id) {
                 porcentajeGustos[0] = Integer.parseInt(arg0.getItemAtPosition(pos).toString());
-                //textGusto1 = arg0.getItemAtPosition(pos).toString();
             }
 
             @Override
@@ -152,10 +152,8 @@ public class CrearTragos extends AppCompatActivity {
         listaGusto2.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, porcentajes));
         listaGusto2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1,
-                                       int pos, long id) {
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int pos, long id) {
                 porcentajeGustos[1] = Integer.parseInt(arg0.getItemAtPosition(pos).toString());
-                //textGusto1 = arg0.getItemAtPosition(pos).toString();
             }
 
             @Override
@@ -168,10 +166,8 @@ public class CrearTragos extends AppCompatActivity {
         listaGusto3.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, porcentajes));
         listaGusto3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1,
-                                       int pos, long id) {
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int pos, long id) {
                 porcentajeGustos[2] = Integer.parseInt(arg0.getItemAtPosition(pos).toString());
-                //textGusto1 = arg0.getItemAtPosition(pos).toString();
             }
 
             @Override
@@ -184,8 +180,7 @@ public class CrearTragos extends AppCompatActivity {
         listaGusto4.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, porcentajes));
         listaGusto4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1,
-                                       int pos, long id) {
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int pos, long id) {
                 porcentajeGustos[3] = Integer.parseInt(arg0.getItemAtPosition(pos).toString());
             }
 
@@ -199,10 +194,8 @@ public class CrearTragos extends AppCompatActivity {
         listaGusto5.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, porcentajes));
         listaGusto5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1,
-                                       int pos, long id) {
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int pos, long id) {
                 porcentajeGustos[4] = Integer.parseInt(arg0.getItemAtPosition(pos).toString());
-                //textGusto1 = arg0.getItemAtPosition(pos).toString();
             }
 
             @Override
@@ -215,8 +208,7 @@ public class CrearTragos extends AppCompatActivity {
         listaGusto6.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, porcentajes));
         listaGusto6.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1,
-                                       int pos, long id) {
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int pos, long id) {
                 porcentajeGustos[5] = Integer.parseInt(arg0.getItemAtPosition(pos).toString());
             }
 
