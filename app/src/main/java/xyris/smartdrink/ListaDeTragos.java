@@ -153,6 +153,11 @@ public class ListaDeTragos extends AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
 
+        //Si la resolución de pantalla no es 800 (el dispositivo no es la tablet), se quita la visibilidad de la opcion "cargar sabores"
+        if (!(resPantalla.equals("800"))) {
+            menu.getItem(1).setVisible(false);
+        }
+
         if(modoViernesStatus.equals("activado")) {
             menu.getItem(3).setTitle("Desactivar modo viernes");
         } else {
