@@ -1,5 +1,6 @@
 package xyris.smartdrink;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -9,11 +10,14 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 
+import xyris.smartdrink.http.Configuracion;
+
 public class PantallaSplash extends AppCompatActivity {
 
     //String ipPlaca = "52.204.131.123";
     //String ipPlaca = "192.168.0.35";
-    private final String ipPlaca = "192.168.0.10";
+    //private final String ipPlaca = "192.168.0.10";
+    String ipPlaca = null;
     private final int DURACION_SPLASH = 1000;
     SharedPreferences.Editor editor;
     Integer res;
@@ -26,6 +30,12 @@ public class PantallaSplash extends AppCompatActivity {
         setContentView(R.layout.pantalla_splash);
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        if(ipPlaca == null) {
+            ipPlaca = "nada";
+        } else {
+            ipPlaca = sp.getString("ipPlaca", "ERROR");
+        }
+
         // Se obtiene resolución de pantalla para cargar el layout correspondiente
         res = this.getResources().getConfiguration().screenWidthDp;
         editor = sp.edit();
@@ -33,7 +43,7 @@ public class PantallaSplash extends AppCompatActivity {
         editor.putString("ipPlaca", ipPlaca);
         editor.commit();
 
-        final String ipLeida = ipPlaca; //sp.getString("IP","ERROR");
+        final String ipLeida = sp.getString("ipPlaca","ERROR");
 
         // Inicializar modo viernes como desactivado
         if(sp.getString("modoViernes", "ERROR").equals("ERROR")) {

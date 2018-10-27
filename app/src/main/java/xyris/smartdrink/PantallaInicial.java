@@ -18,6 +18,8 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import xyris.smartdrink.http.Configuracion;
+
 public class PantallaInicial extends AppCompatActivity {
 
     public final static int QRcodeWidth = 350;
@@ -118,6 +120,8 @@ public class PantallaInicial extends AppCompatActivity {
                 ipLeida = result.getContents();
                 editor.putString("IP", ipLeida);
                 editor.commit();
+
+                Configuracion.getInstance().setIp(ipLeida);
 
                 if(sp.getString("ipPlaca", "ERROR").equals(ipLeida)) {
                     Intent listaTragos = new Intent(PantallaInicial.this, ListaDeTragos.class);

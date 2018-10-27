@@ -1,7 +1,12 @@
 package xyris.smartdrink.http;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.support.v7.app.AppCompatActivity;
 import android.util.JsonReader;
+import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -14,25 +19,36 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import xyris.smartdrink.MyApp;
 import xyris.smartdrink.http.exceptions.ClientException;
 import xyris.smartdrink.http.exceptions.HttpException;
+import xyris.smartdrink.PantallaSplash;
 
-public class WebServiceClient  {
+public class WebServiceClient {
 
     private String servicio;
     private JSONObject request;
     private byte[] response;
-    //private final String hostPlaca = "52.204.131.123";
-    //private final int portPlaca = 50000;
+    private String hostPlaca = null; //"52.204.131.123";
+    private  int portPlaca = 50000;
     //private final String hostPlaca = "192.168.0.35";
     //private final int portPlaca = 8090;
-    private final String hostPlaca = "192.168.0.10";
-    private final int portPlaca = 8080;
+//    private final String hostPlaca = "192.168.1.101";
+//    private final int portPlaca = 8090;
+    //private final String hostPlaca = "192.168.0.10";
+    //private final int portPlaca = 8080;
+
+    private SharedPreferences mSharedPreferences;
+
+
 
     public WebServiceClient(String servicio, JSONObject request) {
         this.servicio = servicio;
         this.request = request;
+
     }
+
+
 
     protected void sendData(HttpConnection con) throws Exception {
 
@@ -53,6 +69,8 @@ public class WebServiceClient  {
 
     public Object getResponse(){
 
+        hostPlaca = Configuracion.getInstance().getIp();
+ //       Log.d("ip", hostPlaca);
         JSONObject obj = new JSONObject();
         try {
             URL url = new URL("http", hostPlaca, portPlaca, servicio);
