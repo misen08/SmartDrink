@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SaboresEnBotellas extends AppCompatActivity {
@@ -45,19 +46,35 @@ public class SaboresEnBotellas extends AppCompatActivity {
             }
         }
 
-        viewPager = (ViewPager) findViewById(R.id.ViewPagerSabores);
+       if(resPantalla.equals("800")) {
+           viewPager = (ViewPager) findViewById(R.id.ViewPagerSabores);
 
-        sliderDotsPanel = (LinearLayout) findViewById(R.id.SliderDots);
+           sliderDotsPanel = (LinearLayout) findViewById(R.id.SliderDots);
 
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
+           ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
 
-        viewPager.setAdapter(viewPagerAdapter);
+           viewPager.setAdapter(viewPagerAdapter);
+
+           dotsCount = viewPagerAdapter.getCount();
+
+       } else {
+           viewPager = (ViewPager) findViewById(R.id.ViewPagerSabores);
+
+           sliderDotsPanel = (LinearLayout) findViewById(R.id.SliderDots);
+
+           ViewPagerAdapterCelular viewPagerAdapterCelular = new ViewPagerAdapterCelular(this);
+
+           viewPager.setAdapter(viewPagerAdapterCelular);
+
+           dotsCount = viewPagerAdapterCelular.getCount();
+           TextView tvCargarSabores = (TextView) findViewById(R.id.textViewCargarSabores);
+           tvCargarSabores.setText("");
+       }
 
         // Las imagenes pasan automaticamente
         //Timer timer = new Timer();
         //timer.scheduleAtFixedRate(new MyTimerTask(), 2000, 4000);
 
-        dotsCount = viewPagerAdapter.getCount();
         dots = new ImageView[dotsCount];
 
         for(int i = 0; i < dotsCount; i++){
@@ -116,7 +133,6 @@ public class SaboresEnBotellas extends AppCompatActivity {
         btnAceptarSabores.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(SaboresEnBotellas.this, "Todo OK", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });

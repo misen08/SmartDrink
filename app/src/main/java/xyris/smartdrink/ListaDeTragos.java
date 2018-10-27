@@ -154,8 +154,10 @@ public class ListaDeTragos extends AppCompatActivity {
         super.onPrepareOptionsMenu(menu);
 
         //Si la resolución de pantalla no es 800 (el dispositivo no es la tablet), se quita la visibilidad de la opcion "cargar sabores"
-        if (!(resPantalla.equals("800"))) {
-            menu.getItem(1).setVisible(false);
+        if ((resPantalla.equals("800"))) {
+            menu.getItem(1).setTitle("Cambiar sabores");
+        } else {
+            menu.getItem(1).setTitle("Ver sabores cargados");
         }
 
         if(modoViernesStatus.equals("activado")) {
@@ -176,8 +178,8 @@ public class ListaDeTragos extends AppCompatActivity {
                 startActivity(verBebidasProgramadas);
                 break;
             case R.id.cargar_sabores:
-                Intent cargarSabores = new Intent(this, SaboresEnBotellas.class);
-                startActivity(cargarSabores);
+                    Intent cargarSabores = new Intent(this, SaboresEnBotellas.class);
+                    startActivity(cargarSabores);
                 break;
             case R.id.modo_viernes:
                 modoViernesStatus = sp.getString("modoViernes", "ERROR");
