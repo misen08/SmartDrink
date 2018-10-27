@@ -65,7 +65,7 @@ public class CrearTragos extends AppCompatActivity {
 
         if (resPantalla.equals("800")) {
             if (sp.getString("modoViernes", "ERROR").equals("activado")) {
-                //setContentView(R.layout.activity_crear_tragos_viernes_tablet);
+                setContentView(R.layout.activity_crear_tragos_viernes_tablet);
             } else {
                 setContentView(R.layout.activity_crear_tragos_tablet);
             }
@@ -136,7 +136,19 @@ public class CrearTragos extends AppCompatActivity {
         tvNombreGusto6.setText(listSaborEnBotella.get(5).getDescripcion());
 
         Spinner listaGusto1 = (Spinner) findViewById(R.id.spinnerPorcentajesGusto1);
-        listaGusto1.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, porcentajes));
+        if (resPantalla.equals("800")) {
+            if (sp.getString("modoViernes", "ERROR").equals("activado")){
+                listaGusto1.setAdapter(new ArrayAdapter<Integer>(this, R.layout.spinner_item_viernes_tablet, porcentajes));
+            } else {
+                listaGusto1.setAdapter(new ArrayAdapter<Integer>(this, R.layout.spinner_item_tablet, porcentajes));
+            }
+        } else {
+            if (sp.getString("modoViernes", "ERROR").equals("activado")){
+                listaGusto1.setAdapter(new ArrayAdapter<Integer>(this, R.layout.spinner_item_viernes, porcentajes));
+            } else {
+                listaGusto1.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, porcentajes));
+            }
+        }
         listaGusto1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int pos, long id) {
@@ -150,7 +162,19 @@ public class CrearTragos extends AppCompatActivity {
         });
 
         Spinner listaGusto2 = (Spinner) findViewById(R.id.spinnerPorcentajesGusto2);
-        listaGusto2.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, porcentajes));
+        if (resPantalla.equals("800")) {
+            if (sp.getString("modoViernes", "ERROR").equals("activado")){
+                listaGusto2.setAdapter(new ArrayAdapter<Integer>(this, R.layout.spinner_item_viernes_tablet, porcentajes));
+            } else {
+                listaGusto2.setAdapter(new ArrayAdapter<Integer>(this, R.layout.spinner_item_tablet, porcentajes));
+            }
+        } else {
+            if (sp.getString("modoViernes", "ERROR").equals("activado")){
+                listaGusto2.setAdapter(new ArrayAdapter<Integer>(this, R.layout.spinner_item_viernes, porcentajes));
+            } else {
+                listaGusto2.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, porcentajes));
+            }
+        }
         listaGusto2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int pos, long id) {
@@ -164,7 +188,19 @@ public class CrearTragos extends AppCompatActivity {
         });
 
         Spinner listaGusto3 = (Spinner) findViewById(R.id.spinnerPorcentajesGusto3);
-        listaGusto3.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, porcentajes));
+        if (resPantalla.equals("800")) {
+            if (sp.getString("modoViernes", "ERROR").equals("activado")){
+                listaGusto3.setAdapter(new ArrayAdapter<Integer>(this, R.layout.spinner_item_viernes_tablet, porcentajes));
+            } else {
+                listaGusto3.setAdapter(new ArrayAdapter<Integer>(this, R.layout.spinner_item_tablet, porcentajes));
+            }
+        } else {
+            if (sp.getString("modoViernes", "ERROR").equals("activado")){
+                listaGusto3.setAdapter(new ArrayAdapter<Integer>(this, R.layout.spinner_item_viernes, porcentajes));
+            } else {
+                listaGusto3.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, porcentajes));
+            }
+        }
         listaGusto3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int pos, long id) {
@@ -178,7 +214,19 @@ public class CrearTragos extends AppCompatActivity {
         });
 
         Spinner listaGusto4 = (Spinner) findViewById(R.id.spinnerPorcentajesGusto4);
-        listaGusto4.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, porcentajes));
+        if (resPantalla.equals("800")) {
+            if (sp.getString("modoViernes", "ERROR").equals("activado")){
+                listaGusto4.setAdapter(new ArrayAdapter<Integer>(this, R.layout.spinner_item_viernes_tablet, porcentajes));
+            } else {
+                listaGusto4.setAdapter(new ArrayAdapter<Integer>(this, R.layout.spinner_item_tablet, porcentajes));
+            }
+        } else {
+            if (sp.getString("modoViernes", "ERROR").equals("activado")){
+                listaGusto4.setAdapter(new ArrayAdapter<Integer>(this, R.layout.spinner_item_viernes, porcentajes));
+            } else {
+                listaGusto4.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, porcentajes));
+            }
+        }
         listaGusto4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int pos, long id) {
@@ -192,7 +240,19 @@ public class CrearTragos extends AppCompatActivity {
         });
 
         Spinner listaGusto5 = (Spinner) findViewById(R.id.spinnerPorcentajesGusto5);
-        listaGusto5.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, porcentajes));
+        if (resPantalla.equals("800")) {
+            if (sp.getString("modoViernes", "ERROR").equals("activado")){
+                listaGusto5.setAdapter(new ArrayAdapter<Integer>(this, R.layout.spinner_item_viernes_tablet, porcentajes));
+            } else {
+                listaGusto5.setAdapter(new ArrayAdapter<Integer>(this, R.layout.spinner_item_tablet, porcentajes));
+            }
+        } else {
+            if (sp.getString("modoViernes", "ERROR").equals("activado")){
+                listaGusto5.setAdapter(new ArrayAdapter<Integer>(this, R.layout.spinner_item_viernes, porcentajes));
+            } else {
+                listaGusto5.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, porcentajes));
+            }
+        }
         listaGusto5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int pos, long id) {
@@ -206,7 +266,19 @@ public class CrearTragos extends AppCompatActivity {
         });
 
         Spinner listaGusto6 = (Spinner) findViewById(R.id.spinnerPorcentajesGusto6);
-        listaGusto6.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, porcentajes));
+        if (resPantalla.equals("800")) {
+            if (sp.getString("modoViernes", "ERROR").equals("activado")){
+                listaGusto6.setAdapter(new ArrayAdapter<Integer>(this, R.layout.spinner_item_viernes_tablet, porcentajes));
+            } else {
+                listaGusto6.setAdapter(new ArrayAdapter<Integer>(this, R.layout.spinner_item_tablet, porcentajes));
+            }
+        } else {
+            if (sp.getString("modoViernes", "ERROR").equals("activado")){
+                listaGusto6.setAdapter(new ArrayAdapter<Integer>(this, R.layout.spinner_item_viernes, porcentajes));
+            } else {
+                listaGusto6.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, porcentajes));
+            }
+        }
         listaGusto6.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int pos, long id) {

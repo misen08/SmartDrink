@@ -69,7 +69,7 @@ public class PreparandoTrago  extends AppCompatActivity {
 
         if (resPantalla.equals("800")) {
             if (sp.getString("modoViernes", "ERROR").equals("activado")) {
-                setContentView(R.layout.preparando_trago_tablet);
+                setContentView(R.layout.preparando_trago_viernes_tablet);
             } else {
                 setContentView(R.layout.preparando_trago_tablet);
             }

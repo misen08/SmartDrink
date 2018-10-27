@@ -105,14 +105,12 @@ public class Mantenimiento extends AppCompatActivity {
                 //ToDo: Mantenimiento realizado - enviar mensaje para resetear contador & vaciar lista de fechas.
                 enviarMensajeLimpiezaRealizada();
                 vaciarListaFechas();
-                Toast.makeText(Mantenimiento.this, "Se reseteo el contador.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Mantenimiento.this, "Se reseteó el contador.", Toast.LENGTH_SHORT).show();
                 dateMantenimientoEditor = sp.edit();
                 //Se borran todas las fechas del editor y se guarda el editor vacio mediante el commit.
                 dateMantenimientoEditor.clear();
                 dateMantenimientoEditor.commit();
-
-//                finish();
-
+                finish();
             }
         });
 
