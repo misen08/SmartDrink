@@ -108,8 +108,8 @@ public class ListaDeTragos extends AppCompatActivity {
                 if("0".equals(items.get(position).getDisponible())){
                     String titleDelete = "Bebida no disponible";
                     String messageDelete = "La bebida no puede prepararse debido a que alguno de los gustos " +
-                            "que la componen no se encuentra disponible. " +
-                            "¿Querés preparar PRUEBA_SUGERENCIA";
+                            "que la componen no se encuentra disponible.\n" +
+                            "¿Querés preparar NARANJA FULL?";
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(ListaDeTragos.this);
 
@@ -208,7 +208,22 @@ public class ListaDeTragos extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.aboutUs:
-                Toast.makeText(this, "Grupo Xyris", Toast.LENGTH_SHORT).show();
+                String titleAboutUs = "Smart Drinks";
+                String messageAboutUs = "Grupo Xyris \n\n" +
+                        "* Badalic Pelech, Nadia\n" +
+                        "* Garayalde, Federico\n" +
+                        "* Iseñ, Micaela Yael\n" +
+                        "* Pignataro, Leonardo\n" +
+                        "* Wasinger, Ignacio\n\n" +
+                        "Proyecto de Fin de Carrera\n\n" +
+                        "UNLaM - 2018";
+                AlertDialog.Builder builder = new AlertDialog.Builder(ListaDeTragos.this);
+
+                if (titleAboutUs != null) builder.setTitle(titleAboutUs);
+
+                builder.setMessage(messageAboutUs);
+                builder.show();
+
                 break;
             case R.id.logout:
                 olvidarDireccionPlaca();
@@ -280,8 +295,8 @@ public class ListaDeTragos extends AppCompatActivity {
                                 if("0".equals(listBebida.get(j).getDisponible())){
                                     String titleDelete = "Bebida no disponible";
                                     String messageDelete = "La bebida no puede prepararse debido a que alguno de los gustos " +
-                                            "que la componen no se encuentra disponible. " +
-                                            "¿Querés preparar PRUEBA_SUGERENCIA";
+                                            "que la componen no se encuentra disponible.\n" +
+                                            "¿Querés preparar: NARANJA FULL?";
 
                                     AlertDialog.Builder builder = new AlertDialog.Builder(ListaDeTragos.this);
 
