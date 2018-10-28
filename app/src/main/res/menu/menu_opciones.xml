@@ -9,8 +9,9 @@
         android:title="Hacer mantenimiento"></item>
     <item android:id="@+id/modo_viernes"
         android:title="MODO VIERNES"></item>
-    <item android:id="@+id/logout"
-        android:title="Olvidar IP guardada"></item>
+    <item
+        android:id="@+id/logout"
+        android:title="Desconectarse"></item>
     <item android:id="@+id/aboutUs"
         android:title="Acerca de..."></item>
 

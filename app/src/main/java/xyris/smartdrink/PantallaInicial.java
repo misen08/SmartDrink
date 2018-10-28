@@ -20,15 +20,38 @@ import com.google.zxing.integration.android.IntentResult;
 
 import xyris.smartdrink.http.Configuracion;
 
+/**
+
+ * La clase PantallaInicial permite seleccionar la opción para leer
+ * el código QR incorporado en la máquina y poder establecer la
+ * conexión con el Web Service embebido en la placa Arduino.
+ * En caso de que no se quiera leer el código QR, se toca el botón
+ * Salir y la aplicación finaliza
+ *
+ * @author Federico Garayalde
+ */
+
 public class PantallaInicial extends AppCompatActivity {
 
+    /** */
     public final static int QRcodeWidth = 350;
+    /** Componente Button que permite cerrar la aplicación */
     Button botonSalir;
+    /** Componente Button que permite leer el código QR incorporado en la máquina */
     Button botonLeerQR;
 
-    private String resPantalla;
+    /** Variable Shared Preferences en donde se guardan persistentemente varias variables. */
     SharedPreferences sp;
+    /** Variable para guardar el tamaño de la pantalla obtenido de Shared Preferences*/
+    private String resPantalla;
 
+    /**
+     * Método onCreate que carga el layout de la pantalla inicial
+     * y prepara los botones a la espera de que se haga click sobre
+     * alguno de ellos.
+     * @param savedInstanceState
+     * @author Federico Garayalde
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +74,7 @@ public class PantallaInicial extends AppCompatActivity {
         });
 
         botonLeerQR = (Button) findViewById(R.id.buttonReadQR);
+        // Al tocar el botón "Leer código QR" se abrirá la cámara.
         botonLeerQR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,12 +142,14 @@ public class PantallaInicial extends AppCompatActivity {
 
                 // Guardo la dirección IP obtenida del código QR en una variable
                 ipLeida = result.getContents();
-                editor.putString("IP", ipLeida);
+                editor.putString("ipPlaca", ipLeida);
                 editor.commit();
 
                 Configuracion.getInstance().setIp(ipLeida);
 
-                if(sp.getString("ipPlaca", "ERROR").equals(ipLeida)) {
+                if(!sp.getString("ipPlaca", "ERROR").equals("ERROR")) {
+                    // Seteo la dirección ip leída
+                    Configuracion.getInstance().setIp(ipLeida);
                     Intent listaTragos = new Intent(PantallaInicial.this, ListaDeTragos.class);
                     finish();
                     startActivity(listaTragos);
