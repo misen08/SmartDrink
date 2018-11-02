@@ -18,7 +18,7 @@ public class WebServiceClient {
     private JSONObject request;
     private byte[] response;
     private String hostPlaca = null;
-    private  int portPlaca = 50000;
+    private  int portPlaca = 8090;
 
     public WebServiceClient(String servicio, JSONObject request) {
         this.servicio = servicio;

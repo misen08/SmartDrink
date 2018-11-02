@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -123,6 +124,17 @@ public class ListaDeTragos extends AppCompatActivity {
                         }
                     });
                     builder.setNegativeButton("No", null);
+
+
+
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                    alert.getWindow().getAttributes();
+
+                    TextView tvDelete = (TextView) alert.findViewById(R.id.message);
+                    tvDelete.setTextSize(30);
+                    Button btnDeleteNO = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
+                    btnDeleteNO.setTextSize(30);
                     builder.show();
                 } else {
                     abrirOpcionesAdicionales(view, position);
