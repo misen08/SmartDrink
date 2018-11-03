@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.TextView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -30,6 +31,7 @@ public class OpcionesAdicionales  extends AppCompatActivity {
     Button botonPrepararAhora;
     CheckBox agregarHielo;
     CheckBox agitarBebida;
+    TextView tvOpcionesAdicionales;
 
     private String idDevice;
     private String modoViernesStatus;
@@ -64,11 +66,9 @@ public class OpcionesAdicionales  extends AppCompatActivity {
             }
         }
 
-        //String urlGif = "https://domain.com/myanimatedgif.gif";
-        //Agregar implementacion Glide dentro de archivo build.gradle.
-        //ImageView imgIceCube = (ImageView)findViewById(R.id.imageView2);
-        //Uri uri = Uri.parse(urlGif);
-        //Glide.with(getApplicationContext()).load(uri).into(imgIceCube);
+        tvOpcionesAdicionales = (TextView) findViewById(R.id.textViewOpcionesAdicionales);
+        String descripcionBebida = getIntent().getExtras().get("descripcionBebida").toString();
+        tvOpcionesAdicionales.setText("Completá tu bebida \n \"" + descripcionBebida + "\"");
 
         botonProgramarBebida = (Button) findViewById(R.id.botonProgramarBebida);
         botonPrepararAhora = (Button) findViewById(R.id.botonPrepararAhora);
@@ -79,7 +79,7 @@ public class OpcionesAdicionales  extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent progBebida = new Intent(OpcionesAdicionales.this, ProgramarBebida.class);
-                verficarFlags();
+                verificarFlags();
                 progBebida.putExtra("hielo", conHielo.toString());
                 progBebida.putExtra("agitado", agitado.toString());
                 progBebida.putExtra("idBebida", getIntent().getExtras().getString("idBebida"));
@@ -92,7 +92,7 @@ public class OpcionesAdicionales  extends AppCompatActivity {
             public void onClick(View v) {
                 String idBebida = getIntent().getExtras().getString("idBebida");
                 String descripcionBebida = getIntent().getExtras().getString("descripcionBebida");
-                verficarFlags();
+                verificarFlags();
                 Intent prepararTrago = new Intent(OpcionesAdicionales.this, PreparandoTrago.class);
                 prepararTrago.putExtra("hielo", conHielo.toString());
                 prepararTrago.putExtra("agitado", agitado.toString());
@@ -104,7 +104,7 @@ public class OpcionesAdicionales  extends AppCompatActivity {
     }
 
     // Se obtiene el estado de las opciones "AgregarHielo" y "MezclarBebida".
-    public void verficarFlags() {
+    public void verificarFlags() {
         conHielo = agregarHielo.isChecked();
         agitado = agitarBebida.isChecked();
     }

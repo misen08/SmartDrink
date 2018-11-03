@@ -1,10 +1,12 @@
 package xyris.smartdrink;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
 import android.speech.RecognizerIntent;
@@ -18,7 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,6 +56,12 @@ public class ListaDeTragos extends AppCompatActivity {
     ListView lv;
     Map<String, String> mapDisable = new HashMap<String, String>();
 
+    int dialogTitleSize = 18;
+    int dialogMessageSize = 16;
+    int dialogYesBtnSize = 16;
+    int dialogNoBtnSize = 16;
+    int dialogAceptarBtnSize = 16;
+
     JSONObject responseReader;
 
     ArrayList<Bebida> listBebida = new ArrayList<Bebida>();
@@ -83,6 +91,13 @@ public class ListaDeTragos extends AppCompatActivity {
         resPantalla = sp.getString("resolucionPantalla", "ERROR");
 
         if (resPantalla.equals("800")) {
+            //Si el dispositivo es la tablet, se asigna el tamaño grande para los textos de los dialog.
+            dialogTitleSize = 38;
+            dialogMessageSize = 32;
+            dialogYesBtnSize = 32;
+            dialogNoBtnSize = 32;
+            dialogAceptarBtnSize = 32;
+
             if (modoViernesStatus.equals("activado")) {
                 setContentView(R.layout.lista_de_tragos_tablet_viernes);
             } else {
@@ -118,39 +133,69 @@ public class ListaDeTragos extends AppCompatActivity {
                     final View myView = view;
                     final Bebida sugerenciaBebida = bebidaRandom;
 
-                    String titleDelete = "Bebida no disponible";
-                    String messageDelete = "La bebida no puede prepararse debido a que alguno de los gustos " +
+                    String titleNoDisponible = "Bebida no disponible";
+                    String messageNoDisponible = "La bebida no puede prepararse debido a que alguno de los gustos " +
                             "que la componen no se encuentra disponible.\n" +
                             "¿Querés preparar \"" + bebidaRandom.getDescripcion() + "\"?";
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(ListaDeTragos.this);
+                    AlertDialog alertDialog = new AlertDialog.Builder(ListaDeTragos.this).create();
 
-                    if (titleDelete != null) builder.setTitle(titleDelete);
+                    // Set Custom Title
+                    TextView title = new TextView(ListaDeTragos.this);
+                    // Title Properties
+                    title.setText(titleNoDisponible);
+//        title.setPadding(10, 10, 10, 10);   // Set Position
+                    title.setGravity(Gravity.CENTER);
+                    title.setTextColor(Color.BLACK);
+                    title.setTextSize(dialogTitleSize);
+                    alertDialog.setCustomTitle(title);
 
-                    builder.setMessage(messageDelete);
-                    builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    // Set Message
+                    TextView msg = new TextView(ListaDeTragos.this);
+                    // Message Properties
+                    msg.setText(messageNoDisponible);
+                    msg.setGravity(Gravity.CENTER_HORIZONTAL);
+//        msg.setTextColor(Color.BLACK);
+                    msg.setTextSize(dialogMessageSize);
+                    alertDialog.setView(msg);
+
+                    // Set Button
+                    // you can more buttons
+                    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE,"SÍ", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             abrirOpcionesAdicionales(myView, sugerenciaBebida);
                         }
                     });
-                    builder.setNegativeButton("No", null);
 
+                    alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE,"NO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            //
+                        }
+                    });
 
+                    new Dialog(getApplicationContext());
+                    alertDialog.show();
 
-//                    AlertDialog alert = builder.create();
-//                    alert.show();
-//                    alert.getWindow().getAttributes();
+                    // Propiedades del botón "SI"
+                    final Button yesBT = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                    LinearLayout.LayoutParams yesBtnLP = (LinearLayout.LayoutParams) yesBT.getLayoutParams();
+                    yesBtnLP.gravity = Gravity.FILL_HORIZONTAL;
+                    yesBT.setPadding(50, 10, 10, 10);   // Set Position
+                    //yesBT.setTextColor(Color.BLUE);
+                    yesBT.setTextSize(dialogYesBtnSize);
+                    yesBT.setLayoutParams(yesBtnLP);
 
-//                    TextView tvDelete = (TextView) alert.findViewById(R.id.message);
-//                    tvDelete.setTextSize(90);
-//                    Button btnDeleteNO = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
-//                    btnDeleteNO.setTextSize(30);
-                    builder.show();
+                    // Propiedades del botón "NO"
+                    final Button noBT = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+                    LinearLayout.LayoutParams negBtnLP = (LinearLayout.LayoutParams) yesBT.getLayoutParams();
+                    negBtnLP.gravity = Gravity.FILL_HORIZONTAL;
+                    //noBT.setTextColor(Color.RED);
+                    noBT.setTextSize(dialogNoBtnSize);
+                    noBT.setLayoutParams(negBtnLP);
                 } else {
                     abrirOpcionesAdicionales(view, position);
                 }
-                //TODO: Abrir opciones adicionales luego de seleccionar el trago
             }
         });
 
@@ -240,13 +285,30 @@ public class ListaDeTragos extends AppCompatActivity {
                         "* Wasinger, Ignacio\n\n" +
                         "Proyecto de Fin de Carrera\n\n" +
                         "UNLaM - 2018";
-                AlertDialog.Builder builder = new AlertDialog.Builder(ListaDeTragos.this);
 
-                if (titleAboutUs != null) builder.setTitle(titleAboutUs);
+                AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 
-                builder.setMessage(messageAboutUs);
-                builder.show();
+                // Set Custom Title
+                TextView title = new TextView(this);
+                // Title Properties
+                title.setText(titleAboutUs);
+//                title.setPadding(10, 10, 10, 10);   // Set Position
+                title.setGravity(Gravity.CENTER);
+                title.setTextColor(Color.BLACK);
+                title.setTextSize(dialogTitleSize);
+                alertDialog.setCustomTitle(title);
 
+                // Set Message
+                TextView msg = new TextView(this);
+                // Message Properties
+                msg.setText(messageAboutUs);
+                msg.setGravity(Gravity.CENTER_HORIZONTAL);
+//                msg.setTextColor(Color.BLACK);
+                msg.setTextSize(dialogMessageSize);
+                alertDialog.setView(msg);
+
+                new Dialog(getApplicationContext());
+                alertDialog.show();
                 break;
             case R.id.logout:
                 olvidarDireccionPlaca();
@@ -272,8 +334,6 @@ public class ListaDeTragos extends AppCompatActivity {
 
         startActivityForResult(intent, 3);
     }
-
-
 
     public void abrirCrearTragos(View v) {
         Intent intent = new Intent(this, CrearTragos.class);
@@ -334,17 +394,35 @@ public class ListaDeTragos extends AppCompatActivity {
                                     final String flagHielo = hielo;
                                     final String flagAgitado = agitado;
 
-                                    String titleDelete = "Bebida no disponible";
-                                    String messageDelete = "La bebida no puede prepararse debido a que alguno de los gustos " +
+                                    String titleNoDisponible = "Bebida no disponible";
+                                    String messageNoDisponible = "La bebida no puede prepararse debido a que alguno de los gustos " +
                                             "que la componen no se encuentra disponible.\n" +
                                             "¿Querés preparar \"" + bebidaRandom.getDescripcion() + "\"?";;
 
-                                    AlertDialog.Builder builder = new AlertDialog.Builder(ListaDeTragos.this);
+                                    AlertDialog alertDialog = new AlertDialog.Builder(ListaDeTragos.this).create();
 
-                                    if (titleDelete != null) builder.setTitle(titleDelete);
+                                    // Set Custom Title
+                                    TextView title = new TextView(ListaDeTragos.this);
+                                    // Title Properties
+                                    title.setText(titleNoDisponible);
+//        title.setPadding(10, 10, 10, 10);   // Set Position
+                                    title.setGravity(Gravity.CENTER);
+                                    title.setTextColor(Color.BLACK);
+                                    title.setTextSize(dialogTitleSize);
+                                    alertDialog.setCustomTitle(title);
 
-                                    builder.setMessage(messageDelete);
-                                    builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                                    // Set Message
+                                    TextView msg = new TextView(ListaDeTragos.this);
+                                    // Message Properties
+                                    msg.setText(messageNoDisponible);
+                                    msg.setGravity(Gravity.CENTER_HORIZONTAL);
+//        msg.setTextColor(Color.BLACK);
+                                    msg.setTextSize(dialogMessageSize);
+                                    alertDialog.setView(msg);
+
+                                    // Set Button
+                                    // you can more buttons
+                                    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE,"SÍ", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             Intent prepararTrago = new Intent(ListaDeTragos.this, PreparandoTrago.class);
@@ -354,10 +432,33 @@ public class ListaDeTragos extends AppCompatActivity {
                                             prepararTrago.putExtra("descripcionBebida", sugerenciaBebida.getDescripcion());
                                             startActivityForResult(prepararTrago, 4);
                                         }
-
                                     });
-                                    builder.setNegativeButton("No", null);
-                                    builder.show();
+
+                                    alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE,"NO", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            //
+                                        }
+                                    });
+
+                                    new Dialog(getApplicationContext());
+                                    alertDialog.show();
+
+                                    // Propiedades del botón "SI"
+                                    final Button yesBT = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                                    LinearLayout.LayoutParams yesBtnLP = (LinearLayout.LayoutParams) yesBT.getLayoutParams();
+                                    yesBtnLP.gravity = Gravity.FILL_HORIZONTAL;
+                                    yesBT.setPadding(50, 10, 10, 10);   // Set Position
+                                    //yesBT.setTextColor(Color.BLUE);
+                                    yesBT.setTextSize(dialogYesBtnSize);
+                                    yesBT.setLayoutParams(yesBtnLP);
+
+                                    // Propiedades del botón "NO"
+                                    final Button noBT = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+                                    LinearLayout.LayoutParams negBtnLP = (LinearLayout.LayoutParams) yesBT.getLayoutParams();
+                                    negBtnLP.gravity = Gravity.FILL_HORIZONTAL;
+                                    //noBT.setTextColor(Color.RED);
+                                    noBT.setTextSize(dialogNoBtnSize);
+                                    noBT.setLayoutParams(negBtnLP);
                                 } else {
                                     Intent prepararTrago = new Intent(ListaDeTragos.this, PreparandoTrago.class);
                                     prepararTrago.putExtra("hielo", hielo);
@@ -432,21 +533,44 @@ public class ListaDeTragos extends AppCompatActivity {
     }
 
     public void infoBebida(int pos){
-        AlertDialog cuadroDialogo = new AlertDialog.Builder(this).create();
+//        AlertDialog cuadroDialogo = new AlertDialog.Builder(this).create();
         String messageTemp = "";
-        String message = "";
+        String messageInfo = "";
+
         //Se obtiene el nombre de la bebida de la base de datos.
-        cuadroDialogo.setTitle(listBebida.get(pos).getDescripcion());
+  //      cuadroDialogo.setTitle(listBebida.get(pos).getDescripcion());
+        String titleInfo = listBebida.get(pos).getDescripcion();
 
         ArrayList<SaborEnBebida> sabor = listBebida.get(pos).getSabores();
         //Se muestra el porcentaje de cada sabor.
         for (int i = 0 ; i < sabor.size(); i++){
             messageTemp = sabor.get(i).getDescripcion() + ": " + sabor.get(i).getPorcentaje() + "%" + "\n";
-            message = message + messageTemp;
+            messageInfo = messageInfo + messageTemp;
         }
 
-        cuadroDialogo.setMessage(message);
-        cuadroDialogo.show();
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+
+        // Set Custom Title
+        TextView title = new TextView(this);
+        // Title Properties
+        title.setText(titleInfo);
+//        title.setPadding(10, 10, 10, 10);   // Set Position
+        title.setGravity(Gravity.CENTER);
+        title.setTextColor(Color.BLACK);
+        title.setTextSize(dialogTitleSize);
+        alertDialog.setCustomTitle(title);
+
+        // Set Message
+        TextView msg = new TextView(this);
+        // Message Properties
+        msg.setText(messageInfo);
+        msg.setGravity(Gravity.CENTER);
+//        msg.setTextColor(Color.BLACK);
+        msg.setTextSize(dialogMessageSize);
+        alertDialog.setView(msg);
+
+        new Dialog(getApplicationContext());
+        alertDialog.show();
     }
 
     public void obtenerLista(){
@@ -501,18 +625,37 @@ public class ListaDeTragos extends AppCompatActivity {
         Log.d("Info button", "Button info");
     }
 
+
     public void clickHandlerDeleteButton(View v, final int i, ArrayList<CategoryList> items) {
 
-//        String nombreBebida = listBebida.get(i).getDescripcion();
         String titleDelete = "Eliminar bebida";
         String messageDelete = "¿Está seguro que desea eliminar la bebida \""+ listBebida.get(i).getDescripcion() + "\"?";
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 
-        if (titleDelete != null) builder.setTitle(titleDelete);
+        // Set Custom Title
+        TextView title = new TextView(this);
+        // Title Properties
+        title.setText(titleDelete);
+//        title.setPadding(10, 10, 10, 10);   // Set Position
+        title.setGravity(Gravity.CENTER);
+        title.setTextColor(Color.BLACK);
+        title.setTextSize(dialogTitleSize);
+        alertDialog.setCustomTitle(title);
 
-        builder.setMessage(messageDelete);
-        builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+        // Set Message
+        TextView msg = new TextView(this);
+        // Message Properties
+        msg.setText(messageDelete);
+        msg.setGravity(Gravity.CENTER_HORIZONTAL);
+//        msg.setTextColor(Color.BLACK);
+        msg.setTextSize(dialogMessageSize);
+        alertDialog.setView(msg);
+        
+
+        // Set Button
+        // you can more buttons
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE,"SÍ", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String idBebida = listBebida.get(i).getIdBebida();
@@ -523,13 +666,37 @@ public class ListaDeTragos extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(ListaDeTragos.this, descripcionErrorEliminarBebida + " " +
-                            "Código de error: " + codigoErrorEliminarBebida,
+                                    "Código de error: " + codigoErrorEliminarBebida,
                             Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        builder.setNegativeButton("No", null);
-        builder.show();
+
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE,"NO", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                //
+            }
+        });
+
+        new Dialog(getApplicationContext());
+        alertDialog.show();
+
+        // Propiedades del botón "SI"
+        final Button yesBT = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        LinearLayout.LayoutParams yesBtnLP = (LinearLayout.LayoutParams) yesBT.getLayoutParams();
+        yesBtnLP.gravity = Gravity.FILL_HORIZONTAL;
+        yesBT.setPadding(50, 10, 10, 10);   // Set Position
+        //yesBT.setTextColor(Color.BLUE);
+        yesBT.setTextSize(dialogYesBtnSize);
+        yesBT.setLayoutParams(yesBtnLP);
+
+        // Propiedades del botón "NO"
+        final Button noBT = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+        LinearLayout.LayoutParams negBtnLP = (LinearLayout.LayoutParams) yesBT.getLayoutParams();
+        negBtnLP.gravity = Gravity.FILL_HORIZONTAL;
+        //noBT.setTextColor(Color.RED);
+        noBT.setTextSize(dialogNoBtnSize);
+        noBT.setLayoutParams(negBtnLP);
 
         lv.setAdapter(new AdapterItem(this, items, mapDisable));
     }
@@ -677,21 +844,48 @@ public class ListaDeTragos extends AppCompatActivity {
     }
 
     public void abrirCuadroDialogoBebidaFinalizada () {
-        String titleDelete = "PREPARACIÓN FINALIZADA";
-        String messageDelete = "¡Tu bebida ya está lista!\nPodes retirarla de la máquina\n\n¡Que la disfrutes!";
+        String titleBebidaFinalizada = "PREPARACIÓN FINALIZADA";
+        String messageBebidaFinalizada = "¡Tu bebida ya está lista!\nPodes retirarla de la máquina\n\n¡Que la disfrutes!";
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//-----------
 
-        if (titleDelete != null) builder.setTitle(titleDelete);
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 
-        builder.setMessage(messageDelete);
-        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+        // Set Custom Title
+        TextView title = new TextView(this);
+        // Title Properties
+        title.setText(titleBebidaFinalizada);
+//        title.setPadding(10, 10, 10, 10);   // Set Position
+        title.setGravity(Gravity.CENTER);
+        title.setTextColor(Color.BLACK);
+        title.setTextSize(dialogTitleSize);
+        alertDialog.setCustomTitle(title);
+
+        // Set Message
+        TextView msg = new TextView(this);
+        // Message Properties
+        msg.setText(messageBebidaFinalizada);
+        msg.setGravity(Gravity.CENTER);
+//        msg.setTextColor(Color.BLACK);
+        msg.setTextSize(dialogMessageSize);
+        alertDialog.setView(msg);
+
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE,"Aceptar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
             }
         });
 
-        builder.show();
+        new Dialog(getApplicationContext());
+        alertDialog.show();
+
+        // Propiedades del botón "Aceptar"
+        final Button aceptarBT = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        LinearLayout.LayoutParams yesBtnLP = (LinearLayout.LayoutParams) aceptarBT.getLayoutParams();
+        yesBtnLP.gravity = Gravity.FILL_HORIZONTAL;
+        aceptarBT.setPadding(50, 10, 10, 10);   // Set Position
+        //yesBT.setTextColor(Color.BLUE);
+        aceptarBT.setTextSize(dialogAceptarBtnSize);
     }
 }
