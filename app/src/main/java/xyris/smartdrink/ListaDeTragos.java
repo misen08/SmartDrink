@@ -35,6 +35,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import ar.edu.xyris.smartdrinks.messages.eliminacion.bebida.EliminaBebidaRequest;
 import ar.edu.xyris.smartdrinks.messages.preparacion.PreparaBebidaRequest;
@@ -107,10 +108,20 @@ public class ListaDeTragos extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 if("0".equals(items.get(position).getDisponible())){
+                    Random random = new Random();
+                    Bebida bebidaRandom;
+                    bebidaRandom = listBebida.get(random.nextInt(listBebida.size()));
+                    while("0".equals(bebidaRandom.getDisponible())){
+                        bebidaRandom = listBebida.get(random.nextInt(listBebida.size()));
+                    }
+
+                    final View myView = view;
+                    final Bebida sugerenciaBebida = bebidaRandom;
+
                     String titleDelete = "Bebida no disponible";
                     String messageDelete = "La bebida no puede prepararse debido a que alguno de los gustos " +
                             "que la componen no se encuentra disponible.\n" +
-                            "¿Querés preparar NARANJA FULL?";
+                            "¿Querés preparar \"" + bebidaRandom.getDescripcion() + "\"?";
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(ListaDeTragos.this);
 
@@ -120,21 +131,21 @@ public class ListaDeTragos extends AppCompatActivity {
                     builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-
+                            abrirOpcionesAdicionales(myView, sugerenciaBebida);
                         }
                     });
                     builder.setNegativeButton("No", null);
 
 
 
-                    AlertDialog alert = builder.create();
-                    alert.show();
-                    alert.getWindow().getAttributes();
+//                    AlertDialog alert = builder.create();
+//                    alert.show();
+//                    alert.getWindow().getAttributes();
 
-                    TextView tvDelete = (TextView) alert.findViewById(R.id.message);
-                    tvDelete.setTextSize(30);
-                    Button btnDeleteNO = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
-                    btnDeleteNO.setTextSize(30);
+//                    TextView tvDelete = (TextView) alert.findViewById(R.id.message);
+//                    tvDelete.setTextSize(90);
+//                    Button btnDeleteNO = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
+//                    btnDeleteNO.setTextSize(30);
                     builder.show();
                 } else {
                     abrirOpcionesAdicionales(view, position);
@@ -253,6 +264,17 @@ public class ListaDeTragos extends AppCompatActivity {
         startActivityForResult(intent, 3);
     }
 
+    public void abrirOpcionesAdicionales(View v, Bebida bebida) {
+        Intent intent = new Intent(this, OpcionesAdicionales.class);
+        intent.putExtra("idBebida", bebida.getIdBebida());
+        intent.putExtra("descripcionBebida", bebida.getDescripcion());
+        intent.putExtra("modoViernes", modoViernesStatus);
+
+        startActivityForResult(intent, 3);
+    }
+
+
+
     public void abrirCrearTragos(View v) {
         Intent intent = new Intent(this, CrearTragos.class);
         intent.putExtra("nombreBebidasExistentes", nombreBebidasExistentes);
@@ -280,9 +302,6 @@ public class ListaDeTragos extends AppCompatActivity {
                     String agitado = "false";
 
                     while("-1".equals(idBebida)){
-                        //Toast toast = Toast.makeText(this, "Pedido por voz: "+ strSpeech2Text.toUpperCase(), Toast.LENGTH_SHORT);
-                        //toast.setGravity(Gravity.CENTER, 0, 0);
-                        //toast.show();
 
                         for(int j=0; j < listBebida.size(); j++) {
                             itemBebida = listBebida.get(j).getDescripcion().toUpperCase();
@@ -293,6 +312,7 @@ public class ListaDeTragos extends AppCompatActivity {
                                 boolean boolHielo = strSpeech2TextUpperCase.contains("con hielo".toUpperCase());
                                 if(boolHielo){
                                     hielo = "true";
+
                                 }
 
                                 boolean boolAgitado = strSpeech2TextUpperCase.contains("agitado".toUpperCase());
@@ -300,15 +320,24 @@ public class ListaDeTragos extends AppCompatActivity {
                                     agitado = "true";
                                 }
 
-                                //Toast.makeText(this, "SUPER!!", Toast.LENGTH_LONG).show();
-                                //Toast.makeText(this, "yeay " + idBebida + " " + itemBebida +
-                                //        "Hielo: " + hielo + "Agitado: " + agitado, Toast.LENGTH_LONG).show();
-
                                 if("0".equals(listBebida.get(j).getDisponible())){
+
+                                    Random random = new Random();
+                                    Bebida bebidaRandom;
+                                    bebidaRandom = listBebida.get(random.nextInt(listBebida.size()));
+                                    while("0".equals(bebidaRandom.getDisponible())){
+                                        bebidaRandom = listBebida.get(random.nextInt(listBebida.size()));
+                                    }
+
+
+                                    final Bebida sugerenciaBebida = bebidaRandom;
+                                    final String flagHielo = hielo;
+                                    final String flagAgitado = agitado;
+
                                     String titleDelete = "Bebida no disponible";
                                     String messageDelete = "La bebida no puede prepararse debido a que alguno de los gustos " +
                                             "que la componen no se encuentra disponible.\n" +
-                                            "¿Querés preparar: NARANJA FULL?";
+                                            "¿Querés preparar \"" + bebidaRandom.getDescripcion() + "\"?";;
 
                                     AlertDialog.Builder builder = new AlertDialog.Builder(ListaDeTragos.this);
 
@@ -318,8 +347,14 @@ public class ListaDeTragos extends AppCompatActivity {
                                     builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-
+                                            Intent prepararTrago = new Intent(ListaDeTragos.this, PreparandoTrago.class);
+                                            prepararTrago.putExtra("hielo", flagHielo);
+                                            prepararTrago.putExtra("agitado", flagAgitado);
+                                            prepararTrago.putExtra("idBebida", sugerenciaBebida.getIdBebida());
+                                            prepararTrago.putExtra("descripcionBebida", sugerenciaBebida.getDescripcion());
+                                            startActivityForResult(prepararTrago, 4);
                                         }
+
                                     });
                                     builder.setNegativeButton("No", null);
                                     builder.show();
@@ -468,8 +503,9 @@ public class ListaDeTragos extends AppCompatActivity {
 
     public void clickHandlerDeleteButton(View v, final int i, ArrayList<CategoryList> items) {
 
+//        String nombreBebida = listBebida.get(i).getDescripcion();
         String titleDelete = "Eliminar bebida";
-        String messageDelete = "¿Está seguro que desea eliminar esta bebida?";
+        String messageDelete = "¿Está seguro que desea eliminar la bebida \""+ listBebida.get(i).getDescripcion() + "\"?";
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
