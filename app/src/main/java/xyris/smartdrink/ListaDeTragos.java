@@ -73,6 +73,7 @@ public class ListaDeTragos extends AppCompatActivity {
     private static final int CREAR_TRAGO_ACTIVITY = 2;
     private static final int OPCIONES_ADICIONALES_ACTIVITY = 3;
     private static final int RETURN_PEDIDO_POR_VOZ = 4;
+    private static final int CARGAR_SABORES_EN_BOTELLA = 5;
 
     String codigoErrorEliminarBebida;
     String descripcionErrorEliminarBebida;
@@ -247,7 +248,9 @@ public class ListaDeTragos extends AppCompatActivity {
                 break;
             case R.id.cargar_sabores:
                     Intent cargarSabores = new Intent(this, SaboresEnBotellas.class);
-                    startActivity(cargarSabores);
+                    startActivityForResult(cargarSabores, 5);
+                    //Intent cargarSabores = new Intent(this, SaboresEnBotellas.class);
+                    //startActivity(cargarSabores);
                 break;
             case R.id.modo_viernes:
                 modoViernesStatus = sp.getString("modoViernes", "ERROR");
@@ -272,8 +275,8 @@ public class ListaDeTragos extends AppCompatActivity {
                 }
                 break;
             case R.id.mantenimiento:
-                Intent intent = new Intent(this, Mantenimiento.class);
-                startActivity(intent);
+                Intent intentMantenimiento = new Intent(this, Mantenimiento.class);
+                startActivity(intentMantenimiento);
                 break;
             case R.id.aboutUs:
                 String titleAboutUs = "Smart Drinks";
@@ -506,6 +509,13 @@ public class ListaDeTragos extends AppCompatActivity {
 
                 if(resultCode == RESULT_OK && null != data) {
                     abrirCuadroDialogoBebidaFinalizada();
+                }
+                break;
+
+            case CARGAR_SABORES_EN_BOTELLA:
+
+                if (resultCode == RESULT_OK && null != data) {
+                    obtenerLista();
                 }
                 break;
 

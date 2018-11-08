@@ -1,5 +1,7 @@
 package xyris.smartdrink;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -11,7 +13,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class SaboresEnBotellas extends AppCompatActivity {
 
@@ -133,6 +134,10 @@ public class SaboresEnBotellas extends AppCompatActivity {
         btnAceptarSabores.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent returnIntent = new Intent();
+                boolean result = true;
+                returnIntent.putExtra("result", result);
+                setResult(Activity.RESULT_OK, returnIntent);
                 finish();
             }
         });
