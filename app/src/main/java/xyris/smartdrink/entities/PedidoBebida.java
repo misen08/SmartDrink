@@ -100,7 +100,7 @@ public class PedidoBebida {
 					listBebidasAgendadas.add(bebida);
 				}
 			} else {
-				// TODO: manejar codigos de error de consultarPedidos
+
 			}
 
 		} catch (JSONException e) { e.printStackTrace(); }

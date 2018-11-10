@@ -1,7 +1,5 @@
 package xyris.smartdrink;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -24,10 +22,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
-import ar.edu.xyris.smartdrinks.messages.Mantenimiento.RealizaMantenimientoRequest;
-import ar.edu.xyris.smartdrinks.messages.creacion.bebida.CreaBebidaRequest;
 import ar.edu.xyris.smartdrinks.messages.modificacion.ReseteaContadorRequest;
-import ar.edu.xyris.smartdrinks.messages.preparacion.PreparaBebidaRequest;
 import xyris.smartdrink.entities.FechaHora;
 import xyris.smartdrink.http.WebServiceClient;
 
@@ -77,10 +72,6 @@ public class Mantenimiento extends AppCompatActivity {
         obtenerCantidadBebidasPreparadas();
         tvCantidadBebidasPreparadas.setText("Cantidad de bebidas preparadas: " + cantidadBebidasPreparadas);
 
-
-
-        //ToDo: Cada vez que se reciba una notificacion, se debe tomar la fecha actual y agregarla al listado.
-
         for(int i=0; i < dateMantenimiento.length ; i++){
             items.add(dateMantenimiento[i]);
         }
@@ -102,7 +93,6 @@ public class Mantenimiento extends AppCompatActivity {
         buttonMantenimientoRealizado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //ToDo: Mantenimiento realizado - enviar mensaje para resetear contador & vaciar lista de fechas.
                 enviarMensajeLimpiezaRealizada();
                 vaciarListaFechas();
                 Toast.makeText(Mantenimiento.this, "Se reseteó el contador.", Toast.LENGTH_SHORT).show();
@@ -199,4 +189,3 @@ public class Mantenimiento extends AppCompatActivity {
         }
     }
 }
-

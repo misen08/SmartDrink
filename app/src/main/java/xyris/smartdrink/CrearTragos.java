@@ -157,7 +157,7 @@ public class CrearTragos extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
+
             }
         });
 
@@ -183,7 +183,7 @@ public class CrearTragos extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
+
             }
         });
 
@@ -209,7 +209,7 @@ public class CrearTragos extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
+
             }
         });
 
@@ -235,7 +235,7 @@ public class CrearTragos extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
+
             }
         });
 
@@ -261,7 +261,7 @@ public class CrearTragos extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
+
             }
         });
 
@@ -287,7 +287,7 @@ public class CrearTragos extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
+
             }
         });
 

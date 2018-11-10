@@ -134,7 +134,7 @@ public class ListaDeTragos extends AppCompatActivity {
                     final View myView = view;
                     final Bebida sugerenciaBebida = bebidaRandom;
 
-                    String titleNoDisponible = "Bebida no disponible";
+                    String titleNoDisponible = "Bebida no disponible\n";
                     String messageNoDisponible = "La bebida no puede prepararse debido a que alguno de los gustos " +
                             "que la componen no se encuentra disponible.\n" +
                             "¿Querés preparar \"" + bebidaRandom.getDescripcion() + "\"?";
@@ -145,7 +145,6 @@ public class ListaDeTragos extends AppCompatActivity {
                     TextView title = new TextView(ListaDeTragos.this);
                     // Title Properties
                     title.setText(titleNoDisponible);
-//        title.setPadding(10, 10, 10, 10);   // Set Position
                     title.setGravity(Gravity.CENTER);
                     title.setTextColor(Color.BLACK);
                     title.setTextSize(dialogTitleSize);
@@ -156,7 +155,6 @@ public class ListaDeTragos extends AppCompatActivity {
                     // Message Properties
                     msg.setText(messageNoDisponible);
                     msg.setGravity(Gravity.CENTER_HORIZONTAL);
-//        msg.setTextColor(Color.BLACK);
                     msg.setTextSize(dialogMessageSize);
                     alertDialog.setView(msg);
 
@@ -183,7 +181,6 @@ public class ListaDeTragos extends AppCompatActivity {
                     LinearLayout.LayoutParams yesBtnLP = (LinearLayout.LayoutParams) yesBT.getLayoutParams();
                     yesBtnLP.gravity = Gravity.FILL_HORIZONTAL;
                     yesBT.setPadding(50, 10, 10, 10);   // Set Position
-                    //yesBT.setTextColor(Color.BLUE);
                     yesBT.setTextSize(dialogYesBtnSize);
                     yesBT.setLayoutParams(yesBtnLP);
 
@@ -191,7 +188,6 @@ public class ListaDeTragos extends AppCompatActivity {
                     final Button noBT = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
                     LinearLayout.LayoutParams negBtnLP = (LinearLayout.LayoutParams) yesBT.getLayoutParams();
                     negBtnLP.gravity = Gravity.FILL_HORIZONTAL;
-                    //noBT.setTextColor(Color.RED);
                     noBT.setTextSize(dialogNoBtnSize);
                     noBT.setLayoutParams(negBtnLP);
                 } else {
@@ -199,10 +195,6 @@ public class ListaDeTragos extends AppCompatActivity {
                 }
             }
         });
-
-        //idDevice = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-        //Texto en donde se mostrará lo que se grabe
-        //grabar = (TextView) findViewById(R.id.txtGrabarVoz);
 
         botonCrearTrago.setOnClickListener(new View.OnClickListener()
         {
@@ -222,7 +214,7 @@ public class ListaDeTragos extends AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
 
-        //Si la resolución de pantalla no es 800 (el dispositivo no es la tablet), se quita la visibilidad de la opcion "cargar sabores"
+        // Si la resolución de pantalla no es 800 (el dispositivo no es la tablet), se quita la visibilidad de la opcion "cargar sabores"
         if ((resPantalla.equals("800"))) {
             menu.getItem(1).setTitle("Cambiar sabores");
         } else {
@@ -249,8 +241,6 @@ public class ListaDeTragos extends AppCompatActivity {
             case R.id.cargar_sabores:
                     Intent cargarSabores = new Intent(this, SaboresEnBotellas.class);
                     startActivityForResult(cargarSabores, 5);
-                    //Intent cargarSabores = new Intent(this, SaboresEnBotellas.class);
-                    //startActivity(cargarSabores);
                 break;
             case R.id.modo_viernes:
                 modoViernesStatus = sp.getString("modoViernes", "ERROR");
@@ -279,7 +269,7 @@ public class ListaDeTragos extends AppCompatActivity {
                 startActivity(intentMantenimiento);
                 break;
             case R.id.aboutUs:
-                String titleAboutUs = "Smart Drinks";
+                String titleAboutUs = "Smart Drinks\n";
                 String messageAboutUs = "Grupo Xyris \n\n" +
                         "* Badalic Pelech, Nadia\n" +
                         "* Garayalde, Federico\n" +
@@ -295,7 +285,6 @@ public class ListaDeTragos extends AppCompatActivity {
                 TextView title = new TextView(this);
                 // Title Properties
                 title.setText(titleAboutUs);
-//                title.setPadding(10, 10, 10, 10);   // Set Position
                 title.setGravity(Gravity.CENTER);
                 title.setTextColor(Color.BLACK);
                 title.setTextSize(dialogTitleSize);
@@ -306,7 +295,6 @@ public class ListaDeTragos extends AppCompatActivity {
                 // Message Properties
                 msg.setText(messageAboutUs);
                 msg.setGravity(Gravity.CENTER_HORIZONTAL);
-//                msg.setTextColor(Color.BLACK);
                 msg.setTextSize(dialogMessageSize);
                 alertDialog.setView(msg);
 
@@ -397,7 +385,7 @@ public class ListaDeTragos extends AppCompatActivity {
                                     final String flagHielo = hielo;
                                     final String flagAgitado = agitado;
 
-                                    String titleNoDisponible = "Bebida no disponible";
+                                    String titleNoDisponible = "Bebida no disponible\n";
                                     String messageNoDisponible = "La bebida no puede prepararse debido a que alguno de los gustos " +
                                             "que la componen no se encuentra disponible.\n" +
                                             "¿Querés preparar \"" + bebidaRandom.getDescripcion() + "\"?";;
@@ -408,7 +396,6 @@ public class ListaDeTragos extends AppCompatActivity {
                                     TextView title = new TextView(ListaDeTragos.this);
                                     // Title Properties
                                     title.setText(titleNoDisponible);
-//        title.setPadding(10, 10, 10, 10);   // Set Position
                                     title.setGravity(Gravity.CENTER);
                                     title.setTextColor(Color.BLACK);
                                     title.setTextSize(dialogTitleSize);
@@ -419,7 +406,6 @@ public class ListaDeTragos extends AppCompatActivity {
                                     // Message Properties
                                     msg.setText(messageNoDisponible);
                                     msg.setGravity(Gravity.CENTER_HORIZONTAL);
-//        msg.setTextColor(Color.BLACK);
                                     msg.setTextSize(dialogMessageSize);
                                     alertDialog.setView(msg);
 
@@ -451,7 +437,6 @@ public class ListaDeTragos extends AppCompatActivity {
                                     LinearLayout.LayoutParams yesBtnLP = (LinearLayout.LayoutParams) yesBT.getLayoutParams();
                                     yesBtnLP.gravity = Gravity.FILL_HORIZONTAL;
                                     yesBT.setPadding(50, 10, 10, 10);   // Set Position
-                                    //yesBT.setTextColor(Color.BLUE);
                                     yesBT.setTextSize(dialogYesBtnSize);
                                     yesBT.setLayoutParams(yesBtnLP);
 
@@ -459,7 +444,6 @@ public class ListaDeTragos extends AppCompatActivity {
                                     final Button noBT = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
                                     LinearLayout.LayoutParams negBtnLP = (LinearLayout.LayoutParams) yesBT.getLayoutParams();
                                     negBtnLP.gravity = Gravity.FILL_HORIZONTAL;
-                                    //noBT.setTextColor(Color.RED);
                                     noBT.setTextSize(dialogNoBtnSize);
                                     noBT.setLayoutParams(negBtnLP);
                                 } else {
@@ -470,12 +454,10 @@ public class ListaDeTragos extends AppCompatActivity {
                                     prepararTrago.putExtra("descripcionBebida", itemBebida);
                                     startActivityForResult(prepararTrago, 4);
                                 }
-//                                startActivityForResult(prepararTrago, 4);
                             }
                         }
 
                         if("-1".equals(idBebida)) {
-                            //Toast.makeText(this, "BEBIDA NO ENCONTRADA.\nENTENDÍ: " + strSpeech2TextUpperCase.toUpperCase(), Toast.LENGTH_SHORT).show();
                             Toast toast = Toast.makeText(this, "BEBIDA NO ENCONTRADA.\nENTENDÍ: " + strSpeech2TextUpperCase.toUpperCase(), Toast.LENGTH_LONG);
                             toast.setGravity(Gravity.CENTER, 0, 0);
 
@@ -500,7 +482,7 @@ public class ListaDeTragos extends AppCompatActivity {
                     abrirCuadroDialogoBebidaFinalizada();
                 } else {
                     if(resultCode == RESULT_CANCELED && null != data) {
-                        Toast.makeText(this, "Algo fallo...", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(this, "Algo fallo...", Toast.LENGTH_SHORT).show();
                     }
                 }
                 break;
@@ -526,7 +508,7 @@ public class ListaDeTragos extends AppCompatActivity {
 
     public void onClickBotonReconocimientoDeVoz(View v) {
 
-        //ACTION_RECOGNIZE_SPEECH: Starts an activity that will prompt the user for speech and send it through a speech recognizer.
+        // ACTION_RECOGNIZE_SPEECH: Starts an activity that will prompt the user for speech and send it through a speech recognizer.
         Intent intentActionRecognizeSpeech = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 
         // Configura el Idioma (Español-España)
@@ -543,13 +525,11 @@ public class ListaDeTragos extends AppCompatActivity {
     }
 
     public void infoBebida(int pos){
-//        AlertDialog cuadroDialogo = new AlertDialog.Builder(this).create();
         String messageTemp = "";
         String messageInfo = "";
 
         //Se obtiene el nombre de la bebida de la base de datos.
-  //      cuadroDialogo.setTitle(listBebida.get(pos).getDescripcion());
-        String titleInfo = listBebida.get(pos).getDescripcion();
+        String titleInfo = listBebida.get(pos).getDescripcion() + "\n";
 
         ArrayList<SaborEnBebida> sabor = listBebida.get(pos).getSabores();
         //Se muestra el porcentaje de cada sabor.
@@ -564,7 +544,6 @@ public class ListaDeTragos extends AppCompatActivity {
         TextView title = new TextView(this);
         // Title Properties
         title.setText(titleInfo);
-//        title.setPadding(10, 10, 10, 10);   // Set Position
         title.setGravity(Gravity.CENTER);
         title.setTextColor(Color.BLACK);
         title.setTextSize(dialogTitleSize);
@@ -575,7 +554,6 @@ public class ListaDeTragos extends AppCompatActivity {
         // Message Properties
         msg.setText(messageInfo);
         msg.setGravity(Gravity.CENTER);
-//        msg.setTextColor(Color.BLACK);
         msg.setTextSize(dialogMessageSize);
         alertDialog.setView(msg);
 
@@ -638,7 +616,7 @@ public class ListaDeTragos extends AppCompatActivity {
 
     public void clickHandlerDeleteButton(View v, final int i, ArrayList<CategoryList> items) {
 
-        String titleDelete = "Eliminar bebida";
+        String titleDelete = "Eliminar bebida\n";
         String messageDelete = "¿Está seguro que desea eliminar la bebida \""+ listBebida.get(i).getDescripcion() + "\"?";
 
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
@@ -647,7 +625,6 @@ public class ListaDeTragos extends AppCompatActivity {
         TextView title = new TextView(this);
         // Title Properties
         title.setText(titleDelete);
-//        title.setPadding(10, 10, 10, 10);   // Set Position
         title.setGravity(Gravity.CENTER);
         title.setTextColor(Color.BLACK);
         title.setTextSize(dialogTitleSize);
@@ -658,7 +635,6 @@ public class ListaDeTragos extends AppCompatActivity {
         // Message Properties
         msg.setText(messageDelete);
         msg.setGravity(Gravity.CENTER_HORIZONTAL);
-//        msg.setTextColor(Color.BLACK);
         msg.setTextSize(dialogMessageSize);
         alertDialog.setView(msg);
         
@@ -675,8 +651,7 @@ public class ListaDeTragos extends AppCompatActivity {
                     Toast.makeText(ListaDeTragos.this, "Se eliminó la bebida seleccionada.",
                             Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(ListaDeTragos.this, descripcionErrorEliminarBebida + " " +
-                                    "Código de error: " + codigoErrorEliminarBebida,
+                    Toast.makeText(ListaDeTragos.this, descripcionErrorEliminarBebida,
                             Toast.LENGTH_SHORT).show();
                 }
             }
@@ -684,7 +659,6 @@ public class ListaDeTragos extends AppCompatActivity {
 
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE,"NO", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                //
             }
         });
 
@@ -696,7 +670,6 @@ public class ListaDeTragos extends AppCompatActivity {
         LinearLayout.LayoutParams yesBtnLP = (LinearLayout.LayoutParams) yesBT.getLayoutParams();
         yesBtnLP.gravity = Gravity.FILL_HORIZONTAL;
         yesBT.setPadding(50, 10, 10, 10);   // Set Position
-        //yesBT.setTextColor(Color.BLUE);
         yesBT.setTextSize(dialogYesBtnSize);
         yesBT.setLayoutParams(yesBtnLP);
 
@@ -704,7 +677,6 @@ public class ListaDeTragos extends AppCompatActivity {
         final Button noBT = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
         LinearLayout.LayoutParams negBtnLP = (LinearLayout.LayoutParams) yesBT.getLayoutParams();
         negBtnLP.gravity = Gravity.FILL_HORIZONTAL;
-        //noBT.setTextColor(Color.RED);
         noBT.setTextSize(dialogNoBtnSize);
         noBT.setLayoutParams(negBtnLP);
 
@@ -793,8 +765,7 @@ public class ListaDeTragos extends AppCompatActivity {
                     listBebida.add(bebida);
                 }
             } else {
-                // TODO: manejar codigos de error de consultarSabores
-            }
+                }
         } catch (JSONException e) { e.printStackTrace(); }
 
         return listBebida;
@@ -854,10 +825,8 @@ public class ListaDeTragos extends AppCompatActivity {
     }
 
     public void abrirCuadroDialogoBebidaFinalizada () {
-        String titleBebidaFinalizada = "PREPARACIÓN FINALIZADA";
+        String titleBebidaFinalizada = "PREPARACIÓN FINALIZADA\n";
         String messageBebidaFinalizada = "¡Tu bebida ya está lista!\nPodes retirarla de la máquina\n\n¡Que la disfrutes!";
-
-//-----------
 
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 
@@ -865,7 +834,6 @@ public class ListaDeTragos extends AppCompatActivity {
         TextView title = new TextView(this);
         // Title Properties
         title.setText(titleBebidaFinalizada);
-//        title.setPadding(10, 10, 10, 10);   // Set Position
         title.setGravity(Gravity.CENTER);
         title.setTextColor(Color.BLACK);
         title.setTextSize(dialogTitleSize);
@@ -876,7 +844,6 @@ public class ListaDeTragos extends AppCompatActivity {
         // Message Properties
         msg.setText(messageBebidaFinalizada);
         msg.setGravity(Gravity.CENTER);
-//        msg.setTextColor(Color.BLACK);
         msg.setTextSize(dialogMessageSize);
         alertDialog.setView(msg);
 
@@ -895,7 +862,6 @@ public class ListaDeTragos extends AppCompatActivity {
         LinearLayout.LayoutParams yesBtnLP = (LinearLayout.LayoutParams) aceptarBT.getLayoutParams();
         yesBtnLP.gravity = Gravity.FILL_HORIZONTAL;
         aceptarBT.setPadding(50, 10, 10, 10);   // Set Position
-        //yesBT.setTextColor(Color.BLUE);
         aceptarBT.setTextSize(dialogAceptarBtnSize);
     }
 }

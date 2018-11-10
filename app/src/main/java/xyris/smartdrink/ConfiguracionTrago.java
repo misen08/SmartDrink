@@ -1,6 +1,7 @@
 package xyris.smartdrink;
 
 public class ConfiguracionTrago {
+
     private String sabor;
     private Integer porcentaje;
 

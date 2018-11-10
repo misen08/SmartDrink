@@ -81,7 +81,7 @@ public class Botella {
 					listSaboresEnBotella.add(botella);
 				}
 			} else {
-				// TODO: manejar codigos de error de consultarSabores
+
 			}
 
 		} catch (JSONException e) { e.printStackTrace(); }

@@ -1,18 +1,23 @@
 package xyris.smartdrink;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.view.ContextThemeWrapper;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,11 +27,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 
 import ar.edu.xyris.smartdrinks.messages.asignacion.AsignaBotellaRequest;
 import xyris.smartdrink.entities.Botella;
-import xyris.smartdrink.entities.BotellaExt;
 import xyris.smartdrink.entities.FechaHora;
 import xyris.smartdrink.entities.SaborEnBotella;
 import xyris.smartdrink.http.WebServiceClient;
@@ -123,7 +126,6 @@ public class ViewPagerAdapter extends PagerAdapter {
 
         ArrayList<Botella> saboresEnBotella = new Botella().parsearSabor(responseReader.toString());
 
-
         // Se otienen los sabores de las botellas y se carga la respectiva imagen en cada una
         botellas.clear();
 
@@ -177,11 +179,31 @@ public class ViewPagerAdapter extends PagerAdapter {
                                final ArrayList<Botella> botellas, final Integer pos,
                                final String idDevice, final ImageView imageView) {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this.context);
-        String titleDialog = "Seleccioná el sabor";
+        ContextThemeWrapper cw = new ContextThemeWrapper( this.context, R.style.AlertDialogTheme );
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(cw);
 
-        builder.setTitle(titleDialog);
-        builder.setItems(sabores, new DialogInterface.OnClickListener() {
+        String titleDialog = "Seleccioná el sabor\n";
+
+        // Set Custom Title
+        TextView title = new TextView(this.context);
+        // Title Properties
+        title.setText(titleDialog);
+        title.setGravity(Gravity.CENTER);
+        title.setTextColor(Color.BLACK);
+        title.setTextSize(38);
+        alertDialog.setCustomTitle(title);
+
+
+        // Set Message
+        TextView msg = new TextView(this.context);
+        // Message Properties
+        msg.setGravity(Gravity.CENTER_HORIZONTAL);
+        msg.setTextSize(32);
+        alertDialog.setView(msg);
+
+        new Dialog(this.context);
+
+        alertDialog.setItems(sabores, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -273,7 +295,8 @@ public class ViewPagerAdapter extends PagerAdapter {
                 }
             }
         });
-        builder.show();
+
+        alertDialog.show();
     }
 
     public int cargarImagenBotella(String idSabor) {

@@ -1,17 +1,22 @@
 package xyris.smartdrink;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -33,6 +38,12 @@ public class BebidasProgramadas extends AppCompatActivity {
     JSONObject responseReader;
     public int resultCode;
     private static final int MODIFICAR_BEBIDAS_PROGAMADAS = 3;
+
+    int dialogTitleSize = 18;
+    int dialogMessageSize = 16;
+    int dialogYesBtnSize = 16;
+    int dialogNoBtnSize = 16;
+    int dialogAceptarBtnSize = 16;
 
     Drawable editImage;
     Drawable deleteImage;
@@ -57,6 +68,13 @@ public class BebidasProgramadas extends AppCompatActivity {
         resPantalla = sp.getString("resolucionPantalla", "ERROR");
 
         if (resPantalla.equals("800")) {
+            //Si el dispositivo es la tablet, se asigna el tamaño grande para los textos de los dialog.
+            dialogTitleSize = 38;
+            dialogMessageSize = 32;
+            dialogYesBtnSize = 32;
+            dialogNoBtnSize = 32;
+            dialogAceptarBtnSize = 32;
+
             if (modoViernesStatus.equals("activado")) {
                 setContentView(R.layout.bebidas_programadas_viernes_tablet);
             } else {
@@ -93,7 +111,6 @@ public class BebidasProgramadas extends AppCompatActivity {
                 //A "fechaHoraPeticion" se deberá asignar "currentFormattedDate".
                 params.put("fechaHoraPeticion", new FechaHora().formatDate(Calendar.getInstance().getTime()));
 
-                //TODO: CAMBIAR NOMBRE DE PEDIDOS AGENDADOS POR EL CORRESPONDIENTE
                 WebServiceClient cli = new WebServiceClient("/consultarPedidosAgendados", new JSONObject(params));
 
                 responseReader = (JSONObject) cli.getResponse();
@@ -208,15 +225,34 @@ public class BebidasProgramadas extends AppCompatActivity {
 
     public void clickHandlerDeleteButton(View v, final int i, final ArrayList<CategoryListBebidasProgramadas> itemsProgramados) {
 
-        String titleDelete = "Cancelar pedido";
-        String messageDelete = "¿Está seguro que desea cancelar este pedido agendado?";
+        String titleCancelarPedido = "Cancelar pedido\n";
+        String messageCancelarPedido = "¿Está seguro que desea cancelar este pedido agendado?";
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 
-        if (titleDelete != null) builder.setTitle(titleDelete);
+        // Set Custom Title
+        TextView title = new TextView(this);
+        // Title Properties
+        title.setText(titleCancelarPedido);
+//        title.setPadding(10, 10, 10, 10);   // Set Position
+        title.setGravity(Gravity.CENTER);
+        title.setTextColor(Color.BLACK);
+        title.setTextSize(dialogTitleSize);
+        alertDialog.setCustomTitle(title);
 
-        builder.setMessage(messageDelete);
-        builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+        // Set Message
+        TextView msg = new TextView(this);
+        // Message Properties
+        msg.setText(messageCancelarPedido);
+        msg.setGravity(Gravity.CENTER_HORIZONTAL);
+//        msg.setTextColor(Color.BLACK);
+        msg.setTextSize(dialogMessageSize);
+        alertDialog.setView(msg);
+
+
+        // Set Button
+        // you can more buttons
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE,"SÍ", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String idPedido = listBebidasProgramadas.get(i).getIdPedido();
@@ -225,8 +261,34 @@ public class BebidasProgramadas extends AppCompatActivity {
                 Toast.makeText(BebidasProgramadas.this, "El pedido fue cancelado.", Toast.LENGTH_SHORT).show();
             }
         });
-        builder.setNegativeButton("No", null);
-        builder.show();
+
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE,"NO", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                //
+            }
+        });
+
+        new Dialog(getApplicationContext());
+        alertDialog.show();
+
+        // Propiedades del botón "SI"
+        final Button yesBT = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        LinearLayout.LayoutParams yesBtnLP = (LinearLayout.LayoutParams) yesBT.getLayoutParams();
+        yesBtnLP.gravity = Gravity.FILL_HORIZONTAL;
+        yesBT.setPadding(50, 10, 10, 10);   // Set Position
+        //yesBT.setTextColor(Color.BLUE);
+        yesBT.setTextSize(dialogYesBtnSize);
+        yesBT.setLayoutParams(yesBtnLP);
+
+        // Propiedades del botón "NO"
+        final Button noBT = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+        LinearLayout.LayoutParams negBtnLP = (LinearLayout.LayoutParams) yesBT.getLayoutParams();
+        negBtnLP.gravity = Gravity.FILL_HORIZONTAL;
+        //noBT.setTextColor(Color.RED);
+        noBT.setTextSize(dialogNoBtnSize);
+        noBT.setLayoutParams(negBtnLP);
+
+
 
         lvBebidasProgramadas.setAdapter(new AdapterBebidasProgramadas(this, itemsProgramados));
     }

@@ -54,7 +54,7 @@ public class SaborEnBotella {
                     listSaboresEnBotella.add(saborEnBotella);
                 }
             } else {
-                // TODO: manejar codigos de error de consultarSabores
+
             }
 
         } catch (JSONException e) { e.printStackTrace(); }

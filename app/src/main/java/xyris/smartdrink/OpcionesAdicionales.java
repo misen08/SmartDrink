@@ -1,16 +1,23 @@
 package xyris.smartdrink;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -33,6 +40,12 @@ public class OpcionesAdicionales  extends AppCompatActivity {
     CheckBox agitarBebida;
     TextView tvOpcionesAdicionales;
 
+    int dialogTitleSize = 18;
+    int dialogMessageSize = 16;
+    int dialogYesBtnSize = 16;
+    int dialogNoBtnSize = 16;
+    int dialogAceptarBtnSize = 16;
+
     private String idDevice;
     private String modoViernesStatus;
     private String resPantalla;
@@ -53,6 +66,13 @@ public class OpcionesAdicionales  extends AppCompatActivity {
         resPantalla = sp.getString("resolucionPantalla", "ERROR");
 
         if (resPantalla.equals("800")) {
+            //Si el dispositivo es la tablet, se asigna el tamaño grande para los textos de los dialog.
+            dialogTitleSize = 38;
+            dialogMessageSize = 32;
+            dialogYesBtnSize = 32;
+            dialogNoBtnSize = 32;
+            dialogAceptarBtnSize = 32;
+
             if (modoViernesStatus.equals("activado")) {
                 setContentView(R.layout.opciones_adicionales_tablet_viernes);
             } else {
@@ -103,7 +123,7 @@ public class OpcionesAdicionales  extends AppCompatActivity {
         });
     }
 
-    // Se obtiene el estado de las opciones "AgregarHielo" y "MezclarBebida".
+    // Se obtiene el estado de las opciones "AgregarHielo" y "AgitarBebida".
     public void verificarFlags() {
         conHielo = agregarHielo.isChecked();
         agitado = agitarBebida.isChecked();
@@ -115,6 +135,7 @@ public class OpcionesAdicionales  extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode) {
+
             case PROGRAMAR_BEBIDA_ACTIVITY:
 
                 if (resultCode == RESULT_OK && null != data) {
@@ -130,8 +151,55 @@ public class OpcionesAdicionales  extends AppCompatActivity {
                     returnIntent.putExtra("result",result);
                     setResult(Activity.RESULT_OK,returnIntent);
                     finish();
-                }
+                } else {
+                    if(resultCode == RESULT_CANCELED) {
+                        Toast.makeText(this, "Hay una bebida preparandose", Toast.LENGTH_SHORT).show();
+                        String titleBebidaEnCurso = "No se puede preparar la bebida\n";
+                        String messageBebidaEnCurso = "La bebida no puede prepararse debido a que" +
+                                " existe otra preparación en curso";
 
+                        AlertDialog alertDialog = new AlertDialog.Builder(OpcionesAdicionales.this).create();
+
+                        // Set Custom Title
+                        TextView title = new TextView(OpcionesAdicionales.this);
+                        // Title Properties
+                        title.setText(titleBebidaEnCurso);
+                        title.setGravity(Gravity.CENTER);
+                        title.setTextColor(Color.BLACK);
+                        title.setTextSize(dialogTitleSize);
+                        alertDialog.setCustomTitle(title);
+
+                        // Set Message
+                        TextView msg = new TextView(OpcionesAdicionales.this);
+                        // Message Properties
+                        msg.setText(messageBebidaEnCurso);
+                        msg.setGravity(Gravity.CENTER_HORIZONTAL);
+                        msg.setTextSize(dialogMessageSize);
+                        alertDialog.setView(msg);
+
+                        // Set Button
+                        // you can more buttons
+                        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE,"ACEPTAR", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+
+                        new Dialog(getApplicationContext());
+                        alertDialog.show();
+
+                        // Propiedades del botón "SI"
+                        final Button yesBT = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                        LinearLayout.LayoutParams yesBtnLP = (LinearLayout.LayoutParams) yesBT.getLayoutParams();
+                        yesBtnLP.gravity = Gravity.FILL_HORIZONTAL;
+                        yesBT.setPadding(50, 10, 10, 10);   // Set Position
+                        yesBT.setTextSize(dialogYesBtnSize);
+                        yesBT.setLayoutParams(yesBtnLP);
+
+                        finish();
+                    }
+                }
                 break;
 
             default:

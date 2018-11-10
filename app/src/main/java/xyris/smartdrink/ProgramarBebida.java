@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -23,18 +22,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONObject;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 import ar.edu.xyris.smartdrinks.messages.preparacion.PreparaBebidaRequest;
 import xyris.smartdrink.entities.FechaHora;
 import xyris.smartdrink.entities.PedidoBebida;
 import xyris.smartdrink.http.WebServiceClient;
-
-import static java.lang.System.currentTimeMillis;
 
 public class ProgramarBebida extends AppCompatActivity implements View.OnClickListener {
 
@@ -91,8 +85,6 @@ public class ProgramarBebida extends AppCompatActivity implements View.OnClickLi
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         idDevice = sp.getString("idDevice","ERROR");
-
-        //Toast.makeText(this, "id" + idDevice, Toast.LENGTH_SHORT).show();
 
         tvFecha = (TextView) findViewById(R.id.textViewFecha);
         tvHora = (TextView) findViewById(R.id.textViewHora);

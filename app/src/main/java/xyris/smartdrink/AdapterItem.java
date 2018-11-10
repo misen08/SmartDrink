@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 public class AdapterItem extends BaseAdapter {
@@ -89,17 +88,12 @@ public class AdapterItem extends BaseAdapter {
         int colorDisable = colorTexto(mapDisable.get(items.get(position).getCategoryId()));
 
         tvTitle.setTextColor(colorDisable);
-//        if("0".equals(mapDisable.get(items.get(position).getCategoryId()))){
-//            tvTitle.setTextColor(Color.GRAY);
-//        }
-
 
         ImageView ivDisableImage = (ImageView) v.findViewById(R.id.disableImage);
 
         int imagenDisable = cargarImagenDisable(mapDisable.get(items.get(position).getCategoryId()));
 
         ivDisableImage.setImageResource(imagenDisable);
-
 
         ImageView ivInfoImage = (ImageView) v.findViewById(R.id.buttonEdit);
         ivInfoImage.setImageDrawable(dir.getButtonInfo());

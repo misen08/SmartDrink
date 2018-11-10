@@ -216,7 +216,6 @@ public class ModificarBebidasProgramadas extends AppCompatActivity implements Vi
                 fechaHoraAgendado = new FechaHora().fechaHoraFormateada(fechaIngresada, horaIngresada);
 
                 //Se envía el mensaje para modificar el pedido agendado
-                //ToDo: Crear "/modificarPedidoAgendado para realizar el update en la DB.
 
                 idPedido = getIntent().getStringExtra("idPedido");
                 idBebida = getIntent().getStringExtra("idBebida");
